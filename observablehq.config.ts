@@ -21,6 +21,7 @@ export default {
         {name: "Event Stream", path: "/eventStream"},
         {name: "Profit Loss - J. League 2022", path: "/profitLoss2022"},
         {name: "J1 Predictor", path: "/predictor-j1"},
+        {name: "GK Positioning", path: "/gk-positioning"},
       ]
     }
   ],
