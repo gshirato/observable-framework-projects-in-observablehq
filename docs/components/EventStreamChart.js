@@ -35,6 +35,7 @@ class EventStreamChart extends GeneralChart {
       super(data, selector, config);
       this.timeRange = this.config["timeRange"];
       this.period = this.config["period"];
+      this.soccer = this.config["soccerModule"];
       this.data = this.data.filter(
         (d) =>
           parseEventTime(d) < parseEventTime(this.timeRange[1]) &&
@@ -196,11 +197,12 @@ class EventStreamChart extends GeneralChart {
     mouseover(thisClass, event, d) {
       d3.select(this).attr("stroke-width", 2);
       new ThreeSixtyChart(thisClass.threeSixty, "#event-360", {
-        height: 300,
-        width: 500,
-        margin: { top: 10, left: 10, bottom: 10, right: 10 },
+        height: 400,
+        width: thisClass.width,
+        margin: { top: 10, left: 10, bottom: 10, right: 30 },
         events: thisClass.data,
-        selectedEvent: d
+        selectedEvent: d,
+        soccerModule: thisClass.soccer,
       }).draw();
 
       thisClass.tooltip.show(event, d);

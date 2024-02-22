@@ -123,20 +123,23 @@ const minuteStart = 0;
 
 
 ```js
-const chart = new EventStreamChart(events, "#eventStream", {
-        width: width,
-        height: 300,
-        margin: { top: 20, right: 20, bottom: 20, left: 20 },
-        period: 1,
-        homeColor: "black",
-        awayColor: "blue",
-        threeSixty: threeSixty,
-        timeRange: [
-        { minute: minuteStart, second: 0 },
-        { minute: minuteStart + 5, second: 0 }
-    ]
-}).draw();
-
+import {require} from "npm:d3-require";
+require("d3-soccer").then(soccer=>{
+  new EventStreamChart(events, "#eventStream", {
+    width: width,
+    height: 300,
+    margin: { top: 20, right: 20, bottom: 20, left: 20 },
+    period: 1,
+    homeColor: "black",
+    awayColor: "blue",
+    threeSixty: threeSixty,
+    timeRange: [
+    { minute: minuteStart, second: 0 },
+    { minute: minuteStart + 5, second: 0 },
+    ],
+    soccerModule: soccer
+  }).draw();
+});
 ```
 
 ```html

@@ -14,7 +14,8 @@ function getOpponent(teammate, teams) {
 class ThreeSixtyChart extends GeneralChart {
     constructor(data, selector, config) {
       super(data, selector, config);
-      this.pitch = soccer.pitch().height(this.height);
+      this.soccer = this.config["soccerModule"];
+      this.pitch = this.soccer.pitch().height(this.height);
       this.events = this.config["events"];
       this.selectedEvent = this.config["selectedEvent"];
 
@@ -40,7 +41,7 @@ class ThreeSixtyChart extends GeneralChart {
     }
 
     drawPitch(sel) {
-      // sel.append("g").call(this.pitch);
+      sel.append("g").call(this.pitch);
     }
 
     draw360(sel) {
