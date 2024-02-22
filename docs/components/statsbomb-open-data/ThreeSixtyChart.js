@@ -1,5 +1,5 @@
 import * as d3 from "npm:d3";
-import GeneralChart from "./GeneralChart.js";
+import GeneralChart from "../GeneralChart.js";
 import * as soccer from "npm:d3-soccer";
 import getPossessionData from "./utils.js";
 import _ from "npm:lodash";

@@ -8,7 +8,7 @@ const competitions = d3.json(
 ```
 
 ```js
-import sortCompetitions from "./components/statsbomb.js";
+import sortCompetitions from "./components/statsbomb-open-data/statsbomb.js";
 ```
 
 ```js

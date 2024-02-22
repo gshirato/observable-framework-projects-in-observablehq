@@ -11,7 +11,7 @@ const competitions = d3.json(
 ```
 
 ```js
-import sortCompetitions from "./components/statsbomb.js";
+import sortCompetitions from "./components/statsbomb-open-data/statsbomb.js";
 ```
 
 ```js
@@ -114,7 +114,7 @@ const threeSixty = getThreeSixty(game, competitions)
 ```
 
 ```js
-import EventStreamChart from "./components/EventStreamChart.js";
+import EventStreamChart from "./components/statsbomb-open-data/EventStreamChart.js";
 ```
 
 ```js
