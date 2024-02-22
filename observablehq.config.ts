@@ -13,6 +13,14 @@ export default {
         {name: "Dashboard", path: "/example-dashboard"},
         {name: "Report", path: "/example-report"}
       ]
+    },
+    {
+      name: "Projects",
+      pages: [
+        {name: "Statsbomb", path: "/statsbomb"},
+        {name: "Event Stream", path: "/eventStream"},
+        {name: "Profit Loss - J. League 2022", path: "/profitLoss2022"},
+      ]
     }
   ],
 
