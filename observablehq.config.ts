@@ -20,6 +20,7 @@ export default {
         {name: "Statsbomb", path: "/statsbomb"},
         {name: "Event Stream", path: "/eventStream"},
         {name: "Profit Loss - J. League 2022", path: "/profitLoss2022"},
+        {name: "J1 Predictor", path: "/predictor-j1"},
       ]
     }
   ],
