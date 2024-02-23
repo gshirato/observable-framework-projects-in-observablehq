@@ -23,6 +23,7 @@ def parse_soup(soup):
     df = pd.read_html(str(table))[0]
     df = df.dropna(axis=0, subset=["Home", "Away"])
     df["Wk"] = df["Wk"].astype(int)
+    df["Attendance"] = df["Attendance"].astype(int)
     df["id"] = df["Wk"].astype(str) + "_" + df["Home"] + "_" + df["Away"]
     return df
 
