@@ -22,6 +22,7 @@ export default {
         {name: "Profit Loss - J. League 2022", path: "/profitLoss2022"},
         {name: "J1 Predictor", path: "/predictor-j1"},
         {name: "GK Positioning", path: "/gk-positioning"},
+        {name: "J1 Data", path: "/j1-data"},
       ]
     }
   ],

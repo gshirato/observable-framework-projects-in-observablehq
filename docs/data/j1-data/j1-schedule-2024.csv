@@ -1,0 +1,381 @@
+Wk,Day,Date,Time,Home,Score,Away,Attendance,Venue,Referee,Match Report,Notes,id,scraped
+1,Fri,2024-02-23,14:00,Sanfrecce,,Urawa Reds,,EDION Stadium,,Head-to-Head,,1_Sanfrecce_Urawa Reds,False
+1,Fri,2024-02-23,18:00,Grampus,,Kashima Antlers,,Toyota Stadium,,Head-to-Head,,1_Grampus_Kashima Antlers,False
+1,Sat,2024-02-24,13:00,Júbilo Iwata,,Vissel Kobe,,Yamaha Stadium,,Head-to-Head,,1_Júbilo Iwata_Vissel Kobe,False
+1,Sat,2024-02-24,14:00,Avispa Fukuoka,,Consa Sapporo,,Best Denki Stadium,,Head-to-Head,,1_Avispa Fukuoka_Consa Sapporo,False
+1,Sat,2024-02-24,14:00,Sagan Tosu,,Albirex Niigata,,Ekimae Real Estate Stadium,,Head-to-Head,,1_Sagan Tosu_Albirex Niigata,False
+1,Sat,2024-02-24,15:00,Machida Zelvia,,Gamba Osaka,,Machida GION Stadium,,Head-to-Head,,1_Machida Zelvia_Gamba Osaka,False
+1,Sat,2024-02-24,15:00,Shonan Bellmare,,Kawa Frontale,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,1_Shonan Bellmare_Kawa Frontale,False
+1,Sat,2024-02-24,15:00,Cerezo Osaka,,FC Tokyo,,Yodoko Sakura Stadium,,Head-to-Head,,1_Cerezo Osaka_FC Tokyo,False
+1,Sun,2024-02-25,14:00,Tokyo Verdy,,Marinos,,Japan National Stadium,,Head-to-Head,,1_Tokyo Verdy_Marinos,False
+1,Sun,2024-02-25,14:00,Kashiwa Reysol,,Kyoto Sanga,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,1_Kashiwa Reysol_Kyoto Sanga,False
+2,Fri,2024-03-01,19:00,Kawa Frontale,,Júbilo Iwata,,Kawasaki Todoroki Stadium,,Head-to-Head,,2_Kawa Frontale_Júbilo Iwata,False
+2,Fri,2024-03-01,19:00,Marinos,,Avispa Fukuoka,,Nissan Stadium,,Head-to-Head,,2_Marinos_Avispa Fukuoka,False
+2,Sat,2024-03-02,13:00,Vissel Kobe,,Kashiwa Reysol,,NOEVIR Stadium Kobe,,Head-to-Head,,2_Vissel Kobe_Kashiwa Reysol,False
+2,Sat,2024-03-02,14:00,Sagan Tosu,,Consa Sapporo,,Ekimae Real Estate Stadium,,Head-to-Head,,2_Sagan Tosu_Consa Sapporo,False
+2,Sat,2024-03-02,14:00,Kyoto Sanga,,Shonan Bellmare,,Sanga Stadium by Kyocera,,Head-to-Head,,2_Kyoto Sanga_Shonan Bellmare,False
+2,Sat,2024-03-02,14:00,Grampus,,Machida Zelvia,,Toyota Stadium,,Head-to-Head,,2_Grampus_Machida Zelvia,False
+2,Sat,2024-03-02,15:00,Kashima Antlers,,Cerezo Osaka,,Kashima Soccer Stadium,,Head-to-Head,,2_Kashima Antlers_Cerezo Osaka,False
+2,Sat,2024-03-02,15:00,Gamba Osaka,,Albirex Niigata,,Panasonic Stadium Suita,,Head-to-Head,,2_Gamba Osaka_Albirex Niigata,False
+2,Sat,2024-03-02,15:00,FC Tokyo,,Sanfrecce,,Ajinomoto Stadium,,Head-to-Head,,2_FC Tokyo_Sanfrecce,False
+2,Sun,2024-03-03,16:00,Urawa Reds,,Tokyo Verdy,,Saitama Stadium 2002,,Head-to-Head,,2_Urawa Reds_Tokyo Verdy,False
+3,Sat,2024-03-09,14:00,Machida Zelvia,,Kashima Antlers,,Machida GION Stadium,,Head-to-Head,,3_Machida Zelvia_Kashima Antlers,False
+3,Sat,2024-03-09,14:00,Júbilo Iwata,,Kashiwa Reysol,,Yamaha Stadium,,Head-to-Head,,3_Júbilo Iwata_Kashiwa Reysol,False
+3,Sat,2024-03-09,14:00,Albirex Niigata,,Grampus,,Denka Big Swan Stadium,,Head-to-Head,,3_Albirex Niigata_Grampus,False
+3,Sat,2024-03-09,15:00,Sanfrecce,,Sagan Tosu,,EDION Stadium,,Head-to-Head,,3_Sanfrecce_Sagan Tosu,False
+3,Sat,2024-03-09,15:00,Avispa Fukuoka,,Shonan Bellmare,,Best Denki Stadium,,Head-to-Head,,3_Avispa Fukuoka_Shonan Bellmare,False
+3,Sat,2024-03-09,16:00,FC Tokyo,,Vissel Kobe,,Ajinomoto Stadium,,Head-to-Head,,3_FC Tokyo_Vissel Kobe,False
+3,Sat,2024-03-09,16:00,Cerezo Osaka,,Tokyo Verdy,,Yodoko Sakura Stadium,,Head-to-Head,,3_Cerezo Osaka_Tokyo Verdy,False
+3,Sat,2024-03-09,16:00,Kawa Frontale,,Kyoto Sanga,,Kawasaki Todoroki Stadium,,Head-to-Head,,3_Kawa Frontale_Kyoto Sanga,False
+3,Sun,2024-03-10,13:05,Consa Sapporo,,Urawa Reds,,Sapporo Dome,,Head-to-Head,,3_Consa Sapporo_Urawa Reds,False
+3,Sun,2024-03-10,20:00,Marinos,,Gamba Osaka,,Nissan Stadium,,Head-to-Head,,3_Marinos_Gamba Osaka,False
+4,Sat,2024-03-16,13:00,Avispa Fukuoka,,FC Tokyo,,Best Denki Stadium,,Head-to-Head,,4_Avispa Fukuoka_FC Tokyo,False
+4,Sat,2024-03-16,14:00,Vissel Kobe,,Sanfrecce,,NOEVIR Stadium Kobe,,Head-to-Head,,4_Vissel Kobe_Sanfrecce,False
+4,Sat,2024-03-16,14:00,Consa Sapporo,,Machida Zelvia,,Sapporo Dome,,Head-to-Head,,4_Consa Sapporo_Machida Zelvia,False
+4,Sat,2024-03-16,15:00,Gamba Osaka,,Júbilo Iwata,,Panasonic Stadium Suita,,Head-to-Head,,4_Gamba Osaka_Júbilo Iwata,False
+4,Sat,2024-03-16,15:00,Kashiwa Reysol,,Grampus,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,4_Kashiwa Reysol_Grampus,False
+4,Sat,2024-03-16,15:00,Sagan Tosu,,Cerezo Osaka,,Ekimae Real Estate Stadium,,Head-to-Head,,4_Sagan Tosu_Cerezo Osaka,False
+4,Sat,2024-03-16,16:00,Tokyo Verdy,,Albirex Niigata,,Ajinomoto Stadium,,Head-to-Head,,4_Tokyo Verdy_Albirex Niigata,False
+4,Sun,2024-03-17,14:00,Kyoto Sanga,,Marinos,,Sanga Stadium by Kyocera,,Head-to-Head,,4_Kyoto Sanga_Marinos,False
+4,Sun,2024-03-17,15:00,Kashima Antlers,,Kawa Frontale,,Kashima Soccer Stadium,,Head-to-Head,,4_Kashima Antlers_Kawa Frontale,False
+4,Sun,2024-03-17,15:00,Shonan Bellmare,,Urawa Reds,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,4_Shonan Bellmare_Urawa Reds,False
+5,Fri,2024-03-29,19:00,Tokyo Verdy,,Kyoto Sanga,,Ajinomoto Stadium,,Head-to-Head,,5_Tokyo Verdy_Kyoto Sanga,False
+5,Sat,2024-03-30,13:00,Sanfrecce,,Gamba Osaka,,EDION Stadium,,Head-to-Head,,5_Sanfrecce_Gamba Osaka,False
+5,Sat,2024-03-30,14:00,Albirex Niigata,,Kashiwa Reysol,,Denka Big Swan Stadium,,Head-to-Head,,5_Albirex Niigata_Kashiwa Reysol,False
+5,Sat,2024-03-30,14:00,Vissel Kobe,,Consa Sapporo,,NOEVIR Stadium Kobe,,Head-to-Head,,5_Vissel Kobe_Consa Sapporo,False
+5,Sat,2024-03-30,15:00,Kashima Antlers,,Júbilo Iwata,,Kashima Soccer Stadium,,Head-to-Head,,5_Kashima Antlers_Júbilo Iwata,False
+5,Sat,2024-03-30,15:00,Kawa Frontale,,FC Tokyo,,Kawasaki Todoroki Stadium,,Head-to-Head,,5_Kawa Frontale_FC Tokyo,False
+5,Sat,2024-03-30,15:00,Urawa Reds,,Avispa Fukuoka,,Saitama Stadium 2002,,Head-to-Head,,5_Urawa Reds_Avispa Fukuoka,False
+5,Sat,2024-03-30,15:00,Machida Zelvia,,Sagan Tosu,,Machida GION Stadium,,Head-to-Head,,5_Machida Zelvia_Sagan Tosu,False
+5,Sat,2024-03-30,16:00,Cerezo Osaka,,Shonan Bellmare,,Yodoko Sakura Stadium,,Head-to-Head,,5_Cerezo Osaka_Shonan Bellmare,False
+5,Sat,2024-03-30,16:00,Grampus,,Marinos,,Toyota Stadium,,Head-to-Head,,5_Grampus_Marinos,False
+6,Wed,2024-04-03,19:00,Avispa Fukuoka,,Kashima Antlers,,Best Denki Stadium,,Head-to-Head,,6_Avispa Fukuoka_Kashima Antlers,False
+6,Wed,2024-04-03,19:00,Sagan Tosu,,Vissel Kobe,,Ekimae Real Estate Stadium,,Head-to-Head,,6_Sagan Tosu_Vissel Kobe,False
+6,Wed,2024-04-03,19:00,Marinos,,Kawa Frontale,,Nissan Stadium,,Head-to-Head,,6_Marinos_Kawa Frontale,False
+6,Wed,2024-04-03,19:00,Shonan Bellmare,,Tokyo Verdy,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,6_Shonan Bellmare_Tokyo Verdy,False
+6,Wed,2024-04-03,19:00,Gamba Osaka,,Kyoto Sanga,,Panasonic Stadium Suita,,Head-to-Head,,6_Gamba Osaka_Kyoto Sanga,False
+6,Wed,2024-04-03,19:00,Júbilo Iwata,,Albirex Niigata,,Yamaha Stadium,,Head-to-Head,,6_Júbilo Iwata_Albirex Niigata,False
+6,Wed,2024-04-03,19:00,Kashiwa Reysol,,Cerezo Osaka,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,6_Kashiwa Reysol_Cerezo Osaka,False
+6,Wed,2024-04-03,19:00,Machida Zelvia,,Sanfrecce,,Machida GION Stadium,,Head-to-Head,,6_Machida Zelvia_Sanfrecce,False
+6,Wed,2024-04-03,19:30,Consa Sapporo,,Grampus,,Sapporo Dome,,Head-to-Head,,6_Consa Sapporo_Grampus,False
+6,Wed,2024-04-03,19:30,FC Tokyo,,Urawa Reds,,Japan National Stadium,,Head-to-Head,,6_FC Tokyo_Urawa Reds,False
+7,Sat,2024-04-06,14:00,Consa Sapporo,,Gamba Osaka,,Sapporo Dome,,Head-to-Head,,7_Consa Sapporo_Gamba Osaka,False
+7,Sun,2024-04-07,13:00,Tokyo Verdy,,Kashiwa Reysol,,Ajinomoto Stadium,,Head-to-Head,,7_Tokyo Verdy_Kashiwa Reysol,False
+7,Sun,2024-04-07,14:00,Vissel Kobe,,Marinos,,NOEVIR Stadium Kobe,,Head-to-Head,,7_Vissel Kobe_Marinos,False
+7,Sun,2024-04-07,14:00,Sanfrecce,,Shonan Bellmare,,EDION Stadium,,Head-to-Head,,7_Sanfrecce_Shonan Bellmare,False
+7,Sun,2024-04-07,14:00,Albirex Niigata,,Cerezo Osaka,,Denka Big Swan Stadium,,Head-to-Head,,7_Albirex Niigata_Cerezo Osaka,False
+7,Sun,2024-04-07,14:00,Kyoto Sanga,,Júbilo Iwata,,Sanga Stadium by Kyocera,,Head-to-Head,,7_Kyoto Sanga_Júbilo Iwata,False
+7,Sun,2024-04-07,15:00,Kawa Frontale,,Machida Zelvia,,Kawasaki Todoroki Stadium,,Head-to-Head,,7_Kawa Frontale_Machida Zelvia,False
+7,Sun,2024-04-07,15:00,Urawa Reds,,Sagan Tosu,,Saitama Stadium 2002,,Head-to-Head,,7_Urawa Reds_Sagan Tosu,False
+7,Sun,2024-04-07,15:00,Grampus,,Avispa Fukuoka,,Toyota Stadium,,Head-to-Head,,7_Grampus_Avispa Fukuoka,False
+7,Sun,2024-04-07,17:00,FC Tokyo,,Kashima Antlers,,Japan National Stadium,,Head-to-Head,,7_FC Tokyo_Kashima Antlers,False
+8,Fri,2024-04-12,19:00,Kashiwa Reysol,,Urawa Reds,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,8_Kashiwa Reysol_Urawa Reds,False
+8,Sat,2024-04-13,14:00,Júbilo Iwata,,Grampus,,Yamaha Stadium,,Head-to-Head,,8_Júbilo Iwata_Grampus,False
+8,Sat,2024-04-13,14:00,Avispa Fukuoka,,Sanfrecce,,Best Denki Stadium,,Head-to-Head,,8_Avispa Fukuoka_Sanfrecce,False
+8,Sat,2024-04-13,14:00,Marinos,,Shonan Bellmare,,Nissan Stadium,,Head-to-Head,,8_Marinos_Shonan Bellmare,False
+8,Sat,2024-04-13,14:00,Albirex Niigata,,Consa Sapporo,,Denka Big Swan Stadium,,Head-to-Head,,8_Albirex Niigata_Consa Sapporo,False
+8,Sat,2024-04-13,15:00,Kashima Antlers,,Kyoto Sanga,,Kashima Soccer Stadium,,Head-to-Head,,8_Kashima Antlers_Kyoto Sanga,False
+8,Sat,2024-04-13,15:00,Cerezo Osaka,,Kawa Frontale,,Yodoko Sakura Stadium,,Head-to-Head,,8_Cerezo Osaka_Kawa Frontale,False
+8,Sat,2024-04-13,15:00,Machida Zelvia,,Vissel Kobe,,Japan National Stadium,,Head-to-Head,,8_Machida Zelvia_Vissel Kobe,False
+8,Sat,2024-04-13,16:00,Tokyo Verdy,,FC Tokyo,,Ajinomoto Stadium,,Head-to-Head,,8_Tokyo Verdy_FC Tokyo,False
+8,Sun,2024-04-14,15:00,Gamba Osaka,,Sagan Tosu,,Panasonic Stadium Suita,,Head-to-Head,,8_Gamba Osaka_Sagan Tosu,False
+9,Sat,2024-04-20,14:00,Sagan Tosu,,Kashima Antlers,,Ekimae Real Estate Stadium,,Head-to-Head,,9_Sagan Tosu_Kashima Antlers,False
+9,Sat,2024-04-20,14:00,Consa Sapporo,,Sanfrecce,,Sapporo Dome,,Head-to-Head,,9_Consa Sapporo_Sanfrecce,False
+9,Sat,2024-04-20,14:00,Kyoto Sanga,,Albirex Niigata,,Sanga Stadium by Kyocera,,Head-to-Head,,9_Kyoto Sanga_Albirex Niigata,False
+9,Sat,2024-04-20,14:00,Marinos,,Kashiwa Reysol,,Nissan Stadium,,Head-to-Head,,9_Marinos_Kashiwa Reysol,False
+9,Sat,2024-04-20,15:00,Avispa Fukuoka,,Júbilo Iwata,,Best Denki Stadium,,Head-to-Head,,9_Avispa Fukuoka_Júbilo Iwata,False
+9,Sat,2024-04-20,15:00,Shonan Bellmare,,Vissel Kobe,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,9_Shonan Bellmare_Vissel Kobe,False
+9,Sat,2024-04-20,16:00,Kawa Frontale,,Tokyo Verdy,,Kawasaki Todoroki Stadium,,Head-to-Head,,9_Kawa Frontale_Tokyo Verdy,False
+9,Sat,2024-04-20,16:00,Urawa Reds,,Gamba Osaka,,Saitama Stadium 2002,,Head-to-Head,,9_Urawa Reds_Gamba Osaka,False
+9,Sun,2024-04-21,15:00,FC Tokyo,,Machida Zelvia,,Ajinomoto Stadium,,Head-to-Head,,9_FC Tokyo_Machida Zelvia,False
+9,Sun,2024-04-21,15:00,Grampus,,Cerezo Osaka,,Toyota Stadium,,Head-to-Head,,9_Grampus_Cerezo Osaka,False
+10,Sat,2024-04-27,13:00,Consa Sapporo,,Shonan Bellmare,,Sapporo Dome,,Head-to-Head,,10_Consa Sapporo_Shonan Bellmare,False
+10,Sat,2024-04-27,14:00,Albirex Niigata,,FC Tokyo,,Denka Big Swan Stadium,,Head-to-Head,,10_Albirex Niigata_FC Tokyo,False
+10,Sat,2024-04-27,14:00,Vissel Kobe,,Kyoto Sanga,,NOEVIR Stadium Kobe,,Head-to-Head,,10_Vissel Kobe_Kyoto Sanga,False
+10,Sat,2024-04-27,14:00,Júbilo Iwata,,Machida Zelvia,,Yamaha Stadium,,Head-to-Head,,10_Júbilo Iwata_Machida Zelvia,False
+10,Sat,2024-04-27,15:00,Cerezo Osaka,,Marinos,,Yodoko Sakura Stadium,,Head-to-Head,,10_Cerezo Osaka_Marinos,False
+10,Sun,2024-04-28,14:00,Tokyo Verdy,,Avispa Fukuoka,,,,Head-to-Head,,10_Tokyo Verdy_Avispa Fukuoka,False
+10,Sun,2024-04-28,14:00,Sanfrecce,,Kawa Frontale,,EDION Stadium,,Head-to-Head,,10_Sanfrecce_Kawa Frontale,False
+10,Sun,2024-04-28,15:00,Urawa Reds,,Grampus,,Saitama Stadium 2002,,Head-to-Head,,10_Urawa Reds_Grampus,False
+10,Sun,2024-04-28,15:00,Kashiwa Reysol,,Sagan Tosu,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,10_Kashiwa Reysol_Sagan Tosu,False
+10,Sun,2024-04-28,15:00,Gamba Osaka,,Kashima Antlers,,Panasonic Stadium Suita,,Head-to-Head,,10_Gamba Osaka_Kashima Antlers,False
+11,Fri,2024-05-03,14:00,Albirex Niigata,,Sanfrecce,,Denka Big Swan Stadium,,Head-to-Head,,11_Albirex Niigata_Sanfrecce,False
+11,Fri,2024-05-03,14:00,Marinos,,Júbilo Iwata,,,,Head-to-Head,,11_Marinos_Júbilo Iwata,False
+11,Fri,2024-05-03,15:00,Kashima Antlers,,Shonan Bellmare,,Kashima Soccer Stadium,,Head-to-Head,,11_Kashima Antlers_Shonan Bellmare,False
+11,Fri,2024-05-03,15:00,Sagan Tosu,,Tokyo Verdy,,Ekimae Real Estate Stadium,,Head-to-Head,,11_Sagan Tosu_Tokyo Verdy,False
+11,Fri,2024-05-03,15:00,FC Tokyo,,Kyoto Sanga,,Ajinomoto Stadium,,Head-to-Head,,11_FC Tokyo_Kyoto Sanga,False
+11,Fri,2024-05-03,15:00,Machida Zelvia,,Kashiwa Reysol,,Machida GION Stadium,,Head-to-Head,,11_Machida Zelvia_Kashiwa Reysol,False
+11,Fri,2024-05-03,15:00,Cerezo Osaka,,Consa Sapporo,,Yodoko Sakura Stadium,,Head-to-Head,,11_Cerezo Osaka_Consa Sapporo,False
+11,Fri,2024-05-03,16:00,Avispa Fukuoka,,Gamba Osaka,,Best Denki Stadium,,Head-to-Head,,11_Avispa Fukuoka_Gamba Osaka,False
+11,Fri,2024-05-03,16:00,Kawa Frontale,,Urawa Reds,,Kawasaki Todoroki Stadium,,Head-to-Head,,11_Kawa Frontale_Urawa Reds,False
+11,Fri,2024-05-03,19:00,Grampus,,Vissel Kobe,,Toyota Stadium,,Head-to-Head,,11_Grampus_Vissel Kobe,False
+12,Mon,2024-05-06,13:00,Vissel Kobe,,Albirex Niigata,,NOEVIR Stadium Kobe,,Head-to-Head,,12_Vissel Kobe_Albirex Niigata,False
+12,Mon,2024-05-06,13:00,Tokyo Verdy,,Júbilo Iwata,,,,Head-to-Head,,12_Tokyo Verdy_Júbilo Iwata,False
+12,Mon,2024-05-06,13:05,Gamba Osaka,,Cerezo Osaka,,Panasonic Stadium Suita,,Head-to-Head,,12_Gamba Osaka_Cerezo Osaka,False
+12,Mon,2024-05-06,14:00,Consa Sapporo,,FC Tokyo,,Sapporo Dome,,Head-to-Head,,12_Consa Sapporo_FC Tokyo,False
+12,Mon,2024-05-06,14:00,Kyoto Sanga,,Machida Zelvia,,Sanga Stadium by Kyocera,,Head-to-Head,,12_Kyoto Sanga_Machida Zelvia,False
+12,Mon,2024-05-06,14:00,Avispa Fukuoka,,Kawa Frontale,,Best Denki Stadium,,Head-to-Head,,12_Avispa Fukuoka_Kawa Frontale,False
+12,Mon,2024-05-06,15:00,Sanfrecce,,Grampus,,EDION Stadium,,Head-to-Head,,12_Sanfrecce_Grampus,False
+12,Mon,2024-05-06,16:00,Shonan Bellmare,,Sagan Tosu,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,12_Shonan Bellmare_Sagan Tosu,False
+12,Mon,2024-05-06,16:00,Kashiwa Reysol,,Kashima Antlers,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,12_Kashiwa Reysol_Kashima Antlers,False
+12,Mon,2024-05-06,17:00,Urawa Reds,,Marinos,,Saitama Stadium 2002,,Head-to-Head,,12_Urawa Reds_Marinos,False
+13,Fri,2024-05-10,19:00,Marinos,,Sanfrecce,,,,Head-to-Head,,13_Marinos_Sanfrecce,False
+13,Sat,2024-05-11,14:00,Júbilo Iwata,,Sagan Tosu,,Yamaha Stadium,,Head-to-Head,,13_Júbilo Iwata_Sagan Tosu,False
+13,Sat,2024-05-11,14:00,Albirex Niigata,,Urawa Reds,,Denka Big Swan Stadium,,Head-to-Head,,13_Albirex Niigata_Urawa Reds,False
+13,Sat,2024-05-11,14:00,Kyoto Sanga,,Avispa Fukuoka,,Sanga Stadium by Kyocera,,Head-to-Head,,13_Kyoto Sanga_Avispa Fukuoka,False
+13,Sat,2024-05-11,15:00,Shonan Bellmare,,Machida Zelvia,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,13_Shonan Bellmare_Machida Zelvia,False
+13,Sat,2024-05-11,15:00,Kawa Frontale,,Consa Sapporo,,Kawasaki Todoroki Stadium,,Head-to-Head,,13_Kawa Frontale_Consa Sapporo,False
+13,Sat,2024-05-11,16:00,Cerezo Osaka,,Vissel Kobe,,Yodoko Sakura Stadium,,Head-to-Head,,13_Cerezo Osaka_Vissel Kobe,False
+13,Sat,2024-05-11,16:00,Grampus,,Gamba Osaka,,Toyota Stadium,,Head-to-Head,,13_Grampus_Gamba Osaka,False
+13,Sat,2024-05-11,17:00,FC Tokyo,,Kashiwa Reysol,,Ajinomoto Stadium,,Head-to-Head,,13_FC Tokyo_Kashiwa Reysol,False
+13,Sun,2024-05-12,13:05,Kashima Antlers,,Tokyo Verdy,,Kashima Soccer Stadium,,Head-to-Head,,13_Kashima Antlers_Tokyo Verdy,False
+14,Wed,2024-05-15,19:00,Tokyo Verdy,,Gamba Osaka,,,,Head-to-Head,,14_Tokyo Verdy_Gamba Osaka,False
+14,Wed,2024-05-15,19:00,Grampus,,FC Tokyo,,Toyota Stadium,,Head-to-Head,,14_Grampus_FC Tokyo,False
+14,Wed,2024-05-15,19:00,Kashiwa Reysol,,Shonan Bellmare,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,14_Kashiwa Reysol_Shonan Bellmare,False
+14,Wed,2024-05-15,19:00,Sagan Tosu,,Kawa Frontale,,Ekimae Real Estate Stadium,,Head-to-Head,,14_Sagan Tosu_Kawa Frontale,False
+14,Wed,2024-05-15,19:00,Albirex Niigata,,Marinos,,Denka Big Swan Stadium,,Head-to-Head,,14_Albirex Niigata_Marinos,False
+14,Wed,2024-05-15,19:00,Vissel Kobe,,Avispa Fukuoka,,NOEVIR Stadium Kobe,,Head-to-Head,,14_Vissel Kobe_Avispa Fukuoka,False
+14,Wed,2024-05-15,19:00,Consa Sapporo,,Júbilo Iwata,,Sapporo Dome,,Head-to-Head,,14_Consa Sapporo_Júbilo Iwata,False
+14,Wed,2024-05-15,19:00,Sanfrecce,,Kashima Antlers,,EDION Stadium,,Head-to-Head,,14_Sanfrecce_Kashima Antlers,False
+14,Wed,2024-05-15,19:00,Machida Zelvia,,Cerezo Osaka,,Machida GION Stadium,,Head-to-Head,,14_Machida Zelvia_Cerezo Osaka,False
+14,Wed,2024-05-15,19:30,Urawa Reds,,Kyoto Sanga,,Saitama Stadium 2002,,Head-to-Head,,14_Urawa Reds_Kyoto Sanga,False
+15,Sat,2024-05-18,16:00,Avispa Fukuoka,,Cerezo Osaka,,Best Denki Stadium,,Head-to-Head,,15_Avispa Fukuoka_Cerezo Osaka,False
+15,Sat,2024-05-18,19:00,Sagan Tosu,,Grampus,,Ekimae Real Estate Stadium,,Head-to-Head,,15_Sagan Tosu_Grampus,False
+15,Sun,2024-05-19,14:00,Kyoto Sanga,,Sanfrecce,,Sanga Stadium by Kyocera,,Head-to-Head,,15_Kyoto Sanga_Sanfrecce,False
+15,Sun,2024-05-19,14:00,Machida Zelvia,,Tokyo Verdy,,Machida GION Stadium,,Head-to-Head,,15_Machida Zelvia_Tokyo Verdy,False
+15,Sun,2024-05-19,14:00,Júbilo Iwata,,Urawa Reds,,,,Head-to-Head,,15_Júbilo Iwata_Urawa Reds,False
+15,Sun,2024-05-19,15:00,FC Tokyo,,Marinos,,Ajinomoto Stadium,,Head-to-Head,,15_FC Tokyo_Marinos,False
+15,Sun,2024-05-19,15:00,Kashima Antlers,,Vissel Kobe,,Kashima Soccer Stadium,,Head-to-Head,,15_Kashima Antlers_Vissel Kobe,False
+15,Sun,2024-05-19,15:00,Gamba Osaka,,Kawa Frontale,,Panasonic Stadium Suita,,Head-to-Head,,15_Gamba Osaka_Kawa Frontale,False
+15,Sun,2024-05-19,16:00,Kashiwa Reysol,,Consa Sapporo,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,15_Kashiwa Reysol_Consa Sapporo,False
+15,Sun,2024-05-19,16:00,Shonan Bellmare,,Albirex Niigata,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,15_Shonan Bellmare_Albirex Niigata,False
+16,Sat,2024-05-25,14:00,Júbilo Iwata,,Shonan Bellmare,,Yamaha Stadium,,Head-to-Head,,16_Júbilo Iwata_Shonan Bellmare,False
+16,Sat,2024-05-25,14:00,Consa Sapporo,,Kashima Antlers,,Sapporo Dome,,Head-to-Head,,16_Consa Sapporo_Kashima Antlers,False
+16,Sat,2024-05-25,16:00,Albirex Niigata,,Avispa Fukuoka,,Denka Big Swan Stadium,,Head-to-Head,,16_Albirex Niigata_Avispa Fukuoka,False
+16,Sat,2024-05-25,16:00,Marinos,,Sagan Tosu,,,,Head-to-Head,,16_Marinos_Sagan Tosu,False
+16,Sat,2024-05-25,16:00,Kawa Frontale,,Kashiwa Reysol,,Kawasaki Todoroki Stadium,,Head-to-Head,,16_Kawa Frontale_Kashiwa Reysol,False
+16,Sun,2024-05-26,14:00,Vissel Kobe,,Tokyo Verdy,,NOEVIR Stadium Kobe,,Head-to-Head,,16_Vissel Kobe_Tokyo Verdy,False
+16,Sun,2024-05-26,15:00,Grampus,,Kyoto Sanga,,Toyota Stadium,,Head-to-Head,,16_Grampus_Kyoto Sanga,False
+16,Sun,2024-05-26,15:00,Cerezo Osaka,,Sanfrecce,,Yodoko Sakura Stadium,,Head-to-Head,,16_Cerezo Osaka_Sanfrecce,False
+16,Sun,2024-05-26,15:00,FC Tokyo,,Gamba Osaka,,Ajinomoto Stadium,,Head-to-Head,,16_FC Tokyo_Gamba Osaka,False
+16,Sun,2024-05-26,16:00,Urawa Reds,,Machida Zelvia,,Saitama Stadium 2002,,Head-to-Head,,16_Urawa Reds_Machida Zelvia,False
+17,Fri,2024-05-31,19:00,Sagan Tosu,,FC Tokyo,,Ekimae Real Estate Stadium,,Head-to-Head,,17_Sagan Tosu_FC Tokyo,False
+17,Sat,2024-06-01,14:00,Sanfrecce,,Júbilo Iwata,,EDION Stadium,,Head-to-Head,,17_Sanfrecce_Júbilo Iwata,False
+17,Sat,2024-06-01,15:00,Shonan Bellmare,,Gamba Osaka,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,17_Shonan Bellmare_Gamba Osaka,False
+17,Sat,2024-06-01,15:00,Machida Zelvia,,Albirex Niigata,,Machida GION Stadium,,Head-to-Head,,17_Machida Zelvia_Albirex Niigata,False
+17,Sat,2024-06-01,15:00,Kashima Antlers,,Marinos,,Japan National Stadium,,Head-to-Head,,17_Kashima Antlers_Marinos,False
+17,Sat,2024-06-01,16:00,Urawa Reds,,Vissel Kobe,,Saitama Stadium 2002,,Head-to-Head,,17_Urawa Reds_Vissel Kobe,False
+17,Sat,2024-06-01,19:00,Kyoto Sanga,,Cerezo Osaka,,Sanga Stadium by Kyocera,,Head-to-Head,,17_Kyoto Sanga_Cerezo Osaka,False
+17,Sun,2024-06-02,13:05,Tokyo Verdy,,Consa Sapporo,,,,Head-to-Head,,17_Tokyo Verdy_Consa Sapporo,False
+17,Sun,2024-06-02,17:00,Kawa Frontale,,Grampus,,Kawasaki Todoroki Stadium,,Head-to-Head,,17_Kawa Frontale_Grampus,False
+17,Sun,2024-06-02,19:00,Kashiwa Reysol,,Avispa Fukuoka,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,17_Kashiwa Reysol_Avispa Fukuoka,False
+18,Sat,2024-06-15,16:00,Marinos,,Machida Zelvia,,,,Head-to-Head,,18_Marinos_Machida Zelvia,False
+18,Sat,2024-06-15,18:30,Sanfrecce,,Tokyo Verdy,,EDION Stadium,,Head-to-Head,,18_Sanfrecce_Tokyo Verdy,False
+18,Sat,2024-06-15,19:00,Cerezo Osaka,,Urawa Reds,,Yodoko Sakura Stadium,,Head-to-Head,,18_Cerezo Osaka_Urawa Reds,False
+18,Sat,2024-06-15,19:00,Kyoto Sanga,,Consa Sapporo,,Sanga Stadium by Kyocera,,Head-to-Head,,18_Kyoto Sanga_Consa Sapporo,False
+18,Sun,2024-06-16,14:00,Vissel Kobe,,Kawa Frontale,,Japan National Stadium,,Head-to-Head,,18_Vissel Kobe_Kawa Frontale,False
+18,Sun,2024-06-16,15:30,Avispa Fukuoka,,Sagan Tosu,,Best Denki Stadium,,Head-to-Head,,18_Avispa Fukuoka_Sagan Tosu,False
+18,Sun,2024-06-16,18:00,FC Tokyo,,Júbilo Iwata,,Ajinomoto Stadium,,Head-to-Head,,18_FC Tokyo_Júbilo Iwata,False
+18,Sun,2024-06-16,18:00,Kashima Antlers,,Albirex Niigata,,Kashima Soccer Stadium,,Head-to-Head,,18_Kashima Antlers_Albirex Niigata,False
+18,Sun,2024-06-16,18:00,Grampus,,Shonan Bellmare,,Toyota Stadium,,Head-to-Head,,18_Grampus_Shonan Bellmare,False
+18,Sun,2024-06-16,18:00,Gamba Osaka,,Kashiwa Reysol,,Panasonic Stadium Suita,,Head-to-Head,,18_Gamba Osaka_Kashiwa Reysol,False
+19,Sat,2024-06-22,15:00,Machida Zelvia,,Avispa Fukuoka,,Machida GION Stadium,,Head-to-Head,,19_Machida Zelvia_Avispa Fukuoka,False
+19,Sat,2024-06-22,18:00,Tokyo Verdy,,Grampus,,,,Head-to-Head,,19_Tokyo Verdy_Grampus,False
+19,Sat,2024-06-22,18:00,Albirex Niigata,,Kawa Frontale,,Denka Big Swan Stadium,,Head-to-Head,,19_Albirex Niigata_Kawa Frontale,False
+19,Sat,2024-06-22,18:30,Gamba Osaka,,Vissel Kobe,,Panasonic Stadium Suita,,Head-to-Head,,19_Gamba Osaka_Vissel Kobe,False
+19,Sat,2024-06-22,18:30,Júbilo Iwata,,Cerezo Osaka,,Yamaha Stadium,,Head-to-Head,,19_Júbilo Iwata_Cerezo Osaka,False
+19,Sat,2024-06-22,19:00,Kashiwa Reysol,,Sanfrecce,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,19_Kashiwa Reysol_Sanfrecce,False
+19,Sat,2024-06-22,19:00,Shonan Bellmare,,FC Tokyo,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,19_Shonan Bellmare_FC Tokyo,False
+19,Sat,2024-06-22,19:00,Sagan Tosu,,Kyoto Sanga,,Ekimae Real Estate Stadium,,Head-to-Head,,19_Sagan Tosu_Kyoto Sanga,False
+19,Sat,2024-06-22,19:00,Urawa Reds,,Kashima Antlers,,Saitama Stadium 2002,,Head-to-Head,,19_Urawa Reds_Kashima Antlers,False
+19,Sun,2024-06-23,14:00,Consa Sapporo,,Marinos,,Sapporo Dome,,Head-to-Head,,19_Consa Sapporo_Marinos,False
+20,Wed,2024-06-26,19:00,Kawa Frontale,,Shonan Bellmare,,Kawasaki Todoroki Stadium,,Head-to-Head,,20_Kawa Frontale_Shonan Bellmare,False
+20,Wed,2024-06-26,19:00,Cerezo Osaka,,Sagan Tosu,,Yodoko Sakura Stadium,,Head-to-Head,,20_Cerezo Osaka_Sagan Tosu,False
+20,Wed,2024-06-26,19:00,Avispa Fukuoka,,Marinos,,Best Denki Stadium,,Head-to-Head,,20_Avispa Fukuoka_Marinos,False
+20,Wed,2024-06-26,19:00,FC Tokyo,,Consa Sapporo,,Ajinomoto Stadium,,Head-to-Head,,20_FC Tokyo_Consa Sapporo,False
+20,Wed,2024-06-26,19:00,Júbilo Iwata,,Tokyo Verdy,,Yamaha Stadium,,Head-to-Head,,20_Júbilo Iwata_Tokyo Verdy,False
+20,Wed,2024-06-26,19:00,Kashima Antlers,,Gamba Osaka,,Kashima Soccer Stadium,,Head-to-Head,,20_Kashima Antlers_Gamba Osaka,False
+20,Wed,2024-06-26,19:00,Sanfrecce,,Albirex Niigata,,EDION Stadium,,Head-to-Head,,20_Sanfrecce_Albirex Niigata,False
+20,Wed,2024-06-26,19:00,Grampus,,Urawa Reds,,Toyota Stadium,,Head-to-Head,,20_Grampus_Urawa Reds,False
+20,Wed,2024-06-26,19:00,Kyoto Sanga,,Kashiwa Reysol,,Sanga Stadium by Kyocera,,Head-to-Head,,20_Kyoto Sanga_Kashiwa Reysol,False
+20,Wed,2024-06-26,19:00,Vissel Kobe,,Machida Zelvia,,NOEVIR Stadium Kobe,,Head-to-Head,,20_Vissel Kobe_Machida Zelvia,False
+21,Sat,2024-06-29,14:00,Consa Sapporo,,Albirex Niigata,,Sapporo Dome,,Head-to-Head,,21_Consa Sapporo_Albirex Niigata,False
+21,Sat,2024-06-29,19:00,Marinos,,Tokyo Verdy,,,,Head-to-Head,,21_Marinos_Tokyo Verdy,False
+21,Sat,2024-06-29,19:00,Kawa Frontale,,Sanfrecce,,Kawasaki Todoroki Stadium,,Head-to-Head,,21_Kawa Frontale_Sanfrecce,False
+21,Sun,2024-06-30,18:00,Cerezo Osaka,,Grampus,,Yodoko Sakura Stadium,,Head-to-Head,,21_Cerezo Osaka_Grampus,False
+21,Sun,2024-06-30,18:00,Gamba Osaka,,Machida Zelvia,,Panasonic Stadium Suita,,Head-to-Head,,21_Gamba Osaka_Machida Zelvia,False
+21,Sun,2024-06-30,18:30,Urawa Reds,,Júbilo Iwata,,Saitama Stadium 2002,,Head-to-Head,,21_Urawa Reds_Júbilo Iwata,False
+21,Sun,2024-06-30,18:30,FC Tokyo,,Avispa Fukuoka,,Ajinomoto Stadium,,Head-to-Head,,21_FC Tokyo_Avispa Fukuoka,False
+21,Sun,2024-06-30,19:00,Sagan Tosu,,Kashiwa Reysol,,Ekimae Real Estate Stadium,,Head-to-Head,,21_Sagan Tosu_Kashiwa Reysol,False
+21,Sun,2024-06-30,19:00,Vissel Kobe,,Kashima Antlers,,NOEVIR Stadium Kobe,,Head-to-Head,,21_Vissel Kobe_Kashima Antlers,False
+21,Sun,2024-06-30,19:00,Shonan Bellmare,,Kyoto Sanga,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,21_Shonan Bellmare_Kyoto Sanga,False
+22,Fri,2024-07-05,19:00,Sanfrecce,,Vissel Kobe,,EDION Stadium,,Head-to-Head,,22_Sanfrecce_Vissel Kobe,False
+22,Sat,2024-07-06,18:00,Kashima Antlers,,Consa Sapporo,,Kashima Soccer Stadium,,Head-to-Head,,22_Kashima Antlers_Consa Sapporo,False
+22,Sat,2024-07-06,18:00,Tokyo Verdy,,Cerezo Osaka,,,,Head-to-Head,,22_Tokyo Verdy_Cerezo Osaka,False
+22,Sat,2024-07-06,18:00,Machida Zelvia,,Grampus,,Machida GION Stadium,,Head-to-Head,,22_Machida Zelvia_Grampus,False
+22,Sat,2024-07-06,18:30,Urawa Reds,,Shonan Bellmare,,Urawa Komaba Stadium,,Head-to-Head,,22_Urawa Reds_Shonan Bellmare,False
+22,Sat,2024-07-06,18:30,Albirex Niigata,,Sagan Tosu,,Denka Big Swan Stadium,,Head-to-Head,,22_Albirex Niigata_Sagan Tosu,False
+22,Sat,2024-07-06,18:30,Júbilo Iwata,,Kawa Frontale,,Yamaha Stadium,,Head-to-Head,,22_Júbilo Iwata_Kawa Frontale,False
+22,Sat,2024-07-06,19:00,Gamba Osaka,,Marinos,,Panasonic Stadium Suita,,Head-to-Head,,22_Gamba Osaka_Marinos,False
+22,Sat,2024-07-06,19:00,Kashiwa Reysol,,FC Tokyo,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,22_Kashiwa Reysol_FC Tokyo,False
+22,Sun,2024-07-07,19:00,Avispa Fukuoka,,Kyoto Sanga,,Best Denki Stadium,,Head-to-Head,,22_Avispa Fukuoka_Kyoto Sanga,False
+23,Sat,2024-07-13,14:00,Consa Sapporo,,Vissel Kobe,,Sapporo Dome,,Head-to-Head,,23_Consa Sapporo_Vissel Kobe,False
+23,Sat,2024-07-13,19:00,FC Tokyo,,Albirex Niigata,,Japan National Stadium,,Head-to-Head,,23_FC Tokyo_Albirex Niigata,False
+23,Sun,2024-07-14,18:00,Grampus,,Kashiwa Reysol,,Toyota Stadium,,Head-to-Head,,23_Grampus_Kashiwa Reysol,False
+23,Sun,2024-07-14,18:00,Tokyo Verdy,,Machida Zelvia,,,,Head-to-Head,,23_Tokyo Verdy_Machida Zelvia,False
+23,Sun,2024-07-14,18:30,Sanfrecce,,Avispa Fukuoka,,EDION Stadium,,Head-to-Head,,23_Sanfrecce_Avispa Fukuoka,False
+23,Sun,2024-07-14,18:30,Kyoto Sanga,,Urawa Reds,,Sanga Stadium by Kyocera,,Head-to-Head,,23_Kyoto Sanga_Urawa Reds,False
+23,Sun,2024-07-14,19:00,Shonan Bellmare,,Júbilo Iwata,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,23_Shonan Bellmare_Júbilo Iwata,False
+23,Sun,2024-07-14,19:00,Sagan Tosu,,Gamba Osaka,,Ekimae Real Estate Stadium,,Head-to-Head,,23_Sagan Tosu_Gamba Osaka,False
+23,Sun,2024-07-14,19:00,Kawa Frontale,,Cerezo Osaka,,Kawasaki Todoroki Stadium,,Head-to-Head,,23_Kawa Frontale_Cerezo Osaka,False
+23,Sun,2024-07-14,19:30,Marinos,,Kashima Antlers,,,,Head-to-Head,,23_Marinos_Kashima Antlers,False
+24,Sat,2024-07-20,18:00,Machida Zelvia,,Marinos,,Japan National Stadium,,Head-to-Head,,24_Machida Zelvia_Marinos,False
+24,Sat,2024-07-20,18:00,Kashima Antlers,,FC Tokyo,,Kashima Soccer Stadium,,Head-to-Head,,24_Kashima Antlers_FC Tokyo,False
+24,Sat,2024-07-20,19:00,Júbilo Iwata,,Kyoto Sanga,,Yamaha Stadium,,Head-to-Head,,24_Júbilo Iwata_Kyoto Sanga,False
+24,Sat,2024-07-20,19:00,Vissel Kobe,,Grampus,,NOEVIR Stadium Kobe,,Head-to-Head,,24_Vissel Kobe_Grampus,False
+24,Sat,2024-07-20,19:00,Urawa Reds,,Consa Sapporo,,Saitama Stadium 2002,,Head-to-Head,,24_Urawa Reds_Consa Sapporo,False
+24,Sat,2024-07-20,19:00,Avispa Fukuoka,,Tokyo Verdy,,Best Denki Stadium,,Head-to-Head,,24_Avispa Fukuoka_Tokyo Verdy,False
+24,Sat,2024-07-20,19:00,Gamba Osaka,,Shonan Bellmare,,Panasonic Stadium Suita,,Head-to-Head,,24_Gamba Osaka_Shonan Bellmare,False
+24,Sat,2024-07-20,19:00,Cerezo Osaka,,Albirex Niigata,,Yodoko Sakura Stadium,,Head-to-Head,,24_Cerezo Osaka_Albirex Niigata,False
+24,Sat,2024-07-20,19:00,Kashiwa Reysol,,Kawa Frontale,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,24_Kashiwa Reysol_Kawa Frontale,False
+24,Sun,2024-07-21,19:00,Sagan Tosu,,Sanfrecce,,Ekimae Real Estate Stadium,,Head-to-Head,,24_Sagan Tosu_Sanfrecce,False
+25,Wed,2024-08-07,19:00,Kashima Antlers,,Sagan Tosu,,Kashima Soccer Stadium,,Head-to-Head,,25_Kashima Antlers_Sagan Tosu,False
+25,Wed,2024-08-07,19:00,Tokyo Verdy,,Sanfrecce,,,,Head-to-Head,,25_Tokyo Verdy_Sanfrecce,False
+25,Wed,2024-08-07,19:00,Gamba Osaka,,FC Tokyo,,Panasonic Stadium Suita,,Head-to-Head,,25_Gamba Osaka_FC Tokyo,False
+25,Wed,2024-08-07,19:00,Shonan Bellmare,,Avispa Fukuoka,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,25_Shonan Bellmare_Avispa Fukuoka,False
+25,Wed,2024-08-07,19:00,Kyoto Sanga,,Grampus,,Sanga Stadium by Kyocera,,Head-to-Head,,25_Kyoto Sanga_Grampus,False
+25,Wed,2024-08-07,19:00,Kawa Frontale,,Vissel Kobe,,Kawasaki Todoroki Stadium,,Head-to-Head,,25_Kawa Frontale_Vissel Kobe,False
+25,Wed,2024-08-07,19:00,Cerezo Osaka,,Machida Zelvia,,Yodoko Sakura Stadium,,Head-to-Head,,25_Cerezo Osaka_Machida Zelvia,False
+25,Wed,2024-08-07,19:00,Albirex Niigata,,Júbilo Iwata,,Denka Big Swan Stadium,,Head-to-Head,,25_Albirex Niigata_Júbilo Iwata,False
+25,Wed,2024-08-07,19:30,Urawa Reds,,Kashiwa Reysol,,Saitama Stadium 2002,,Head-to-Head,,25_Urawa Reds_Kashiwa Reysol,False
+25,Wed,2024-08-07,19:30,Marinos,,Consa Sapporo,,,,Head-to-Head,,25_Marinos_Consa Sapporo,False
+26,Sat,2024-08-10,14:00,Consa Sapporo,,Avispa Fukuoka,,Sapporo Dome,,Head-to-Head,,26_Consa Sapporo_Avispa Fukuoka,False
+26,Sun,2024-08-11,18:00,Machida Zelvia,,Shonan Bellmare,,Machida GION Stadium,,Head-to-Head,,26_Machida Zelvia_Shonan Bellmare,False
+26,Sun,2024-08-11,18:30,Sanfrecce,,Cerezo Osaka,,EDION Stadium,,Head-to-Head,,26_Sanfrecce_Cerezo Osaka,False
+26,Sun,2024-08-11,19:00,Kashiwa Reysol,,Gamba Osaka,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,26_Kashiwa Reysol_Gamba Osaka,False
+26,Sun,2024-08-11,19:00,Sagan Tosu,,Urawa Reds,,Ekimae Real Estate Stadium,,Head-to-Head,,26_Sagan Tosu_Urawa Reds,False
+26,Sun,2024-08-11,19:00,FC Tokyo,,Kawa Frontale,,Ajinomoto Stadium,,Head-to-Head,,26_FC Tokyo_Kawa Frontale,False
+26,Sun,2024-08-11,19:00,Grampus,,Tokyo Verdy,,Toyota Stadium,,Head-to-Head,,26_Grampus_Tokyo Verdy,False
+26,Sun,2024-08-11,19:00,Júbilo Iwata,,Kashima Antlers,,,,Head-to-Head,,26_Júbilo Iwata_Kashima Antlers,False
+26,Sun,2024-08-11,19:30,Marinos,,Vissel Kobe,,,,Head-to-Head,,26_Marinos_Vissel Kobe,False
+26,Mon,2024-08-12,19:00,Albirex Niigata,,Kyoto Sanga,,Denka Big Swan Stadium,,Head-to-Head,,26_Albirex Niigata_Kyoto Sanga,False
+27,Fri,2024-08-16,19:30,Consa Sapporo,,Sagan Tosu,,Sapporo Dome,,Head-to-Head,,27_Consa Sapporo_Sagan Tosu,False
+27,Sat,2024-08-17,18:00,Kashima Antlers,,Urawa Reds,,Kashima Soccer Stadium,,Head-to-Head,,27_Kashima Antlers_Urawa Reds,False
+27,Sat,2024-08-17,18:00,Machida Zelvia,,Júbilo Iwata,,Machida GION Stadium,,Head-to-Head,,27_Machida Zelvia_Júbilo Iwata,False
+27,Sat,2024-08-17,19:00,Kawa Frontale,,Marinos,,Kawasaki Todoroki Stadium,,Head-to-Head,,27_Kawa Frontale_Marinos,False
+27,Sat,2024-08-17,19:00,Shonan Bellmare,,Kashiwa Reysol,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,27_Shonan Bellmare_Kashiwa Reysol,False
+27,Sat,2024-08-17,19:00,FC Tokyo,,Tokyo Verdy,,Ajinomoto Stadium,,Head-to-Head,,27_FC Tokyo_Tokyo Verdy,False
+27,Sat,2024-08-17,19:00,Grampus,,Sanfrecce,,Toyota Stadium,,Head-to-Head,,27_Grampus_Sanfrecce,False
+27,Sat,2024-08-17,19:00,Vissel Kobe,,Gamba Osaka,,NOEVIR Stadium Kobe,,Head-to-Head,,27_Vissel Kobe_Gamba Osaka,False
+27,Sat,2024-08-17,19:00,Cerezo Osaka,,Kyoto Sanga,,Yodoko Sakura Stadium,,Head-to-Head,,27_Cerezo Osaka_Kyoto Sanga,False
+27,Sat,2024-08-17,19:30,Avispa Fukuoka,,Albirex Niigata,,Best Denki Stadium,,Head-to-Head,,27_Avispa Fukuoka_Albirex Niigata,False
+28,Sat,2024-08-24,18:30,Gamba Osaka,,Avispa Fukuoka,,Panasonic Stadium Suita,,Head-to-Head,,28_Gamba Osaka_Avispa Fukuoka,False
+28,Sat,2024-08-24,19:00,Kyoto Sanga,,FC Tokyo,,Sanga Stadium by Kyocera,,Head-to-Head,,28_Kyoto Sanga_FC Tokyo,False
+28,Sat,2024-08-24,19:00,Marinos,,Cerezo Osaka,,,,Head-to-Head,,28_Marinos_Cerezo Osaka,False
+28,Sat,2024-08-24,19:00,Urawa Reds,,Kawa Frontale,,Saitama Stadium 2002,,Head-to-Head,,28_Urawa Reds_Kawa Frontale,False
+28,Sat,2024-08-24,19:00,Shonan Bellmare,,Grampus,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,28_Shonan Bellmare_Grampus,False
+28,Sun,2024-08-25,18:00,Tokyo Verdy,,Kashima Antlers,,,,Head-to-Head,,28_Tokyo Verdy_Kashima Antlers,False
+28,Sun,2024-08-25,18:30,Sanfrecce,,Kashiwa Reysol,,EDION Stadium,,Head-to-Head,,28_Sanfrecce_Kashiwa Reysol,False
+28,Sun,2024-08-25,19:00,Albirex Niigata,,Machida Zelvia,,Denka Big Swan Stadium,,Head-to-Head,,28_Albirex Niigata_Machida Zelvia,False
+28,Sun,2024-08-25,19:00,Vissel Kobe,,Sagan Tosu,,NOEVIR Stadium Kobe,,Head-to-Head,,28_Vissel Kobe_Sagan Tosu,False
+28,Sun,2024-08-25,19:00,Júbilo Iwata,,Consa Sapporo,,Yamaha Stadium,,Head-to-Head,,28_Júbilo Iwata_Consa Sapporo,False
+29,Sat,2024-08-31,18:00,Machida Zelvia,,Urawa Reds,,Japan National Stadium,,Head-to-Head,,29_Machida Zelvia_Urawa Reds,False
+29,Sat,2024-08-31,18:30,Sanfrecce,,FC Tokyo,,EDION Stadium,,Head-to-Head,,29_Sanfrecce_FC Tokyo,False
+29,Sat,2024-08-31,19:00,Sagan Tosu,,Shonan Bellmare,,Ekimae Real Estate Stadium,,Head-to-Head,,29_Sagan Tosu_Shonan Bellmare,False
+29,Sat,2024-08-31,19:00,Kyoto Sanga,,Kashima Antlers,,Sanga Stadium by Kyocera,,Head-to-Head,,29_Kyoto Sanga_Kashima Antlers,False
+29,Sat,2024-08-31,19:00,Grampus,,Albirex Niigata,,Toyota Stadium,,Head-to-Head,,29_Grampus_Albirex Niigata,False
+29,Sat,2024-08-31,19:00,Cerezo Osaka,,Gamba Osaka,,Yodoko Sakura Stadium,,Head-to-Head,,29_Cerezo Osaka_Gamba Osaka,False
+29,Sat,2024-08-31,19:00,Kashiwa Reysol,,Tokyo Verdy,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,29_Kashiwa Reysol_Tokyo Verdy,False
+29,Sat,2024-08-31,19:00,Júbilo Iwata,,Marinos,,Yamaha Stadium,,Head-to-Head,,29_Júbilo Iwata_Marinos,False
+29,Sun,2024-09-01,14:00,Consa Sapporo,,Kawa Frontale,,Sapporo Dome,,Head-to-Head,,29_Consa Sapporo_Kawa Frontale,False
+29,Sun,2024-09-01,19:00,Avispa Fukuoka,,Vissel Kobe,,Best Denki Stadium,,Head-to-Head,,29_Avispa Fukuoka_Vissel Kobe,False
+30,Sat,2024-09-14,,Albirex Niigata,,Shonan Bellmare,,Denka Big Swan Stadium,,Head-to-Head,,30_Albirex Niigata_Shonan Bellmare,False
+30,Sat,2024-09-14,,Kashiwa Reysol,,Júbilo Iwata,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,30_Kashiwa Reysol_Júbilo Iwata,False
+30,Sat,2024-09-14,,Kawa Frontale,,Sagan Tosu,,Kawasaki Todoroki Stadium,,Head-to-Head,,30_Kawa Frontale_Sagan Tosu,False
+30,Sat,2024-09-14,,FC Tokyo,,Grampus,,Japan National Stadium,,Head-to-Head,,30_FC Tokyo_Grampus,False
+30,Sat,2024-09-14,,Gamba Osaka,,Urawa Reds,,Panasonic Stadium Suita,,Head-to-Head,,30_Gamba Osaka_Urawa Reds,False
+30,Sat,2024-09-14,,Kashima Antlers,,Sanfrecce,,Kashima Soccer Stadium,,Head-to-Head,,30_Kashima Antlers_Sanfrecce,False
+30,Sat,2024-09-14,,Marinos,,Kyoto Sanga,,,,Head-to-Head,,30_Marinos_Kyoto Sanga,False
+30,Sat,2024-09-14,,Vissel Kobe,,Cerezo Osaka,,NOEVIR Stadium Kobe,,Head-to-Head,,30_Vissel Kobe_Cerezo Osaka,False
+30,Sat,2024-09-14,,Consa Sapporo,,Tokyo Verdy,,Sapporo Dome,,Head-to-Head,,30_Consa Sapporo_Tokyo Verdy,False
+30,Sat,2024-09-14,,Avispa Fukuoka,,Machida Zelvia,,Best Denki Stadium,,Head-to-Head,,30_Avispa Fukuoka_Machida Zelvia,False
+31,Sat,2024-09-21,,Kyoto Sanga,,Gamba Osaka,,Sanga Stadium by Kyocera,,Head-to-Head,,31_Kyoto Sanga_Gamba Osaka,False
+31,Sat,2024-09-21,,Sanfrecce,,Marinos,,EDION Stadium,,Head-to-Head,,31_Sanfrecce_Marinos,False
+31,Sat,2024-09-21,,Shonan Bellmare,,Cerezo Osaka,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,31_Shonan Bellmare_Cerezo Osaka,False
+31,Sat,2024-09-21,,Júbilo Iwata,,Avispa Fukuoka,,Yamaha Stadium,,Head-to-Head,,31_Júbilo Iwata_Avispa Fukuoka,False
+31,Sat,2024-09-21,,Machida Zelvia,,Consa Sapporo,,Machida GION Stadium,,Head-to-Head,,31_Machida Zelvia_Consa Sapporo,False
+31,Sat,2024-09-21,,Albirex Niigata,,Vissel Kobe,,Denka Big Swan Stadium,,Head-to-Head,,31_Albirex Niigata_Vissel Kobe,False
+31,Sat,2024-09-21,,Grampus,,Kawa Frontale,,Toyota Stadium,,Head-to-Head,,31_Grampus_Kawa Frontale,False
+31,Sat,2024-09-21,,Tokyo Verdy,,Sagan Tosu,,,,Head-to-Head,,31_Tokyo Verdy_Sagan Tosu,False
+31,Sat,2024-09-21,,Urawa Reds,,FC Tokyo,,Saitama Stadium 2002,,Head-to-Head,,31_Urawa Reds_FC Tokyo,False
+31,Sat,2024-09-21,,Kashima Antlers,,Kashiwa Reysol,,Kashima Soccer Stadium,,Head-to-Head,,31_Kashima Antlers_Kashiwa Reysol,False
+32,Sat,2024-09-28,,Cerezo Osaka,,Kashiwa Reysol,,Yodoko Sakura Stadium,,Head-to-Head,,32_Cerezo Osaka_Kashiwa Reysol,False
+32,Sat,2024-09-28,,Kawa Frontale,,Albirex Niigata,,Kawasaki Todoroki Stadium,,Head-to-Head,,32_Kawa Frontale_Albirex Niigata,False
+32,Sat,2024-09-28,,Marinos,,FC Tokyo,,,,Head-to-Head,,32_Marinos_FC Tokyo,False
+32,Sat,2024-09-28,,Sagan Tosu,,Avispa Fukuoka,,Ekimae Real Estate Stadium,,Head-to-Head,,32_Sagan Tosu_Avispa Fukuoka,False
+32,Sat,2024-09-28,,Grampus,,Júbilo Iwata,,Toyota Stadium,,Head-to-Head,,32_Grampus_Júbilo Iwata,False
+32,Sat,2024-09-28,,Gamba Osaka,,Tokyo Verdy,,Panasonic Stadium Suita,,Head-to-Head,,32_Gamba Osaka_Tokyo Verdy,False
+32,Sat,2024-09-28,,Shonan Bellmare,,Kashima Antlers,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,32_Shonan Bellmare_Kashima Antlers,False
+32,Sat,2024-09-28,,Vissel Kobe,,Urawa Reds,,NOEVIR Stadium Kobe,,Head-to-Head,,32_Vissel Kobe_Urawa Reds,False
+32,Sat,2024-09-28,,Consa Sapporo,,Kyoto Sanga,,Sapporo Dome,,Head-to-Head,,32_Consa Sapporo_Kyoto Sanga,False
+32,Sat,2024-09-28,,Sanfrecce,,Machida Zelvia,,EDION Stadium,,Head-to-Head,,32_Sanfrecce_Machida Zelvia,False
+33,Fri,2024-10-04,,Avispa Fukuoka,,Grampus,,Best Denki Stadium,,Head-to-Head,,33_Avispa Fukuoka_Grampus,False
+33,Sat,2024-10-05,,Machida Zelvia,,Kawa Frontale,,Machida GION Stadium,,Head-to-Head,,33_Machida Zelvia_Kawa Frontale,False
+33,Sat,2024-10-05,,Júbilo Iwata,,Sanfrecce,,Yamaha Stadium,,Head-to-Head,,33_Júbilo Iwata_Sanfrecce,False
+33,Sat,2024-10-05,,Tokyo Verdy,,Shonan Bellmare,,,,Head-to-Head,,33_Tokyo Verdy_Shonan Bellmare,False
+33,Sat,2024-10-05,,Kashiwa Reysol,,Marinos,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,33_Kashiwa Reysol_Marinos,False
+33,Sat,2024-10-05,,FC Tokyo,,Sagan Tosu,,Ajinomoto Stadium,,Head-to-Head,,33_FC Tokyo_Sagan Tosu,False
+33,Sat,2024-10-05,,Albirex Niigata,,Kashima Antlers,,Denka Big Swan Stadium,,Head-to-Head,,33_Albirex Niigata_Kashima Antlers,False
+33,Sat,2024-10-05,,Gamba Osaka,,Consa Sapporo,,Panasonic Stadium Suita,,Head-to-Head,,33_Gamba Osaka_Consa Sapporo,False
+33,Sat,2024-10-05,,Urawa Reds,,Cerezo Osaka,,Saitama Stadium 2002,,Head-to-Head,,33_Urawa Reds_Cerezo Osaka,False
+33,Sat,2024-10-05,,Kyoto Sanga,,Vissel Kobe,,Sanga Stadium by Kyocera,,Head-to-Head,,33_Kyoto Sanga_Vissel Kobe,False
+34,Sat,2024-10-19,,Tokyo Verdy,,Urawa Reds,,,,Head-to-Head,,34_Tokyo Verdy_Urawa Reds,False
+34,Sat,2024-10-19,,Shonan Bellmare,,Sanfrecce,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,34_Shonan Bellmare_Sanfrecce,False
+34,Sat,2024-10-19,,Marinos,,Albirex Niigata,,,,Head-to-Head,,34_Marinos_Albirex Niigata,False
+34,Sat,2024-10-19,,Vissel Kobe,,FC Tokyo,,NOEVIR Stadium Kobe,,Head-to-Head,,34_Vissel Kobe_FC Tokyo,False
+34,Sat,2024-10-19,,Cerezo Osaka,,Júbilo Iwata,,Yodoko Sakura Stadium,,Head-to-Head,,34_Cerezo Osaka_Júbilo Iwata,False
+34,Sat,2024-10-19,,Kawa Frontale,,Gamba Osaka,,Kawasaki Todoroki Stadium,,Head-to-Head,,34_Kawa Frontale_Gamba Osaka,False
+34,Sat,2024-10-19,,Kashiwa Reysol,,Machida Zelvia,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,34_Kashiwa Reysol_Machida Zelvia,False
+34,Sat,2024-10-19,,Grampus,,Consa Sapporo,,Toyota Stadium,,Head-to-Head,,34_Grampus_Consa Sapporo,False
+34,Sat,2024-10-19,,Kashima Antlers,,Avispa Fukuoka,,Kashima Soccer Stadium,,Head-to-Head,,34_Kashima Antlers_Avispa Fukuoka,False
+34,Sat,2024-10-19,,Kyoto Sanga,,Sagan Tosu,,Sanga Stadium by Kyocera,,Head-to-Head,,34_Kyoto Sanga_Sagan Tosu,False
+35,Sun,2024-11-03,,Gamba Osaka,,Grampus,,Panasonic Stadium Suita,,Head-to-Head,,35_Gamba Osaka_Grampus,False
+35,Sun,2024-11-03,,FC Tokyo,,Shonan Bellmare,,Ajinomoto Stadium,,Head-to-Head,,35_FC Tokyo_Shonan Bellmare,False
+35,Sun,2024-11-03,,Sagan Tosu,,Machida Zelvia,,Ekimae Real Estate Stadium,,Head-to-Head,,35_Sagan Tosu_Machida Zelvia,False
+35,Sun,2024-11-03,,Kawa Frontale,,Kashima Antlers,,Kawasaki Todoroki Stadium,,Head-to-Head,,35_Kawa Frontale_Kashima Antlers,False
+35,Sun,2024-11-03,,Albirex Niigata,,Tokyo Verdy,,Denka Big Swan Stadium,,Head-to-Head,,35_Albirex Niigata_Tokyo Verdy,False
+35,Sun,2024-11-03,,Sanfrecce,,Kyoto Sanga,,EDION Stadium,,Head-to-Head,,35_Sanfrecce_Kyoto Sanga,False
+35,Sun,2024-11-03,,Consa Sapporo,,Cerezo Osaka,,Sapporo Dome,,Head-to-Head,,35_Consa Sapporo_Cerezo Osaka,False
+35,Sun,2024-11-03,,Avispa Fukuoka,,Kashiwa Reysol,,Best Denki Stadium,,Head-to-Head,,35_Avispa Fukuoka_Kashiwa Reysol,False
+35,Sun,2024-11-03,,Vissel Kobe,,Júbilo Iwata,,NOEVIR Stadium Kobe,,Head-to-Head,,35_Vissel Kobe_Júbilo Iwata,False
+35,Sun,2024-11-03,,Marinos,,Urawa Reds,,,,Head-to-Head,,35_Marinos_Urawa Reds,False
+36,Sat,2024-11-09,,Kashiwa Reysol,,Albirex Niigata,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,36_Kashiwa Reysol_Albirex Niigata,False
+36,Sat,2024-11-09,,Kashima Antlers,,Grampus,,Kashima Soccer Stadium,,Head-to-Head,,36_Kashima Antlers_Grampus,False
+36,Sat,2024-11-09,,Shonan Bellmare,,Consa Sapporo,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,36_Shonan Bellmare_Consa Sapporo,False
+36,Sat,2024-11-09,,Júbilo Iwata,,Gamba Osaka,,Yamaha Stadium,,Head-to-Head,,36_Júbilo Iwata_Gamba Osaka,False
+36,Sat,2024-11-09,,Sagan Tosu,,Marinos,,Ekimae Real Estate Stadium,,Head-to-Head,,36_Sagan Tosu_Marinos,False
+36,Sat,2024-11-09,,Urawa Reds,,Sanfrecce,,Saitama Stadium 2002,,Head-to-Head,,36_Urawa Reds_Sanfrecce,False
+36,Sat,2024-11-09,,Machida Zelvia,,FC Tokyo,,Japan National Stadium,,Head-to-Head,,36_Machida Zelvia_FC Tokyo,False
+36,Sat,2024-11-09,,Kyoto Sanga,,Kawa Frontale,,Sanga Stadium by Kyocera,,Head-to-Head,,36_Kyoto Sanga_Kawa Frontale,False
+36,Sat,2024-11-09,,Tokyo Verdy,,Vissel Kobe,,,,Head-to-Head,,36_Tokyo Verdy_Vissel Kobe,False
+36,Sat,2024-11-09,,Cerezo Osaka,,Avispa Fukuoka,,Yodoko Sakura Stadium,,Head-to-Head,,36_Cerezo Osaka_Avispa Fukuoka,False
+37,Sat,2024-11-30,,Cerezo Osaka,,Kashima Antlers,,Yodoko Sakura Stadium,,Head-to-Head,,37_Cerezo Osaka_Kashima Antlers,False
+37,Sat,2024-11-30,,Shonan Bellmare,,Marinos,,Lemon Gas Stadium Hiratsuka,,Head-to-Head,,37_Shonan Bellmare_Marinos,False
+37,Sat,2024-11-30,,Tokyo Verdy,,Kawa Frontale,,,,Head-to-Head,,37_Tokyo Verdy_Kawa Frontale,False
+37,Sat,2024-11-30,,Sanfrecce,,Consa Sapporo,,EDION Stadium,,Head-to-Head,,37_Sanfrecce_Consa Sapporo,False
+37,Sat,2024-11-30,,Machida Zelvia,,Kyoto Sanga,,Machida GION Stadium,,Head-to-Head,,37_Machida Zelvia_Kyoto Sanga,False
+37,Sat,2024-11-30,,Avispa Fukuoka,,Urawa Reds,,Best Denki Stadium,,Head-to-Head,,37_Avispa Fukuoka_Urawa Reds,False
+37,Sat,2024-11-30,,Albirex Niigata,,Gamba Osaka,,Denka Big Swan Stadium,,Head-to-Head,,37_Albirex Niigata_Gamba Osaka,False
+37,Sat,2024-11-30,,Grampus,,Sagan Tosu,,,,Head-to-Head,,37_Grampus_Sagan Tosu,False
+37,Sat,2024-11-30,,Júbilo Iwata,,FC Tokyo,,Yamaha Stadium,,Head-to-Head,,37_Júbilo Iwata_FC Tokyo,False
+37,Sat,2024-11-30,,Kashiwa Reysol,,Vissel Kobe,,Sankyo Frontier Kashiwa Stadium,,Head-to-Head,,37_Kashiwa Reysol_Vissel Kobe,False
+38,Sun,2024-12-08,,Gamba Osaka,,Sanfrecce,,Panasonic Stadium Suita,,Head-to-Head,,38_Gamba Osaka_Sanfrecce,False
+38,Sun,2024-12-08,,Sagan Tosu,,Júbilo Iwata,,Ekimae Real Estate Stadium,,Head-to-Head,,38_Sagan Tosu_Júbilo Iwata,False
+38,Sun,2024-12-08,,Kawa Frontale,,Avispa Fukuoka,,Kawasaki Todoroki Stadium,,Head-to-Head,,38_Kawa Frontale_Avispa Fukuoka,False
+38,Sun,2024-12-08,,Kyoto Sanga,,Tokyo Verdy,,Sanga Stadium by Kyocera,,Head-to-Head,,38_Kyoto Sanga_Tokyo Verdy,False
+38,Sun,2024-12-08,,Urawa Reds,,Albirex Niigata,,Saitama Stadium 2002,,Head-to-Head,,38_Urawa Reds_Albirex Niigata,False
+38,Sun,2024-12-08,,FC Tokyo,,Cerezo Osaka,,Ajinomoto Stadium,,Head-to-Head,,38_FC Tokyo_Cerezo Osaka,False
+38,Sun,2024-12-08,,Vissel Kobe,,Shonan Bellmare,,NOEVIR Stadium Kobe,,Head-to-Head,,38_Vissel Kobe_Shonan Bellmare,False
+38,Sun,2024-12-08,,Consa Sapporo,,Kashiwa Reysol,,Sapporo Dome,,Head-to-Head,,38_Consa Sapporo_Kashiwa Reysol,False
+38,Sun,2024-12-08,,Marinos,,Grampus,,,,Head-to-Head,,38_Marinos_Grampus,False
+38,Sun,2024-12-08,,Kashima Antlers,,Machida Zelvia,,Kashima Soccer Stadium,,Head-to-Head,,38_Kashima Antlers_Machida Zelvia,False
