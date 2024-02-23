@@ -28,6 +28,9 @@ def parse_soup(soup):
 
 
 schedule_url = "https://fbref.com/en/comps/25/schedule/J1-League-Scores-and-Fixtures"
+# schedule_url = (
+#     "https://fbref.com/en/comps/25/2023/schedule/2023-J1-League-Scores-and-Fixtures"
+# )
 schedule = get_data(schedule_url)
 
 df_scraped = parse_soup(schedule)
