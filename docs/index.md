@@ -45,8 +45,8 @@ toc: false
 </style>
 
 <div class="hero">
-  <h1>Projects in Observable</h1>
-  <h2>Data visualization in d3.js</h2>
+  <h1>Gota Shirato</h1>
+  <h2>PhD student in Visual Analytics</h2>
   <a href="https://observablehq.com/@gshirato" target="_blank">Observable (@gshirato)<span style="display: inline-block; margin-left: 0.25rem;">↗︎</span></a>
 </div>
 
