@@ -16,10 +16,11 @@ export default class SeasonDescriber{
     seasonSummary(selector){
         this.init(selector);
         const sel = d3.select(selector);
+        const officialGames = this.config['seasonData'].filter(d=>d['公式戦']);
         sel
             .append('div')
             .text(
-                `${this.config['seasonData'][0].year}シーズン、浦和は公式戦${this.config['seasonData'].length}試合を戦いました。`
+                `${this.config['seasonData'][0].year}シーズン、浦和は公式戦${officialGames.length}試合を戦いました。`
                 )
     }
 
