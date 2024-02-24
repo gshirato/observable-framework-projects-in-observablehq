@@ -23,6 +23,7 @@ export default {
         {name: "J1 Predictor", path: "/predictor-j1"},
         {name: "GK Positioning", path: "/gk-positioning"},
         {name: "J1 Data", path: "/j1-data"},
+        {name: "Urawa Reds - All games", path: "/urawa-games"},
       ]
     }
   ],
