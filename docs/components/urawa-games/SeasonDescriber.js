@@ -51,7 +51,7 @@ export default class SeasonDescriber{
         const mostMarginalWinGames = this.config['j1Data'].filter(d=>d.result==='W').filter(d=>d.得点 - d.失点 === mostMarginalWinGame.得点 - mostMarginalWinGame.失点).sort((a, b) =>d3.descending(a.得点 - a.失点, b.得点 - b.失点) || d3.descending(a.得点, b.得点)).slice(1);
 
 
-        return `最も大差をつけて勝った試合の一つは${mostMarginalWinGame.year}年${mostMarginalWinGame.month+1}月${mostMarginalWinGame.day}日の${mostMarginalWinGame.相手チーム}戦 (${mostMarginalWinGame['H/A']}, ${mostMarginalWinGame.会場}) で、${mostMarginalWinGame.得点}対${mostMarginalWinGame.失点}でした。${this.getDescriptionOfOtherMarginalWinGames(mostMarginalWinGames, mostMarginalWinGame.得点 - mostMarginalWinGame.失点)}`
+        return `最も大差をつけて勝った試合の一つは${mostMarginalWinGame.year}年${mostMarginalWinGame.month}月${mostMarginalWinGame.day}日の${mostMarginalWinGame.相手チーム}戦 (${mostMarginalWinGame['H/A']}, ${mostMarginalWinGame.会場}) で、${mostMarginalWinGame.得点}対${mostMarginalWinGame.失点}でした。${this.getDescriptionOfOtherMarginalWinGames(mostMarginalWinGames, mostMarginalWinGame.得点 - mostMarginalWinGame.失点)}`
     }
 
     getDescriptionOfOtherMarginalWinGames(wingames, diff){
