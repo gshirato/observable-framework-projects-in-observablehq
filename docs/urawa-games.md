@@ -58,7 +58,6 @@ new J1SeasonResults(yearJ1Data, '#season-results .chart', {
 </div>
 ```
 
-
 ```js
 view(Inputs.table(yearJ1Data));
 ```
