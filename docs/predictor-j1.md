@@ -98,8 +98,17 @@ const changeFromPrevYearChart = new ChangeFromPrevYearChart(prediction2024, "#ch
 }).draw()
 ```
 
+```js
+const description = new Description({
+  prediction: prediction2024,
+  predictor: predictor2024,
+  compareTo: '2023年'
+}).summary("#changeFromPrevYearChart .description")
+```
+
 ```html
 <div id="changeFromPrevYearChart">
+    <div class="description card"></div>
     <div class="chart card"></div>
 </div>
 ```
@@ -114,6 +123,12 @@ const predictionScatterChart = drawPredictionScatterChart(prediction2024, "#pred
   width: width,
   margin: { top: 10, bottom: 20, left: 20, right: 30 }
 })
+```
+
+### 人気チーム
+
+```js
+import Description from './components/j1-predictor/Describer.js';
 ```
 
 ```html
