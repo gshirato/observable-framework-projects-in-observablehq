@@ -7,15 +7,26 @@ class PLChart extends GeneralChart {
       super(data, selector, config);
       this.team = config["team"];
       this.plKeys = config["plKeys"];
-      this.yExtent = config["yExtent"];
       this.titleFontSize = config["titleFontSize"] || 25;
       this.detail = config["detail"];
       this.otherLeagues = config["otherLeagues"];
       this.profitColor = 'green';
       this.lossColor = 'red';
       this.itemTextSize = 10
+      this.yExtent = this.getExtent();
+      this.profit = parseFormattedNumber(this.data.find((d) => d.大分類 === "当期純利益")[this.team])
+      this.minCumsum = d3.min(this.data.map(d=>parseFormattedNumber(d[this.team])))
       this.setAxes();
       this.writeHtml();
+    }
+
+    getExtent() {
+      const cumsum = this.data.map(d=>parseFormattedNumber(d[this.team]));
+      if (d3.max(cumsum.map(d=>Math.abs(d))) > 5000) return [-10000, 10000];
+      if (d3.max(cumsum.map(d=>Math.abs(d))) > 3000) return [-5000, 5000];
+      if (d3.max(cumsum.map(d=>Math.abs(d))) > 1500) return [-3000, 3000];
+      if (d3.max(cumsum.map(d=>Math.abs(d))) > 1000) return [-1500, 1500];
+      return [-1000, 1000];
     }
 
     writeHtml() {
@@ -73,7 +84,7 @@ class PLChart extends GeneralChart {
         .attr("font-weight", 'bold')
         .attr('dy', (_, i)=>i%2===j?this.itemTextSize*2:this.itemTextSize)
         .attr("x", (d) => this.sx(d.name))
-        .attr("y", (d, i) => this.sy(0))
+        .attr("y", this.sy(d3.min([0, this.minCumsum])))
         .text(d=>this.writeName(d));
     }
 
@@ -82,8 +93,7 @@ class PLChart extends GeneralChart {
       const yOffset = 2
       selection
         .attr("x", (d) => this.sx(d.name))
-        .attr("y", (_, i) => i%2===j?this.sy(0) + this.itemTextSize + yOffset: this.sy(0)+ yOffset)
-        .attr('k', (_, i)=>console.log(this.sy(0)))
+        .attr("y", (_, i) => i%2===j?this.sy(d3.min([0, this.minCumsum])) + this.itemTextSize + yOffset: this.sy(d3.min([0, this.minCumsum]))+ yOffset)
         .attr('width', 40)
         .attr('height', this.itemTextSize - 1)
         .attr('fill', color)
@@ -468,30 +478,28 @@ class PLChart extends GeneralChart {
         .attr("stroke-dasharray", "4 4");
 
 
-      const profit = parseFormattedNumber(this.data.find((d) => d.大分類 === "当期純利益")[this.team])
-      console.log(parseFormattedNumber(this.data.find(d=>d.大分類 === "当期純利益"))[this.team])
       this.svg
         .append('g')
         .append('text')
         .attr('x', this.sx.range()[1])
-        .attr('y', this.sy(profit))
+        .attr('y', this.sy(d3.max([this.profit, 0])))
         .attr('dy', -10)
         .attr('font-size', 12)
         .attr('font-weight', 'bold')
         .attr('text-anchor', 'middle')
-        .text(`${profit < 0?'純損益':'純利益'}${profit / 100}億円`)
+        .text(`${this.profit < 0?'純損益':'純利益'}${this.profit / 100}億円`)
 
       this.svg
         .append('g')
         .append('rect')
         .attr('x', this.sx.range()[1] - 5)
-        .attr('y', this.sy(profit) - 15)
+        .attr('y', this.sy(d3.max([0, this.profit])) - 15)
         .attr('width', 45)
         .attr('height', 5)
         .attr('font-weight', 'bold')
         .attr('text-anchor', 'middle')
         .attr('opacity', 0.3)
-        .attr('fill', profit <0 ? this.lossColor : this.profitColor)
+        .attr('fill', this.profit <0 ? this.lossColor : this.profitColor)
 
     }
 
@@ -500,11 +508,50 @@ class PLChart extends GeneralChart {
       return `当期純利益: ${profit / 100} (億円）`
     }
 
+    splitByCategory() {
+      function draw(sel, i) {
+        sel
+        .append('g')
+        .append('line')
+        .attr('x1', this.sx(this.plKeys[i]))
+        .attr('x2', this.sx(this.plKeys[i]))
+        .attr('y1', this.sy.range()[0])
+        .attr('y2', this.sy.range()[1])
+        .attr('stroke-dasharray', '4 4')
+        .attr('stroke', '#ccc')
+      }
+      function write(sel, text, i, j) {
+        sel
+          .append('g')
+          .append('text')
+          .attr('x', this.sx(this.plKeys[parseInt((i + j) / 2)]))
+          .attr('y', this.sy.range()[0])
+          .attr('dx', i===j?this.sx.bandwidth() / 2:0)
+          .attr('text-anchor', 'end')
+          .attr('font-size', 10)
+          .attr('font-weight', 'bold')
+          .attr('fill', '#777')
+          .attr("writing-mode", "tb")
+          .text(text)
+      }
+
+      this.svg.call(draw.bind(this), 7)
+      this.svg.call(draw.bind(this), 14)
+      this.svg.call(draw.bind(this), 15)
+      this.svg.call(draw.bind(this), 17)
+      this.svg.call(draw.bind(this), 19)
+
+      this.svg.call(write.bind(this), '売上高', 0, 7)
+      this.svg.call(write.bind(this), '粗利益', 7, 15)
+      this.svg.call(write.bind(this), '営業利益', 14, 14)
+      this.svg.call(write.bind(this), '経常利益', 15, 17)
+      this.svg.call(write.bind(this), '税引前純利益', 17, 19)
+      this.svg.call(write.bind(this), '純利益', 19, 19)
+
+    }
+
     drawTitle() {
-      const profit = parseFormattedNumber(
-        this.data.find((d) => d.大分類 === "当期純利益")[this.team]
-      );
-      const desc = this.getPLSummary(profit);
+      const desc = this.getPLSummary(this.profit);
 
       this.svg
         .append("g")
@@ -513,9 +560,9 @@ class PLChart extends GeneralChart {
         .attr("y", this.margin.top + this.titleFontSize)
         .attr("font-size", this.titleFontSize)
         .attr("font-weight", 'bold')
-        .attr("fill", profit < 0 ? this.lossColor : profit === 0 ? "#888" : this.profitColor)
+        .attr("fill", this.profit < 0 ? this.lossColor : this.profit === 0 ? "#888" : this.profitColor)
         .text(
-          profit
+          this.profit
             ? `${this.team}: ${desc}`
             : `${this.team}: 3月決算のためデータなし`
         );
@@ -555,6 +602,7 @@ class PLChart extends GeneralChart {
     draw() {
       this.drawAxes();
       console.log(this.config);
+      this.splitByCategory();
       this.drawSales();
       this.drawCosts();
       this.drawSGaA();

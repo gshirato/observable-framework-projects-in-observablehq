@@ -47,12 +47,14 @@ const normalized = normalize(transposed);
 
 
 ```js
-const solution = calculateTsne(normalized.map((d) => Object.values(d).slice(1, -1)), {
-  dim: 2,
-  perplexity: 50,
-  nIter: 2000,
-  metric: "euclidean"
-});
+const solution = calculateTsne(
+    normalized.map((d) => Object.values(d).slice(1, -1)), {
+        dim: 2,
+        perplexity: 50,
+        nIter: 10000,
+        metric: "euclidean"
+    }
+);
 ```
 
 

@@ -2,7 +2,8 @@ import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../GeneralChart.js";
 import PLChart from "./PLChart.js";
-import getPLKeys from "./utils.js";
+import {parseFormattedNumber, getPLKeys} from "./utils.js";
+
 
 class TsneChart extends GeneralChart {
     constructor(data, selector, config) {
@@ -38,7 +39,12 @@ class TsneChart extends GeneralChart {
         .call(yaxis);
     }
 
+    getProfit(i) {
+      return this.plData.find(d=>(d.大分類 === '当期純利益') && (Object.keys(d).includes(this.teams[i])))[this.teams[i]]
+    }
+
     drawMain() {
+      const sOpacity = d3.scaleLinear().domain([0, 500]).range([0.4, 1])
       this.svg
         .append("g")
         .selectAll("circle")
@@ -46,9 +52,10 @@ class TsneChart extends GeneralChart {
         .join("circle")
         .attr("cx", (d) => this.sx(d[0]))
         .attr("cy", (d) => this.sx(d[1]))
-        .attr("stroke", "#ccc")
-        .attr("fill", "#fff")
-        .attr("r", 5)
+        .attr("fill", (_, i)=>parseFormattedNumber(this.getProfit(i)) > 0 ? 'green' : 'red')
+        .attr("opacity", (_, i)=>sOpacity(parseFormattedNumber(this.getProfit(i)))
+        )
+        .attr("r", 3)
         .attr("index", (_, i) => i)
         .on("mouseover", _.partial(this.mouseover, this))
         .on("mousemove", _.partial(this.mousemove, this))
@@ -63,7 +70,8 @@ class TsneChart extends GeneralChart {
         .attr("y", (d) => this.sx(d[1]))
         .attr("dy", -5)
         .attr("text-anchor", "middle")
-        .attr("font-size", 10)
+        .attr("font-size", 7)
+        .attr("font-weight", 'bold')
         .text((_, i) => this.teams[i]);
     }
     draw() {
