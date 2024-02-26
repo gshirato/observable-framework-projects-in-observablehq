@@ -9,9 +9,11 @@ class PLChart extends GeneralChart {
       this.plKeys = config["plKeys"];
       this.yExtent = config["yExtent"];
       this.titleFontSize = config["titleFontSize"] || 25;
-      this.textAngle = config["textAngle"] || -30;
       this.detail = config["detail"];
       this.otherLeagues = config["otherLeagues"];
+      this.profitColor = 'green';
+      this.lossColor = 'red';
+      this.itemTextSize = 10
       this.setAxes();
       this.writeHtml();
     }
@@ -31,7 +33,7 @@ class PLChart extends GeneralChart {
       this.sx = d3
         .scaleBand()
         .domain(this.plKeys)
-        .range([this.margin.left, this.width - this.margin.right]);
+        .range([this.margin.left, this.width - this.margin.right - 50]);
 
       this.sy = d3
         .scaleLinear()
@@ -48,7 +50,8 @@ class PLChart extends GeneralChart {
         .attr("y1", this.sy(0))
         .attr("y2", this.sy(0))
         .attr("stroke", "#888")
-        .attr("stroke-dasharray", "8 4");
+        .attr("stroke-width", 2)
+        .attr("stroke-dasharray", "6 2");
 
       const yaxis = d3.axisLeft(this.sy);
       this.svg
@@ -56,7 +59,34 @@ class PLChart extends GeneralChart {
         .attr("transform", `translate(${this.margin.left},0)`)
         .call(yaxis)
         .selectAll("text")
+        .attr('font-size', 10)
         .text((d) => `${d / 100}億円`);
+    }
+
+    writeName(d) {
+      return this.detail ? d.name.split("-")[1].slice(0,4) : "";
+    }
+
+    textItem(selection, j) {
+      selection
+        .attr("font-size", this.itemTextSize)
+        .attr("font-weight", 'bold')
+        .attr('dy', (_, i)=>i%2===j?this.itemTextSize*2:this.itemTextSize)
+        .attr("x", (d) => this.sx(d.name))
+        .attr("y", (d, i) => this.sy(0))
+        .text(d=>this.writeName(d));
+    }
+
+    rectItem(selection, j, color) {
+      const yOffset = 2
+      selection
+        .attr("x", (d) => this.sx(d.name))
+        .attr("y", (_, i) => i%2===j?this.sy(0) + this.itemTextSize + yOffset: this.sy(0)+ yOffset)
+        .attr('k', (_, i)=>console.log(this.sy(0)))
+        .attr('width', 40)
+        .attr('height', this.itemTextSize - 1)
+        .attr('fill', color)
+        .attr('opacity', 0.4)
     }
 
     drawSales() {
@@ -69,7 +99,7 @@ class PLChart extends GeneralChart {
         .attr("y", (d) => this.sy(d.value))
         .attr("width", this.sx.bandwidth())
         .attr("height", 0)
-        .attr("fill", "red")
+        .attr("fill", this.profitColor)
         .attr("opacity", 0.5)
         .attr(
           "value",
@@ -89,27 +119,19 @@ class PLChart extends GeneralChart {
         );
 
       this.svg
+          .append('g')
+          .selectAll('rect')
+          .data(getCumsum(this.data, "売上高", this.team))
+          .join('rect')
+          .call(this.rectItem.bind(this), 0, this.profitColor)
+
+      this.svg
         .append("g")
         .selectAll("text")
         .data(getCumsum(this.data, "売上高", this.team))
         .join("text")
-        .attr("x", (d) => this.sx(d.name))
-        .attr("y", (d, i) =>
-          i === 0
-            ? this.sy(0)
-            : this.sy(getCumsum(this.data, "売上高", this.team)[i - 1].value)
-        )
-        .attr("font-size", 10)
-        .attr("transform", (d, i) => {
-          const x = this.sx(d.name);
-          const y =
-            i === 0
-              ? this.sy(0)
-              : this.sy(getCumsum(this.data, "売上高", this.team)[i - 1].value);
+        .call(this.textItem.bind(this), 0)
 
-          return `rotate(${this.textAngle}, ${x}, ${y})`;
-        })
-        .text((d) => (this.detail ? d.name.split("-")[1] : ""));
     }
 
     drawCosts() {
@@ -135,7 +157,7 @@ class PLChart extends GeneralChart {
         .attr("y", (d, i) => this.sy(getY(this, d, i)))
         .attr("width", this.sx.bandwidth())
         .attr("height", 0)
-        .attr("fill", "blue")
+        .attr("fill", this.lossColor)
         .attr("opacity", 0.5)
         .attr(
           "value",
@@ -155,19 +177,17 @@ class PLChart extends GeneralChart {
         );
 
       this.svg
+        .append('g')
+        .selectAll('rect')
+        .data(getCumsum(this.data, "売上原価", this.team))
+        .join('rect')
+        .call(this.rectItem.bind(this), 1, this.lossColor)
+      this.svg
         .append("g")
         .selectAll("text")
         .data(getCumsum(this.data, "売上原価", this.team))
         .join("text")
-        .attr("x", (d) => this.sx(d.name))
-        .attr("y", (d, i) => this.sy(getY(this, d, i)))
-        .attr("font-size", 10)
-        .attr("transform", (d, i) => {
-          const x = this.sx(d.name);
-          const y = this.sy(getY(this, d, i));
-          return `rotate(${this.textAngle}, ${x}, ${y})`;
-        })
-        .text((d) => (this.detail ? d.name.split("-")[1] : ""));
+        .call(this.textItem.bind(this), 1)
     }
 
     drawSGaA() {
@@ -192,7 +212,7 @@ class PLChart extends GeneralChart {
         .attr("y", (d, i) => this.sy(getY(this, d, i)))
         .attr("width", this.sx.bandwidth())
         .attr("height", 0)
-        .attr("fill", "blue")
+        .attr("fill", this.lossColor)
         .attr("opacity", 0.5)
         .attr(
           "value",
@@ -207,19 +227,18 @@ class PLChart extends GeneralChart {
         .attr("height", (d, i) => this.sy(0) - this.sy(d.value));
 
       this.svg
+        .append('g')
+        .selectAll('rect')
+        .data(getCumsum(this.data, "販売費および一般管理費", this.team))
+        .join('rect')
+        .call(this.rectItem.bind(this), 0, this.lossColor)
+
+      this.svg
         .append("g")
         .selectAll("text")
         .data(getCumsum(this.data, "販売費および一般管理費", this.team))
         .join("text")
-        .attr("x", (d) => this.sx(d.name))
-        .attr("y", (d, i) => this.sy(getY(this, d, i)))
-        .attr("font-size", 10)
-        .attr("transform", (d, i) => {
-          const x = this.sx(d.name);
-          const y = this.sy(getY(this, d, i));
-          return `rotate(${this.textAngle}, ${x}, ${y})`;
-        })
-        .text((d) => (this.detail ? d.name.split("-")[1] : ""));
+        .call(this.textItem.bind(this), 0)
     }
 
     drawNonOperatingIncome() {
@@ -257,7 +276,7 @@ class PLChart extends GeneralChart {
         .attr("y", (d, i) => this.sy(getY(this, d, i)))
         .attr("width", this.sx.bandwidth())
         .attr("height", 0)
-        .attr("fill", (d) => (d.name === "経常利益-営業外収益" ? "red" : "blue"))
+        .attr("fill", (d) => (d.name === "経常利益-営業外収益" ? this.profitColor : this.lossColor))
         .attr("opacity", 0.5)
         .attr(
           "value",
@@ -276,20 +295,19 @@ class PLChart extends GeneralChart {
           return this.sy(0) - this.sy(value);
         });
 
+        this.svg
+          .append('g')
+          .selectAll('rect')
+          .data(getCumsum(this.data, "経常利益", this.team))
+          .join('rect')
+          .call(this.rectItem.bind(this), 1, 'gray')
+
       this.svg
         .append("g")
         .selectAll("text")
         .data(getCumsum(this.data, "経常利益", this.team))
         .join("text")
-        .attr("x", (d) => this.sx(d.name))
-        .attr("y", (d, i) => this.sy(getY(this, d, i)))
-        .attr("font-size", 10)
-        .attr("transform", (d, i) => {
-          const x = this.sx(d.name);
-          const y = this.sy(getY(this, d, i));
-          return `rotate(${this.textAngle}, ${x}, ${y})`;
-        })
-        .text((d) => (this.detail ? d.name.split("-")[1] : ""));
+        .call(this.textItem.bind(this), 1)
     }
 
     drawSpecialIncome() {
@@ -336,7 +354,7 @@ class PLChart extends GeneralChart {
           (d) => this.data.find((d_) => getKey(d_) === d.name)[this.team]
         )
         .attr("fill", (d) =>
-          d.name === "税引前当期利益-特別利益" ? "red" : "blue"
+          d.name === "税引前当期利益-特別利益" ? this.profitColor : this.lossColor
         )
         .attr("opacity", 0.5)
         .on("mouseover", _.partial(this.mouseover, this))
@@ -353,19 +371,18 @@ class PLChart extends GeneralChart {
         });
 
       this.svg
+        .append('g')
+        .selectAll('rect')
+        .data(getCumsum(this.data, "税引前当期利益", this.team))
+        .join('rect')
+        .call(this.rectItem.bind(this), 1, 'gray')
+
+      this.svg
         .append("g")
         .selectAll("text")
         .data(getCumsum(this.data, "税引前当期利益", this.team))
         .join("text")
-        .attr("x", (d) => this.sx(d.name))
-        .attr("y", (d, i) => this.sy(getY(this, d, i)))
-        .attr("font-size", 10)
-        .attr("transform", (d, i) => {
-          const x = this.sx(d.name);
-          const y = this.sy(getY(this, d, i));
-          return `rotate(${this.textAngle}, ${x}, ${y})`;
-        })
-        .text((d) => (this.detail ? d.name.split("-")[1] : ""));
+        .call(this.textItem.bind(this), 1)
     }
     drawTaxes() {
       function getY(thisClass, d, i) {
@@ -405,7 +422,7 @@ class PLChart extends GeneralChart {
         .attr("y", (d, i) => this.sy(getY(this, d, i)))
         .attr("width", this.sx.bandwidth())
         .attr("height", 0)
-        .attr("fill", "blue")
+        .attr("fill", this.lossColor)
         .attr("opacity", 0.5)
         .attr(
           "value",
@@ -420,19 +437,18 @@ class PLChart extends GeneralChart {
         .attr("height", (d, i) => this.sy(0) - this.sy(d.value));
 
       this.svg
+        .append('g')
+        .selectAll('rect')
+        .data(getCumsum(this.data, "法人税および住民税等", this.team))
+        .join('rect')
+        .call(this.rectItem.bind(this), 1, this.lossColor)
+
+      this.svg
         .append("g")
         .selectAll("text")
         .data(getCumsum(this.data, "法人税および住民税等", this.team))
         .join("text")
-        .attr("x", (d) => this.sx(d.name))
-        .attr("y", (d, i) => this.sy(getY(this, d, i)))
-        .attr("font-size", 10)
-        .attr("transform", (d, i) => {
-          const x = this.sx(d.name);
-          const y = this.sy(getY(this, d, i));
-          return `rotate(${this.textAngle}, ${x}, ${y})`;
-        })
-        .text((d) => (this.detail ? "法人税など" : ""));
+        .call(this.textItem.bind(this), 1)
     }
 
     drawNetIncomeLine() {
@@ -449,13 +465,44 @@ class PLChart extends GeneralChart {
         .attr("y2", this.sy(income))
         .attr("stroke", income < 0 ? "#800" : "#080")
         .attr("stroke-dasharray", "4 4");
+
+
+      const profit = this.data.find((d) => d.大分類 === "当期純利益")[this.team]
+      this.svg
+        .append('g')
+        .append('text')
+        .attr('x', this.sx.range()[1])
+        .attr('y', this.sy(profit))
+        .attr('dy', -10)
+        .attr('font-size', 12)
+        .attr('font-weight', 'bold')
+        .attr('text-anchor', 'middle')
+        .text(`${profit > 0?'純利益':'純損益'}${profit / 100}億円`)
+
+      this.svg
+        .append('g')
+        .append('rect')
+        .attr('x', this.sx.range()[1] - 5)
+        .attr('y', this.sy(profit) - 15)
+        .attr('width', 45)
+        .attr('height', 5)
+        .attr('font-weight', 'bold')
+        .attr('text-anchor', 'middle')
+        .attr('opacity', 0.3)
+        .attr('fill', profit <0 ? this.lossColor : this.profitColor)
+
+    }
+
+    getPLSummary(profit) {
+      if (profit < 0) return `当期純損失: ${Math.abs(profit) / 100} (億円）`
+      return `当期純利益: ${profit / 100} (億円）`
     }
 
     drawTitle() {
       const profit = parseFormattedNumber(
         this.data.find((d) => d.大分類 === "当期純利益")[this.team]
       );
-      const desc = `当期純利益: ${profit / 100} (億円）`;
+      const desc = this.getPLSummary(profit);
 
       this.svg
         .append("g")
@@ -463,7 +510,8 @@ class PLChart extends GeneralChart {
         .attr("x", this.margin.left)
         .attr("y", this.margin.top + this.titleFontSize)
         .attr("font-size", this.titleFontSize)
-        .attr("fill", profit < 0 ? "#800" : profit === 0 ? "#888" : "#080")
+        .attr("font-weight", 'bold')
+        .attr("fill", profit < 0 ? this.lossColor : profit === 0 ? "#888" : this.profitColor)
         .text(
           profit
             ? `${this.team}: ${desc}`
@@ -504,6 +552,7 @@ class PLChart extends GeneralChart {
 
     draw() {
       this.drawAxes();
+      console.log(this.config);
       this.drawSales();
       this.drawCosts();
       this.drawSGaA();

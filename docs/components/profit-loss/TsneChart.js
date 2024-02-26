@@ -72,8 +72,8 @@ class TsneChart extends GeneralChart {
     }
 
     mouseover(thisClass, event, d) {
-      new PLChart(thisClass.plData, `${thisClass.rootSelector} .detail`, {
-        height: 500,
+      new PLChart(thisClass.plData.filter(d=>Object.keys(d).includes(thisClass.teams[d3.select(this).attr("index")])), `${thisClass.rootSelector} .detail`, {
+        height: thisClass.height,
         width: thisClass.width,
         margin: { top: 10, bottom: 20, left: 50, right: 50 },
         team: thisClass.teams[d3.select(this).attr("index")],

@@ -1,12 +1,12 @@
-# Profit Loss 2022
+# Profit and Loss Statement (損益計算書) 2022
 
 This is the visualization of the profit and loss for the year 2022.
 Todo: fix tsne reaction to team selection
 
 ```js
-const j1 = FileAttachment("data/pl-2022-j1.csv").csv();
-const j2 = FileAttachment("data/pl-2022-j2.csv").csv();
-const j3 = FileAttachment("data/pl-2022-j3.csv").csv();
+const j1 = FileAttachment("data/profit-loss/pl-2022-j1.csv").csv();
+const j2 = FileAttachment("data/profit-loss/pl-2022-j2.csv").csv();
+const j3 = FileAttachment("data/profit-loss/pl-2022-j3.csv").csv();
 ```
 
 ```js
@@ -43,15 +43,14 @@ const transposed = [
 
 ```js
 const normalized = normalize(transposed);
-display(normalized)
 ```
 
 
 ```js
 const solution = calculateTsne(normalized.map((d) => Object.values(d).slice(1, -1)), {
   dim: 2,
-  perplexity: 15,
-  nIter: 200,
+  perplexity: 50,
+  nIter: 2000,
   metric: "euclidean"
 });
 ```
@@ -61,7 +60,7 @@ const solution = calculateTsne(normalized.map((d) => Object.values(d).slice(1, -
 const tsneChart = new TsneChart(solution, "#tsne .chart", {
     height: 500,
     width: width / 2,
-    margin: { top: 10, bottom: 0, left: 0, right: 40 },
+    margin: { top: 10, bottom: 20, left: 10, right: 40 },
     teams: normalized.map((d) => d.team),
     plData: [...j1, ...j2, ...j3]
 }).draw()
@@ -70,7 +69,7 @@ const tsneChart = new TsneChart(solution, "#tsne .chart", {
 ```html
 <div id="tsne" class="grid grid-cols-2">
     <div class="chart card"></div>
-    <div class="detail card"></div>
+    <div class="detail"></div>
 </div>
 ```
 
@@ -158,4 +157,11 @@ const chartj3 = new PLChart(j3, "#j3 .chart", {
 <div id="j3">
     <div class="chart card"></div>
 </div>
+```
+
+
+## Comparison
+
+```js
+
 ```
