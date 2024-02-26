@@ -78,6 +78,7 @@ class PLChart extends GeneralChart {
     }
 
     rectItem(selection, j, color) {
+      if (!this.detail) return;
       const yOffset = 2
       selection
         .attr("x", (d) => this.sx(d.name))
@@ -467,7 +468,8 @@ class PLChart extends GeneralChart {
         .attr("stroke-dasharray", "4 4");
 
 
-      const profit = this.data.find((d) => d.大分類 === "当期純利益")[this.team]
+      const profit = parseFormattedNumber(this.data.find((d) => d.大分類 === "当期純利益")[this.team])
+      console.log(parseFormattedNumber(this.data.find(d=>d.大分類 === "当期純利益"))[this.team])
       this.svg
         .append('g')
         .append('text')
@@ -477,7 +479,7 @@ class PLChart extends GeneralChart {
         .attr('font-size', 12)
         .attr('font-weight', 'bold')
         .attr('text-anchor', 'middle')
-        .text(`${profit > 0?'純利益':'純損益'}${profit / 100}億円`)
+        .text(`${profit < 0?'純損益':'純利益'}${profit / 100}億円`)
 
       this.svg
         .append('g')
