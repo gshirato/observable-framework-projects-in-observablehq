@@ -27,6 +27,10 @@ import calculateTsne from './components/profit-loss/calculateTsne.js';
 ```
 
 ```js
+import calculateUmap from './components/profit-loss/calculateUmap.js';
+```
+
+```js
 import {normalize, transpose} from './components/profit-loss/utils.js';
 ```
 
@@ -47,12 +51,23 @@ const normalized = normalize(transposed);
 
 
 ```js
-const solution = calculateTsne(
+// const solution = calculateTsne(
+//     normalized.map((d) => Object.values(d).slice(1, -1)), {
+//         dim: 2,
+//         perplexity: 50,
+//         nIter: 10000,
+//         metric: "euclidean"
+//     }
+// );
+
+const solution = calculateUmap(
     normalized.map((d) => Object.values(d).slice(1, -1)), {
-        dim: 2,
-        perplexity: 50,
-        nIter: 10000,
-        metric: "euclidean"
+        nComponents: 2,
+        nNeighbors: 15,
+        minDist: 0.1,
+        random: 44,
+        nEpochs: 200,
+        distanceFn: "euclidean"
     }
 );
 ```
