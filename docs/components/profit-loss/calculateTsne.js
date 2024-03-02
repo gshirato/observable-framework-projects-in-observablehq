@@ -1,5 +1,4 @@
 import TSNE from 'npm:tsne-js';
-console.log
 
 function calculateTsne(data, config) {
     const model = new TSNE(config);
