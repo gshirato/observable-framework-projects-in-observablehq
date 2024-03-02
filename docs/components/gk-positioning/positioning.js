@@ -1,16 +1,27 @@
-export default function getGKPosition(ball, goal, magnitude = 1) {
+import * as d3 from 'npm:d3'
+
+export function formatFloat(digit) {
+    return d3.format(`.${digit}f`)
+}
+
+export function distance(a, b) {
+    return ((a.x - b.x) ** 2 + (a.y - b.y) ** 2) ** (1/2)
+}
+
+export function isShotPossible(ball, goal, threshold) {
+    // return ball.x < 34 - 16.5 - 3.66 || ball.x > 34 + 16.5 + 3.66 || ball.y < 52.5 - 16.5
+    return distance(ball, goal) < threshold
+}
+
+export function getGKPosition(ball, goal, magnitude = 1) {
     // 楕円の長径と短径
     let a = 3.66 * magnitude; // 長径
     let b = 5.5 * magnitude; // 短径
 
-    // If ball is outside of the penalty area
-    if (
-        ball.x < 34 - 16.5 - 3.66 ||
-        ball.x > 34 + 16.5 + 3.66 ||
-        ball.y < 52.5 - 16.5
-    ) {
+    if (!isShotPossible(ball, goal, 30)) {
         return { x: 34, y: 52.5 - 5.5 }; // GK should be at the center of the longer edge of the goal area
     }
+
 
     // ボールの位置とゴールの間の直線の傾きと切片を計算する関数
     function calculateLine(ball, goal) {
