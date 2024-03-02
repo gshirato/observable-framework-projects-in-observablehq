@@ -2,8 +2,10 @@
 theme: dashboard
 ---
 
-# GK Positioning
-Where to stand.
+# ゴールキーパーのポジショニング
+シュート位置に対して理論的にGKが立つべき場所の可視化。
+
+理論・可視化ともに改善の余地がある。
 
 ## Visualization
 
