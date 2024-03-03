@@ -196,8 +196,8 @@ class EventStreamChart extends GeneralChart {
 
     mouseover(thisClass, event, d) {
       d3.select(this).attr("stroke-width", 2);
-      new ThreeSixtyChart(thisClass.threeSixty, "#event-360", {
-        height: 400,
+      new ThreeSixtyChart(thisClass.threeSixty, `${thisClass.rootSelector} .threeSixty`, {
+        height: thisClass.width * 68 / 105,
         width: thisClass.width,
         margin: { top: 10, left: 10, bottom: 10, right: 30 },
         events: thisClass.data,
