@@ -118,18 +118,18 @@ import EventStreamChart from "./components/statsbomb-open-data/EventStreamChart.
 ```
 
 ```js
-const minuteStart = 0;
+const minuteStart = view(Inputs.range([0, 45], { label: "Minute", step: 1, value: 0 }))
 ```
 
 
 ```js
 import {require} from "npm:d3-require";
 require("d3-soccer").then(soccer=>{
-  new EventStreamChart(events, "#eventStream", {
+  new EventStreamChart(events, "#eventStream .chart", {
     width: width,
     height: 300,
     margin: { top: 20, right: 20, bottom: 20, left: 20 },
-    period: 1,
+    period: 2,
     homeColor: "black",
     awayColor: "blue",
     threeSixty: threeSixty,
@@ -143,12 +143,13 @@ require("d3-soccer").then(soccer=>{
 ```
 
 ```html
-<div class="card grid-colspan-2">
-    <div id="eventStream"></div>
+<div id="eventStream" class="card">
+  <div class="chart"></div>
+  <div class="threeSixty"></div>
 </div>
 
 <div class="card">
-    <div id="event-360"></div>
+  <div ></div>
 </div>
 
 ```
