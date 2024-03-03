@@ -11,6 +11,11 @@ function getOpponent(teammate, teams) {
   throw Error("Error in getOpponent, " + teams + ", " + teammate);
 }
 
+function getEventDurationInMilliSeconds(event) {
+  if (event.duration == null)return 1000
+  return event.duration * 1000
+}
+
 class ThreeSixtyChart extends GeneralChart {
     constructor(data, selector, config) {
       super(data, selector, config);
@@ -46,6 +51,25 @@ class ThreeSixtyChart extends GeneralChart {
 
     draw360(sel) {
       if (this.threeSixty == null) {
+        sel.call(this.drawNull.bind(this));
+        return;
+      }
+      sel.call(this.drawEventChain.bind(this));
+      sel.call(this.drawVisibleArea.bind(this));
+      sel.call(this.drawPlayers.bind(this));
+
+      if (this.selectedEvent.type.name === "Pass") {
+        sel.call(this.drawPass.bind(this));
+      }
+      else if (this.selectedEvent.type.name === "Carry") {
+        sel.call(this.drawCarry.bind(this));
+      }
+      else if (this.selectedEvent.type.name === "Shot") {
+        sel.call(this.drawShot.bind(this));
+      }
+    }
+
+    drawNull(sel) {
         sel
           .append("g")
           .append("text")
@@ -68,11 +92,10 @@ class ThreeSixtyChart extends GeneralChart {
           .attr("font-size", 15)
           .attr("opacity", 0.4)
           .text("id: " + this.selectedEvent.id);
-        return;
-      }
 
-      sel.call(this.drawEventChain.bind(this));
+    }
 
+    drawVisibleArea(sel) {
       sel
         .append("g")
         .append("path")
@@ -82,12 +105,12 @@ class ThreeSixtyChart extends GeneralChart {
         .attr("stroke", "black")
         .attr("opacity", 0.15)
         .attr("stroke-dasharray", "4 4");
+    }
+    drawPlayers(sel) {
 
       const teams = Array.from(d3.union(this.events.map((d) => d.team.name)));
       this.scTeam = d3.scaleOrdinal().domain(teams).range(["black", "blue"]);
-
       const opponent = getOpponent(this.selectedEvent.team.name, teams);
-      const opponentColor = this.scTeam(opponent);
 
       sel
         .append("g")
@@ -98,7 +121,7 @@ class ThreeSixtyChart extends GeneralChart {
         .attr("cy", (d) => this.sy(d.location[1]))
         .attr("r", (d) => (d.actor ? 9 : 5))
         .attr("fill", (d) =>
-          d.teammate ? this.scTeam(this.selectedEvent.team.name) : opponentColor
+          d.teammate ? this.scTeam(this.selectedEvent.team.name) : this.scTeam(opponent)
         )
         .attr("stroke", (d) => (d.actor ? "white" : "black"))
         .attr("opacity", 0.6)
@@ -121,8 +144,10 @@ class ThreeSixtyChart extends GeneralChart {
         .attr("font-size", 10)
         .text(this.writeEventPlayer(this.selectedEvent));
 
-      if (this.selectedEvent.type.name === "Pass") {
-        this.drawHull(this.threeSixty.freeze_frame);
+    }
+
+    drawPass(sel) {
+      this.drawHull(this.threeSixty.freeze_frame);
         sel
           .append("g")
           .append("text")
@@ -178,10 +203,10 @@ class ThreeSixtyChart extends GeneralChart {
               .text("x");
           }
         }
-      }
+    }
 
-      if (this.selectedEvent.type.name === "Carry") {
-        sel
+    drawCarry(sel) {
+      sel
           .append("g")
           .append("line")
           .datum(this.selectedEvent)
@@ -210,49 +235,50 @@ class ThreeSixtyChart extends GeneralChart {
           .duration((d) => getEventDurationInMilliSeconds(d))
           .attr("cx", (d) => this.sx(d.carry.end_location[0]))
           .attr("cy", (d) => this.sy(d.carry.end_location[1]));
-      }
-      if (this.selectedEvent.type.name === "Shot") {
-        sel
-          .append("g")
-          .append("text")
-          .attr("x", this.margin.left)
-          .attr("y", this.margin.top + 35)
-          .attr("dx", 5)
-          .attr("font-size", 10)
-          .text(this.writeShotDetail(this.selectedEvent));
+    }
 
-        sel
-          .append("g")
-          .append("line")
-          .datum(this.selectedEvent)
-          .attr("x1", (d) => this.sx(d.location[0]))
-          .attr("y1", (d) => this.sy(d.location[1]))
-          .attr("x2", (d) => this.sx(d.location[0]))
-          .attr("y2", (d) => this.sy(d.location[1]))
-          .attr("stroke", "blue")
-          .attr("stroke-width", 3)
-          .attr("stroke-dasharray", "3 3")
-          .transition()
-          .duration((d) => getEventDurationInMilliSeconds(d))
-          .attr("x2", (d) => this.sx(d.shot.end_location[0]))
-          .attr("y2", (d) => this.sy(d.shot.end_location[1]));
+    drawShot(sel) {
+      sel
+        .append("g")
+        .append("text")
+        .attr("x", this.margin.left)
+        .attr("y", this.margin.top + 35)
+        .attr("dx", 5)
+        .attr("font-size", 10)
+        .text(this.writeShotDetail(this.selectedEvent));
 
-        sel
-          .append("g")
-          .append("circle")
-          .datum(this.selectedEvent)
-          .attr("cx", (d) => this.sx(d.location[0]))
-          .attr("cy", (d) => this.sy(d.location[1]))
-          .attr("fill", (d) =>
-            d.shot.outcome.name === "Goal" ? "#91cf60" : "#fc8d59"
-          )
-          .attr("stroke", "black")
-          .attr("r", 3)
-          .transition()
-          .duration((d) => getEventDurationInMilliSeconds(d))
-          .attr("cx", (d) => this.sx(d.shot.end_location[0]))
-          .attr("cy", (d) => this.sy(d.shot.end_location[1]));
-      }
+      sel
+        .append("g")
+        .append("line")
+        .datum(this.selectedEvent)
+        .attr("x1", (d) => this.sx(d.location[0]))
+        .attr("y1", (d) => this.sy(d.location[1]))
+        .attr("x2", (d) => this.sx(d.location[0]))
+        .attr("y2", (d) => this.sy(d.location[1]))
+        .attr("stroke", "blue")
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", "3 3")
+        .transition()
+        .duration((d) => getEventDurationInMilliSeconds(d))
+        .attr("x2", (d) => this.sx(d.shot.end_location[0]))
+        .attr("y2", (d) => this.sy(d.shot.end_location[1]));
+
+      sel
+        .append("g")
+        .append("circle")
+        .datum(this.selectedEvent)
+        .attr("cx", (d) => this.sx(d.location[0]))
+        .attr("cy", (d) => this.sy(d.location[1]))
+        .attr("fill", (d) =>
+          d.shot.outcome.name === "Goal" ? "#91cf60" : "#fc8d59"
+        )
+        .attr("stroke", "black")
+        .attr("r", 3)
+        .transition()
+        .duration((d) => getEventDurationInMilliSeconds(d))
+        .attr("cx", (d) => this.sx(d.shot.end_location[0]))
+        .attr("cy", (d) => this.sy(d.shot.end_location[1]));
+
     }
 
     drawHull(tracking) {
@@ -289,12 +315,17 @@ class ThreeSixtyChart extends GeneralChart {
       sel
         .append("g")
         .selectAll("circle")
-        .data(this.filterChainEvents(this.possession, ["Pass", "Ball Receipt*"]))
+        .data(
+          this.filterChainEvents(this.possession, ["Pass", "Ball Receipt*"]).filter(d=>d.index - this.selectedEvent.index < 0)
+        )
         .join("circle")
         .attr("cx", (d) => this.sx(d.location[0]))
         .attr("cy", (d) => this.sy(d.location[1]))
         .attr("r", (d) => (d.type.name === "Pass" ? 8 : 3))
-        .attr("fill", (d) => (d.type.name === "Pass" ? "yellow" : "pink"))
+        .attr("fill", (d) => {
+          if (d.type.name !== "Pass") return "pink";
+          return "yellow";
+        })
         .attr("stroke", "#ff1133")
         .attr("opacity", 0)
         .on("mouseover", _.partial(this.mouseoverEvent, this))
@@ -304,13 +335,11 @@ class ThreeSixtyChart extends GeneralChart {
         .delay((_, i) => i * 100)
         .attr("opacity", 0.5);
 
-      const minIndex = d3.min(this.possession, (d) => d.index);
+      // Passes before the current event
       sel
         .append("g")
         .selectAll("text")
-
-        .data(this.filterChainEvents(this.possession, ["Pass"]))
-
+        .data(this.filterChainEvents(this.possession, ["Pass"]).filter(d=>d.index - this.selectedEvent.index < 0))
         .join("text")
         .attr("x", (d) => this.sx(d.location[0]))
         .attr("y", (d) => this.sy(d.location[1]))
@@ -319,15 +348,17 @@ class ThreeSixtyChart extends GeneralChart {
         .attr("font-size", 10)
         .attr("text-anchor", "middle")
         .style("user-select", "none")
-        .text((d) => d.index - this.selectedEvent.index)
+        .text((d, i) => i - this.filterChainEvents(this.possession, ["Pass"]).filter(d=>d.index - this.selectedEvent.index < 0).length)
         .transition()
         .delay((_, i) => i * 100)
-        .attr("opacity", 0.5);
+        .attr("opacity", 0.5)
 
       sel
         .append("g")
         .selectAll("line")
-        .data(this.filterChainEvents(this.possession, ["Pass"]))
+        .data(
+          this.filterChainEvents(this.possession, ["Pass"]).filter(d=>d.index - this.selectedEvent.index < 0)
+        )
         .join("line")
         .attr("x1", (d) => this.sx(d.location[0]))
         .attr("y1", (d) => this.sy(d.location[1]))
@@ -340,7 +371,6 @@ class ThreeSixtyChart extends GeneralChart {
         .transition()
         .delay(
           (_, i) => i * 100 + 100
-          // this.possession.filter((d) => d.location != null).length * 100 + 100
         )
         .attr("opacity", 0.6);
     }
