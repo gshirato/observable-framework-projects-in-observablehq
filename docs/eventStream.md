@@ -114,42 +114,71 @@ const threeSixty = getThreeSixty(game, competitions)
 ```
 
 ```js
-import EventStreamChart from "./components/statsbomb-open-data/EventStreamChart.js";
+import PassStreamChart from "./components/statsbomb-open-data/PassStreamChart.js";
 ```
-
-```js
-const minuteStart = view(Inputs.range([0, 45], { label: "Minute", step: 1, value: 0 }))
-```
-
 
 ```js
 import {require} from "npm:d3-require";
+```
+
+
+```js
+import getPossessionData from './components/statsbomb-open-data/utils.js'
+```
+
+
+```js
+const passes = events.filter(d=>d.type.name === 'Pass');
+const possessions = getPossessionData(passes);
+```
+
+```js
+const teams = Array.from(d3.union(events.map(d=>d.team.name)));
+```
+
+```js
+function formatMMSS(d) {
+    return `${String(d.minute).padStart(2, '0')}:${String(d.second).padStart(2, '0')}`
+}
+```
+
+```js
 require("d3-soccer").then(soccer=>{
-  new EventStreamChart(events, "#eventStream .chart", {
+  new PassStreamChart(possession[1], "#passStream .chart", {
     width: width,
     height: 300,
-    margin: { top: 20, right: 20, bottom: 20, left: 20 },
+    margin: { top: 20, right: 40, bottom: 20, left: 20 },
     period: 2,
+    teams: teams,
     homeColor: "black",
     awayColor: "blue",
     threeSixty: threeSixty,
     timeRange: [
-    { minute: minuteStart, second: 0 },
-    { minute: minuteStart + 5, second: 0 },
+    { minute: possession[1][0].minute, second: possession[1][0].second},
+    { minute: possession[1].slice(-1)[0].minute , second: possession[1].slice(-1)[0].second + parseInt(possession[1].slice(-1)[0].duration) + 1},
     ],
     soccerModule: soccer
   }).draw();
 });
+view(possession[1])
 ```
 
-```html
-<div id="eventStream" class="card">
+```js
+const teamToPass = view(Inputs.radio(teams, {label: 'Team', value: teams[0]}))
+```
+
+```js
+const possession = view(Inputs.select(possessions.filter(d=>d[1][0].possession_team.name == teamToPass), {label: "Possession", format: d=>{
+  const startEvent = d[1][0];
+  const endEvent = d[1].slice(-1)[0];
+  const period = startEvent.period === 1 ? '1st': '2nd';
+  const text = `(${period}) ${formatMMSS(startEvent)}~${formatMMSS(endEvent)} (#Events=${d[1].length}, ${startEvent.possession_team.name})`
+
+  return text;
+}}))
+```
+
+<div id="passStream" class="card">
   <div class="chart"></div>
   <div class="threeSixty"></div>
 </div>
-
-<div class="card">
-  <div ></div>
-</div>
-
-```

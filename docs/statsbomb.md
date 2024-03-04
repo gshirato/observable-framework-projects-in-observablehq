@@ -137,3 +137,65 @@ const queryAction = view(Inputs.select(actions, {
 ```js
 display(Inputs.table(queriedActions));
 ```
+
+
+## Event stream
+
+```js
+function getThreeSixty(game, competitions) {
+    const competition = competitions.find(
+      (d) =>
+        d.competition_id === game.competition.competition_id &&
+        d.season_id === game.season.season_id
+    );
+
+    if (competition.match_available_360 === null) return "No 360 data available";
+
+    return d3.json(
+      `https://raw.githubusercontent.com/statsbomb/open-data/master/data/three-sixty/${game.match_id}.json`
+    );
+  }
+```
+
+```js
+const threeSixty = getThreeSixty(game, competitions)
+```
+
+```js
+import EventStreamChart from "./components/statsbomb-open-data/EventStreamChart.js";
+```
+
+
+```js
+const minuteStart = view(Inputs.range([0, 45], { label: "Minute", step: 1, value: 0 }))
+```
+
+```js
+const teams = Array.from(d3.union(events.map(d=>d.team.name)));
+```
+
+```js
+import {require} from "npm:d3-require";
+require("d3-soccer").then(soccer=>{
+  new EventStreamChart(events, "#eventStream .chart", {
+    width: width,
+    height: 300,
+    margin: { top: 20, right: 20, bottom: 20, left: 20 },
+    period: 2,
+    homeColor: "black",
+    awayColor: "blue",
+    teams: teams,
+    threeSixty: threeSixty,
+    timeRange: [
+    { minute: minuteStart, second: 0 },
+    { minute: minuteStart + 5, second: 0 },
+    ],
+    soccerModule: soccer
+  }).draw();
+});
+```
+
+<div id="eventStream" class="card">
+  <div class="chart"></div>
+  <div class="threeSixty"></div>
+</div>
