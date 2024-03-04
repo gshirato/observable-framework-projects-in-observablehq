@@ -41,6 +41,7 @@ class EventStreamChart extends GeneralChart {
           parseEventTime(d) < parseEventTime(this.timeRange[1]) &&
           parseEventTime(d) > parseEventTime(this.timeRange[0])
       );
+      this.teams = this.config['teams']
 
       this.possessions = getPossessionData(this.data);
       this.teamColors = [this.config["homeColor"], this.config["awayColor"]];
@@ -201,6 +202,7 @@ class EventStreamChart extends GeneralChart {
         width: thisClass.width,
         margin: { top: 10, left: 10, bottom: 10, right: 30 },
         events: thisClass.data,
+        teams: thisClass.teams,
         selectedEvent: d,
         soccerModule: thisClass.soccer,
       }).draw();

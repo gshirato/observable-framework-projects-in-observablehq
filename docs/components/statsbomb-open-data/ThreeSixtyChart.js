@@ -5,6 +5,7 @@ import getPossessionData from "./utils.js";
 import _ from "npm:lodash";
 
 function getOpponent(teammate, teams) {
+  console.log(teammate, teams)
   for (const team of teams) {
     if (team !== teammate) return team;
   }
@@ -21,6 +22,7 @@ class ThreeSixtyChart extends GeneralChart {
       super(data, selector, config);
       this.soccer = this.config["soccerModule"];
       this.pitch = this.soccer.pitch().height(this.height);
+      this.teams = this.config['teams']
       this.events = this.config["events"];
       this.selectedEvent = this.config["selectedEvent"];
 
@@ -107,10 +109,8 @@ class ThreeSixtyChart extends GeneralChart {
         .attr("stroke-dasharray", "4 4");
     }
     drawPlayers(sel) {
-
-      const teams = Array.from(d3.union(this.events.map((d) => d.team.name)));
-      this.scTeam = d3.scaleOrdinal().domain(teams).range(["black", "blue"]);
-      const opponent = getOpponent(this.selectedEvent.team.name, teams);
+      this.scTeam = d3.scaleOrdinal().domain(this.teams).range(["black", "blue"]);
+      const opponent = getOpponent(this.selectedEvent.team.name, this.teams);
 
       sel
         .append("g")
