@@ -305,9 +305,9 @@ class ThreeSixtyChart extends GeneralChart {
       return data.filter(
         (d) =>
           d.location != null &&
-          attributes.includes(d.type.name) &&
-          d.index >= this.selectedEvent.index - 8 &&
-          d.index <= this.selectedEvent.index + 8
+          attributes.includes(d.type.name)
+          // d.index >= this.selectedEvent.index - 5 &&
+          // d.index <= this.selectedEvent.index + 5
       );
     }
 
@@ -316,7 +316,9 @@ class ThreeSixtyChart extends GeneralChart {
         .append("g")
         .selectAll("circle")
         .data(
-          this.filterChainEvents(this.possession, ["Pass", "Ball Receipt*"]).filter(d=>d.index - this.selectedEvent.index < 0)
+          this.filterChainEvents(this.possession, ["Pass", "Ball Receipt*"])
+          .filter(d=>d.possession === this.selectedEvent.possession)
+          .filter(d=>d.index - this.selectedEvent.index < 0)
         )
         .join("circle")
         .attr("cx", (d) => this.sx(d.location[0]))
