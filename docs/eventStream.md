@@ -132,6 +132,8 @@ const passes = events.filter(d=>d.type.name === 'Pass');
 const possessions = getPossessionData(passes);
 ```
 
+🚫: there is no [360 data](https://statsbomb.com/what-we-do/soccer-data/360-2/) available.
+
 ```js
 const teams = Array.from(d3.union(events.map(d=>d.team.name)));
 ```
@@ -160,7 +162,6 @@ require("d3-soccer").then(soccer=>{
     soccerModule: soccer
   }).draw();
 });
-view(possession[1])
 ```
 
 ```js
@@ -182,3 +183,8 @@ const possession = view(Inputs.select(possessions.filter(d=>d[1][0].possession_t
   <div class="chart"></div>
   <div class="threeSixty"></div>
 </div>
+
+
+```js
+view(possessions)
+```
