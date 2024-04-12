@@ -1,7 +1,8 @@
-# Profit and Loss Statement (損益計算書) 2022
+# Profit and Loss Statement 2022
 
-This is the visualization of the profit and loss for the year 2022.
-Todo: fix tsne reaction to team selection
+This page presents a visual overview of the financial outcomes, specifically the profits and losses, for the year 2022.
+
+↓ Touch the dots!
 
 ```js
 const j1 = FileAttachment("data/profit-loss/pl-2022-j1.csv").csv();
@@ -51,25 +52,25 @@ const normalized = normalize(transposed);
 
 
 ```js
-// const solution = calculateTsne(
-//     normalized.map((d) => Object.values(d).slice(1, -1)), {
-//         dim: 2,
-//         perplexity: 50,
-//         nIter: 10000,
-//         metric: "euclidean"
-//     }
-// );
-
-const solution = calculateUmap(
+const solution = calculateTsne(
     normalized.map((d) => Object.values(d).slice(1, -1)), {
-        nComponents: 2,
-        nNeighbors: 15,
-        minDist: 0.1,
-        random: 44,
-        nEpochs: 200,
-        distanceFn: "euclidean"
+        dim: 2,
+        perplexity: 50,
+        nIter: 10000,
+        metric: "euclidean"
     }
 );
+
+// const solution = calculateUmap(
+//     normalized.map((d) => Object.values(d).slice(1, -1)), {
+//         nComponents: 2,
+//         nNeighbors: 5,
+//         minDist: 0.1,
+//         random: 44,
+//         nEpochs: 200,
+//         distanceFn: "euclidean"
+//     }
+// );
 ```
 
 
@@ -174,11 +175,4 @@ const chartj3 = new PLChart(j3, "#j3 .chart", {
 <div id="j3">
     <div class="chart card"></div>
 </div>
-```
-
-
-## Comparison
-
-```js
-
 ```

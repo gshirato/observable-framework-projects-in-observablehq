@@ -55,7 +55,7 @@ class TsneChart extends GeneralChart {
         .attr("fill", (_, i)=>parseFormattedNumber(this.getProfit(i)) > 0 ? 'green' : 'red')
         .attr("opacity", (_, i)=>sOpacity(parseFormattedNumber(this.getProfit(i)))
         )
-        .attr("r", 3)
+        .attr("r", 5)
         .attr("index", (_, i) => i)
         .on("mouseover", _.partial(this.mouseover, this))
         .on("mousemove", _.partial(this.mousemove, this))
@@ -70,7 +70,7 @@ class TsneChart extends GeneralChart {
         .attr("y", (d) => this.sy(d[1]))
         .attr("dy", -5)
         .attr("text-anchor", "middle")
-        .attr("font-size", 7)
+        .attr("font-size", 10)
         .attr("font-weight", 'bold')
         .text((_, i) => this.teams[i]);
     }
