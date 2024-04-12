@@ -2,10 +2,13 @@
 theme: dashboard
 ---
 
-# ゴールキーパーのポジショニング
-シュート位置に対して理論的にGKが立つべき場所の可視化。
+# Where should a goalkeeper stand?
 
-理論・可視化ともに改善の余地がある。
+This is a visualization of the theoretical positions a goalkeeper should take relative to the location of a shot.
+
+Both the theory and the visualization have room for improvement.
+
+Feel free to contact me if you have any feedback or suggestions.
 
 ## Visualization
 
