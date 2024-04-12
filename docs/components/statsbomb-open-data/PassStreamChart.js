@@ -116,14 +116,12 @@ class PassStreamChart extends GeneralChart {
             .attr("x", (_, i) => this.sx(this.relativeSeconds[i]))
             .attr("y", (d) => this.sy(getEventName(d)))
             .attr("possession", (d) => d.possession)
-            .attr("rx", 1)
-            .attr("ry", 1)
+            .attr("rx", 5)
+            .attr("ry", 5)
             .attr("width", d=>this.sx(d.duration) - this.sx(0))
             .attr("height", this.sy.bandwidth() - 20)
             .attr("fill", (d) => d.pass.outcome == null ? "#7fc97f": "#ff9076")
             .attr("stroke", '#333')
-            .attr("stroke-width", 1.5)
-            .attr("stroke-dasharray", '4 2')
             .attr("opacity", 0.4)
             .on("mouseover", _.partial(this.mouseover, this))
             .on("mousemove", _.partial(this.mousemove, this))
@@ -141,7 +139,7 @@ class PassStreamChart extends GeneralChart {
             .attr("y", (d) => this.sy(getEventName(d)) + this.sy.bandwidth() / 2)
             .text(d=>this.threeSixty.find(
                 (t) => t.event_uuid === d.id
-            ) == null ? '🚫360': '')
+            ) == null ? '🚫': '')
     }
 
     draw() {
@@ -153,7 +151,6 @@ class PassStreamChart extends GeneralChart {
     mouseover(thisClass, event, d) {
         d3.select(this).on('mouseover', null);
 
-        d3.select(this).attr("stroke-width", 4);
         new ThreeSixtyChart(thisClass.threeSixty, `${thisClass.rootSelector} .threeSixty`, {
             height: thisClass.width * 68 / 105,
             width: thisClass.width,
@@ -186,7 +183,6 @@ class PassStreamChart extends GeneralChart {
     }
 
     mouseleave(thisClass, event, d) {
-      d3.select(this).attr("stroke-width", 1.5);
       thisClass.tooltip.hide(event, d);
     }
   }
