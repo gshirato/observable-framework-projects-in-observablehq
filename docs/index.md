@@ -39,6 +39,24 @@
   }
 }
 
+.scrollable-table {
+    overflow-x: auto;  /* Enables horizontal scrolling */
+    max-width: 100%;     /* Maximum width of the container */
+    margin: 20px 0;      /* Optional: Adds some spacing around the table */
+    /* border-collapse: collapse; */
+}
+
+.scrollable-table table {
+    width: 100%;         /* Makes the table width 100% of the container */
+    min-width: 400px;
+    border-collapse: collapse; /* Optional: Collapses border to a single border */
+}
+
+.scrollable-table th, .scrollable-table td {
+    text-align: left;    /* Optional: Aligns text to the left */
+}
+
+
 </style>
 
 
@@ -55,46 +73,193 @@ My research interests include interpretable data analytics such as visual analyt
 I am currently working on interpreting the behavior of players in football using visual analytics and neural network such as Autoencoder.
 
 ## Education
+<table class="scrollable-table">
+  <thead>
+    <tr>
+      <th>Degree</th>
+      <th>Period</th>
+      <th>Institution</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ph.D. in Computer Science</td>
+      <td>2020 - Present</td>
+      <td>University of Bonn</td>
+      <td>Germany 🇩🇪</td>
+    </tr>
+    <tr>
+      <td>M.Sc. in Statistics</td>
+      <td>2017-2019</td>
+      <td>Keio University</td>
+      <td>Japan 🇯🇵</td>
+    </tr>
+    <tr>
+      <td>M.Sc. in Virtual Reality</td>
+      <td>2015-2017</td>
+      <td>Ecole Centrale de Nantes</td>
+      <td>France 🇫🇷</td>
+    </tr>
+  </tbody>
+</table>
 
-| Degree | Period | Institution | Country |
-| --- | --- | --- | --- |
-| Ph.D. in Computer Science | 2020 - Present | University of Bonn | Germany 🇩🇪 |
-| M.Sc. in Statistics | 2017-2019 | Keio University | Japan 🇯🇵 |
-| M.Sc. in Virtual Reality | 2015-2017 | Ecole Centrale de Nantes | France 🇫🇷 |
+
 
 ## Academic and Work Experience
 
-| Position | Period | Organization | Country |
-| --- | --- | --- | --- |
-| Researcher | 2020 - Present | Fraunhofer IAIS | Germany 🇩🇪 |
-| Scholarly Exchange | October - November, 2019 | Weber State University | USA 🇺🇸|
-| Data Scientist (Part-time) | March - June, 2019 | Data Stadium Inc. | Japan 🇯🇵|
-| Marketing Intern | March - June, 2019 | Tinder | Japan 🇯🇵|
-| Data Scientist Intern | November - December, 2018 | Nomura Securities Co., Ltd. | Japan 🇯🇵|
-| Data Scientist Intern | October - November, 2018 | Intel Corporation | Japan 🇯🇵|
-| Data Scientist Intern | September - August, 2018 | NAVITIME JAPAN Co., Ltd. | Japan 🇯🇵|
-| VR Developer Intern | May - August, 2017 | Johnson Controles Industries | France 🇫🇷|
-| Data developer Intern | July, 2016 | Institut Mutualiste de Montsouris | France 🇫🇷|
+<table class="scrollable-table">
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Period</th>
+      <th>Organization</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Researcher</td>
+      <td>2020 - Present</td>
+      <td>Fraunhofer IAIS</td>
+      <td>Germany 🇩🇪</td>
+    </tr>
+    <tr>
+      <td>Scholarly Exchange</td>
+      <td>October - November, 2019</td>
+      <td>Weber State University</td>
+      <td>USA 🇺🇸</td>
+    </tr>
+    <tr>
+      <td>Data Scientist (Part-time)</td>
+      <td>March - June, 2019</td>
+      <td>Data Stadium Inc.</td>
+      <td>Japan 🇯🇵</td>
+    </tr>
+    <tr>
+      <td>Marketing Intern</td>
+      <td>March - June, 2019</td>
+      <td>Tinder</td>
+      <td>Japan 🇯🇵</td>
+    </tr>
+    <tr>
+      <td>Data Scientist Intern</td>
+      <td>November - December, 2018</td>
+      <td>Nomura Securities Co., Ltd.</td>
+      <td>Japan 🇯🇵</td>
+    </tr>
+    <tr>
+      <td>Data Scientist Intern</td>
+      <td>October - November, 2018</td>
+      <td>Intel Corporation</td>
+      <td>Japan 🇯🇵</td>
+    </tr>
+    <tr>
+      <td>Data Scientist Intern</td>
+      <td>September - August, 2018</td>
+      <td>NAVITIME JAPAN Co., Ltd.</td>
+      <td>Japan 🇯🇵</td>
+    </tr>
+    <tr>
+      <td>VR Developer Intern</td>
+      <td>May - August, 2017</td>
+      <td>Johnson Controles Industries</td>
+      <td>France 🇫🇷</td>
+    </tr>
+    <tr>
+      <td>Data developer Intern</td>
+      <td>July, 2016</td>
+      <td>Institut Mutualiste de Montsouris</td>
+      <td>France 🇫🇷</td>
+    </tr>
+  </tbody>
+</table>
 
 
 ### Full papers
 
-| Title | Authors | Journal | Date | DOI |
-| --- | --- | --- | --- | --- |
-| Identifying, exploring, and interpreting time series shapes in multivariate time intervals | **G. Shirato**, N. Andrienko, and G. Andrienko | Visual Informatics | Mar. 2023 | [10.1016/j.visinf.2023.01.001](https://www.doi.org/10.1016/j.visinf.2023.01.001) |
-| Exploring and visualizing temporal relations in multivariate time series | **G. Shirato**, N. Andrienko, and G. Andrienko | Visual Informatics | Sep. 2023 | [10.1016/j.visinf.2023.09.001](https://www.doi.org/10.1016/j.visinf.2023.09.001) |
-| Episodes and topics in multivariate temporal data | N. Andrienko, G. Andrienko, and **G. Shirato** | Comput. Graph. Forum | Sep. 2023 | [10.1111/cgf.14926](https://www.doi.org/10.1111/cgf.14926) |
+<table class="scrollable-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Authors</th>
+      <th>Journal</th>
+      <th>Date</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Identifying, exploring, and interpreting time series shapes in multivariate time intervals</td>
+      <td><strong>G. Shirato</strong>, N. Andrienko, and G. Andrienko</td>
+      <td>Visual Informatics</td>
+      <td>Mar. 2023</td>
+      <td><a href="https://www.doi.org/10.1016/j.visinf.2023.01.001">10.1016/j.visinf.2023.01.001</a></td>
+    </tr>
+    <tr>
+      <td>Exploring and visualizing temporal relations in multivariate time series</td>
+      <td><strong>G. Shirato</strong>, N. Andrienko, and G. Andrienko</td>
+      <td>Visual Informatics</td>
+      <td>Sep. 2023</td>
+      <td><a href="https://www.doi.org/10.1016/j.visinf.2023.09.001">10.1016/j.visinf.2023.09.001</a></td>
+    </tr>
+    <tr>
+      <td>Episodes and topics in multivariate temporal data</td>
+      <td>N. Andrienko, G. Andrienko, and <strong>G. Shirato</strong></td>
+      <td>Comput. Graph. Forum</td>
+      <td>Sep. 2023</td>
+      <td><a href="https://www.doi.org/10.1111/cgf.14926">10.1111/cgf.14926</a></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Short papers
-| Title | Authors | Journal | Date | Link |
-| --- | --- | --- | --- | --- |
-| What are the topics in football? Extracting time-series topics from game episodes | **G. Shirato**, N. Andrienko, and G. Andrienko | IEEE VIS 2021 | 2021 | [PDF](http://geoanalytics.net/and/papers/vis21poster.pdf) |
+<table class="scrollable-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Authors</th>
+      <th>Journal</th>
+      <th>Date</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>What are the topics in football? Extracting time-series topics from game episodes</td>
+      <td><strong>G. Shirato</strong>, N. Andrienko, and G. Andrienko</td>
+      <td>IEEE VIS 2021</td>
+      <td>2021</td>
+      <td><a href="http://geoanalytics.net/and/papers/vis21poster.pdf">PDF</a></td>
+    </tr>
+  </tbody>
+</table>
 
 
 ### Book chapters
-| Title | Authors | Book | Chapter | Date | DOI |
-| --- | --- | --- | --- | --- | --- |
-| Extraction and Visually Driven Analysis of VGI for Understanding People’s Behavior in Relation to Multifaceted Context | D. Burghardt, A. Dunkel, E. Hauthal, **G. Shirato**, N. Andrienko, G. Andrienko, M. Hartmann, and R. Purves | Springer Nature Switzerland | Volunteered Geographic Information: Interpretation, Visualization and Social Context | 2024 | [10.1007/978-3-031-35374-1](https://www.doi.org/10.1007/978-3-031-35374-1) |
+<table class="scrollable-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Authors</th>
+      <th>Book</th>
+      <th>Chapter</th>
+      <th>Date</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Extraction and Visually Driven Analysis of VGI for Understanding People’s Behavior in Relation to Multifaceted Context</td>
+      <td>D. Burghardt, A. Dunkel, E. Hauthal, <strong>G. Shirato</strong>, N. Andrienko, G. Andrienko, M. Hartmann, and R. Purves</td>
+      <td>Springer Nature Switzerland</td>
+      <td>Volunteered Geographic Information: Interpretation, Visualization and Social Context</td>
+      <td>2024</td>
+      <td><a href="https://www.doi.org/10.1007/978-3-031-35374-1">10.1007/978-3-031-35374-1</a></td>
+    </tr>
+  </tbody>
+</table>
+
 
 ## Selected projects
 - [DFG](https://www.dfg.de/) founded project (2020-2024)
