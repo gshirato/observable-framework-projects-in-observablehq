@@ -18,6 +18,13 @@ export default {
         // {name: "J1 Data", path: "/j1-data"},
         // {name: "Urawa Reds - All games", path: "/urawa-games"},
       ]
+    },
+    {
+      name: "Seminar 23/24",
+      open: false,
+      pages: [
+        {name: "Visual Analytics", path: "/seminar-visual-analytics"}
+      ]
     }
   ],
 
