@@ -2,9 +2,16 @@
 
 ### Master: MA-INF 4209
 ---
+<figure>
+  <img src="./data/seminar-visual-analytics/time-series-abstraction.png" alt="Visual Analytics" style="width:100%">
+  <figcaption>Abstraction of time series episodes</figcaption>
+</figure>
+
 In this seminar, we will learn skills and knowledge required for Visual Analytics.
 
+
 **Our goal** is for you to engage in a learning process to explore the importance of these skills through hands-on tasks and active participation.
+
 
 
 **Our targets** during the seminar:
@@ -35,7 +42,10 @@ In this seminar, we will learn skills and knowledge required for Visual Analytic
 | July 2 (Tue.) | Developing visual analytics tools III |
 | July 16 (Tue.) | **Deadline for the final report** |
 
-
+<figure>
+  <img src="./data/seminar-visual-analytics/gate.png" alt="Gate" style="width:100%">
+  <figcaption>Visualization of "gates" in football</figcaption>
+</figure>
 
 ---
 
