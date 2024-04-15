@@ -64,7 +64,7 @@ In this seminar, we will learn skills and knowledge required for Visual Analytic
 ## Registration
 
 Please register for the seminar via the [BASIS website](https://basis.uni-bonn.de/) (**`Informatik, Life Science Informatics und Media Informatics` > `Master Computer Science` > `Intelligent Systems`**).
-<div class="note" label="Note">Note: the eCampus link is currently not working.</div>
+<div class="note" label="Note">The eCampus link is currently not working.</div>
 
 
 ---
