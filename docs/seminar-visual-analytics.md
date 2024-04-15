@@ -1,7 +1,7 @@
 ## Principles of Data Mining and Learning Algorithms: Visual Analytics
 
 ### Master: MA-INF 4209
-
+---
 In this seminar, we learn skills and knowledge required for Visual Analytics.
 
 **Our goal** is to be in a learning process where you explore why these skills are essential through hands-on tasks and active participation
