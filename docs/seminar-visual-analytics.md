@@ -2,9 +2,9 @@
 
 ### Master: MA-INF 4209
 ---
-In this seminar, we learn skills and knowledge required for Visual Analytics.
+In this seminar, we will learn skills and knowledge required for Visual Analytics.
 
-**Our goal** is to be in a learning process where you explore why these skills are essential through hands-on tasks and active participation
+**Our goal** is for you to engage in a learning process to explore the importance of these skills through hands-on tasks and active participation.
 
 
 **Our targets** during the seminar:
