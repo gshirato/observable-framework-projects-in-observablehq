@@ -30,17 +30,17 @@ In this seminar, we will learn skills and knowledge required for Visual Analytic
 
 ## Important dates
 
-<div class="note" label="Note">The seminar dates listed below are tentative and may be adjusted after the registration period. If you have a preference for specific days, please do not hesitate to contact me.</div>
+<div class="note" label="Note">2024/04/22 Seminar dates have been fixed.</div>
 
 
-| Date | Contents |
-| ---- | -------- |
-| May 14 (Tue.) | Understanding visual analytics tools I |
-| May 28 (Tue.) | Understanding visual analytics tools II |
-| June 11 (Tue.) | Developing visual analytics tools I |
-| June 25 (Tue.) | Developing visual analytics tools II |
-| July 2 (Tue.) | Developing visual analytics tools III |
-| July 16 (Tue.) | **Deadline for the final report** |
+| Date | Time | Contents |
+| ---- |  --- | -------- |
+| May 14 (Tue.) | 12:00 - 14:00 | Understanding visual analytics tools I |
+| May 28 (Tue.) | 12:00 - 14:00 |Understanding visual analytics tools II |
+| June 11 (Tue.) | 12:00 - 14:00 | Developing visual analytics tools I |
+| June 25 (Tue.) | 12:00 - 14:00 | Developing visual analytics tools II |
+| July 2 (Tue.) | 12:00 - 14:00 | Developing visual analytics tools III |
+| July 16 (Tue.) | 12:00 - 14:00 | **Deadline for the final report** |
 
 <figure>
   <img src="./data/seminar-visual-analytics/gate.png" alt="Gate" style="width:100%">
