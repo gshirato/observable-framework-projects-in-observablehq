@@ -8,6 +8,7 @@ class GKPositioningChart extends GeneralChart {
     constructor(data, selector, config) {
       super(data, selector, config);
       this.soccer = config['soccerModule'];
+      this.ballR = 3;
       this.initPitch(config);
       this.setAxes();
     }
@@ -46,16 +47,7 @@ class GKPositioningChart extends GeneralChart {
         .range([this.margin.top, this.pitch.height()]);
     }
 
-    drawPitch(sel) {
-      sel
-        .append("g")
-        .append("rect")
-        .attr("x", this.margin.left)
-        .attr("y", this.margin.top)
-        .attr("width", this.pitch.width() - this.margin.left)
-        .attr("height", this.pitch.height())
-        .attr("fill", "#ccc");
-      sel.append("g").call(this.pitch);
+    drawAuxiliaryLines(sel) {
 
       sel
         .append('g')
@@ -130,7 +122,21 @@ class GKPositioningChart extends GeneralChart {
         .attr('stroke-dasharray', '4 4')
     }
 
+    drawPitch(sel) {
+      sel
+        .append("g")
+        .append("rect")
+        .attr("x", this.margin.left)
+        .attr("y", this.margin.top)
+        .attr("width", this.pitch.width() - this.margin.left)
+        .attr("height", this.pitch.height())
+        .attr("fill", "#ccc");
+      sel.append("g").call(this.pitch);
+      this.svg.call(this.drawAuxiliaryLines.bind(this));
+    }
+
     onMousemove(thisClass, event, d) {
+      d3.select(this).style("cursor", "none");
       const ball = {
         x: thisClass.sx.invert(event.offsetX),
         y: thisClass.sx.invert(event.offsetY)
@@ -140,14 +146,22 @@ class GKPositioningChart extends GeneralChart {
         thisClass.goal,
         thisClass.ratio
       );
-      d3.select(".ball").attr("cx", event.offsetX).attr("cy", event.offsetY);
+      d3.select(".ball")
+        .attr("cx", event.offsetX - thisClass.ballR / 2)
+        .attr("cy", event.offsetY - thisClass.ballR / 2);
       d3.select('.ball-distance')
         .attr("x", event.offsetX)
         .attr("y", event.offsetY)
+        .attr('pointer-events', 'none')
         .text(`${formatFloat(2)(distance(ball, thisClass.goal))}m`)
 
-      thisClass.svg.call(thisClass.updateGK.bind(thisClass), ball);
-      d3.select(".shot-path").attr("x1", event.offsetX).attr("y1", event.offsetY);
+      thisClass.svg
+        .call(thisClass.updateGK.bind(thisClass), ball);
+
+      d3
+        .select(".shot-path")
+        .attr("x1", event.offsetX)
+        .attr("y1", event.offsetY);
 
 
       if (isShotPossible(ball, thisClass.goal, 30)) {
@@ -182,14 +196,23 @@ class GKPositioningChart extends GeneralChart {
         d3.select(".possible-shot-area")
           .style('display', 'none');
       }
-
-
     }
 
     drawBaseEllipse(sel) {
       sel
+        .append('g')
+        .append('clipPath')
+        .attr('id', 'cut-off-bottom')
+        .append('rect')
+        .attr('x', this.sx(0))
+        .attr('y', this.sy(0))
+        .attr('width', this.sx(68))
+        .attr('height', this.sy(52.5))
+
+      sel
         .append("g")
         .append("ellipse")
+        .attr('clip-path', 'url(#cut-off-bottom)')
         .attr("cx", this.sx(34))
         .attr("cy", this.sy(52.5))
         .attr("rx", this.scale(7.32))
@@ -230,26 +253,26 @@ class GKPositioningChart extends GeneralChart {
         .attr('font-family', 'sans-serif')
         .text("x");
 
-      // sel
-      //   .append("g")
-      //   .append("line")
-      //   .attr("x1", this.sx(34 - 3.66 - 5.5))
-      //   .attr("x2", this.sx(34 + 3.66))
-      //   .attr("y1", this.sy(52.5 - 5.5))
-      //   .attr("y2", this.sy(52.5))
-      //   .attr("stroke-dasharray", "4 4")
-      //   .attr("stroke", "red")
-      //   .attr("opacity", 0.3);
-      // sel
-      //   .append("g")
-      //   .append("line")
-      //   .attr("x1", this.sx(34 + 3.66 + 5.5))
-      //   .attr("x2", this.sx(34 - 3.66))
-      //   .attr("y1", this.sy(52.5 - 5.5))
-      //   .attr("y2", this.sy(52.5))
-      //   .attr("stroke-dasharray", "4 4")
-      //   .attr("stroke", "red")
-      //   .attr("opacity", 0.3);
+      sel
+        .append("g")
+        .append("line")
+        .attr("x1", this.sx(34 - 3.66 - 5.5))
+        .attr("x2", this.sx(34 + 3.66))
+        .attr("y1", this.sy(52.5 - 5.5))
+        .attr("y2", this.sy(52.5))
+        .attr("stroke-dasharray", "4 4")
+        .attr("stroke", "red")
+        .attr("opacity", 0.3);
+      sel
+        .append("g")
+        .append("line")
+        .attr("x1", this.sx(34 + 3.66 + 5.5))
+        .attr("x2", this.sx(34 - 3.66))
+        .attr("y1", this.sy(52.5 - 5.5))
+        .attr("y2", this.sy(52.5))
+        .attr("stroke-dasharray", "4 4")
+        .attr("stroke", "red")
+        .attr("opacity", 0.3);
     }
 
     appendGK(sel) {
@@ -307,7 +330,7 @@ class GKPositioningChart extends GeneralChart {
         .attr("cx", this.sx(this.ball.x))
         .attr("cy", this.sy(this.ball.y))
         .attr("fill", "red")
-        .attr("r", 3);
+        .attr("r", this.ballR);
 
       this.svg
         .append('g')
@@ -353,55 +376,19 @@ class GKPositioningChart extends GeneralChart {
         .attr("opacity", 0.4)
         .attr("stroke-width", 3)
         .attr("stroke-dasharray", "4 2");
+
+      sel
+        .append('g')
+        .append('text')
+        .attr('class', 'responsible-width')
+        .attr('font-family', 'sans-serif')
+        .attr('font-size', 14)
+        .attr('x', this.sx(0) + 10)
+        .attr('y', this.sy(0) + 15)
     }
+
     updateResponsibleLine(sel, ball) {
-      // Calculate the slope of the shot path
-      const slope = (ball.y - this.goal.y) / (ball.x - this.goal.x);
-
-      // Calculate the negative reciprocal to find the slope of the perpendicular line
-      const perpSlope = -1 / slope;
-
-      // Use the slope and GK position to calculate the endpoints of the perpendicular line
-      let perpX1 = this.GK.x - 5;
-      let perpY1 = this.GK.y - 5 * perpSlope;
-      let perpX2 = this.GK.x + 5;
-      let perpY2 = this.GK.y + 5 * perpSlope;
-
-      // Define possible shot paths
-      const leftGoalLine = [
-        [ball.x, ball.y],
-        [this.goal.x - 3.66, this.goal.y]
-      ];
-      const rightGoalLine = [
-        [ball.x, ball.y],
-        [this.goal.x + 3.66, this.goal.y]
-      ];
-
-      // Find intersection points with possible shot paths
-      const leftIntersection = lineIntersection(
-        [
-          [perpX1, perpY1],
-          [perpX2, perpY2]
-        ],
-        leftGoalLine
-      );
-      const rightIntersection = lineIntersection(
-        [
-          [perpX1, perpY1],
-          [perpX2, perpY2]
-        ],
-        rightGoalLine
-      );
-
-      // Adjust perpendicular line to not exceed the shot paths
-      if (leftIntersection) {
-        perpX1 = leftIntersection[0];
-        perpY1 = leftIntersection[1];
-      }
-      if (rightIntersection) {
-        perpX2 = rightIntersection[0];
-        perpY2 = rightIntersection[1];
-      }
+      const [perpX1, perpY1, perpX2, perpY2] = this.calculateResponsibleLine(ball);
 
       // Draw the perpendicular line
       sel
@@ -411,7 +398,64 @@ class GKPositioningChart extends GeneralChart {
         .attr("y1", this.sy(perpY1))
         .attr("x2", this.sx(perpX2))
         .attr("y2", this.sy(perpY2));
-    }
+
+        // do we know the length?
+        const length = distance({x: perpX1, y: perpY1}, {x: perpX2, y: perpY2});
+        sel
+          .select('.responsible-width')
+          .text(`${formatFloat(2)(length)}m / 7.32m`)
+      }
+
+      calculateResponsibleLine(ball) {
+        // Calculate the slope of the shot path
+        const slope = (ball.y - this.goal.y) / (ball.x - this.goal.x);
+
+        // Calculate the negative reciprocal to find the slope of the perpendicular line
+        const perpSlope = -1 / slope;
+
+        // Use the slope and GK position to calculate the endpoints of the perpendicular line
+        let perpX1 = this.GK.x - 5;
+        let perpY1 = this.GK.y - 5 * perpSlope;
+        let perpX2 = this.GK.x + 5;
+        let perpY2 = this.GK.y + 5 * perpSlope;
+
+        // Define possible shot paths
+        const leftGoalLine = [
+          [ball.x, ball.y],
+          [this.goal.x - 3.66, this.goal.y]
+        ];
+        const rightGoalLine = [
+          [ball.x, ball.y],
+          [this.goal.x + 3.66, this.goal.y]
+        ];
+
+        // Find intersection points with possible shot paths
+        const leftIntersection = lineIntersection(
+          [
+            [perpX1, perpY1],
+            [perpX2, perpY2]
+          ],
+          leftGoalLine
+        );
+        const rightIntersection = lineIntersection(
+          [
+            [perpX1, perpY1],
+            [perpX2, perpY2]
+          ],
+          rightGoalLine
+        );
+
+        // Adjust perpendicular line to not exceed the shot paths
+        if (leftIntersection) {
+          perpX1 = leftIntersection[0];
+          perpY1 = leftIntersection[1];
+        }
+        if (rightIntersection) {
+          perpX2 = rightIntersection[0];
+          perpY2 = rightIntersection[1];
+        }
+        return [perpX1, perpY1, perpX2, perpY2];
+      }
 
     drawPossibleShotPaths(sel, ball) {
       // draw left goal line
@@ -493,17 +537,6 @@ class GKPositioningChart extends GeneralChart {
       this.svg.on("mousemove", _.partial(this.onMousemove, this));
     }
 
-    mouseover(thisClass, event, d) {
-      thisClass.tooltip.show(event, d);
-    }
-
-    mousemove(thisClass, event, d) {
-      thisClass.tooltip.setText("aaa");
-      thisClass.tooltip.move(event, d);
-    }
-    mouseleave(thisClass, event, d) {
-      thisClass.tooltip.hide(event, d);
-    }
   }
 
   function lineIntersection(line1, line2) {
