@@ -2,13 +2,14 @@ import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../GeneralChart.js";
 import {formatFloat, distance, getGKPosition, isShotPossible} from "./positioning.js";
-
+import GoalFromBack from "./goalFromBack.js";
 
 class GKPositioningChart extends GeneralChart {
     constructor(data, selector, config) {
       super(data, selector, config);
       this.soccer = config['soccerModule'];
       this.ballR = 3;
+      this.distToEdges = null;
       this.initPitch(config);
       this.setAxes();
     }
@@ -24,7 +25,7 @@ class GKPositioningChart extends GeneralChart {
       this.ball = config["ball"];
       this.goal = { x: 34, y: 52.5 };
       this.GK = this.getGKPosition(this.ball, this.goal, this.ratio);
-      this.ratio = config["ratio"]; // retio of goal-ball and to goal-GK?
+      this.ratio = config["ratio"]; // ratio of goal-ball and to goal-GK?
     }
     getGKPosition(ball, goal, ratio) {
       return getGKPosition(ball, goal, ratio);
@@ -196,6 +197,14 @@ class GKPositioningChart extends GeneralChart {
         d3.select(".possible-shot-area")
           .style('display', 'none');
       }
+
+      new GoalFromBack([], `${thisClass.rootSelector} .fromBack`, {
+        height: 380,
+        width: 980,
+        margin: { top: 40, bottom: 40, left: 40, right: 40 },
+        responsibleXs: thisClass.distToEdges,
+        gkX: 0,
+    }).draw();
     }
 
     drawBaseEllipse(sel) {
@@ -245,7 +254,7 @@ class GKPositioningChart extends GeneralChart {
         .append("g")
         .append("text")
         .attr("x", this.sx(34))
-        .attr("y", this.sy(52.5 - 1.57))
+        .attr("y", this.sy(52.5 - 1.57) + 5)
         .attr("fill", "blue")
         .attr("opacity", 0.4)
         .attr("text-anchor", "middle")
@@ -276,11 +285,12 @@ class GKPositioningChart extends GeneralChart {
     }
 
     appendGK(sel) {
+      const gkR = 5
       sel
         .append("g")
         .append("circle")
         .attr("class", "gk")
-        .attr("r", 11)
+        .attr("r", gkR)
         .attr("opacity", 0.3)
         .attr("fill", "#ccc");
 
@@ -288,21 +298,21 @@ class GKPositioningChart extends GeneralChart {
         .append("g")
         .append("circle")
         .attr("class", "gk")
-        .attr("r", 9)
+        .attr("r", gkR - 2)
         .attr("stroke-width", 2)
         .attr("opacity", 0.8)
         .attr("fill", "red");
 
-      sel
-        .append("g")
-        .append("text")
-        .attr("class", "gk-text")
-        .attr("dy", 3)
-        .attr("fill", "#ccc")
-        .attr("font-size", 10)
-        .attr("font-weight", "bold")
-        .attr("text-anchor", "middle")
-        .text("GK");
+      // sel
+      //   .append("g")
+      //   .append("text")
+      //   .attr("class", "gk-text")
+      //   .attr("dy", 3)
+      //   .attr("fill", "#ccc")
+      //   .attr("font-size", 10)
+      //   .attr("font-weight", "bold")
+      //   .attr("text-anchor", "middle")
+      //   .text("GK");
     }
 
     updateGK(sel, ball) {
@@ -323,14 +333,26 @@ class GKPositioningChart extends GeneralChart {
     }
 
     drawBall() {
-      this.svg
+      function repeat(thisClass, ball) {
+        console.log(thisClass, ball)
+        ball
+          .transition()
+          .duration(1000)
+          .attr('cx', thisClass.sx(thisClass.goal.x))
+          .attr('cy', thisClass.sy(thisClass.goal.y))
+          // .on('end', setTimeout(_.partial(repeat, thisClass, ball), 1000));
+      }
+
+      const ball = this.svg
         .append("g")
         .append("circle")
         .attr("class", "ball")
         .attr("cx", this.sx(this.ball.x))
         .attr("cy", this.sy(this.ball.y))
         .attr("fill", "red")
-        .attr("r", this.ballR);
+        .attr("r", this.ballR)
+
+      repeat(this, ball);
 
       this.svg
         .append('g')
@@ -367,15 +389,14 @@ class GKPositioningChart extends GeneralChart {
       sel.call(this.updateResponsibleLine.bind(this), ball);
     }
     appendResponsibleLine(sel, ball) {
-      // Draw the perpendicular line
       sel
         .append("g")
         .append("line")
         .attr("class", "responsible-path")
-        .attr("stroke", "red")
+        .attr("stroke", "blue")
         .attr("opacity", 0.4)
         .attr("stroke-width", 3)
-        .attr("stroke-dasharray", "4 2");
+        .attr("stroke-dasharray", "5 2");
 
       sel
         .append('g')
@@ -387,8 +408,27 @@ class GKPositioningChart extends GeneralChart {
         .attr('y', this.sy(0) + 15)
     }
 
+    calculateDistances(linePoints, gkPosition) {
+      function sign(gk, point) {
+        if (point[0] < gk[0]) {
+          return -1;
+        }
+        return 1;
+      }
+      function distance(point1, point2) {
+          return Math.sqrt(
+            (point1[0] - point2[0]) ** 2 +
+            (point1[1] - point2[1]) ** 2
+          );
+        }
+
+
+      return linePoints.map(point =>distance(gkPosition, point) * sign(gkPosition, point));
+    }
+
     updateResponsibleLine(sel, ball) {
       const [perpX1, perpY1, perpX2, perpY2] = this.calculateResponsibleLine(ball);
+      this.distToEdges = this.calculateDistances([[perpX1, perpY1], [perpX2, perpY2]], [this.GK.x, this.GK.y]);
 
       // Draw the perpendicular line
       sel
@@ -398,12 +438,6 @@ class GKPositioningChart extends GeneralChart {
         .attr("y1", this.sy(perpY1))
         .attr("x2", this.sx(perpX2))
         .attr("y2", this.sy(perpY2));
-
-        // do we know the length?
-        const length = distance({x: perpX1, y: perpY1}, {x: perpX2, y: perpY2});
-        sel
-          .select('.responsible-width')
-          .text(`${formatFloat(2)(length)}m / 7.32m`)
       }
 
       calculateResponsibleLine(ball) {
