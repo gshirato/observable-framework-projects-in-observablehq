@@ -25,6 +25,13 @@ export default {
       pages: [
         {name: "Visual Analytics", path: "/seminar-visual-analytics"}
       ]
+    },
+    {
+      name: "Visual Analytics",
+      open: false,
+      pages: [
+        {name: "Example", path: "pages/visual-analytics/example"}
+      ]
     }
   ],
 
