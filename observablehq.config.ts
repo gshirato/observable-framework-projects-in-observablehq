@@ -30,7 +30,9 @@ export default {
       name: "Visual Analytics",
       open: false,
       pages: [
-        {name: "Example", path: "pages/visual-analytics/example"}
+        {name: "Introduction", path: "pages/visual-analytics/introduction"},
+        {name: "Data", path: "pages/visual-analytics/football/data"},
+        {name: "Motivating Example", path: "pages/visual-analytics/football/motivating-example"},
       ]
     }
   ],
