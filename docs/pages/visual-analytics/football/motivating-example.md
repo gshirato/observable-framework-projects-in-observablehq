@@ -160,6 +160,26 @@ require("d3-soccer").then(soccer=>{
 });
 ```
 
+### Time Series
+
+
+```js
+import PossessionTimeSeriesChart from "../../../components/visual-analytics/football/PossessionTimeSeries.js";
+```
+
+```js
+new PossessionTimeSeriesChart(events, "#possessionTS .chart", {
+    width: width,
+    height: 400,
+    margin: { top: 20, right: 40, bottom: 20, left: 20 },
+  }).draw();
+```
+
+<div id="possessionTS">
+    <div class="chart"></div>
+</div>
+
+
 ## Passes
 
 When we focus on the passes and draw lines for each pass, we can see the following:
@@ -210,6 +230,9 @@ require("d3-soccer").then(soccer=>{
 </div>
 
 
+```js
+import PassDistributionChart from "../../../components/visual-analytics/football/PassDistribution.js";
+```
 
 ```js
 require("d3-soccer").then(soccer=>{
@@ -247,8 +270,3 @@ require("d3-soccer").then(soccer=>{
 ## Time Series - Number of Passes
 
 We can also analyze the number of passes over time. The following chart shows the number of passes by the Netherlands and the USA over time in the match.
-
-```js
-import PassDistributionChart from "../../../components/visual-analytics/football/PassDistribution.js";
-
-```
