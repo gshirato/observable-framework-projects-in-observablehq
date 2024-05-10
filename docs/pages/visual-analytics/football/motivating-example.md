@@ -40,7 +40,10 @@ import EventTypeCounts from '../../../components/visual-analytics/football/Event
 ```
 
 ```js
+const colors = {home_team: "#fdc086", away_team: "#7fc97f"};
+```
 
+```js
 ```
 
 ```js
@@ -82,8 +85,8 @@ new EventTypeCounts(homeEventCounts, "#homeEvents .chart", {
     height: 300,
     margin: { top: 20, right: 40, bottom: 20, left: 30 },
     defaultColor: "#beaed4",
-    highlightColor: "#fdc086",
-    otherHighlightColor: "#7fc97f",
+    highlightColor: colors.home_team,
+    otherHighlightColor: colors.away_team,
     otherHighlight: "#awayEvents .chart"
 
   }).draw();
@@ -93,8 +96,8 @@ new EventTypeCounts(awayEventCounts, "#awayEvents .chart", {
     height: 300,
     margin: { top: 20, right: 40, bottom: 20, left: 30 },
     defaultColor: "#beaed4",
-    highlightColor: "#7fc97f",
-    otherHighlightColor: "#fdc086",
+    highlightColor: colors.away_team,
+    otherHighlightColor: colors.home_team,
     otherHighlight: "#homeEvents .chart"
 }).draw();
 
@@ -174,8 +177,8 @@ new PossessionTimeSeriesChart(Array.from(d3.group(events, d=>d.possession)), "#p
     margin: { top: 20, right: 40, bottom: 20, left: 30 },
     homeTeamId: gameInfo.home_team.home_team_id,
     awayTeamId: gameInfo.away_team.away_team_id,
-    homeColor: "#fdc086",
-    awayColor: "#7fc97f"
+    homeColor: colors.home_team,
+    awayColor: colors.away_team
   }).draw();
 ```
 
@@ -200,8 +203,8 @@ for (let i = 1; i <= 2; i++) {
         margin: { top: 20, right: 40, bottom: 20, left: 30 },
         homeTeamId: gameInfo.home_team.home_team_id,
         awayTeamId: gameInfo.away_team.away_team_id,
-        homeColor: "#fdc086",
-        awayColor: "#7fc97f",
+        homeColor: colors.home_team,
+        awayColor: colors.away_team,
         period: i
       }).draw();
 
@@ -243,7 +246,7 @@ require("d3-soccer").then(soccer=>{
         margin: { top: 40, right: 40, bottom: 40, left: 40 },
         teamId: gameInfo.home_team.home_team_id,
         teamName: gameInfo.home_team.home_team_name,
-        teamColor: "#fdc086",
+        teamColor: colors.home_team,
         soccerModule: soccer
     }).draw();
 
@@ -253,7 +256,7 @@ require("d3-soccer").then(soccer=>{
         margin: { top: 40, right: 40, bottom: 40, left: 40 },
         teamId: gameInfo.away_team.away_team_id,
         teamName: gameInfo.away_team.away_team_name,
-        teamColor: "#7fc97f",
+        teamColor: colors.away_team,
         soccerModule: soccer
     }).draw();
 });
@@ -275,37 +278,71 @@ import PassDistributionChart from "../../../components/visual-analytics/football
 
 ```js
 require("d3-soccer").then(soccer=>{
-    new PassDistributionChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.home_team.home_team_id), "#passDistribution .home .chart", {
-        width: width / 2,
-        height: 300,
-        margin: { top: 40, right: 40, bottom: 40, left: 40 },
-        teamId: gameInfo.home_team.home_team_id,
-        teamName: gameInfo.home_team.home_team_name,
-        teamColor: "#fdc086",
-        soccerModule: soccer
-    }).draw();
 
-    new PassDistributionChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.away_team.away_team_id), "#passDistribution .away .chart", {
-        width: width / 2,
-        height: 300,
-        margin: { top: 40, right: 40, bottom: 40, left: 40 },
-        teamId: gameInfo.away_team.away_team_id,
-        teamName: gameInfo.away_team.away_team_name,
-        teamColor: "#7fc97f",
-        soccerModule: soccer
-    }).draw();
+    for (const cmap of ['team', 'outcome']) {
+        for (const type of ['origin', 'destination']) {
+            for (const side of ['home', 'away']) {
+                new PassDistributionChart(
+                    events
+                        .filter(d=>d.type.name=='Pass')
+                        .filter(d=>d.team.id === gameInfo[`${side}_team`][`${side}_team_id`]), `#${cmap}PassDistribution .${type} .${side} .chart`, {
+                    width: width / 2,
+                    height: 250,
+                    margin: { top: 20, right: 40, bottom: 40, left: 20 },
+                    teamId: gameInfo[`${side}_team`][`${side}_team_id`],
+                    teamName: gameInfo[`${side}_team`][`${side}_team_name`],
+                    teamColor: colors[`${side}_team`],
+                    soccerModule: soccer,
+                    type: type,
+                    colorMapType: cmap
+                }).draw();
+
+            }
+        }
+    }
 });
+
+view(events)
 ```
 
-<div id="passDistribution" class="grid grid-cols-2">
-    <div class="home">
-        <div class="chart"></div>
+<div id="teamPassDistribution">
+    <h3>Highlight to show passes going out from selected zone</h3>
+    <div class="origin grid grid-cols-2">
+        <div class="home">
+            <div class="chart"></div>
+        </div>
+        <div class="away">
+            <div class="chart"></div>
+        </div>
     </div>
-    <div class="away">
-        <div class="chart"></div>
+    <h3>Highlight to show passes coming in selected zone</h3>
+    <div class="destination grid grid-cols-2">
+        <div class="home">
+            <div class="chart"></div>
+        </div>
+        <div class="away">
+            <div class="chart"></div>
+        </div>
     </div>
 </div>
 
-## Time Series - Number of Passes
-
-We can also analyze the number of passes over time. The following chart shows the number of passes by the Netherlands and the USA over time in the match.
+<div id="outcomePassDistribution">
+    <h3>Highlight to show passes going out from selected zone</h3>
+    <div class="origin grid grid-cols-2">
+        <div class="home">
+            <div class="chart"></div>
+        </div>
+        <div class="away">
+            <div class="chart"></div>
+        </div>
+    </div>
+    <h3>Highlight to show passes coming in selected zone</h3>
+    <div class="destination grid grid-cols-2">
+        <div class="home">
+            <div class="chart"></div>
+        </div>
+        <div class="away">
+            <div class="chart"></div>
+        </div>
+    </div>
+</div>
