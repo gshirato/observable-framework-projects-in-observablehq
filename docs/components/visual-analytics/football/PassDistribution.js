@@ -72,21 +72,6 @@ export default class PassDistributionChart extends GeneralChart {
         .attr("width", 200);
     }
 
-    mouseover(thisClass, event, d) {
-      thisClass.tooltip.show(event, d);
-    }
-
-    mousemove(thisClass, event, d) {
-      thisClass.tooltip.setText(
-        `[${d.index - d3.min(thisClass.data, d=>d.index)}] ${thisClass.formatTime(d)} ${d.player.name} (${d.possession_team.name}) <br> ${d.type.name}`
-      );
-      thisClass.tooltip.move(event, d);
-    }
-
-    mouseleave(thisClass, event, d) {
-      thisClass.tooltip.hide(event, d);
-    }
-
     formatTime(d) {
         return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`;
     }
@@ -163,16 +148,20 @@ export default class PassDistributionChart extends GeneralChart {
             .attr('opacity', 0.1)
         d3.selectAll(`.pass-${zone}`)
             .attr('opacity', 1)
+        thisClass.tooltip.show(event, d);
     }
     mousemove(thisClass, event, d) {
-
-
+        thisClass.tooltip.setText(
+            `[${d.index - d3.min(thisClass.data, d=>d.index)}] ${thisClass.formatTime(d)} ${d.player.name} (${d.possession_team.name}) <br> ${d.type.name}`
+          );
+          thisClass.tooltip.move(event, d);
     }
     mouseleave(thisClass, event, d) {
         d3.selectAll('line')
             .attr('opacity', 0.5)
         d3.selectAll('circle')
             .attr('opacity', 0.5)
+        thisClass.tooltip.hide(event, d);
     }
 
     draw() {
