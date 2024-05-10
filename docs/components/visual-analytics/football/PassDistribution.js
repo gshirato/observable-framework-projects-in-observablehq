@@ -45,6 +45,8 @@ export default class PassDistributionChart extends GeneralChart {
             .domain([0, 80])
             .range([0, 68]);
 
+        this.sc = this.getColorMap();
+
         this.svg.append("g")
           .append('text')
           .attr('x', this.pitch.width() / 2)
@@ -72,10 +74,6 @@ export default class PassDistributionChart extends GeneralChart {
         .attr("width", 200);
     }
 
-    formatTime(d) {
-        return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`;
-    }
-
     area(location, zones) {
         for (let i = 0; i < zones.length; i++) {
             const zone = zones[i];
@@ -86,7 +84,26 @@ export default class PassDistributionChart extends GeneralChart {
         console.error(new Error('Location not in any zone:' + location));
     }
 
+    createClass(d) {
+        if (this.type === 'origin') {
+            return `pass-zone${this.area(d.location, this.zones)}`;
+        }
+        if (this.type === 'destination') {
+            return `pass-zone${this.area(d.pass.end_location, this.zones)}`;
+        }
+    }
+
     drawEvents(sel) {
+        function color(d) {
+            if (this.colorMapType === 'team') {
+                return this.sc(d.team.id);
+            }
+            if (this.colorMapType === 'outcome') {
+                return this.sc(d.pass.outcome == null);
+            }
+            return null;
+        }
+
         const layer = sel.select('#above')
 
         layer.append('g')
@@ -97,8 +114,8 @@ export default class PassDistributionChart extends GeneralChart {
             .attr('y1', d=>this.sy(d.location[1]))
             .attr('x2', d=>this.sx(d.pass.end_location[0]))
             .attr('y2', d=>this.sy(d.pass.end_location[1]))
-            .attr('class', d=>'pass-zone' + this.area(d.location, this.zones))
-            .attr('stroke', this.teamColor)
+            .attr('class', d=>this.createClass(d))
+            .attr('stroke', d=>color.bind(this)(d))
             .attr('pointer-events', 'none')
             .attr('stroke-width', 0.5)
             .attr('opacity', 0.5)
@@ -109,15 +126,14 @@ export default class PassDistributionChart extends GeneralChart {
             .join('circle')
             .attr('cx', d=>this.sx(d.location[0]))
             .attr('cy', d=>this.sy(d.location[1]))
-            .attr('stroke', this.teamColor)
-            .attr('class', d=>'pass-zone' + this.area(d.location, this.zones))
+            .attr('stroke', d=>color.bind(this)(d))
+            .attr('class', d=>this.createClass(d))
             .attr('pointer-events', 'none')
             .attr('r', 0.5)
             .attr('opacity', 0.5)
-
-
-
     }
+
+
 
     drawZones(sel) {
         const layer = sel.select('#above')
