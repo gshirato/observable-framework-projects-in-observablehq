@@ -162,22 +162,59 @@ require("d3-soccer").then(soccer=>{
 
 ### Time Series
 
-
 ```js
 import PossessionTimeSeriesChart from "../../../components/visual-analytics/football/PossessionTimeSeries.js";
 ```
 
 ```js
-new PossessionTimeSeriesChart(events, "#possessionTS .chart", {
+Array.from(d3.group(events, d=>d.possession))
+
+```
+
+```js
+new PossessionTimeSeriesChart(Array.from(d3.group(events, d=>d.possession)), "#possessionTS .chart", {
     width: width,
     height: 400,
-    margin: { top: 20, right: 40, bottom: 20, left: 20 },
+    margin: { top: 20, right: 40, bottom: 20, left: 30 },
+    homeTeamId: gameInfo.home_team.home_team_id,
+    awayTeamId: gameInfo.away_team.away_team_id,
+    homeColor: "#fdc086",
+    awayColor: "#7fc97f"
   }).draw();
 ```
 
 <div id="possessionTS">
     <div class="chart"></div>
 </div>
+
+
+### Temporal Distribution
+
+```js
+import PossessionTemporalDistributionChart from "../../../components/visual-analytics/football/PossessionTemporalDistribution.js";
+```
+
+```js
+Array.from(d3.group(events, d=>d.possession))
+
+```
+
+```js
+new PossessionTimeSeriesChart(Array.from(d3.group(events, d=>d.possession)), "#possessionTS .chart", {
+    width: width,
+    height: 400,
+    margin: { top: 20, right: 40, bottom: 20, left: 30 },
+    homeTeamId: gameInfo.home_team.home_team_id,
+    awayTeamId: gameInfo.away_team.away_team_id,
+    homeColor: "#fdc086",
+    awayColor: "#7fc97f"
+  }).draw();
+```
+
+<div id="possessionTS">
+    <div class="chart"></div>
+</div>
+
 
 
 ## Passes
