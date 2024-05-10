@@ -61,7 +61,6 @@ export default class PossessionTimeSeriesChart extends GeneralChart {
     }
 
     mousemove(thisClass, event, d) {
-        console.log(d);
         thisClass.tooltip.setText(`${d[0].possession_team.name} -> ${d.slice(-1)[0].type.name}`)
         thisClass.tooltip.move(event, d);
     }

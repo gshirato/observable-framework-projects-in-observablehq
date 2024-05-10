@@ -166,10 +166,6 @@ require("d3-soccer").then(soccer=>{
 import PossessionTimeSeriesChart from "../../../components/visual-analytics/football/PossessionTimeSeries.js";
 ```
 
-```js
-Array.from(d3.group(events, d=>d.possession))
-
-```
 
 ```js
 new PossessionTimeSeriesChart(Array.from(d3.group(events, d=>d.possession)), "#possessionTS .chart", {
@@ -194,25 +190,31 @@ new PossessionTimeSeriesChart(Array.from(d3.group(events, d=>d.possession)), "#p
 import PossessionTemporalDistributionChart from "../../../components/visual-analytics/football/PossessionTemporalDistribution.js";
 ```
 
-```js
-Array.from(d3.group(events, d=>d.possession))
-
-```
 
 ```js
-new PossessionTimeSeriesChart(Array.from(d3.group(events, d=>d.possession)), "#possessionTS .chart", {
-    width: width,
-    height: 400,
-    margin: { top: 20, right: 40, bottom: 20, left: 30 },
-    homeTeamId: gameInfo.home_team.home_team_id,
-    awayTeamId: gameInfo.away_team.away_team_id,
-    homeColor: "#fdc086",
-    awayColor: "#7fc97f"
-  }).draw();
+for (let i = 1; i <= 2; i++) {
+    const half = i == 1 ? ".first" : ".second";
+    new PossessionTemporalDistributionChart(Array.from(d3.group(events, d=>d.possession)), `#possessionTemporalDistribution ${half} .chart`, {
+        width: width,
+        height: 200,
+        margin: { top: 20, right: 40, bottom: 20, left: 30 },
+        homeTeamId: gameInfo.home_team.home_team_id,
+        awayTeamId: gameInfo.away_team.away_team_id,
+        homeColor: "#fdc086",
+        awayColor: "#7fc97f",
+        period: i
+      }).draw();
+
+}
 ```
 
-<div id="possessionTS">
-    <div class="chart"></div>
+<div id="possessionTemporalDistribution">
+    <div class="first">
+        <div class="chart"></div>
+    </div>
+    <div class="second">
+        <div class="chart"></div>
+    </div>
 </div>
 
 
