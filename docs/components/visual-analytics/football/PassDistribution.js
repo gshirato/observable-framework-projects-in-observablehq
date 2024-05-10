@@ -153,7 +153,6 @@ export default class PassDistributionChart extends GeneralChart {
             .on('mouseover', _.partial(this.mouseover, this))
             .on('mousemove', _.partial(this.mousemove, this))
             .on('mouseleave', _.partial(this.mouseleave, this))
-
     }
 
     mouseover(thisClass, event, d) {
