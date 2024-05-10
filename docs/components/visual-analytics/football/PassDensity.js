@@ -10,6 +10,7 @@ export default class PassDensityChart extends GeneralChart {
       this.teamName = this.config["teamName"];
       this.teamColor = this.config["teamColor"];
       this.soccer = this.config["soccerModule"];
+      this.type = this.config["type"];
       this.pitch = this.soccer.pitch()
         .height(this.height)
         .showDirOfPlay(true)
@@ -27,6 +28,8 @@ export default class PassDensityChart extends GeneralChart {
             .scaleLinear()
             .domain([0, 80])
             .range([0, 68]);
+
+        this.sc = d3.scaleSequential(d3.interpolate('white', this.teamColor)).domain([0, 1])
 
         this.svg.append("g")
           .append('text')
@@ -55,26 +58,11 @@ export default class PassDensityChart extends GeneralChart {
         .attr("width", 200);
     }
 
-    mouseover(thisClass, event, d) {
-      thisClass.tooltip.show(event, d);
+    passLocation(d) {
+      if (this.type === 'from') return d.location;
+      if (this.type === 'to') return d.pass.end_location;
+      console.error(new Error(`Unknown type: ${this.type}`));
     }
-
-    mousemove(thisClass, event, d) {
-      thisClass.tooltip.setText(
-        `[${d.index - d3.min(thisClass.data, d=>d.index)}] ${thisClass.formatTime(d)} ${d.player.name} (${d.possession_team.name}) <br> ${d.type.name}`
-      );
-      thisClass.tooltip.move(event, d);
-    }
-
-    mouseleave(thisClass, event, d) {
-      thisClass.tooltip.hide(event, d);
-    }
-
-    formatTime(d) {
-        return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`;
-    }
-
-
 
     drawEvents(sel) {
       const layer = sel.select('#above')
@@ -83,33 +71,51 @@ export default class PassDensityChart extends GeneralChart {
         .selectAll('circle')
         .data(this.data)
         .join('circle')
-        .attr('cx', d=>this.sx(d.location[0]))
-        .attr('cy', d=>this.sy(d.location[1]))
+        .attr('cx', d=>this.sx(this.passLocation(d)[0]))
+        .attr('cy', d=>this.sy(this.passLocation(d)[1]))
         .attr('r', 0.6)
         .attr('fill', this.teamColor)
-        .on('mouseover', _.partial(this.mouseover, this))
-        .on('mousemove', _.partial(this.mousemove, this))
-        .on('mouseleave', _.partial(this.mouseleave, this))
+      }
+
+      drawHeatmap(sel) {
+        const rectbin = this.soccer.rectbin()
+          .x(d => this.sx(this.passLocation(d)[0]))
+          .y(d => this.sy(this.passLocation(d)[1]))
+          .dx(5)
+          .dy(4);
+
+        const layer = sel.select('#above')
+        layer
+          .append('g')
+          .selectAll('rect')
+          .data(rectbin(this.data))
+          .join('rect')
+          .attr('x', d => d.x)
+          .attr('y', d => d.y)
+          .attr('width', d => d.width)
+          .attr('height', d => d.height)
+          .attr('fill', d => this.sc(d.value))
+          .attr('opacity', 0.5)
+          .on('mouseover', _.partial(this.mouseover, this))
+          .on('mousemove', _.partial(this.mousemove, this))
+          .on('mouseleave', _.partial(this.mouseleave, this))
+
     }
 
-    drawHeatmap(sel) {
-      const rectbin = this.soccer.rectbin()
-        .x(d => this.sx(d.location[0]))
-        .y(d => this.sy(d.location[1]))
-        .dx(5)
-        .dy(4);
-
-      const bins = rectbin(this.data);
-      const heatmap = this.soccer
-        .heatmap(this.pitch)
-        .colorScale(d3.scaleSequential(d3.interpolate('white', this.teamColor)).domain([0, 1]))
-        .parent_el('#above')
-
-      sel.append('g')
-        .datum(bins)
-        .call(heatmap)
-        .attr('opacity', 0.5)
+    mouseover(thisClass, event, d) {
+      thisClass.tooltip.show(event, d);
     }
+
+    mousemove(thisClass, event, d) {
+      thisClass.tooltip.setText(d.value)
+      thisClass.tooltip.move(event, d);
+    }
+
+    mouseleave(thisClass, event, d) {
+      thisClass.tooltip.hide(event, d);
+    }
+
+
 
     draw() {
 
