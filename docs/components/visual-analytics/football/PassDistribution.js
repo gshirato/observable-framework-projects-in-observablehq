@@ -1,7 +1,7 @@
 import * as d3 from "npm:d3";
 import GeneralChart from "../../GeneralChart.js";
 import _ from "npm:lodash";
-
+import zones from "./zones.js";
 
 export default class PassDistributionChart extends GeneralChart {
     constructor(data, selector, config) {
