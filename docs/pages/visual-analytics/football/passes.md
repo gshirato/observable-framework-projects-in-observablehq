@@ -308,8 +308,6 @@ require("d3-soccer").then(soccer=>{
         }
     }
 });
-
-view(events)
 ```
 
 <div id="teamPassDistribution">
@@ -345,6 +343,46 @@ view(events)
     </div>
     <h3>Highlight to show passes coming in selected zone</h3>
     <div class="destination grid grid-cols-2">
+        <div class="home">
+            <div class="chart"></div>
+        </div>
+        <div class="away">
+            <div class="chart"></div>
+        </div>
+    </div>
+</div>
+
+
+
+```js
+import PassNetworkChart from "../../../components/visual-analytics/football/PassNetwork.js";
+```
+
+```js
+require("d3-soccer").then(soccer=>{
+    for (const side of ['home', 'away']) {
+        new PassNetworkChart(
+            events
+                .filter(d=>d.type.name=='Pass')
+                .filter(d=>d.team.id === gameInfo[`${side}_team`][`${side}_team_id`]), `#network .${side} .chart`, {
+            width: width / 2,
+            height: 250,
+            margin: { top: 20, right: 40, bottom: 40, left: 20 },
+            teamId: gameInfo[`${side}_team`][`${side}_team_id`],
+            teamName: gameInfo[`${side}_team`][`${side}_team_name`],
+            teamColor: colors[`${side}_team`],
+            soccerModule: soccer,
+        }).draw();
+    }
+});
+```
+
+
+
+
+<div id="network">
+    <h3>Network</h3>
+    <div class="origin grid grid-cols-2">
         <div class="home">
             <div class="chart"></div>
         </div>
