@@ -103,6 +103,7 @@ export default class PassDensityChart extends GeneralChart {
     }
 
     mouseover(thisClass, event, d) {
+      d3.select(this).attr('stroke', 'black').attr('stroke-width', 1);
       thisClass.tooltip.show(event, d);
     }
 
@@ -112,6 +113,7 @@ export default class PassDensityChart extends GeneralChart {
     }
 
     mouseleave(thisClass, event, d) {
+      d3.select(this).attr('stroke', 'none').attr('stroke-width', 0);
       thisClass.tooltip.hide(event, d);
     }
 
