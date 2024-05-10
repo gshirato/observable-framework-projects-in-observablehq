@@ -27,12 +27,13 @@ export default {
       ]
     },
     {
-      name: "Visual Analytics",
+      name: "Visual Analytics - Motivating Example",
       open: false,
       pages: [
         {name: "Introduction", path: "pages/visual-analytics/introduction"},
         {name: "Data", path: "pages/visual-analytics/football/data"},
-        {name: "Motivating Example", path: "pages/visual-analytics/football/motivating-example"},
+        {name: "Passes", path: "pages/visual-analytics/football/passes"},
+        {name: "Leading to shots", path: "pages/visual-analytics/football/leading-to-shots"},
       ]
     }
   ],

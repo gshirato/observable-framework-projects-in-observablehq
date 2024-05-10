@@ -240,29 +240,38 @@ import PassDensityChart from "../../../components/visual-analytics/football/Pass
 
 ```js
 require("d3-soccer").then(soccer=>{
-    new PassDensityChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.home_team.home_team_id), "#passDensity .home .chart", {
-        width: width / 2,
-        height: 300,
-        margin: { top: 40, right: 40, bottom: 40, left: 40 },
-        teamId: gameInfo.home_team.home_team_id,
-        teamName: gameInfo.home_team.home_team_name,
-        teamColor: colors.home_team,
-        soccerModule: soccer
-    }).draw();
-
-    new PassDensityChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.away_team.away_team_id), "#passDensity .away .chart", {
-        width: width / 2,
-        height: 300,
-        margin: { top: 40, right: 40, bottom: 40, left: 40 },
-        teamId: gameInfo.away_team.away_team_id,
-        teamName: gameInfo.away_team.away_team_name,
-        teamColor: colors.away_team,
-        soccerModule: soccer
-    }).draw();
+    for (const type of ['from', 'to']) {
+        for (const side of ['home', 'away'])
+        new PassDensityChart(events
+                .filter(d=>d.type.name=='Pass')
+                .filter(d=>d.team.id === gameInfo[`${side}_team`][`${side}_team_id`]),
+            `#${type}PassDensity .${side} .chart`,
+            {
+                width: width / 2,
+                height: 300,
+                margin: { top: 40, right: 40, bottom: 40, left: 40 },
+                teamId: gameInfo[`${side}_team`][`${side}_team_id`],
+                teamName: gameInfo[`${side}_team`][`${side}_team_name`],
+                teamColor: colors[`${side}_team`],
+                soccerModule: soccer,
+                type: type,
+        }).draw();
+    }
 });
 ```
 
-<div id="passDensity" class="grid grid-cols-2">
+<h3>Passers' positions</h3>
+<div id="fromPassDensity" class="grid grid-cols-2">
+    <div class="home">
+        <div class="chart"></div>
+    </div>
+    <div class="away">
+        <div class="chart"></div>
+    </div>
+</div>
+
+<h3>Pass destinations</h3>
+<div id="toPassDensity" class="grid grid-cols-2">
     <div class="home">
         <div class="chart"></div>
     </div>
@@ -278,7 +287,6 @@ import PassDistributionChart from "../../../components/visual-analytics/football
 
 ```js
 require("d3-soccer").then(soccer=>{
-
     for (const cmap of ['team', 'outcome']) {
         for (const type of ['origin', 'destination']) {
             for (const side of ['home', 'away']) {
@@ -296,7 +304,6 @@ require("d3-soccer").then(soccer=>{
                     type: type,
                     colorMapType: cmap
                 }).draw();
-
             }
         }
     }
