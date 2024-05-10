@@ -29,7 +29,7 @@ export default class PassDistributionChart extends GeneralChart {
         if (this.colorMapType === 'outcome') {
             return d3.scaleOrdinal()
                 .domain([true, false])
-                .range(['black', '#fc8d59'])
+                .range(['#1b9e77', '#d95f02'])
         }
         console.error(new Error(`Unknown colorMapType: ${this.colorMapType}`));
     }
