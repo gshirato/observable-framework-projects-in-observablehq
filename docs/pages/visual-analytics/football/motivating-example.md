@@ -114,7 +114,7 @@ new EventTypeCounts(awayEventCounts, "#awayEvents .chart", {
 display(events)
 ```
 
-### Possession
+## Possession
 Each event has a possession number that indicates the order of possession in the match. A possession data looks like this (hover on circles to see the details):
 
 
@@ -160,12 +160,15 @@ require("d3-soccer").then(soccer=>{
 });
 ```
 
+## Passes
+
 When we focus on the passes and draw lines for each pass, we can see the following:
 
 
 <div id="passesEpisode">
     <div class="chart"></div>
 </div>
+
 
 We can also analyze the distribution of passes in the match. The following chart shows the distribution of passes by the Netherlands and the USA in the match.
 
@@ -175,7 +178,7 @@ import PassDensityChart from "../../../components/visual-analytics/football/Pass
 
 ```js
 require("d3-soccer").then(soccer=>{
-    new PassDensityChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.home_team.home_team_id), "#passDistribution .home .chart", {
+    new PassDensityChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.home_team.home_team_id), "#passDensity .home .chart", {
         width: width / 2,
         height: 300,
         margin: { top: 40, right: 40, bottom: 40, left: 40 },
@@ -185,7 +188,42 @@ require("d3-soccer").then(soccer=>{
         soccerModule: soccer
     }).draw();
 
-    new PassDensityChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.away_team.away_team_id), "#passDistribution .away .chart", {
+    new PassDensityChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.away_team.away_team_id), "#passDensity .away .chart", {
+        width: width / 2,
+        height: 300,
+        margin: { top: 40, right: 40, bottom: 40, left: 40 },
+        teamId: gameInfo.away_team.away_team_id,
+        teamName: gameInfo.away_team.away_team_name,
+        teamColor: "#7fc97f",
+        soccerModule: soccer
+    }).draw();
+});
+```
+
+<div id="passDensity" class="grid grid-cols-2">
+    <div class="home">
+        <div class="chart"></div>
+    </div>
+    <div class="away">
+        <div class="chart"></div>
+    </div>
+</div>
+
+
+
+```js
+require("d3-soccer").then(soccer=>{
+    new PassDistributionChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.home_team.home_team_id), "#passDistribution .home .chart", {
+        width: width / 2,
+        height: 300,
+        margin: { top: 40, right: 40, bottom: 40, left: 40 },
+        teamId: gameInfo.home_team.home_team_id,
+        teamName: gameInfo.home_team.home_team_name,
+        teamColor: "#fdc086",
+        soccerModule: soccer
+    }).draw();
+
+    new PassDistributionChart(events.filter(d=>d.type.name=='Pass').filter(d=>d.team.id === gameInfo.away_team.away_team_id), "#passDistribution .away .chart", {
         width: width / 2,
         height: 300,
         margin: { top: 40, right: 40, bottom: 40, left: 40 },
@@ -205,11 +243,12 @@ require("d3-soccer").then(soccer=>{
         <div class="chart"></div>
     </div>
 </div>
-<div id="value"></div>
+
+## Time Series - Number of Passes
+
+We can also analyze the number of passes over time. The following chart shows the number of passes by the Netherlands and the USA over time in the match.
 
 ```js
-d3.extent(events, d=>{
-    if (d.location) return d.location[1]
-    return 10;
-})
+import PassDistributionChart from "../../../components/visual-analytics/football/PassDistribution.js";
+
 ```
