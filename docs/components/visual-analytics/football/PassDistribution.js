@@ -15,23 +15,23 @@ export default class PassDistributionChart extends GeneralChart {
         .showDirOfPlay(true)
         .clip([[-10, -10], [115, 78]]);
 
-    this.zones = [
-        [0, 0, 52.5, 34 - 16.5 - 3.66],
-        [0, 34 - 16.5 - 3.66, 16.5, 34 + 16.5 + 3.66],
-        [0, 34 + 16.5 + 3.66, 52.5, 68],
-        [52.5, 0, 105, 34 - 16.5 - 3.66],
-        [88.5, 34 - 16.5 - 3.66, 105, 34 + 16.5 + 3.66],
-        [52.5, 34 + 16.5 + 3.66, 105, 68],
+    this.zones = zones;
+    this.type = this.config["type"]
+    this.colorMapType = this.config['colorMapType'] || 'outcome'
+    }
 
-        [16.5, 34 - 16.5 - 3.66, 16.5 + 18, 34],
-        [16.5 + 18, 34 - 16.5 - 3.66, 52.5, 34],
-        [16.5, 34, 16.5 + 18, 34 + 16.5 + 3.66],
-        [16.5 + 18, 34, 52.5, 34 + 16.5 + 3.66],
-        [52.5, 34 - 16.5 - 3.66, 52.5 + 18, 34],
-        [52.5 + 18, 34 - 16.5 - 3.66, 88.5, 34],
-        [52.5, 34, 52.5 + 18, 34 + 16.5 + 3.66],
-        [52.5 + 18, 34, 88.5, 34 + 16.5 + 3.66],
-    ]
+    getColorMap() {
+        if (this.colorMapType === 'team') {
+            return d3.scaleOrdinal()
+                .domain([this.teamId])
+                .range([this.teamColor])
+        }
+        if (this.colorMapType === 'outcome') {
+            return d3.scaleOrdinal()
+                .domain([true, false])
+                .range(['black', '#fc8d59'])
+        }
+        console.error(new Error(`Unknown colorMapType: ${this.colorMapType}`));
     }
 
     setAxes() {
