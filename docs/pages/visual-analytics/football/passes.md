@@ -2,7 +2,7 @@
 
 Now, let's consider a motivating example of visual analytics in football. We will investigate the match between **the Netherlands** and **the USA** in **${gameInfo.competition.competition_name}** **${gameInfo.season.season_name}**, which took place on **${gameInfo.match_date}** at **${gameInfo.stadium.name} (${gameInfo.stadium.country.name})**.
 
-The Netherlands won the match with a score of **${gameInfo.home_score} - ${gameInfo.away_score}**.
+The Netherlands won the match with a score of **${gameInfo.home_score} - ${gameInfo.away_score}** ([Match highlight](https://www.youtube.com/watch?v=4WGpIOwkLA4)).
 
 
 
@@ -16,7 +16,7 @@ const gamesInfo = d3.json(
 const gameInfo = gamesInfo[27];
 ```
 
-<video src="https://youtu.be/4WGpIOwkLA4?si=AlZnr1RneHEM5kVU" autoplay loop controls></video>
+
 
 We would like to answer the following questions:
 
