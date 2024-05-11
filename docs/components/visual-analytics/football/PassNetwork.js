@@ -18,8 +18,6 @@ export default class PassNetworkChart extends GeneralChart {
         this.setAxes();
         this.network = this.createNetworkData(data);
         this.adjacency = this.getAdjacency(this.network);
-        console.log(this.adjacency)
-
     }
 
     getAdjacency(network) {
@@ -41,7 +39,6 @@ export default class PassNetworkChart extends GeneralChart {
     }
 
     createNetworkData(data) {
-
         return data.map(d=>[
                 this.area(d.location),
                 this.area(d.pass.end_location)
