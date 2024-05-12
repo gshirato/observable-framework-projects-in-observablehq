@@ -80,10 +80,6 @@ export default class Value extends GeneralChart {
         .on("mouseleave", _.partial(mouseleave, this));
   }
 
-  formatTime(d) {
-    return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`
-  }
-
   draw() {
     this.drawAxes();
     this.drawData();

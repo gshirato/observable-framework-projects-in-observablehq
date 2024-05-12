@@ -77,28 +77,6 @@ export default class Size extends GeneralChart {
         .on("mouseleave", _.partial(mouseleave, this));
   }
 
-  formatTime(d) {
-    return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`
-  }
-
-  mouseover(thisClass, event, d) {
-    thisClass.defaultColors = d3.selectAll(`.${thisClass.createClass(d)}`).attr('fill')
-    d3.selectAll(`.${thisClass.createClass(d)}`).attr('fill', 'red')
-    thisClass.tooltip.show(event, d);
-  }
-
-  mousemove(thisClass, event, d) {
-    thisClass.tooltip.setText(`[${thisClass.formatTime(d)}] <b>${d.player.name}</b> (${d.team.name})<br>xG: ${d.shot.statsbomb_xg.toFixed(2)} → ${d.shot.outcome.name} (${d.shot.technique.name} )`)
-    thisClass.tooltip.move(event, d);
-  }
-
-  mouseleave(thisClass, event, d) {
-    d3.selectAll(`.${thisClass.createClass(d)}`).attr('fill', thisClass.defaultColors)
-    thisClass.tooltip.hide(event, d);
-  }
-
-
-
   draw() {
     this.drawAxes();
     this.drawData();
