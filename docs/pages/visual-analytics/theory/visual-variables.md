@@ -52,8 +52,8 @@ import PositionOnPitch from "../../../components/visual-analytics/theory/visualV
 ```
 
 ```js
-require("d3-soccer").then(soccer=>{
-    const posOnPitch = new PositionOnPitch(shots[0], '#positionOnPitch .chart', {
+const posOnPitch = require("d3-soccer").then(soccer=>{
+    new PositionOnPitch(shots[0], '#positionOnPitch .chart', {
         width: width,
         height: 300,
         margin: {top: 20, right: 20, bottom: 20, left: 40},
@@ -75,7 +75,7 @@ import Position from "../../../components/visual-analytics/theory/visualVariable
 const pos = new Position(shots, '#position .chart', {
     width: width,
     height: 200,
-    margin: {top: 20, right: 20, bottom: 20, left: 40},
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 ```
 
@@ -83,6 +83,7 @@ const pos = new Position(shots, '#position .chart', {
     <div class="chart"></div>
 </div>
 
+---
 
 ### Size
 
@@ -93,8 +94,8 @@ import Size from "../../../components/visual-analytics/theory/visualVariable/siz
 ```js
 const size = new Size(shots, '#size .chart', {
     width: width,
-    height: 100,
-    margin: {top: 20, right: 20, bottom: 20, left: 40},
+    height: 70,
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 ```
 
@@ -102,6 +103,7 @@ const size = new Size(shots, '#size .chart', {
     <div class="chart"></div>
 </div>
 
+---
 
 ### Shape
 
@@ -112,14 +114,17 @@ import Shape from "../../../components/visual-analytics/theory/visualVariable/sh
 ```js
 const shape = new Shape(shots, '#shape .chart', {
     width: width,
-    height: 100,
-    margin: {top: 20, right: 20, bottom: 20, left: 40},
+    height: 70,
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 ```
 
 <div id="shape">
     <div class="chart"></div>
 </div>
+
+
+---
 
 ### Value
 
@@ -131,14 +136,16 @@ import Value from "../../../components/visual-analytics/theory/visualVariable/va
 ```js
 const value = new Value(shots, '#value .chart', {
     width: width,
-    height: 100,
-    margin: {top: 20, right: 20, bottom: 20, left: 40},
+    height: 70,
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 ```
 
 <div id="value">
     <div class="chart"></div>
 </div>
+
+---
 
 ### Color
 
@@ -149,14 +156,16 @@ import Color from "../../../components/visual-analytics/theory/visualVariable/co
 ```js
 const color = new Color(shots, '#color .chart', {
     width: width,
-    height: 100,
-    margin: {top: 20, right: 20, bottom: 20, left: 40},
+    height: 70,
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 ```
 
 <div id="color">
     <div class="chart"></div>
 </div>
+
+---
 
 ### Motion
 
@@ -167,8 +176,8 @@ import Motion from "../../../components/visual-analytics/theory/visualVariable/m
 ```
 
 ```js
-require("d3-soccer").then(soccer=>{
-    const motion = new Motion(shots, '#motion .chart', {
+const motion = require("d3-soccer").then(soccer=>{
+    new Motion(shots, '#motion .chart', {
         width: width,
         height: 300,
         margin: {top: 20, right: 20, bottom: 20, left: 40},
@@ -182,20 +191,104 @@ require("d3-soccer").then(soccer=>{
 </div>
 
 
-### Orientation
-### Texture
+### Others
+
+- Orientation
+- Texture
+
+---
 
 ## Characteristics of Visual Variables
 
-### Associative
+```js
+// make the html below using d3.js
+const descriptions = [
+    "Visual variables can be used to group or associate marks based on their visual appearance.",
+    "Visual variables can be used to select marks based on their visual appearance.",
+    "Visual variables can be used to represent order.",
+    "Visual variables can be used to represent quantitative values."
+]
+d3.select('#characteristics-desc')
+    .selectAll('.div')
+    .data(['association', 'selection', 'order', 'quantity'])
+    .join('div')
+    .attr('id', d=>d)
+    .attr('class', 'characteristic')
+    .html((d, i)=>`
+        <h3>${d.charAt(0).toUpperCase() + d.slice(1)}</h3>
+        <p>${descriptions[i]}</p>
+    `)
+    .on('mouseover', function(event, d){
+        d3.select(this).style('background-color', 'lightgray')
+        console.log(d3.selectAll(`#characteristics .${d}`).node())
+        d3.selectAll(`#characteristics .${d}`)
+            .style("background-color", 'lightgray')
+    })
+    .on('mouseout', function(event, d){
+        d3.select(this).style('background-color', 'white')
+        d3.selectAll(`#characteristics .${d}`)
+            .style("background-color", 'white')
 
-### Selective
+    })
+```
 
-### Quantitative
+```html
+```
 
-### Order
+<div id="characteristics-desc" class="grid grid-cols-4">
+</div>
 
-### Length
+<div id="characteristics" class="grid grid-cols-2">
+    <div class="position selection association order quantity">
+        <div class="chart"></div>
+    </div>
+    <div class="size selection association order">
+        <div class="chart"></div>
+    </div>
+    <div class="shape selection association">
+        <div class="chart"></div>
+    </div>
+    <div class="value selection association order">
+        <div class="chart"></div>
+    </div>
+    <div class="color selection association">
+        <div class="chart"></div>
+    </div>
+</div>
+
+```js
+let _ = new Position(shots, '#characteristics .position .chart', {
+    width: width / 3,
+    height: 200,
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
+}).draw()
+
+_ = new Size(shots, '#characteristics .size .chart', {
+    width: width / 3,
+    height: 200,
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
+}).draw()
+
+_ = new Size(shots, '#characteristics .shape .chart', {
+    width: width / 3,
+    height: 200,
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
+}).draw()
+
+_ = new Value(shots, '#characteristics .value .chart', {
+    width: width / 3,
+    height: 200,
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
+}).draw()
+
+_ = new Color(shots, '#characteristics .color .chart', {
+    width: width / 3,
+    height: 200,
+    margin: {top: 0, right: 20, bottom: 20, left: 40},
+}).draw()
+```
+
+
 
 ```js
 const gamesInfo = d3.json(
