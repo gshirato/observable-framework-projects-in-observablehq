@@ -31,6 +31,7 @@ export default {
       open: false,
       pages: [
         {name: "Introduction", path: "pages/visual-analytics/introduction"},
+        {name: "Visual Variables", path: "pages/visual-analytics/theory/visual-variables"},
         {name: "Data", path: "pages/visual-analytics/football/data"},
         {name: "Passes", path: "pages/visual-analytics/football/passes"},
         {name: "Leading to shots", path: "pages/visual-analytics/football/leading-to-shots"},
