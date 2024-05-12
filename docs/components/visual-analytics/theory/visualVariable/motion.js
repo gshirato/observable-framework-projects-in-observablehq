@@ -1,7 +1,7 @@
 import * as d3 from "npm:d3";
 import GeneralChart from "../../../GeneralChart.js";
 import _ from "npm:lodash";
-import { mouseover, mousemove, mouseleave } from "./interaction.js";
+import { repeat, mousemove, mouseleave } from "./interaction.js";
 
 export default class Motion extends GeneralChart {
   constructor(data, selector, config) {
@@ -68,21 +68,12 @@ export default class Motion extends GeneralChart {
         .on("mouseover", _.partial(this.mouseover, this))
         .on("mousemove", _.partial(mousemove, this))
         .on("mouseleave", _.partial(mouseleave, this))
-        .call(this.repeat.bind(this));
+        .call(repeat.bind(this));
 
-      }
-    repeat(sel) {
-      sel
-        .attr("cx", (d) => this.sx(d.location[0]))
-        .attr("cy", (d) => this.sy(d.location[1]))
-        .transition()
-        .duration(d => d.duration * 1000)
-        .attr("cx", (d) => this.sx(d.shot.end_location[0]))
-        .attr("cy", (d) => this.sy(d.shot.end_location[1]))
       }
 
   mouseover(thisClass, event, d) {
-    d3.select(this).call(thisClass.repeat.bind(thisClass));
+    d3.select(this).call(repeat.bind(thisClass));
 
     thisClass.defaultColors = d3.selectAll(`.${thisClass.createClass(d)}`).nodes().map(n=>n.getAttribute('fill'))
     thisClass.defaultOpacities = d3.selectAll(`.${thisClass.createClass(d)}`).nodes().map(n=>n.getAttribute('opacity'))
