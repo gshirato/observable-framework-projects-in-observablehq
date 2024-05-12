@@ -203,10 +203,10 @@ const motion = require("d3-soccer").then(soccer=>{
 ```js
 // make the html below using d3.js
 const descriptions = [
-    "Visual variables can be used to group or associate marks based on their visual appearance.",
-    "Visual variables can be used to select marks based on their visual appearance.",
-    "Visual variables can be used to represent order.",
-    "Visual variables can be used to represent quantitative values."
+    "Visual variables can be used to <b>group or associate</b> marks based on their visual appearance.",
+    "Visual variables can be used to <b>select</b> marks based on their visual appearance.",
+    "Visual variables can be used to represent <b>order</b>.",
+    "Visual variables can be used to represent <b>proportion</b>."
 ]
 d3.select('#characteristics-desc')
     .selectAll('.div')
@@ -235,8 +235,10 @@ d3.select('#characteristics-desc')
 ```html
 ```
 
-<div id="characteristics-desc" class="grid grid-cols-4">
+<div id="characteristics-desc" class="grid grid-cols-2">
 </div>
+
+---
 
 <div id="characteristics" class="grid grid-cols-2">
     <div class="position selection association order quantity">
@@ -258,32 +260,32 @@ d3.select('#characteristics-desc')
 
 ```js
 let _ = new Position(shots, '#characteristics .position .chart', {
-    width: width / 3,
-    height: 200,
+    width: width / 2,
+    height: 100,
     margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 
 _ = new Size(shots, '#characteristics .size .chart', {
-    width: width / 3,
-    height: 200,
+    width: width / 2,
+    height: 100,
     margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 
-_ = new Size(shots, '#characteristics .shape .chart', {
-    width: width / 3,
-    height: 200,
+_ = new Shape(shots, '#characteristics .shape .chart', {
+    width: width / 2,
+    height: 100,
     margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 
 _ = new Value(shots, '#characteristics .value .chart', {
-    width: width / 3,
-    height: 200,
+    width: width / 2,
+    height: 100,
     margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 
 _ = new Color(shots, '#characteristics .color .chart', {
-    width: width / 3,
-    height: 200,
+    width: width / 2,
+    height: 100,
     margin: {top: 0, right: 20, bottom: 20, left: 40},
 }).draw()
 ```

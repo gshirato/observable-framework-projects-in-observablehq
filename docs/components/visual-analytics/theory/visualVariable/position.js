@@ -47,8 +47,9 @@ export default class Position extends GeneralChart {
         .call(yaxis)
         .append('text')
         .attr("fill", "#000")
-        .attr("y", 6)
-        .attr("dy", "0.71em")
+        .attr("y", this.margin.top)
+        .attr("dx", "2em")
+        .attr("dy", "0.72em")
         .attr("text-anchor", "end")
         .text("xG");
 
