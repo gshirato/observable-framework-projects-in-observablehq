@@ -55,12 +55,34 @@ export default class Size extends GeneralChart {
       .join("circle")
       .attr("cx", (d) => this.sx(d.index))
       .attr("cy", this.sy(0) + this.sy.bandwidth() / 2)
-      .attr("l", (d) => console.log(d.shot.statsbomb_xg))
       .attr("r", (d) => this.sr(d.shot.statsbomb_xg))
       .attr("fill", (d) => 'black')
       .attr("stroke", "black")
-      .attr("stroke-width", 1);
+      .attr("stroke-width", 1)
+      .on("mouseover", _.partial(this.mouseover, this))
+      .on("mousemove", _.partial(this.mousemove, this))
+      .on("mouseleave", _.partial(this.mouseleave, this));
   }
+
+  formatTime(d) {
+    return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`
+  }
+
+  mouseover(thisClass, event, d) {
+    thisClass.tooltip.show(event, d);
+  }
+
+  mousemove(thisClass, event, d) {
+    console.log(d)
+    thisClass.tooltip.setText(`[${thisClass.formatTime(d)}] <b>${d.player.name}</b> (${d.team.name})<br>xG: ${d.shot.statsbomb_xg.toFixed(2)} → ${d.shot.outcome.name} (${d.shot.technique.name} )`)
+    thisClass.tooltip.move(event, d);
+  }
+
+  mouseleave(thisClass, event, d) {
+    thisClass.tooltip.hide(event, d);
+  }
+
+
 
   draw() {
     this.drawAxes();
