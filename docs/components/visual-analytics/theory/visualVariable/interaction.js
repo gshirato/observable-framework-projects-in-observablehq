@@ -2,6 +2,7 @@ import * as d3 from "npm:d3";
 
 export function mouseover(thisClass, event, d) {
     thisClass.defaultColors = d3.selectAll(`.${thisClass.createClass(d)}`).attr('fill')
+
     d3.selectAll(`.${thisClass.createClass(d)}`)
         .raise()
         .attr('fill', 'red')
@@ -14,6 +15,7 @@ export function  mousemove(thisClass, event, d) {
 }
 
 export function  mouseleave(thisClass, event, d) {
-    d3.selectAll(`.${thisClass.createClass(d)}`).attr('fill', thisClass.defaultColors)
+    d3.selectAll(`.${thisClass.createClass(d)}`)
+        .attr('fill', (_, i) => thisClass.defaultColors[i])
     thisClass.tooltip.hide(event, d);
 }
