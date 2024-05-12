@@ -123,7 +123,6 @@ export default class PassDensityChart extends GeneralChart {
 
       this.setAxes();
       this.svg.call(this.drawPitch.bind(this));
-
       this.svg.call(this.drawWatermark.bind(this));
       this.svg.call(this.drawEvents.bind(this));
       this.svg.call(this.drawHeatmap.bind(this));
