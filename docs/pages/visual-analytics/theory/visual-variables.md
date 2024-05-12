@@ -158,12 +158,32 @@ const color = new Color(shots, '#color .chart', {
     <div class="chart"></div>
 </div>
 
-### Orientation
-
-
-### Texture
-
 ### Motion
+
+
+
+```js
+import Motion from "../../../components/visual-analytics/theory/visualVariable/motion.js";
+```
+
+```js
+require("d3-soccer").then(soccer=>{
+    const motion = new Motion(shots, '#motion .chart', {
+        width: width,
+        height: 300,
+        margin: {top: 20, right: 20, bottom: 20, left: 40},
+        soccerModule: soccer
+    }).draw()
+})
+```
+
+<div id="motion">
+    <div class="chart"></div>
+</div>
+
+
+### Orientation
+### Texture
 
 ## Characteristics of Visual Variables
 
