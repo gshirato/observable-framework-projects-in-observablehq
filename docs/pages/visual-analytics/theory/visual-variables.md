@@ -48,13 +48,33 @@ We can agree that the `location` attribute can best be represented by the positi
 
 
 ```js
+import PositionOnPitch from "../../../components/visual-analytics/theory/visualVariable/positionOnPitch.js";
+```
+
+```js
+require("d3-soccer").then(soccer=>{
+    const posOnPitch = new PositionOnPitch(shots[0], '#positionOnPitch .chart', {
+        width: width,
+        height: 300,
+        margin: {top: 20, right: 20, bottom: 20, left: 40},
+        soccerModule: soccer
+    }).draw()
+})
+```
+
+<div id="positionOnPitch">
+    <div class="chart"></div>
+</div>
+
+
+```js
 import Position from "../../../components/visual-analytics/theory/visualVariable/position.js";
 ```
 
 ```js
-new Position(shots, '#position .chart', {
+const pos = new Position(shots, '#position .chart', {
     width: width,
-    height: 100,
+    height: 200,
     margin: {top: 20, right: 20, bottom: 20, left: 40},
 }).draw()
 ```
@@ -71,7 +91,7 @@ import Size from "../../../components/visual-analytics/theory/visualVariable/siz
 ```
 
 ```js
-new Size(shots, '#size .chart', {
+const size = new Size(shots, '#size .chart', {
     width: width,
     height: 100,
     margin: {top: 20, right: 20, bottom: 20, left: 40},
@@ -84,6 +104,22 @@ new Size(shots, '#size .chart', {
 
 
 ### Shape
+
+```js
+import Shape from "../../../components/visual-analytics/theory/visualVariable/shape.js";
+```
+
+```js
+const shape = new Shape(shots, '#shape .chart', {
+    width: width,
+    height: 100,
+    margin: {top: 20, right: 20, bottom: 20, left: 40},
+}).draw()
+```
+
+<div id="shape">
+    <div class="chart"></div>
+</div>
 
 ### Value
 
