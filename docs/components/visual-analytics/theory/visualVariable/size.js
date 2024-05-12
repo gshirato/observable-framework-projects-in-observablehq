@@ -2,6 +2,7 @@ import * as d3 from "npm:d3";
 import GeneralChart from "../../../GeneralChart.js";
 import _ from "npm:lodash";
 import { mouseover, mousemove, mouseleave } from "./interaction.js";
+
 export default class Size extends GeneralChart {
   constructor(data, selector, config) {
     super(data, selector, config);
