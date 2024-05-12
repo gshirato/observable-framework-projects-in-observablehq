@@ -123,6 +123,24 @@ const shape = new Shape(shots, '#shape .chart', {
 
 ### Value
 
+
+```js
+import Value from "../../../components/visual-analytics/theory/visualVariable/value.js";
+```
+
+```js
+const value = new Value(shots, '#value .chart', {
+    width: width,
+    height: 100,
+    margin: {top: 20, right: 20, bottom: 20, left: 40},
+}).draw()
+```
+
+<div id="value">
+    <div class="chart"></div>
+</div>
+
+
 ### Orientation
 
 ### Color
