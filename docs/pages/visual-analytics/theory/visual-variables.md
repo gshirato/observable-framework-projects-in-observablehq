@@ -140,10 +140,26 @@ const value = new Value(shots, '#value .chart', {
     <div class="chart"></div>
 </div>
 
+### Color
+
+```js
+import Color from "../../../components/visual-analytics/theory/visualVariable/color.js";
+```
+
+```js
+const color = new Color(shots, '#color .chart', {
+    width: width,
+    height: 100,
+    margin: {top: 20, right: 20, bottom: 20, left: 40},
+}).draw()
+```
+
+<div id="color">
+    <div class="chart"></div>
+</div>
 
 ### Orientation
 
-### Color
 
 ### Texture
 
