@@ -1,6 +1,7 @@
 import * as d3 from "npm:d3";
 import GeneralChart from "../../../GeneralChart.js";
 import _ from "npm:lodash";
+import { mouseover, mousemove, mouseleave } from "./interaction.js";
 
 export default class Position extends GeneralChart {
   constructor(data, selector, config) {
@@ -53,39 +54,32 @@ export default class Position extends GeneralChart {
 
   }
 
+
+  createClass(d) {
+    return `id-${d.id}`
+  }
+
   drawData() {
     this.svg
       .selectAll("circle")
       .data(this.data)
       .join("circle")
+      .attr('class', d=>this.createClass(d))
       .attr("cx", (d) => this.sx(d.index))
       .attr("cy", (d)=> this.sy(d.shot.statsbomb_xg))
-      .attr("l", (d) => console.log(d.shot.statsbomb_xg))
       .attr("r", (d) => 3)
-      .attr("fill", (d) => 'black')
-      .attr("stroke", "black")
+      .attr("fill", (d) => '#333')
+      .attr("stroke", "#333")
       .attr("stroke-width", 1)
-      .on("mouseover", _.partial(this.mouseover, this))
-      .on("mousemove", _.partial(this.mousemove, this))
-      .on("mouseleave", _.partial(this.mouseleave, this));
+      .on("mouseover", _.partial(mouseover, this))
+      .on("mousemove", _.partial(mousemove, this))
+      .on("mouseleave", _.partial(mouseleave, this));
   }
 
   formatTime(d) {
     return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`
   }
 
-  mouseover(thisClass, event, d) {
-    thisClass.tooltip.show(event, d);
-  }
-
-  mousemove(thisClass, event, d) {
-    thisClass.tooltip.setText(`[${thisClass.formatTime(d)}] <b>${d.player.name}</b> (${d.team.name})<br>xG: ${d.shot.statsbomb_xg.toFixed(2)} → ${d.shot.outcome.name} (${d.shot.technique.name} )`)
-    thisClass.tooltip.move(event, d);
-  }
-
-  mouseleave(thisClass, event, d) {
-    thisClass.tooltip.hide(event, d);
-  }
 
   draw() {
     this.drawAxes();

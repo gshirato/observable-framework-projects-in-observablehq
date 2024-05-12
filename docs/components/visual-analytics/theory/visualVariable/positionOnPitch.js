@@ -45,6 +45,10 @@ export default class PositionOnPitch extends GeneralChart {
   }
 
 
+  createClass(d) {
+    return `id-${d.id}`
+  }
+
   drawData() {
     const layer = this.svg
       .select('#above')

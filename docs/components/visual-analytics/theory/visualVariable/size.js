@@ -1,7 +1,7 @@
 import * as d3 from "npm:d3";
 import GeneralChart from "../../../GeneralChart.js";
 import _ from "npm:lodash";
-
+import { mouseover, mousemove, mouseleave } from "./interaction.js";
 export default class Size extends GeneralChart {
   constructor(data, selector, config) {
     super(data, selector, config);
@@ -38,14 +38,10 @@ export default class Size extends GeneralChart {
       .attr("y", -6)
       .attr("text-anchor", "end")
       .text("Index");
+  }
 
-    const yaxis = d3.axisLeft(this.sy);
-    this.svg
-      .append("g")
-      .attr("transform", `translate(${this.margin.left},0)`)
-      .call(yaxis)
-      .selectAll("text")
-      .attr('opacity', 0);
+  createClass(d) {
+    return `id-${d.id}`
   }
 
   drawData() {
@@ -53,36 +49,20 @@ export default class Size extends GeneralChart {
       .selectAll("circle")
       .data(this.data)
       .join("circle")
+      .attr('class', d=>this.createClass(d))
       .attr("cx", (d) => this.sx(d.index))
       .attr("cy", this.sy(0) + this.sy.bandwidth() / 2)
       .attr("r", (d) => this.sr(d.shot.statsbomb_xg))
-      .attr("fill", (d) => 'black')
-      .attr("stroke", "black")
+      .attr("fill", (d) => '#333')
       .attr("stroke-width", 1)
-      .on("mouseover", _.partial(this.mouseover, this))
-      .on("mousemove", _.partial(this.mousemove, this))
-      .on("mouseleave", _.partial(this.mouseleave, this));
+      .on("mouseover", _.partial(mouseover, this))
+      .on("mousemove", _.partial(mousemove, this))
+      .on("mouseleave", _.partial(mouseleave, this));
   }
 
   formatTime(d) {
     return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`
   }
-
-  mouseover(thisClass, event, d) {
-    thisClass.tooltip.show(event, d);
-  }
-
-  mousemove(thisClass, event, d) {
-    console.log(d)
-    thisClass.tooltip.setText(`[${thisClass.formatTime(d)}] <b>${d.player.name}</b> (${d.team.name})<br>xG: ${d.shot.statsbomb_xg.toFixed(2)} → ${d.shot.outcome.name} (${d.shot.technique.name} )`)
-    thisClass.tooltip.move(event, d);
-  }
-
-  mouseleave(thisClass, event, d) {
-    thisClass.tooltip.hide(event, d);
-  }
-
-
 
   draw() {
     this.drawAxes();

@@ -1,11 +1,11 @@
 import * as d3 from "npm:d3";
 import GeneralChart from "../../../GeneralChart.js";
 import _ from "npm:lodash";
+import { mouseover, mousemove, mouseleave } from "./interaction.js";
 
 export default class Size extends GeneralChart {
   constructor(data, selector, config) {
     super(data, selector, config);
-
     this.setAxes();
   }
 
@@ -19,11 +19,6 @@ export default class Size extends GeneralChart {
       .scaleBand()
       .domain([0])
       .range([this.height - this.margin.bottom, this.margin.top]);
-
-    this.sr = d3
-      .scaleLinear()
-      .domain([0, d3.max(this.data, (d) => d.shot.statsbomb_xg)])
-      .range([3, 10]);
   }
 
   drawAxes() {
@@ -38,30 +33,48 @@ export default class Size extends GeneralChart {
       .attr("y", -6)
       .attr("text-anchor", "end")
       .text("Index");
+  }
 
-    const yaxis = d3.axisLeft(this.sy);
-    this.svg
-      .append("g")
-      .attr("transform", `translate(${this.margin.left},0)`)
-      .call(yaxis)
-      .selectAll("text")
-      .attr('opacity', 0);
+  createClass(d) {
+    return `id-${d.id}`
   }
 
   drawData() {
     this.svg
-      .selectAll("circle")
-      .data(this.data)
-      .join("circle")
-      .attr("cx", (d) => this.sx(d.index))
-      .attr("cy", this.sy(0) + this.sy.bandwidth() / 2)
-      .attr("r", (d) => this.sr(d.shot.statsbomb_xg))
-      .attr("fill", (d) => 'black')
-      .attr("stroke", "black")
-      .attr("stroke-width", 1)
-      .on("mouseover", _.partial(this.mouseover, this))
-      .on("mousemove", _.partial(this.mousemove, this))
-      .on("mouseleave", _.partial(this.mouseleave, this));
+        .append("g")
+        .selectAll("circle")
+        .data(this.data.filter((d) => d.shot.outcome.name === "Goal"))
+        .join("circle")
+        .attr('class', d=>this.createClass(d))
+        .attr("cx", (d) => this.sx(d.index))
+        .attr("cy", this.sy(0) + this.sy.bandwidth() / 2)
+        .attr("r", 3)
+        .attr("stroke", "#333")
+        .attr('opacity', 0.8)
+        .attr("stroke-width", 1)
+        .on("mouseover", _.partial(mouseover, this))
+        .on("mousemove", _.partial(mousemove, this))
+        .on("mouseleave", _.partial(mouseleave, this));
+
+    this.svg
+        .append("g")
+        .selectAll("text")
+        .data(this.data.filter((d) => d.shot.outcome.name !== "Goal"))
+        .join("text")
+        .attr("x", (d) => this.sx(d.index))
+        .attr("y", this.sy(0) + this.sy.bandwidth() / 2)
+        .attr('class', d=>this.createClass(d))
+        .attr("fill", '#333')
+        .attr('text-anchor', 'middle')
+        .attr('alignment-baseline', 'middle')
+        .attr('font-size', '12px')
+        .attr('font-family', 'sans-serif')
+        .attr('opacity', 0.8)
+        .attr('cursor', 'default')
+        .text('x')
+        .on("mouseover", _.partial(mouseover, this))
+        .on("mousemove", _.partial(mousemove, this))
+        .on("mouseleave", _.partial(mouseleave, this));
   }
 
   formatTime(d) {
@@ -69,16 +82,18 @@ export default class Size extends GeneralChart {
   }
 
   mouseover(thisClass, event, d) {
+    thisClass.defaultColors = d3.selectAll(`.${thisClass.createClass(d)}`).attr('fill')
+    d3.selectAll(`.${thisClass.createClass(d)}`).attr('fill', 'red')
     thisClass.tooltip.show(event, d);
   }
 
   mousemove(thisClass, event, d) {
-    console.log(d)
     thisClass.tooltip.setText(`[${thisClass.formatTime(d)}] <b>${d.player.name}</b> (${d.team.name})<br>xG: ${d.shot.statsbomb_xg.toFixed(2)} → ${d.shot.outcome.name} (${d.shot.technique.name} )`)
     thisClass.tooltip.move(event, d);
   }
 
   mouseleave(thisClass, event, d) {
+    d3.selectAll(`.${thisClass.createClass(d)}`).attr('fill', thisClass.defaultColors)
     thisClass.tooltip.hide(event, d);
   }
 
