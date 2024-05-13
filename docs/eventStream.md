@@ -1,8 +1,5 @@
-# Event Stream (Statsbomb)
+# Football events (Statsbomb)
 
-<div class="alert">
- Fix IT: show the pitch
-</div>
 
 ```js
 const competitions = d3.json(
@@ -132,7 +129,9 @@ const passes = events.filter(d=>d.type.name === 'Pass');
 const possessions = getPossessionData(passes);
 ```
 
-🚫: there is no [360 data](https://statsbomb.com/what-we-do/soccer-data/360-2/) available.
+<div class="note" label="What 🚫 means"> that there is no <a href="https://statsbomb.com/what-we-do/soccer-data/360-2/">360 data</a> available for its event.</div>
+
+
 
 ```js
 const teams = Array.from(d3.union(events.map(d=>d.team.name)));

@@ -57,15 +57,15 @@ export default class PositionOnPitch extends GeneralChart {
 
       layer
         .append("g")
-        .append("circle")
+        .append("text")
         .datum(this.data)
-        .attr("cx", (d) => this.sx(d.location[0]))
-        .attr("cy", (d) => this.sy(d.location[1]))
-        .attr("r", 1.5)
-        .attr("fill", 'none')
-        .attr("stroke", "black")
-        .attr('stroke-dasharray', '1,1')
-        .attr("stroke-width", 0.4);
+        .attr("x", (d) => this.sx(d.location[0]))
+        .attr("y", (d) => this.sy(d.location[1]))
+        .attr('font-size', '4px')
+        .attr('text-anchor', 'middle')
+        .attr('alignment-baseline', 'middle')
+        .attr('font-family', 'sans-serif')
+        .text('x')
 
 
 

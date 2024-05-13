@@ -7,7 +7,7 @@ const shots = events.filter(d=>d.type.name === 'Shot');
 ```
 
 ```js
-Inputs.table(shots);
+view(Inputs.table(shots));
 ```
 
 
