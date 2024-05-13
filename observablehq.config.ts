@@ -11,7 +11,7 @@ export default {
       name: "Projects",
       pages: [
         // {name: "Statsbomb", path: "/statsbomb"},
-        {name: "Event Stream", path: "/eventStream"},
+        {name: "Football events", path: "/eventStream"},
         {name: "Profit & Loss (J. League, 2022)", path: "/profitLoss2022"},
         {name: "J1 Predictor", path: "/predictor-j1"},
         {name: "GK Positioning", path: "/gk-positioning"},
@@ -31,10 +31,10 @@ export default {
       open: false,
       pages: [
         {name: "Introduction", path: "pages/visual-analytics/introduction"},
-        {name: "Visual Variables", path: "pages/visual-analytics/theory/visual-variables"},
         {name: "Data", path: "pages/visual-analytics/football/data"},
         {name: "Passes", path: "pages/visual-analytics/football/passes"},
         {name: "Leading to shots", path: "pages/visual-analytics/football/leading-to-shots"},
+        {name: "Visual Variables", path: "pages/visual-analytics/theory/visual-variables"},
       ]
     }
   ],

@@ -30,28 +30,26 @@ In this seminar, we will learn skills and knowledge required for Visual Analytic
 
 ## Important dates
 
-<div class="note" label="Note">2024/04/22 Seminar dates have been fixed.</div>
-
 
 | Date | Time | Contents |
 | ---- |  --- | -------- |
-| May 14 (Tue.) | 12:00 - 14:00 | Understanding visual analytics tools I |
-| May 28 (Tue.) | 12:00 - 14:00 |Understanding visual analytics tools II |
-| June 11 (Tue.) | 12:00 - 14:00 | Developing visual analytics tools I |
-| June 25 (Tue.) | 12:00 - 14:00 | Developing visual analytics tools II |
-| July 2 (Tue.) | 12:00 - 14:00 | Developing visual analytics tools III |
+| May 14 (Tue.) | 12:00 - 14:00 | Introduction and Overview |
+| May 28 (Tue.) | 12:00 - 14:00 |Understanding phenomena through Visual Analytics |
+| June 11 (Tue.) | 12:00 - 14:00 | Developing Visual Analytics tools I |
+| June 25 (Tue.) | 12:00 - 14:00 | Developing Visual Analytics tools II |
+| July 2 (Tue.) | 12:00 - 14:00 | Developing Visual Analytics tools III |
 | July 16 (Tue.) | 12:00 - 14:00 | **Deadline for the final report** |
 
+
 <figure>
-  <img src="./data/seminar-visual-analytics/gate.png" alt="Gate" style="width:100%">
+  <img src="./data/seminar-visual-analytics/gate.png" alt="Gate" style="width:60%;">
   <figcaption>Visualization of "gates" in football</figcaption>
 </figure>
-
 ---
 
 ## Materials
 
-- [Visual Analytics for Data Scientists](https://link.springer.com/book/10.1007/978-3-030-56146-8) (Download the PDF for free)
+- [Visual Analytics for Data Scientists](https://link.springer.com/book/10.1007/978-3-030-56146-8) (Should be free for Uni Bonn students)
 
 ## Useful links
 
@@ -63,8 +61,9 @@ In this seminar, we will learn skills and knowledge required for Visual Analytic
 
 ## Registration
 
-Please register for the seminar via the [BASIS website](https://basis.uni-bonn.de/) (**`Informatik, Life Science Informatics und Media Informatics` > `Master Computer Science` > `Intelligent Systems`**).
-<div class="note" label="Note">The eCampus link is currently not working.</div>
+Please register for the seminar via:
+- the [BASIS website](https://basis.uni-bonn.de/) (**`Informatik, Life Science Informatics und Media Informatics` > `Master Computer Science` > `Intelligent Systems`**)
+- the [eCampus page](https://ecampus.uni-bonn.de/goto_ecampus_crs_3268236.html)
 
 
 ---
