@@ -244,7 +244,7 @@ d3.select('#characteristics-desc')
     <div class="position selection association order quantity">
         <div class="chart"></div>
     </div>
-    <div class="size selection association order">
+    <div class="size selection order">
         <div class="chart"></div>
     </div>
     <div class="shape selection association">
