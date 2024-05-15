@@ -8,21 +8,21 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
-      name: "Projects",
+      name: "Research projects",
+      pages: [
+        {name: "Small multiples", path: "/pages/data_investigation/small_multiples"},
+      ]
+    },
+    {
+      name: "Personal Projects",
       pages: [
         // {name: "Statsbomb", path: "/statsbomb"},
         {name: "Football events", path: "/eventStream"},
         {name: "Profit & Loss (J. League, 2022)", path: "/profitLoss2022"},
-        {name: "J1 Predictor", path: "/predictor-j1"},
-        {name: "GK Positioning", path: "/gk-positioning"},
+        {name: "J1 League Predictor", path: "/predictor-j1"},
+        {name: "GK Viz", path: "/gk-positioning"},
         // {name: "J1 Data", path: "/j1-data"},
         // {name: "Urawa Reds - All games", path: "/urawa-games"},
-      ]
-    },
-    {
-      name: "Research projects",
-      pages: [
-        {name: "Small multiples", path: "/pages/data_investigation/small_multiples"},
       ]
     },
     {
