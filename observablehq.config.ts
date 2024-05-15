@@ -20,6 +20,12 @@ export default {
       ]
     },
     {
+      name: "Research projects",
+      pages: [
+        {name: "Small multiples", path: "/pages/data_investigation/small_multiples"},
+      ]
+    },
+    {
       name: "Seminar 23/24",
       open: false,
       pages: [
@@ -27,7 +33,7 @@ export default {
       ]
     },
     {
-      name: "Visual Analytics - Motivating Example",
+      name: "Visual Analytics - Motivating Example (WIP)",
       open: false,
       pages: [
         {name: "Introduction", path: "pages/visual-analytics/introduction"},
