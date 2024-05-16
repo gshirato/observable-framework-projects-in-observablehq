@@ -26,6 +26,12 @@ export default {
       ]
     },
     {
+      name: "Concast",
+      pages: [
+        {name: "Concast", path: "/concast/main"},
+      ]
+    },
+    {
       name: "Seminar 23/24",
       open: false,
       pages: [
