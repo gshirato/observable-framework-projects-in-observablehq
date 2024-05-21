@@ -25,12 +25,12 @@ export default {
         // {name: "Urawa Reds - All games", path: "/urawa-games"},
       ]
     },
-    {
-      name: "Concast",
-      pages: [
-        {name: "Concast", path: "/pages/concast/main"},
-      ]
-    },
+    // {
+    //   name: "Concast",
+    //   pages: [
+    //     {name: "Concast", path: "/pages/concast/main"},
+    //   ]
+    // },
     {
       name: "Seminar 23/24",
       open: false,
