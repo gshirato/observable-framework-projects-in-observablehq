@@ -29,6 +29,7 @@ export default class PLEmbeddingChart extends GeneralChart {
       const xaxis = d3.axisBottom(this.sx);
       this.svg
         .append("g")
+        .attr('class', 'x-axis')
         .attr("transform", `translate(0,${this.height - this.margin.bottom})`)
         .call(xaxis)
         .append("text")
@@ -39,9 +40,10 @@ export default class PLEmbeddingChart extends GeneralChart {
         .attr("fill", "black")
         .text("売上高");
 
-      const yaxis = d3.axisLeft(this.sy);
-      this.svg
+        const yaxis = d3.axisLeft(this.sy);
+        this.svg
         .append("g")
+        .attr('class', 'y-axis')
         .attr("transform", `translate(${this.margin.left},0)`)
         .call(yaxis)
         .append("text")
@@ -61,6 +63,7 @@ export default class PLEmbeddingChart extends GeneralChart {
       const sOpacity = d3.scaleLinear().domain([0, 500]).range([0.4, 1])
       this.svg
         .append("g")
+        .attr("class", "main")
         .selectAll("circle")
         .data(this.data)
         .join("circle")
@@ -77,6 +80,7 @@ export default class PLEmbeddingChart extends GeneralChart {
 
       this.svg
         .append("g")
+        .attr("class", "main")
         .selectAll("text")
         .data(this.data)
         .join("text")
@@ -89,10 +93,55 @@ export default class PLEmbeddingChart extends GeneralChart {
         .attr('pointer-events', 'none')
         .text((d, i) => d['売上高-合計'] < 3000 ? "": this.teams[i]);
     }
+
+    addBrush() {
+        this.brush = d3.brush()
+          .extent([
+            [this.margin.left, this.margin.top],
+            [this.width - this.margin.right, this.height - this.margin.bottom]
+          ])
+          .on('end', this.brushed.bind(this));
+
+        this.svg.append('g').call(this.brush)
+    }
+
     draw() {
       this.drawAxes();
       this.drawMain();
+    //   this.addBrush();
     }
+
+    brushed(event) {
+        d3.select('.x-axis').remove();
+        d3.select('.y-axis').remove();
+        d3.selectAll('.main').remove();
+
+        if (!event.selection) {
+            this.sx.domain([0, d3.max(this.data, d=>d['売上高-合計'])]);
+            this.sy.domain([0, d3.max(this.data, d=>d['売上原価-小計'])]);
+
+        }
+        else {
+            this.sx = d3
+                .scaleLinear()
+                .domain([
+                    this.sx.invert(event.selection[0][0]),
+                    this.sx.invert(event.selection[1][0])
+                ])
+                .range([this.margin.left, this.width - this.margin.right]);
+
+            this.sy = d3
+                .scaleLinear()
+                .domain([
+                    this.sy.invert(event.selection[1][1]),
+                    this.sy.invert(event.selection[0][1])
+                ])
+                .range([this.height - this.margin.bottom, this.margin.top]);
+        }
+
+        this.drawAxes();
+        this.drawMain();
+      }
 
     mouseover(thisClass, event, d) {
       new PLChart(thisClass.plData.filter(d=>Object.keys(d).includes(thisClass.teams[d3.select(this).attr("index")])), `${thisClass.rootSelector} .detail`, {
