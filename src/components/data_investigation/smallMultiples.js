@@ -2,7 +2,7 @@ import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../GeneralChart.js";
 import DetailChart from "./detail.js";
-import getEmoji from "./countryEmojis.js";
+import addEmoji from "./countryEmojis.js";
 
 export default class SmallMultiplesChart extends GeneralChart {
     constructor(data, selector, config) {
@@ -11,7 +11,7 @@ export default class SmallMultiplesChart extends GeneralChart {
         this.legend = config['legend'];
         this.initPitch();
         this.setAxes();
-        this.duration = d3.sum(this.data, d=>d.possession_duration);
+        this.duration = this.data[this.data.length - 1].event_sec - this.data[0].event_sec;
     }
     initPitch() {
       this.pitch = this.soccer.pitch().height(this.height).clip([[0, -5], [105, 70]])
@@ -88,7 +88,7 @@ export default class SmallMultiplesChart extends GeneralChart {
         .attr("text-anchor", "middle")
         .attr("font-size", 5)
         .attr("font-family", 'Arial')
-        .html(d=>`[${d.match_id}] ${getEmoji(d.first_pass_team)}${d.first_pass_team} (episode=${d.episode}, ${this.duration.toFixed(2)} sec)`);
+        .html(d=>`[${d.match_id}] ${addEmoji(d.first_pass_team)}${d.first_pass_team} (episode=${d.episode}, ${this.duration.toFixed(0)} sec)`);
 
       layer
         .append("text")

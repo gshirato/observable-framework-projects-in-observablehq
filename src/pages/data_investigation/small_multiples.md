@@ -5,9 +5,11 @@ const data = FileAttachment("../../data/data_investigation/World_Cup.csv").csv({
 ```
 
 
+
 ```js
 import SmallMultiplesChart from "../../components/data_investigation/smallMultiples.js";
 import EpisodeSummaryChart from "../../components/data_investigation/summary.js";
+import addEmoji from "../../components/data_investigation/countryEmojis.js";
 ```
 
 ```js
@@ -21,12 +23,14 @@ function drawSmallMultiples(data, nCols, soccer) {
 
     const charts = d3.select('#smallMultiples .charts')
     for (const matchId of matchIds.slice(0, 3)) {
-        charts.append('h3').text(`Match ${matchId}`);
+        const teamNames = Array.from(d3.union(data.filter(d=>d.match_id === matchId).map(d => addEmoji(d.team_name))));
+        charts.append('h3').text(`${teamNames.join(' vs ')}`);
+
         const matchElem = charts
             .append('div')
             .attr('class', `match-${matchId} grid grid-cols-${nCols}`);
 
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < 18; i++) {
             const episode = episodes[i];
             const filtered = data.filter(d => (d.episode === episode) && (d.match_id === matchId));
             matchElem
@@ -52,18 +56,6 @@ const q = new EpisodeSummaryChart(data, '#summary', {
     height: 120,
     margin: {top: 20, right: 20, bottom: 20, left: 40}
 }).draw();
-```
-
-```js
-Array.from(d3.rollup(data, x => ({
-        count: x.length,
-        avg: d3.mean(x, d => d.possession_duration),
-        min: d3.min(x, d => d.possession_duration),
-        max: d3.max(x, d => d.possession_duration)
-    }),
-    d => d.match_id,
-    d => d.episode
-))
 ```
 
 <div id="summary"></div>

@@ -1,13 +1,13 @@
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../GeneralChart.js";
-import getEmoji from "./countryEmojis.js";
+import addEmoji from "./countryEmojis.js";
 
 export default class DetailChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
         this.soccer = config['soccerModule'];
-        this.duration = d3.sum(this.data, d=>d.possession_duration);
+        this.duration = this.data[this.data.length - 1].event_sec - this.data[0].event_sec;
         this.initPitch();
         this.setAxes();
     }
@@ -59,6 +59,10 @@ export default class DetailChart extends GeneralChart {
       this.svg.call(this.drawLegend.bind(this));
     }
 
+    sec2mmss(sec) {
+      return new Date(sec * 1000).toISOString().substr(14, 5)
+    }
+
     drawTitle(sel) {
       const layer = sel.select('#above').append('g')
 
@@ -71,8 +75,7 @@ export default class DetailChart extends GeneralChart {
         .attr("text-anchor", "middle")
         .attr("font-size", 5)
         .attr("font-family", 'Arial')
-        .html(d=>`[${d.match_id}] ${getEmoji(d.first_pass_team)}${d.first_pass_team} (episode=${d.episode}, ${this.duration.toFixed(2)} sec)`);
-
+        .html(d=>`[${d.match_id}] ${addEmoji(d.first_pass_team)} (episode=${d.episode}, ${this.duration.toFixed(2)} sec)`);
 
       layer
         .append("text")
@@ -82,7 +85,7 @@ export default class DetailChart extends GeneralChart {
         .attr("text-anchor", "middle")
         .attr("font-size", 5)
         .attr("font-family", 'Arial')
-        .html(d=>`${this.data[0].event_name} ⇒ ... ⇒ ${this.data[this.data.length - 1].event_name} (#=${this.data.length})`);
+        .html(d=>`(#=${this.data.length}) ${this.data[0].event_name} ⇒ ... ⇒ ${this.data[this.data.length - 1].event_name} [${this.sec2mmss(this.data[0].event_sec)} → ${this.sec2mmss(this.data[this.data.length - 1].event_sec)}]`);
     }
 
     drawLegend(sel) {
