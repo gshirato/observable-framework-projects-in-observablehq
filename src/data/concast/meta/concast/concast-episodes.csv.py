@@ -12,7 +12,7 @@ def split_number(number):
 
 
 files = []
-for filename in glob.glob("./docs/data/concast/meta/concast/*.json"):
+for filename in glob.glob("./src/data/concast/meta/concast/*.json"):
     with open(filename, "r") as f:
         files.append(json.load(f))
 
