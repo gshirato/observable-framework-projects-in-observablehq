@@ -18,7 +18,6 @@ export default function drawSmallMultiples(data, selector, config) {
     const overview = d3.select(`#overview`)
     overview.selectAll('*').remove();
 
-    overview.append('h3').text('Overview');
     overview
         .append('div')
         .attr('class', 'grid grid-cols-3')
@@ -33,7 +32,6 @@ export default function drawSmallMultiples(data, selector, config) {
         .on('click', function(d) {
             d3.selectAll('.match-overview').style('background-color', 'white');
             d3.select(this).style('background-color', 'lightgrey');
-            // scroll to the selected match
             const matchClass = d3.select(this).attr('class').split(' ')[2];
             const matchSelector = `${selector} .${matchClass}`;
             d3.select(matchSelector).node().scrollIntoView({behavior: 'smooth'});
