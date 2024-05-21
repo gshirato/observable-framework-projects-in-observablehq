@@ -14,30 +14,43 @@ export default class PLEmbeddingChart extends GeneralChart {
     }
 
     setAxes() {
-    console.log(this.plData)
       this.sx = d3
         .scaleLinear()
-        .domain(d3.extent(this.data, (d) => d[0]))
+        .domain([0, d3.max(this.data, d=>d['売上高-合計'])])
         .range([this.margin.left, this.width - this.margin.right]);
 
       this.sy = d3
         .scaleLinear()
-        .domain(d3.extent(this.data, (d) => d[1]))
+        .domain([0, d3.max(this.data, d=>d['売上原価-小計'])])
         .range([this.height - this.margin.bottom, this.margin.top]);
     }
 
     drawAxes() {
-      const xaxis = d3.axisBottom(this.sx).ticks(0);
+      const xaxis = d3.axisBottom(this.sx);
       this.svg
         .append("g")
         .attr("transform", `translate(0,${this.height - this.margin.bottom})`)
-        .call(xaxis);
+        .call(xaxis)
+        .append("text")
+        .attr("x", this.width / 2)
+        .attr("y", 0)
+        .attr("dy", "3em")
+        .attr("text-anchor", "middle")
+        .attr("fill", "black")
+        .text("売上高");
 
-      const yaxis = d3.axisLeft(this.sy).ticks(0);
+      const yaxis = d3.axisLeft(this.sy);
       this.svg
         .append("g")
         .attr("transform", `translate(${this.margin.left},0)`)
-        .call(yaxis);
+        .call(yaxis)
+        .append("text")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("dy", "0.5em")
+        .attr("text-anchor", "middle")
+        .attr("fill", "black")
+        .text("売上原価");
     }
 
     getProfit(i) {
@@ -51,8 +64,8 @@ export default class PLEmbeddingChart extends GeneralChart {
         .selectAll("circle")
         .data(this.data)
         .join("circle")
-        .attr("cx", (d) => this.sx(d[0]))
-        .attr("cy", (d) => this.sy(d[1]))
+        .attr("cx", (d) => this.sx(d['売上高-合計']))
+        .attr("cy", (d) => this.sy(d['売上原価-小計']))
         .attr("fill", (_, i)=>parseFormattedNumber(this.getProfit(i)) > 0 ? 'green' : 'red')
         .attr("opacity", (_, i)=>sOpacity(parseFormattedNumber(this.getProfit(i)))
         )
@@ -67,13 +80,14 @@ export default class PLEmbeddingChart extends GeneralChart {
         .selectAll("text")
         .data(this.data)
         .join("text")
-        .attr("x", (d) => this.sx(d[0]))
-        .attr("y", (d) => this.sy(d[1]))
+        .attr("x", (d) => this.sx(d['売上高-合計']))
+        .attr("y", (d) => this.sy(d['売上原価-小計']))
         .attr("dy", -5)
         .attr("text-anchor", "middle")
         .attr("font-size", 10)
         .attr("font-weight", 'bold')
-        .text((_, i) => this.teams[i]);
+        .attr('pointer-events', 'none')
+        .text((d, i) => d['売上高-合計'] < 3000 ? "": this.teams[i]);
     }
     draw() {
       this.drawAxes();

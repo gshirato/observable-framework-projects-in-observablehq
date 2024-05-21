@@ -53,8 +53,9 @@ export function transpose(data) {
 
             for (const item of data) {
                 if (item["大分類"] == "") continue;
-                const largeCategory = item["大分類"];
-                teamInfo[largeCategory] = parseFormattedNumber(item[team]);
+                const category = `${item["大分類"]}-${item["小分類"]}`;
+
+                teamInfo[category] = parseFormattedNumber(item[team]);
             }
             if (Object.values(teamInfo).includes(NaN)) continue;
             res.push(teamInfo);
