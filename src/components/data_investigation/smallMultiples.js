@@ -55,10 +55,9 @@ export default class SmallMultiplesChart extends GeneralChart {
         .join('circle')
         .attr('cx', d => d.start_x)
         .attr('cy', d => d.start_y)
-        .attr('r', 1)
+        .attr('r', 0.8)
         .attr('fill', d=>this.sc(d.event_name))
 
-      console.log(this.data)
       layer
         .append('g')
         .selectAll('line')
@@ -69,8 +68,54 @@ export default class SmallMultiplesChart extends GeneralChart {
         .attr('x2', d => d.end_x)
         .attr('y2', d => d.end_y)
         .attr('stroke', d=>this.sc(d.event_name))
-        .attr('stroke-dasharray', d=>d.team_name === d.first_pass_team? '': '4 4')
+        .attr('opacity', d=>d.team_name === d.first_pass_team? 1: 0.2)
+        .attr('stroke-dasharray', d=>d.team_name === d.first_pass_team? '': '2 2')
         .attr('stroke-width', 0.5)
+
+        layer
+        .append('g')
+        .append('circle')
+        .datum(this.data[0])
+        .attr('l', d => console.log(d))
+        .attr('cx', d => d.start_x)
+        .attr('cy', d => d.start_y)
+        .attr('r', 2)
+        .attr('stroke', d=>this.sc(d.event_name))
+        .attr('fill', 'white')
+
+      layer
+        .append('g')
+        .append('circle')
+        .datum(this.data[this.data.length - 1])
+        .attr('l', d => console.log(d))
+        .attr('cx', d => d.end_x)
+        .attr('cy', d => d.end_y)
+        .attr('r', 2)
+        .attr('stroke', d=>this.sc(d.event_name))
+        .attr('fill', 'white')
+
+      layer
+        .append('g')
+        .append('text')
+        .datum(this.data[0])
+        .attr('l', d => console.log(d))
+        .attr('x', d => d.start_x)
+        .attr('y', d => d.start_y)
+        .attr('font-size', 4)
+        .attr('text-anchor', 'middle')
+        .attr('alignment-baseline', 'middle')
+        .text('s')
+
+      layer
+        .append('g')
+        .append('text')
+        .datum(this.data[this.data.length - 1])
+        .attr('x', d => d.end_x)
+        .attr('y', d => d.end_y)
+        .attr('font-size', 4)
+        .attr('text-anchor', 'middle')
+        .attr('alignment-baseline', 'middle')
+        .text('e')
     }
 
     draw() {
