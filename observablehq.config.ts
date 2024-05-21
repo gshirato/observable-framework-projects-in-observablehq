@@ -19,6 +19,7 @@ export default {
         // {name: "Statsbomb", path: "/statsbomb"},
         {name: "Football events", path: "/eventStream"},
         {name: "Profit & Loss (J. League, 2022)", path: "/profitLoss2022"},
+        {name: "Profit & Loss (J. League, 2023)", path: "/profitLoss2023"},
         {name: "J1 League Predictor", path: "/predictor-j1"},
         {name: "GK Viz", path: "/gk-positioning"},
         // {name: "J1 Data", path: "/j1-data"},
