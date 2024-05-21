@@ -28,7 +28,7 @@ export default {
     {
       name: "Concast",
       pages: [
-        {name: "Concast", path: "/concast/main"},
+        {name: "Concast", path: "/pages/concast/main"},
       ]
     },
     {
