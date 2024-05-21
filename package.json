@@ -2,7 +2,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "clean": "rm -rf docs/.observablehq/cache",
+    "clean": "rm -rf src/.observablehq/cache",
     "build": "rm -rf dist && observable build",
     "dev": "observable preview",
     "deploy": "observable deploy",
