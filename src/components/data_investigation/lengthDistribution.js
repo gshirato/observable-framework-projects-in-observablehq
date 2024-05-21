@@ -3,10 +3,8 @@
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../GeneralChart.js";
-import DetailChart from "./detail.js";
-import getEmoji from "./countryEmojis.js";
 
-export default class EpisodeSummaryChart extends GeneralChart {
+export default class LengthDistributionChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
         this.rollup = Array.from(

@@ -8,7 +8,7 @@ const data = FileAttachment("../../data/data_investigation/World_Cup.csv").csv({
 
 ```js
 import SmallMultiplesChart from "../../components/data_investigation/smallMultiples.js";
-import EpisodeSummaryChart from "../../components/data_investigation/summary.js";
+import LengthDistributionChart from "../../components/data_investigation/lengthDistribution.js";
 import addEmoji from "../../components/data_investigation/countryEmojis.js";
 ```
 
@@ -51,14 +51,14 @@ function drawSmallMultiples(data, nCols, soccer) {
 ```
 
 ```js
-const q = new EpisodeSummaryChart(data, '#summary', {
+const q = new LengthDistributionChart(data, '#length-distribution', {
     width: width,
     height: 120,
     margin: {top: 20, right: 20, bottom: 20, left: 40}
 }).draw();
 ```
 
-<div id="summary"></div>
+<div id="length-distribution"></div>
 
 
 ---
