@@ -3,7 +3,6 @@
 
 ```js
 const data = FileAttachment("../../data/concast/meta/concast/concast-episodes.csv").json();
-const image = FileAttachment("../../data/concast/image/image_loader.csv").json();
 ```
 
 ```js
