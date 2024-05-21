@@ -1,8 +1,9 @@
-# Profit and Loss Statement 2023
+# 損益計算書 - 2023
 
-This page presents a visual overview of the financial outcomes, specifically the profits and losses, for the year 2023.
+2023年Jリーグ(J1, J2, J2)の財務成績まとめ。
 
-↓ Touch the dots!
+
+↓ 点をタッチしてみよう
 
 ```js
 const j1 = FileAttachment("data/profit-loss/pl-2023-j1.csv").csv();
@@ -10,10 +11,6 @@ const j2 = FileAttachment("data/profit-loss/pl-2023-j2.csv").csv();
 const j3 = FileAttachment("data/profit-loss/pl-2023-j3.csv").csv();
 
 const data = FileAttachment("data/profit-loss/pl-2023.csv").csv();
-```
-
-```js
-data
 ```
 
 ```js
@@ -27,10 +24,9 @@ import getPLKeys from './components/profit-loss/utils.js';
 
 ```js
 import PLEmbeddingChart from './components/profit-loss/PLEmbedding.js';
-```
-
-```js
+import TsneChart from './components/profit-loss/TsneChart.js';
 import calculateTsne from './components/profit-loss/calculateTsne.js';
+
 ```
 
 ```js
@@ -47,23 +43,49 @@ const transposed = [
     ...transpose(j2),
     ...transpose(j3)
     ].filter(
-        (d) => (d["売上高"] != 0) & !["Ｊ１\n 総合計", "Ｊ１\n 平均"].includes(d.team)
+        (d) => (d["売上高-合計"] != 0) & !["J1合計", "J1平均"].includes(d.team) & !["J2合計", "J2平均"].includes(d.team) & !["J3合計", "J3平均"].includes(d.team)
     )
+```
 
+
+```js
+const normalized = normalize(transposed);
+```
+
+
+```js
+const solution = calculateTsne(
+    normalized.map((d) => Object.values(d).slice(1, -1)), {
+        dim: 2,
+        perplexity: 40,
+        nIter: 10000,
+        metric: "euclidean"
+    }
+);
 ```
 
 ```js
-const tsneChart = new PLEmbeddingChart(transposed, "#tsne .chart", {
+const embedding = new PLEmbeddingChart(transposed, "#embedding .chart", {
     height: 500,
     width: width / 2,
-    margin: { top: 10, bottom: 20, left: 10, right: 40 },
+    margin: { top: 10, bottom: 20, left: 20, right: 40 },
     teams: transposed.map((d) => d.team),
     plData: [...j1, ...j2, ...j3]
 }).draw()
 ```
 
+<!-- ```js
+const tsne = new TsneChart(solution, "#embedding .chart", {
+    height: 500,
+    width: width / 2,
+    margin: { top: 10, bottom: 20, left: 20, right: 40 },
+    teams: transposed.map((d) => d.team),
+    plData: [...j1, ...j2, ...j3]
+}).draw()
+``` -->
+
 ```html
-<div id="tsne" class="grid grid-cols-2">
+<div id="embedding" class="grid grid-cols-2">
     <div class="chart card"></div>
     <div class="detail"></div>
 </div>
@@ -104,7 +126,7 @@ const chartj1 = new PLChart(j1, "#j1 .chart", {
 const j2Team = view(Inputs.radio(Object.keys(j2[0]).filter(
     (d) => !["大分類", "小分類", ""].includes(d)
   ),
-  { label: "J2 Team (2023)", value: "秋田" }
+  { label: "J2 Team (2023)", value: "大宮" }
 ))
 ```
 
@@ -133,7 +155,7 @@ const chartj2 = new PLChart(j2, "#j2 .chart", {
 const j3Team = view(Inputs.radio(Object.keys(j3[0]).filter(
     (d) => !["大分類", "小分類", ""].includes(d)
   ),
-  { label: "J3 Team (2023)", value: "いわき" }
+  { label: "J3 Team (2023)", value: "鳥取" }
 ))
 ```
 
@@ -154,3 +176,8 @@ const chartj3 = new PLChart(j3, "#j3 .chart", {
     <div class="chart card"></div>
 </div>
 ```
+
+
+## データ
+
+https://www.jleague.jp/corporate/assets/pdf/club_info/j_kessan-2023.pdf
