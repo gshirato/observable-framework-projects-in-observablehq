@@ -126,9 +126,11 @@ view(Inputs.button('Scroll to top',
     }
 
     .table-container {
-        position: fixed;
-        top: 750px;
-        height: 200px;
+        position: relative;
+        top:400px;
+        height: 500px;
+        width: 500px;
+        overflow-x: auto;
         overflow-y: auto;
         padding: 10px;
     }
