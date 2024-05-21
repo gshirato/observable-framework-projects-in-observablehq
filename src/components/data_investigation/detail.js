@@ -12,7 +12,10 @@ export default class DetailChart extends GeneralChart {
         this.setAxes();
     }
     initPitch() {
-      this.pitch = this.soccer.pitch().height(this.height).clip([[-10, -5], [115, 70]])
+      this.pitch = this.soccer.pitch()
+        .height(this.height)
+        .clip([[-10, -5], [115, 70]])
+        .showDirOfPlay(true)
 
     }
     setAxes() {

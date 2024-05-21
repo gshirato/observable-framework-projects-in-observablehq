@@ -16,7 +16,10 @@ export default class SmallMultiplesChart extends GeneralChart {
         this.duration = this.data[this.data.length - 1].event_sec - this.data[0].event_sec;
     }
     initPitch() {
-      this.pitch = this.soccer.pitch().height(this.height).clip([[0, -5], [105, 70]])
+      this.pitch = this.soccer.pitch()
+        .height(this.height)
+        .clip([[0, -5], [105, 70]])
+        .showDirOfPlay(true)
 
     }
     setAxes() {
