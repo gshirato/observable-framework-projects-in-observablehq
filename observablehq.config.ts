@@ -25,12 +25,12 @@ export default {
         // {name: "Urawa Reds - All games", path: "/urawa-games"},
       ]
     },
-    {
-      name: "Concast",
-      pages: [
-        {name: "Concast", path: "/pages/concast/main"},
-      ]
-    },
+    // {
+    //   name: "Concast",
+    //   pages: [
+    //     {name: "Concast", path: "/pages/concast/main"},
+    //   ]
+    // },
     {
       name: "Seminar 23/24",
       open: false,
@@ -57,6 +57,6 @@ export default {
   footer: "Gota Shirato", // what to show in the footer (HTML)
   // toc: "true", // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer
-  // root: "docs", // path to the source root for preview
+  root: "src", // path to the source root for preview
   // output: "dist", // path to the output root for build
 };

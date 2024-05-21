@@ -1,0 +1,23 @@
+{
+    "Number": "219",
+    "Genre": "concast",
+    "GenreNumber": "",
+    "Title": "トレーニングの生理学 - 持久力編 (ケルン体育大修士学生に聞いてみた vol. 1)",
+    "Starr": {
+        "Gota": "Gota Shirato",
+        "Aki": "Aki"
+    },
+    "Topics": [
+        "➡️ 持久力の柱: VO2max, 乳酸, ランニングエコノミー",
+        "🏋️‍♂️ 外的刺激、内的刺激、適応",
+        "⚡ エネルギー: ATP",
+        "📈 乳酸カーブの移動",
+        "💪 High Volume Trainingと遅筋",
+        "✉️ おたより - 身体への負担"
+    ],
+    "References": {
+        "Science and Application of High-Intensity Interval Training: Solutions to the Programming Puzzle": "https://www.amazon.de/Science-Application-High-Intensity-Interval-Training/dp/1492552127"
+    },
+    "Memo": "",
+    "Edited": true
+}
