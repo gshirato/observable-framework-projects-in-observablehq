@@ -26,19 +26,20 @@ function drawSmallMultiples(data, nCols, soccer) {
             .append('div')
             .attr('class', `match-${matchId} grid grid-cols-${nCols}`);
 
-        for (const episode of episodes.slice(0, 9)) {
-            const episodes = data.filter(d => (d.episode === episode) && (d.match_id === matchId));
+        for (let i = 0; i < 9; i++) {
+            const episode = episodes[i];
+            const filtered = data.filter(d => (d.episode === episode) && (d.match_id === matchId));
             matchElem
                 .append('div')
                 .attr('class', `episode-${episode}`);
 
-
-            new SmallMultiplesChart(episodes,
+            new SmallMultiplesChart(filtered,
                 `#smallMultiples .charts .match-${matchId} .episode-${episode}`, {
                 width: 300,
                 height: 120,
                 margin: {top: 20, right: 0, bottom: 20, left: 0},
-                soccerModule: soccer
+                soccerModule: soccer,
+                legend: i === 0
             }).draw();
         }
     }
@@ -109,7 +110,7 @@ view(data)
     }
 
     .sidebar {
-      width: 55%;
+      width: 60%;
       overflow-y: auto;
       padding: 10px;
       background-color: #f8f8f8;
@@ -117,7 +118,7 @@ view(data)
     }
 
     .content {
-      width: 45%;
+      width: 40%;
       position: relative;
     }
 
@@ -125,7 +126,7 @@ view(data)
         flex: 1;
         position: fixed;
         top: 100;
-        right: 0;
+        right: 20;
         width: 50%;
         height: 100%;
         padding: 20px;
