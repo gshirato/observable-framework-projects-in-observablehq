@@ -8,8 +8,10 @@ export default class SmallMultiplesChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
         this.soccer = config['soccerModule'];
+        this.legend = config['legend'];
         this.initPitch();
         this.setAxes();
+        this.duration = d3.sum(this.data, d=>d.possession_duration);
     }
     initPitch() {
       this.pitch = this.soccer.pitch().height(this.height).clip([[0, -5], [105, 70]])
@@ -86,7 +88,7 @@ export default class SmallMultiplesChart extends GeneralChart {
         .attr("text-anchor", "middle")
         .attr("font-size", 5)
         .attr("font-family", 'Arial')
-        .html(d=>`[${d.match_id}] ${getEmoji(d.first_pass_team)}${d.first_pass_team} (episode=${d.episode}, ${d.possession_duration.toFixed(2)} sec)`);
+        .html(d=>`[${d.match_id}] ${getEmoji(d.first_pass_team)}${d.first_pass_team} (episode=${d.episode}, ${this.duration.toFixed(2)} sec)`);
 
       layer
         .append("text")
@@ -100,6 +102,7 @@ export default class SmallMultiplesChart extends GeneralChart {
     }
 
     drawLegend(sel) {
+      if (!this.legend) return;
       const layer = sel.select('#above').append('g')
 
       layer

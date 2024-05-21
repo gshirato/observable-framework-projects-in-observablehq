@@ -7,9 +7,9 @@ export default class DetailChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
         this.soccer = config['soccerModule'];
+        this.duration = d3.sum(this.data, d=>d.possession_duration);
         this.initPitch();
         this.setAxes();
-        console.log(this.data)
     }
     initPitch() {
       this.pitch = this.soccer.pitch().height(this.height).clip([[-10, -5], [115, 70]])
@@ -71,7 +71,8 @@ export default class DetailChart extends GeneralChart {
         .attr("text-anchor", "middle")
         .attr("font-size", 5)
         .attr("font-family", 'Arial')
-        .html(d=>`[${d.match_id}] ${getEmoji(d.first_pass_team)}${d.first_pass_team} (episode=${d.episode}, ${d.possession_duration.toFixed(2)} sec)`);
+        .html(d=>`[${d.match_id}] ${getEmoji(d.first_pass_team)}${d.first_pass_team} (episode=${d.episode}, ${this.duration.toFixed(2)} sec)`);
+
 
       layer
         .append("text")
