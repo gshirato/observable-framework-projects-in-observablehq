@@ -58,6 +58,7 @@ export default class SmallMultiplesChart extends GeneralChart {
         .attr('r', 1)
         .attr('fill', d=>this.sc(d.event_name))
 
+      console.log(this.data)
       layer
         .append('g')
         .selectAll('line')
@@ -68,6 +69,7 @@ export default class SmallMultiplesChart extends GeneralChart {
         .attr('x2', d => d.end_x)
         .attr('y2', d => d.end_y)
         .attr('stroke', d=>this.sc(d.event_name))
+        .attr('stroke-dasharray', d=>d.team_name === d.first_pass_team? '': '4 4')
         .attr('stroke-width', 0.5)
     }
 
@@ -75,7 +77,6 @@ export default class SmallMultiplesChart extends GeneralChart {
       this.svg.call(this.drawPitch.bind(this));
       this.svg.call(this.drawEpisode.bind(this));
       this.svg.call(this.drawTitle.bind(this));
-      this.svg.call(this.drawLegend.bind(this));
     }
 
     drawTitle(sel) {
@@ -101,61 +102,6 @@ export default class SmallMultiplesChart extends GeneralChart {
         .attr("font-size", 5)
         .attr("font-family", 'Arial')
         .html(d=>`${this.data[0].event_name} ⇒ ... ⇒ ${this.data[this.data.length - 1].event_name} (#=${this.data.length})`);
-    }
-
-    drawLegend(sel) {
-      if (!this.legend) return;
-      const layer = sel.select('#above').append('g')
-
-      layer
-        .append('g')
-        .selectAll('circle')
-        .data(this.sc.domain().slice(0, 4))
-        .join('circle')
-        .attr('cx', (d,i) => 5 + i*20)
-        .attr('cy', 68 + 5)
-        .attr('r', 2)
-        .attr('fill', d=>this.sc(d))
-        .attr('stroke-width', 0.3)
-        .attr('stroke', '#333')
-
-      layer
-        .append('g')
-        .selectAll('text')
-        .data(this.sc.domain().slice(0, 4))
-        .join('text')
-        .attr('x', (d,i) => 8 + i*20)
-        .attr('y', 68 + 5)
-        .attr('text-anchor', 'start')
-        .attr('alignment-baseline', 'middle')
-        .attr('font-size', 5)
-        .attr('font-family', 'sans-serif')
-        .text(d=>d.replace('Free Kick', 'FK or Throw In'))
-
-      layer
-        .append('g')
-        .selectAll('circle')
-        .data(this.sc.domain().slice(4, 7))
-        .join('circle')
-        .attr('cx', (d,i) => 5 + i*40)
-        .attr('cy', 68 + 10)
-        .attr('r', 2)
-        .attr('fill', d=>this.sc(d))
-        .attr('stroke-width', 0.3)
-        .attr('stroke', '#333')
-
-      layer
-        .append('g')
-        .selectAll('text')
-        .data(this.sc.domain().slice(4, 7))
-        .join('text')
-        .attr('x', (_, i) => 8 + i*40)
-        .attr('y', 68 + 10)
-        .attr('text-anchor', 'start')
-        .attr('alignment-baseline', 'middle')
-        .attr('font-size', 5)
-        .attr('font-family', 'sans-serif')
-        .text(d=>d.replace('Goalkeeper', 'GK'))
     }
 
     mouseover(thisClass, event, d) {
