@@ -8,15 +8,27 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
-      name: "Projects",
+      name: "Research projects",
+      pages: [
+        {name: "Small multiples", path: "/pages/data_investigation/small_multiples"},
+      ]
+    },
+    {
+      name: "Personal Projects",
       pages: [
         // {name: "Statsbomb", path: "/statsbomb"},
-        {name: "Event Stream", path: "/eventStream"},
+        {name: "Football events", path: "/eventStream"},
         {name: "Profit & Loss (J. League, 2022)", path: "/profitLoss2022"},
-        {name: "J1 Predictor", path: "/predictor-j1"},
-        {name: "GK Positioning", path: "/gk-positioning"},
+        {name: "J1 League Predictor", path: "/predictor-j1"},
+        {name: "GK Viz", path: "/gk-positioning"},
         // {name: "J1 Data", path: "/j1-data"},
         // {name: "Urawa Reds - All games", path: "/urawa-games"},
+      ]
+    },
+    {
+      name: "Concast",
+      pages: [
+        {name: "Concast", path: "/pages/concast/main"},
       ]
     },
     {
@@ -27,10 +39,14 @@ export default {
       ]
     },
     {
-      name: "Visual Analytics",
+      name: "Visual Analytics - Motivating Example (WIP)",
       open: false,
       pages: [
-        {name: "Example", path: "pages/visual-analytics/example"}
+        {name: "Introduction", path: "pages/visual-analytics/introduction"},
+        {name: "Data", path: "pages/visual-analytics/football/data"},
+        {name: "Passes", path: "pages/visual-analytics/football/passes"},
+        {name: "Leading to shots", path: "pages/visual-analytics/football/leading-to-shots"},
+        {name: "Visual Variables", path: "pages/visual-analytics/theory/visual-variables"},
       ]
     }
   ],

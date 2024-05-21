@@ -22,6 +22,13 @@ class GeneralChart {
       this.xName = this.config["xName"];
       this.yName = this.config["yName"];
       this.rootSelector = this.selector.split(" ")[0];
+      this.innerWidth = this.width - this.margin.left - this.margin.right;
+      this.innerHeight = this.height - this.margin.top - this.margin.bottom;
+      this.domainLeftToRight = [this.margin.left, this.width - this.margin.right];
+      this.domainRightToLeft = [this.width - this.margin.right, this.margin.left];
+      this.domainBottomToTop = [this.height - this.margin.bottom, this.margin.top];
+      this.domainTopToBottom = [this.margin.top, this.height - this.margin.bottom];
+
 
       this.tooltip = new Tooltip();
       d3.select(this.selector).select("svg").remove();
@@ -45,8 +52,8 @@ class GeneralChart {
         .attr("class", "bg")
         .attr("x", this.margin.left)
         .attr("y", this.margin.top)
-        .attr("width", this.width - this.margin.left - this.margin.right)
-        .attr("height", this.height - this.margin.top - this.margin.bottom)
+        .attr("width", this.innerWidth)
+        .attr("height", this.innerHeight)
         .attr("fill", color);
     };
 
