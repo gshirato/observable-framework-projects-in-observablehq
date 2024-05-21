@@ -8,6 +8,12 @@ This page presents a visual overview of the financial outcomes, specifically the
 const j1 = FileAttachment("data/profit-loss/pl-2023-j1.csv").csv();
 const j2 = FileAttachment("data/profit-loss/pl-2023-j2.csv").csv();
 const j3 = FileAttachment("data/profit-loss/pl-2023-j3.csv").csv();
+
+const data = FileAttachment("data/profit-loss/pl-2023.csv").csv();
+```
+
+```js
+data
 ```
 
 ```js
@@ -20,7 +26,7 @@ import getPLKeys from './components/profit-loss/utils.js';
 
 
 ```js
-import TsneChart from './components/profit-loss/TsneChart.js';
+import PLEmbeddingChart from './components/profit-loss/PLEmbedding.js';
 ```
 
 ```js
@@ -47,27 +53,11 @@ const transposed = [
 ```
 
 ```js
-const normalized = normalize(transposed);
-```
-
-
-```js
-const solution = calculateTsne(
-    normalized.map((d) => Object.values(d).slice(1, -1)), {
-        dim: 2,
-        perplexity: 50,
-        nIter: 10000,
-        metric: "euclidean"
-    }
-);
-```
-
-```js
-const tsneChart = new TsneChart(solution, "#tsne .chart", {
+const tsneChart = new PLEmbeddingChart(transposed, "#tsne .chart", {
     height: 500,
     width: width / 2,
     margin: { top: 10, bottom: 20, left: 10, right: 40 },
-    teams: normalized.map((d) => d.team),
+    teams: transposed.map((d) => d.team),
     plData: [...j1, ...j2, ...j3]
 }).draw()
 ```
