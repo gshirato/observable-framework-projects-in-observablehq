@@ -3,6 +3,8 @@ import _ from "npm:lodash";
 import GeneralChart from "../GeneralChart.js";
 import DetailChart from "./detail.js";
 import addEmoji from "./countryEmojis.js";
+import sec2mmss from './sec2mmss.js';
+
 
 export default class SmallMultiplesChart extends GeneralChart {
     constructor(data, selector, config) {
@@ -176,7 +178,7 @@ export default class SmallMultiplesChart extends GeneralChart {
           .append('tr');
 
       header.selectAll('th')
-          .data(['#', 'Event', 'Player', 'Team', 'Start X', 'Start Y'])
+          .data(['#', 'Period', 'Time', 'Event', 'Player', 'Team', 'Start X', 'Start Y'])
           .join('th')
           .text(d => d);
 
@@ -188,7 +190,7 @@ export default class SmallMultiplesChart extends GeneralChart {
           .data(thisClass.data)
           .join('tr')
           .selectAll('td')
-          .data((d, i) => [i, d.event_name, d.player_name, d.team_name, d.start_x, d.start_y])
+          .data((d, i) => [i, d.match_period, sec2mmss(d.event_sec), d.event_name, d.player_name, d.team_name, d.start_x, d.start_y])
           .join('td')
           .text(d => d);
 

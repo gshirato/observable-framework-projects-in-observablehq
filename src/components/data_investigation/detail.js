@@ -2,7 +2,7 @@ import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../GeneralChart.js";
 import addEmoji from "./countryEmojis.js";
-
+import sec2mmss from './sec2mmss.js';
 export default class DetailChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
@@ -59,10 +59,6 @@ export default class DetailChart extends GeneralChart {
       this.svg.call(this.drawLegend.bind(this));
     }
 
-    sec2mmss(sec) {
-      return new Date(sec * 1000).toISOString().substr(14, 5)
-    }
-
     drawTitle(sel) {
       const layer = sel.select('#above').append('g')
 
@@ -85,7 +81,7 @@ export default class DetailChart extends GeneralChart {
         .attr("text-anchor", "middle")
         .attr("font-size", 5)
         .attr("font-family", 'Arial')
-        .html(d=>`(#=${this.data.length}) ${this.data[0].event_name} ⇒ ... ⇒ ${this.data[this.data.length - 1].event_name} [${this.sec2mmss(this.data[0].event_sec)} → ${this.sec2mmss(this.data[this.data.length - 1].event_sec)}]`);
+        .html(d=>`(#=${this.data.length}) ${this.data[0].event_name} ⇒ ... ⇒ ${this.data[this.data.length - 1].event_name} [${sec2mmss(this.data[0].event_sec)} → ${sec2mmss(this.data[this.data.length - 1].event_sec)}]`);
     }
 
     drawLegend(sel) {
