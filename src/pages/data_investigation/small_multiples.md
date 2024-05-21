@@ -53,9 +53,10 @@ let _ = require("d3-soccer").then(soccer=>{
 
 ---
 
+<div id="overview"></div>
 <div id="smallMultiples" class="container grid">
     <div class="sidebar">
-      <div class="charts"></div>
+        <div class="charts"></div>
     </div>
     <div class="content">
         <div class="detail"></div>
@@ -75,6 +76,15 @@ let _ = require("d3-soccer").then(soccer=>{
 
 ```js
 view(data)
+```
+
+```js
+view(Inputs.button('Scroll to top',
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+))
 ```
 
 
