@@ -1,18 +1,21 @@
-
-
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../GeneralChart.js";
+import drawSmallMultiples from "./utils.js";
 
 export default class LengthDistributionChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
+        this.smallMultiplesSelector = config['smallMultiplesSelector'];
+        this.soccer = config['soccerModule'];
         this.rollup = Array.from(
           d3.rollup(this.data, x => ({
             count: x.length,
             avg: d3.mean(x, d => d.possession_duration),
             min: d3.min(x, d => d.possession_duration),
-            max: d3.max(x, d => d.possession_duration)
+            max: d3.max(x, d => d.possession_duration),
+            match_id: x[0].match_id,
+            episode: x[0].episode
           }),
           d => d.match_id,
           d => d.episode
@@ -26,6 +29,33 @@ export default class LengthDistributionChart extends GeneralChart {
         this.bins = this.histogram(this.rollup);
         this.setAxes();
     }
+
+    addBrush() {
+      this.brush = d3.brushX()
+        .extent([
+          [this.margin.left, this.margin.top],
+          [this.width - this.margin.right, this.height - this.margin.bottom]
+        ])
+        .on('end', this.brushed.bind(this));
+
+      this.svg.append('g').call(this.brush)
+    }
+
+    brushed(event) {
+      if (!event.selection) {
+        this.svg.call(this.updateHistogram.bind(this), 0, 60);
+        return;
+      }
+      this.svg.call(this.updateHistogram.bind(this), ...event.selection.map(this.sx.invert));
+
+
+      const [xmin, xmax] = event.selection.map(this.sx.invert);
+      const filteredRollups = this.rollup.filter(d => d[1].count >= xmin && d[1].count <= xmax);
+      const filtered = this.data.filter(d => filteredRollups.some(f => f[1].match_id === d.match_id && f[1].episode === d.episode));
+      console.log(filtered)
+      drawSmallMultiples(filtered, this.smallMultiplesSelector, {nCols: 3, soccerModule: this.soccer});
+    }
+
     setAxes() {
       this.sx = d3.scaleLinear()
         .domain([0, d3.max(this.rollup, d => d[1].count)])
@@ -64,7 +94,12 @@ export default class LengthDistributionChart extends GeneralChart {
         .attr('text-anchor', 'start')
         .attr('font-size', 100)
         .text('Number of matches')
+    }
 
+    updateHistogram(sel, xmin, xmax) {
+      d3
+        .selectAll('.bar')
+        .attr('fill', d => (d.x0 >= xmin && d.x1 <= xmax) ? 'steelblue' : 'grey')
     }
 
     drawHistogram(sel) {
@@ -73,6 +108,7 @@ export default class LengthDistributionChart extends GeneralChart {
         .selectAll('rect')
         .data(this.bins)
         .join('rect')
+        .attr('class', 'bar')
         .attr('x', d => this.sx(d.x0))
         .attr('y', d => this.sy(d.length))
         .attr('width', d => this.sx(d.x1) - this.sx(d.x0))
@@ -117,6 +153,8 @@ export default class LengthDistributionChart extends GeneralChart {
       this.svg.call(this.drawHistogram.bind(this));
       this.svg.call(this.drawTitle.bind(this));
       this.svg.call(this.drawStats.bind(this));
+      this.addBrush();
+
     }
 
     drawTitle(sel) {
