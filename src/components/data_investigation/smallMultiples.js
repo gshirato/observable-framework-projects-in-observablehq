@@ -125,6 +125,42 @@ export default class SmallMultiplesChart extends GeneralChart {
       this.svg.call(this.drawPitch.bind(this));
       this.svg.call(this.drawEpisode.bind(this));
       this.svg.call(this.drawTitle.bind(this));
+      this.svg.call(this.drawMiniSequence.bind(this));
+    }
+
+    drawMiniSequence(sel) {
+      const layer = sel.select('#above').append('g')
+
+      const sx = d3.scaleLinear()
+        .domain([0, this.duration])
+        .range([5, 100])
+
+      layer
+        .append('g')
+        .selectAll('circle')
+        .data(this.data)
+        .join('circle')
+        .attr('cx', d => sx(d.event_sec - this.data[0].event_sec))
+        .attr('cy', 72)
+        .attr('r', 1.5)
+        .attr('fill', d=>this.sc(d.event_name))
+        .attr('stroke', 'none')
+        .attr('opacity', d=>d.team_name === d.first_pass_team? 1: 0.2)
+
+      layer
+        .append('g')
+        .selectAll('circle')
+        .data(this.data)
+        .join('circle')
+        .attr('cx', d => sx(d.event_sec - this.data[0].event_sec))
+        .attr('cy', 72)
+        .attr('r', 1.5)
+        .attr('fill', 'none')
+        .attr('stroke', d=>this.sc(d.event_name))
+        .attr('stroke-width', 0.4)
+        .attr('opacity', 0.8)
+
+
     }
 
     drawTitle(sel) {
