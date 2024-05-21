@@ -5,57 +5,47 @@ const data = FileAttachment("../../data/data_investigation/World_Cup.csv").csv({
 ```
 
 
-
 ```js
 import SmallMultiplesChart from "../../components/data_investigation/smallMultiples.js";
 import LengthDistributionChart from "../../components/data_investigation/lengthDistribution.js";
 import addEmoji from "../../components/data_investigation/countryEmojis.js";
+import drawSmallMultiples from "../../components/data_investigation/utils.js";
+import getUniqueArray from '../../components/utils.js';
 ```
+
+```js
+const teams = getUniqueArray(data.map(d=>d.team_name));
+const selectedTeams = view(Inputs.checkbox(teams, {value: ['Croatia', 'France', 'Belgium', 'Japan', 'Germany'], format: x=>addEmoji(x)}))
+```
+
+```js
+const filteredMatchId = getUniqueArray(data.filter(d=>selectedTeams.includes(d.team_name)).map(d=>d.match_id))
+console.log(filteredMatchId)
+const filtered = data.filter(d=>filteredMatchId.includes(d.match_id))
+```
+
+
 
 ```js
 import {require} from "npm:d3-require";
 ```
 
+
 ```js
-function drawSmallMultiples(data, nCols, soccer) {
-    const matchIds = Array.from(d3.union(data.map(d => d.match_id))).sort((a, b) => d3.ascending(a, b));
-    const episodes = Array.from(d3.union(data.map(d => d.episode)));
-
-    const charts = d3.select('#smallMultiples .charts')
-    for (const matchId of matchIds.slice(0, 3)) {
-        const teamNames = Array.from(d3.union(data.filter(d=>d.match_id === matchId).map(d => addEmoji(d.team_name))));
-        charts.append('h3').text(`${teamNames.join(' vs ')}`);
-
-        const matchElem = charts
-            .append('div')
-            .attr('class', `match-${matchId} grid grid-cols-${nCols}`);
-
-        for (let i = 0; i < 18; i++) {
-            const episode = episodes[i];
-            const filtered = data.filter(d => (d.episode === episode) && (d.match_id === matchId));
-            matchElem
-                .append('div')
-                .attr('class', `episode-${episode}`);
-
-            new SmallMultiplesChart(filtered,
-                `#smallMultiples .charts .match-${matchId} .episode-${episode}`, {
-                width: 300,
-                height: 120,
-                margin: {top: 20, right: 0, bottom: 20, left: 0},
-                soccerModule: soccer,
-                legend: i === 0
-            }).draw();
-        }
-    }
-}
+let _ = require("d3-soccer").then(soccer=>{
+    new LengthDistributionChart(filtered, '#length-distribution', {
+        width: width,
+        height: 120,
+        margin: {top: 20, right: 20, bottom: 20, left: 40},
+        smallMultiplesSelector: '#smallMultiples .charts',
+        soccerModule: soccer
+    }).draw();
+})
 ```
 
 ```js
-const q = new LengthDistributionChart(data, '#length-distribution', {
-    width: width,
-    height: 120,
-    margin: {top: 20, right: 20, bottom: 20, left: 40}
-}).draw();
+
+
 ```
 
 <div id="length-distribution"></div>
@@ -79,7 +69,7 @@ const q = new LengthDistributionChart(data, '#length-distribution', {
 ```js
 const nCols = 3
 let _ = require("d3-soccer").then(soccer=>{
-    drawSmallMultiples(data, nCols, soccer)
+    drawSmallMultiples(filtered, '#smallMultiples .charts', {nCols: nCols, soccerModule: soccer})
 })
 ```
 
