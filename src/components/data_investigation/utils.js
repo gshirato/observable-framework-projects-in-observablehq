@@ -60,9 +60,18 @@ export default function drawSmallMultiples(data, selector, config) {
             .style('text-align', 'center')
             .style('cursor', 'pointer')
             .text('Load more')
+            .style('border', '1px solid black')
+            .style('padding', '3px')
+            .style('border-radius', '3px')
             .on('click', function() {
                 currentPages[matchId]++;
                 drawEpisodes(data, selector, matchId, nCols, soccer);
+            })
+            .on('mouseover', function() {
+                d3.select(this).style('background-color', 'lightgrey');
+            })
+            .on('mouseout', function() {
+                d3.select(this).style('background-color', 'white');
             });
     }
 }
