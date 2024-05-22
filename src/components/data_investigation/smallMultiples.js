@@ -10,7 +10,7 @@ export default class SmallMultiplesChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
         this.soccer = config['soccerModule'];
-        this.legend = config['legend'];
+
         this.initPitch();
         this.setAxes();
         this.duration = this.data[this.data.length - 1].event_sec - this.data[0].event_sec;
