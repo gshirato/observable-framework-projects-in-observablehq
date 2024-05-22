@@ -24,8 +24,6 @@ console.log(filteredMatchId)
 const filtered = data.filter(d=>filteredMatchId.includes(d.match_id))
 ```
 
-
-
 ```js
 import {require} from "npm:d3-require";
 ```
@@ -70,21 +68,18 @@ let _ = require("d3-soccer").then(soccer=>{
 ```js
 const nCols = 3
 let _ = require("d3-soccer").then(soccer=>{
-    drawSmallMultiples(filtered, '#smallMultiples .charts', {nCols: nCols, soccerModule: soccer})
+    drawSmallMultiples(
+        filtered,
+        '#smallMultiples .charts',
+        {
+            nCols: nCols,
+            soccerModule: soccer,
+        })
 })
 ```
 
 ```js
 view(data)
-```
-
-```js
-view(Inputs.button('Scroll to top',
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    })
-))
 ```
 
 
