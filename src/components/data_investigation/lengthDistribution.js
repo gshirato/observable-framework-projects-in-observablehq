@@ -52,7 +52,6 @@ export default class LengthDistributionChart extends GeneralChart {
       const [xmin, xmax] = event.selection.map(this.sx.invert);
       const filteredRollups = this.rollup.filter(d => d[1].count >= xmin && d[1].count <= xmax);
       const filtered = this.data.filter(d => filteredRollups.some(f => f[1].match_id === d.match_id && f[1].episode === d.episode));
-      console.log(filtered)
       drawSmallMultiples(filtered, this.smallMultiplesSelector, {nCols: 3, soccerModule: this.soccer});
     }
 
@@ -62,13 +61,13 @@ export default class LengthDistributionChart extends GeneralChart {
         .range(this.domainLeftToRight)
 
       this.sy = d3.scaleLinear()
-        .domain([0, 1500])
+        .domain([0, d3.max(this.bins, d=>d.length) + 50])
         .range(this.domainBottomToTop)
     }
 
     drawAxes(sel) {
       const xAxis = d3.axisBottom(this.sx);
-      const yAxis = d3.axisLeft(this.sy);
+      const yAxis = d3.axisLeft(this.sy).ticks(5);
 
       this.svg
         .append('g')

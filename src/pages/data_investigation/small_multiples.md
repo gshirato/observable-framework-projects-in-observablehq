@@ -19,12 +19,19 @@ const selectedTeams = view(Inputs.checkbox(teams, {value: ['Croatia', 'France', 
 ```
 
 ```js
-const filteredMatchId = getUniqueArray(data.filter(d=>selectedTeams.includes(d.team_name)).map(d=>d.match_id))
-console.log(filteredMatchId)
-const filtered = data.filter(d=>filteredMatchId.includes(d.match_id))
+const events = view(Inputs.checkbox(getUniqueArray(data.map(d=>d.event_name)), {value: ['Shot']}))
 ```
 
+```js
+```
 
+```js
+const eventKeys = getUniqueArray(data.filter(d=>events.includes(d.event_name)).map(d=>`${d.match_id}-${d.episode}`)).map(d=>d.split('-').map(Number))
+
+const filteredMatchId = getUniqueArray(data.filter(d=>selectedTeams.includes(d.team_name)).map(d=>d.match_id))
+
+const filtered = data.filter(d=>filteredMatchId.includes(d.match_id)).filter(d=>eventKeys.some(k=>k[0] === d.match_id && k[1] === d.episode))
+```
 
 ```js
 import {require} from "npm:d3-require";
@@ -43,10 +50,6 @@ let _ = require("d3-soccer").then(soccer=>{
 })
 ```
 
-```js
-
-
-```
 
 <div id="length-distribution"></div>
 
@@ -70,21 +73,19 @@ let _ = require("d3-soccer").then(soccer=>{
 ```js
 const nCols = 3
 let _ = require("d3-soccer").then(soccer=>{
-    drawSmallMultiples(filtered, '#smallMultiples .charts', {nCols: nCols, soccerModule: soccer})
+    drawSmallMultiples(
+        filtered,
+        '#smallMultiples .charts',
+        {
+            nCols: nCols,
+            soccerModule: soccer,
+        }
+    )
 })
 ```
 
 ```js
 view(data)
-```
-
-```js
-view(Inputs.button('Scroll to top',
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    })
-))
 ```
 
 
