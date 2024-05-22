@@ -22,7 +22,7 @@ class PLChart extends GeneralChart {
 
     getExtent() {
       const cumsum = this.data.map(d=>parseFormattedNumber(d[this.team]));
-      if (d3.max(cumsum.map(d=>Math.abs(d))) > 5000) return [-10000, 10000];
+      if (d3.max(cumsum.map(d=>Math.abs(d))) > 5000) return [-11000, 11000];
       if (d3.max(cumsum.map(d=>Math.abs(d))) > 3000) return [-5000, 5000];
       if (d3.max(cumsum.map(d=>Math.abs(d))) > 1500) return [-3000, 3000];
       if (d3.max(cumsum.map(d=>Math.abs(d))) > 1000) return [-1500, 1500];
@@ -569,21 +569,6 @@ class PLChart extends GeneralChart {
     }
 
     mouseover(thisClass, event, d) {
-    //   drawRankingChart(
-    //     [...pl_bs2022PlJ1, ...pl_bs2022PlJ2, ...pl_bs2022PlJ3],
-    //     `${thisClass.rootSelector} .ranking`,
-    //     {
-    //       height: 500,
-    //       width: 700,
-    //       margin: { top: 30, bottom: 20, left: 50, right: 10 },
-    //       key: d.name,
-    //       j1Teams: j1Teams,
-    //       j2Teams: j2Teams,
-    //       j3Teams: j3Teams,
-    //       selectedTeams: [thisClass.team]
-    //     }
-    //   );
-
       thisClass.tooltip.show(event, d);
     }
 
@@ -601,7 +586,6 @@ class PLChart extends GeneralChart {
 
     draw() {
       this.drawAxes();
-      console.log(this.config);
       this.splitByCategory();
       this.drawSales();
       this.drawCosts();
