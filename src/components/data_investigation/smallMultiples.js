@@ -229,7 +229,7 @@ export default class SmallMultiplesChart extends GeneralChart {
           .data(thisClass.data)
           .join('tr')
           .selectAll('td')
-          .data((d, i) => [i, d.match_period, sec2mmss(d.event_sec), d.event_name, d.sub_event_name, d.player_name, d.team_name, d.start_x, d.start_y, d.end_x, d.end_y])
+          .data((d, i) => [i, d.match_period, sec2mmss(d.event_sec), d.event_name, d.sub_event_name, d.player_name, addEmoji(d.team_name), d.start_x, d.start_y, d.end_x, d.end_y])
           .join('td')
           .text(d => d);
 
