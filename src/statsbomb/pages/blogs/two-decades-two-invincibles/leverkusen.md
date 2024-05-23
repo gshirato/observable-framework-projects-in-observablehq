@@ -21,7 +21,7 @@ const competitions = d3.json(
 ```
 
 ```js
-import getMatches from "../../../../components/data.js";
+import getMatches from "../../../components/data.js";
 ```
 
 ```js
