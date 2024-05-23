@@ -1,16 +1,16 @@
 # Small multiples of episodes
 
 ```js
-const data = FileAttachment("../../data/data_investigation/World_Cup.csv").csv({typed: true});
+const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
 ```
 
 
 ```js
-import SmallMultiplesChart from "../../components/data_investigation/smallMultiples.js";
-import LengthDistributionChart from "../../components/data_investigation/lengthDistribution.js";
-import addEmoji from "../../components/data_investigation/countryEmojis.js";
-import drawSmallMultiples from "../../components/data_investigation/utils.js";
-import getUniqueArray from '../../components/utils.js';
+import SmallMultiplesChart from "../components/smallMultiples.js";
+import LengthDistributionChart from "../components/lengthDistribution.js";
+import addEmoji from "../components/countryEmojis.js";
+import drawSmallMultiples from "../components/utils.js";
+import getUniqueArray from '../../chart/components/utils.js';
 ```
 
 ```js
