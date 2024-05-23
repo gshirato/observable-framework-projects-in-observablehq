@@ -1,7 +1,7 @@
 # Urawa Red Diamonds - All Games
 ---
 ```js
-const data = FileAttachment("./data/urawa-games/urawa-all-games.csv").csv({typed: true});
+const data = FileAttachment("../data/urawa-all-games.csv").csv({typed: true});
 ```
 
 ```js
@@ -17,7 +17,7 @@ const year = view(Inputs.range([1992, 2024],  {label: "Year", step: 1, value: 20
 ```
 
 ```js
-import SeasonDescriber from './components/urawa-games/SeasonDescriber.js';
+import SeasonDescriber from '../components/SeasonDescriber.js';
 ```
 
 ```js
@@ -37,7 +37,7 @@ const j1Summary = describer.j1Summary('#season-results .description .j1')
 
 
 ```js
-import J1SeasonResults from './components/urawa-games/J1SeasonResults.js';
+import J1SeasonResults from '../components/J1SeasonResults.js';
 ```
 
 ```js

@@ -1,6 +1,5 @@
 import * as d3 from "npm:d3";
-// import _ from "npm:lodash";
-import GeneralChart from "../GeneralChart.js";
+import GeneralChart from "../../chart/components/GeneralChart.js";
 
 export default class J1SeasonResults extends GeneralChart {
     constructor(data, selector, config) {
