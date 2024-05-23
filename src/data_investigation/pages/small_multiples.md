@@ -11,7 +11,7 @@ const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
 ```js
 import LengthDistributionChart from "../components/lengthDistribution.js";
 import addEmoji from "../components/countryEmojis.js";
-import drawSmallMultiples from "../components/utils.js";
+import drawSmallMultiples from "../components/drawSmallMultiples.js";
 import getUniqueArray from '../../chart/components/utils.js';
 ```
 
@@ -81,6 +81,7 @@ let _ = require("d3-soccer").then(soccer=>{
         {
             nCols: nCols,
             soccerModule: soccer,
+            episodeName: 'episode',
         }
     )
 })
