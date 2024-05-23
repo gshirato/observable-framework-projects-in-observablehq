@@ -12,6 +12,7 @@ export default {
       pages: [
         {name: "Small multiples", path: "/data_investigation/pages/small_multiples"},
         {name: "Suspicious locations", path: "/data_investigation/pages/suspicious_locations"},
+        {name: "Leverkusen", path: "/data_investigation/pages/leverkusen"},
       ]
     },
     {
