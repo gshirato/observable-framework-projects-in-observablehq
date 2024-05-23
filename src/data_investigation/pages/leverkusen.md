@@ -1,60 +1,69 @@
----
-toc: false
----
 
-# Small multiples of episodes
+# Leverkusen 23/24
 
 ```js
-const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
+import getMatches from '../../statsbomb/components/data.js';
 ```
 
 ```js
-import LengthDistributionChart from "../components/lengthDistribution.js";
-import addEmoji from "../components/countryEmojis.js";
-import drawSmallMultiples from "../components/utils.js";
-import getUniqueArray from '../../chart/components/utils.js';
+const matches = getMatches(9, 281).then(d=>d.sort((a, b) => d3.ascending(a.match_date, b.match_date)))
+```
+
+
+```js
+function getEvents(match_id) {
+    return d3.json(
+      `https://raw.githubusercontent.com/statsbomb/open-data/master/data/events/${match_id}.json`
+    ).then(d => {
+        //add match_id to each event
+        d.forEach(e=>e.match_id = match_id)
+        return d
+    })
+}
+
+function getEventsList(matches) {
+    return Promise.all(matches.map(d=>getEvents(d.match_id)))
+}
 ```
 
 ```js
-const teams = getUniqueArray(data.map(d=>d.team_name));
-const selectedTeams = view(Inputs.checkbox(teams, {value: ['France'], format: x=>addEmoji(x)}))
+const validDataIndices = Array.from(d3.union(data.filter(d=>d.location !== undefined).map(d=>[d.match_id, d.possession])))
 ```
 
 ```js
-const eventNames = getUniqueArray(data.map(d=>d.event_name))
-const eventObjects = eventNames.map(d => ({ "Event name": d }));
-const events = view(Inputs.table(eventObjects, {value: eventObjects, required: false}))
+const data = getEventsList(matches).then(d=>d.flat().filter(d=>(d.minute !== 0) | (d.second !== 0) ))
 ```
 
 ```js
-const eventKeys = getUniqueArray(data.filter(d=>events.map(d=>d['Event name']).includes(d.event_name)).map(d=>`${d.match_id}-${d.episode}`)).map(d=>d.split('-').map(Number))
-
-const filteredMatchId = getUniqueArray(data.filter(d=>selectedTeams.includes(d.team_name)).map(d=>d.match_id))
-
-const filtered = data.filter(d=>filteredMatchId.includes(d.match_id)).filter(d=>eventKeys.some(k=>k[0] === d.match_id && k[1] === d.episode))
+data
 ```
+
 
 ```js
 import {require} from "npm:d3-require";
+import LengthDistributionChart from "../components/lengthDistribution.js";
+import drawSmallMultiplesStatsbomb from "../components/drawSmallMultiplesStatsbomb.js";
 ```
 
 
 ```js
 let _ = require("d3-soccer").then(soccer=>{
-    new LengthDistributionChart(filtered, '#length-distribution', {
+    new LengthDistributionChart(data, '#length-distribution', {
         width: width,
         height: 120,
         margin: {top: 20, right: 20, bottom: 20, left: 40},
         smallMultiplesSelector: '#smallMultiples .charts',
-        episodeName: 'episode',
-        soccerModule: soccer
+        soccerModule: soccer,
+        episodeName: 'possession'
     }).draw();
 })
 ```
 
-
 <div id="length-distribution"></div>
 
+
+```js
+```
 
 ---
 
@@ -71,29 +80,21 @@ let _ = require("d3-soccer").then(soccer=>{
     </div>
 </div>
 
-
 ```js
 const nCols = 3
 let _ = require("d3-soccer").then(soccer=>{
-    drawSmallMultiples(
-        filtered,
+    drawSmallMultiplesStatsbomb(
+        data,
         '#smallMultiples .charts',
         {
             nCols: nCols,
             soccerModule: soccer,
+            episodeName: 'possession'
         }
     )
 })
 ```
 
-```js
-view(data)
-```
-
-## References
-
-- A public data set of spatio-temporal match events in soccer competitions (https://www.nature.com/articles/s41597-019-0247-7)
-- Metadata record for: A public data set of spatio-temporal match events in soccer competitions (https://springernature.figshare.com/articles/dataset/Metadata_record_for_A_public_data_set_of_spatio-temporal_match_events_in_soccer_competitions/9711164)
 
 
 <style>

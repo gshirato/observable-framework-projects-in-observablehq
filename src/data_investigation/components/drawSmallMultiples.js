@@ -2,15 +2,20 @@ import * as d3 from 'npm:d3';
 import SmallMultiplesChart from './smallMultiples.js';
 import addEmoji from './countryEmojis.js';
 
+let currentPages = {};
+const episodesPerPage = 5;
+
+/*
+* Dirty fix for the case when the team name is not available in the data
+*/
 function getPlayingTeams(data, matchId) {
     return Array.from(d3.union(data.filter(d=>d.match_id === matchId).map(d => addEmoji(d.team_name)))).join(' vs ')
 }
-let currentPages = {};
-const episodesPerPage = 5;
 
 export default function drawSmallMultiples(data, selector, config) {
     const nCols = config['nCols'];
     const soccer = config['soccerModule'];
+    const episodeName = config['episodeName'];
     const matchIds = Array.from(d3.union(data.map(d => d.match_id))).sort((a, b) => d3.ascending(a, b));
 
     const charts = d3.select(selector);
@@ -39,7 +44,7 @@ export default function drawSmallMultiples(data, selector, config) {
         });
 
     for (const matchId of matchIds) {
-        const episodes = Array.from(d3.union(data.filter(d => d.match_id === matchId).map(d => d.episode)));
+        const episodes = Array.from(d3.union(data.filter(d => d.match_id === matchId).map(d => d[episodeName])));
         if (episodes.length === 0) { continue; }
 
         charts.append('h3')
@@ -52,7 +57,7 @@ export default function drawSmallMultiples(data, selector, config) {
 
         currentPages[matchId] = 0;
 
-        drawEpisodes(data, selector, matchId, nCols, soccer);
+        drawEpisodes(data, selector, matchId, nCols, soccer, episodeName);
 
         matchElem
             .append('div')
@@ -65,7 +70,7 @@ export default function drawSmallMultiples(data, selector, config) {
             .style('border-radius', '3px')
             .on('click', function() {
                 currentPages[matchId]++;
-                drawEpisodes(data, selector, matchId, nCols, soccer);
+                drawEpisodes(data, selector, matchId, nCols, soccer, episodeName);
             })
             .on('mouseover', function() {
                 d3.select(this).style('background-color', 'lightgrey');
@@ -76,15 +81,15 @@ export default function drawSmallMultiples(data, selector, config) {
     }
 }
 
-function drawEpisodes(data, selector, matchId, nCols, soccer) {
+function drawEpisodes(data, selector, matchId, nCols, soccer, episodeName) {
     const matchElem = d3.select(selector).select(`.match-${matchId}`).attr('class', `match-${matchId} grid grid-cols-${nCols}`);
-    const episodes = Array.from(d3.union(data.filter(d => d.match_id === matchId).map(d => d.episode)));
+    const episodes = Array.from(d3.union(data.filter(d => d.match_id === matchId).map(d => d[episodeName])));
     const start = currentPages[matchId] * episodesPerPage;
     const end = Math.min(start + episodesPerPage, episodes.length);
 
     for (let i = start; i < end; i++) {
         const episode = episodes[i];
-        const filtered = data.filter(d => (d.episode === episode) && (d.match_id === matchId));
+        const filtered = data.filter(d => (d[episodeName] === episode) && (d.match_id === matchId));
 
         if (filtered.length === 0) { continue; }
         matchElem

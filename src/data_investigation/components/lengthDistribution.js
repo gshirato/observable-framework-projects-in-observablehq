@@ -1,13 +1,14 @@
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../../chart/components/GeneralChart.js";
-import drawSmallMultiples from "./utils.js";
+import drawSmallMultiples from "./drawSmallMultiples.js";
 
 export default class LengthDistributionChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
         this.smallMultiplesSelector = config['smallMultiplesSelector'];
         this.soccer = config['soccerModule'];
+        this.episodeName = config['episodeName'];
         this.rollup = Array.from(
           d3.rollup(this.data, x => ({
             count: x.length,
@@ -15,10 +16,10 @@ export default class LengthDistributionChart extends GeneralChart {
             min: d3.min(x, d => d.possession_duration),
             max: d3.max(x, d => d.possession_duration),
             match_id: x[0].match_id,
-            episode: x[0].episode
+            episode: x[0][this.episodeName]
           }),
           d => d.match_id,
-          d => d.episode
+          d => d[this.episodeName]
         )).map(d=>Array.from(d[1])).flat();
 
         this.histogram = d3.histogram()
@@ -51,7 +52,7 @@ export default class LengthDistributionChart extends GeneralChart {
 
       const [xmin, xmax] = event.selection.map(this.sx.invert);
       const filteredRollups = this.rollup.filter(d => d[1].count >= xmin && d[1].count <= xmax);
-      const filtered = this.data.filter(d => filteredRollups.some(f => f[1].match_id === d.match_id && f[1].episode === d.episode));
+      const filtered = this.data.filter(d => filteredRollups.some(f => f[1].match_id === d.match_id && f[1][this.episodeName] === d[this.episodeName]));
       drawSmallMultiples(filtered, this.smallMultiplesSelector, {nCols: 3, soccerModule: this.soccer});
     }
 
