@@ -24,10 +24,6 @@ const events = view(Inputs.table(eventObjects, {value: eventObjects, required: f
 ```
 
 ```js
-```
-
-
-```js
 const eventKeys = getUniqueArray(data.filter(d=>events.map(d=>d['Event name']).includes(d.event_name)).map(d=>`${d.match_id}-${d.episode}`)).map(d=>d.split('-').map(Number))
 
 const filteredMatchId = getUniqueArray(data.filter(d=>selectedTeams.includes(d.team_name)).map(d=>d.match_id))
