@@ -12,6 +12,7 @@ def split_number(number):
 
 
 files = []
+# TODO: use sys.~~~
 for filename in glob.glob("./src/data/concast/meta/concast/*.json"):
     with open(filename, "r") as f:
         files.append(json.load(f))
