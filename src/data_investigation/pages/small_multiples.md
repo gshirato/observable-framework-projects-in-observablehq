@@ -1,3 +1,7 @@
+---
+toc: false
+---
+
 # Small multiples of episodes
 
 ```js
