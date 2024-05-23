@@ -8,7 +8,7 @@ const competitions = d3.json(
 ```
 
 ```js
-import sortCompetitions from "./components/statsbomb-open-data/statsbomb.js";
+import sortCompetitions from "../components/statsbomb.js";
 ```
 
 ```js
@@ -111,7 +111,7 @@ const threeSixty = getThreeSixty(game, competitions)
 ```
 
 ```js
-import PassStreamChart from "./components/statsbomb-open-data/PassStreamChart.js";
+import PassStreamChart from "../components/PassStreamChart.js";
 ```
 
 ```js
@@ -120,7 +120,7 @@ import {require} from "npm:d3-require";
 
 
 ```js
-import getPossessionData from './components/statsbomb-open-data/utils.js'
+import getPossessionData from '../components/utils.js'
 ```
 
 

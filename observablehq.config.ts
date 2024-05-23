@@ -17,7 +17,7 @@ export default {
       name: "Personal Projects",
       pages: [
         // {name: "Statsbomb", path: "/statsbomb"},
-        {name: "Football events", path: "/event-stream/pages/eventStream"},
+        {name: "Football events", path: "/statsbomb/pages/eventStream"},
         {name: "Profit & Loss (J. League, 2022)", path: "/profit-loss/pages/profitLoss2022"},
         {name: "Profit & Loss (J. League, 2023)", path: "/profit-loss/pages/profitLoss2023"},
         {name: "J1 League Predictor", path: "/predictor-j1/pages/predictor-j1"},
