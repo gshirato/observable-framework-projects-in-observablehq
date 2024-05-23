@@ -19,4 +19,3 @@ function competitionRepresentation(d) {
 }
 
 export default sortCompetitions;
-// export { sortCompetitions, competitionRepresentation };
