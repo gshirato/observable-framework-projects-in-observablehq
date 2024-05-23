@@ -18,9 +18,9 @@ const selectedTeams = view(Inputs.checkbox(teams, {value: ['France'], format: x=
 ```
 
 ```js
-const events = view(Inputs.checkbox(getUniqueArray(data.map(d=>d.event_name)), {value: ['Shot']}))
+const eventNames = getUniqueArray(data.map(d=>d.event_name))
+const events = view(Inputs.checkbox(eventNames, {value: eventNames}))
 ```
-
 
 ```js
 const eventKeys = getUniqueArray(data.filter(d=>events.includes(d.event_name)).map(d=>`${d.match_id}-${d.episode}`)).map(d=>d.split('-').map(Number))
