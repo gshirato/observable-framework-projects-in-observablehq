@@ -53,7 +53,11 @@ export default class LengthDistributionChart extends GeneralChart {
       const [xmin, xmax] = event.selection.map(this.sx.invert);
       const filteredRollups = this.rollup.filter(d => d[1].count >= xmin && d[1].count <= xmax);
       const filtered = this.data.filter(d => filteredRollups.some(f => f[1].match_id === d.match_id && f[1][this.episodeName] === d[this.episodeName]));
-      drawSmallMultiples(filtered, this.smallMultiplesSelector, {nCols: 3, soccerModule: this.soccer});
+      drawSmallMultiples(filtered, this.smallMultiplesSelector, {
+        nCols: 3,
+        soccerModule: this.soccer,
+        episodeName: this.episodeName
+      });
     }
 
     setAxes() {
