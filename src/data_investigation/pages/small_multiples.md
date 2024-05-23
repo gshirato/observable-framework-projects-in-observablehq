@@ -1,9 +1,12 @@
+---
+toc: false
+---
+
 # Small multiples of episodes
 
 ```js
 const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
 ```
-
 
 ```js
 import SmallMultiplesChart from "../components/smallMultiples.js";
@@ -15,18 +18,17 @@ import getUniqueArray from '../../chart/components/utils.js';
 
 ```js
 const teams = getUniqueArray(data.map(d=>d.team_name));
-const selectedTeams = view(Inputs.checkbox(teams, {value: ['Croatia', 'France', 'Belgium', 'Japan', 'Germany'], format: x=>addEmoji(x)}))
+const selectedTeams = view(Inputs.checkbox(teams, {value: ['France'], format: x=>addEmoji(x)}))
 ```
 
 ```js
-const events = view(Inputs.checkbox(getUniqueArray(data.map(d=>d.event_name)), {value: ['Shot']}))
+const eventNames = getUniqueArray(data.map(d=>d.event_name))
+const eventObjects = eventNames.map(d => ({ "Event name": d }));
+const events = view(Inputs.table(eventObjects, {value: eventObjects, required: false}))
 ```
 
 ```js
-```
-
-```js
-const eventKeys = getUniqueArray(data.filter(d=>events.includes(d.event_name)).map(d=>`${d.match_id}-${d.episode}`)).map(d=>d.split('-').map(Number))
+const eventKeys = getUniqueArray(data.filter(d=>events.map(d=>d['Event name']).includes(d.event_name)).map(d=>`${d.match_id}-${d.episode}`)).map(d=>d.split('-').map(Number))
 
 const filteredMatchId = getUniqueArray(data.filter(d=>selectedTeams.includes(d.team_name)).map(d=>d.match_id))
 
@@ -87,6 +89,11 @@ let _ = require("d3-soccer").then(soccer=>{
 ```js
 view(data)
 ```
+
+## References
+
+- A public data set of spatio-temporal match events in soccer competitions (https://www.nature.com/articles/s41597-019-0247-7)
+- Metadata record for: A public data set of spatio-temporal match events in soccer competitions (https://springernature.figshare.com/articles/dataset/Metadata_record_for_A_public_data_set_of_spatio-temporal_match_events_in_soccer_competitions/9711164)
 
 
 <style>
