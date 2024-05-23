@@ -14,7 +14,7 @@ import getUniqueArray from '../../chart/components/utils.js';
 
 ```js
 const teams = getUniqueArray(data.map(d=>d.team_name));
-const selectedTeams = view(Inputs.checkbox(teams, {value: ['Croatia', 'France', 'Belgium', 'Japan', 'Germany'], format: x=>addEmoji(x)}))
+const selectedTeams = view(Inputs.checkbox(teams, {value: ['France'], format: x=>addEmoji(x)}))
 ```
 
 ```js
