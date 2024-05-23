@@ -3,7 +3,7 @@
 ### Master: MA-INF 4209
 ---
 <figure>
-  <img src="./data/seminar-visual-analytics/time-series-abstraction.png" alt="Visual Analytics" style="width:100%">
+  <img src="../data/time-series-abstraction.png" alt="Visual Analytics" style="width:100%">
   <figcaption>Abstraction of time series episodes</figcaption>
 </figure>
 
@@ -42,7 +42,7 @@ In this seminar, we will learn skills and knowledge required for Visual Analytic
 
 
 <figure>
-  <img src="./data/seminar-visual-analytics/gate.png" alt="Gate" style="width:60%;">
+  <img src="../data/gate.png" alt="Gate" style="width:60%;">
   <figcaption>Visualization of "gates" in football</figcaption>
 </figure>
 ---
