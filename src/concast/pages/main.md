@@ -2,7 +2,7 @@
 
 
 ```js
-const data = FileAttachment("../../data/concast/meta/concast/concast-episodes.csv").json();
+const data = FileAttachment("../data/meta/concast/concast-episodes.csv").json();
 ```
 
 ```js
@@ -10,9 +10,8 @@ view(Inputs.table(data))
 ```
 
 ```js
-import Episode from '../../components/concast/episode.js';
+import Episode from '../components/episode.js';
 ```
-
 
 <div id="episodes" class='grid grid-cols-2'>
     <div class="list grid grid-cols-2"></div>
