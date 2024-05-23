@@ -10,51 +10,49 @@ export default {
     {
       name: "Research projects",
       pages: [
-        {name: "Small multiples", path: "/pages/data_investigation/small_multiples"},
+        {name: "Small multiples", path: "/data_investigation/pages/small_multiples"},
       ]
     },
     {
       name: "Personal Projects",
       pages: [
         // {name: "Statsbomb", path: "/statsbomb"},
-        {name: "Football events", path: "/eventStream"},
-        {name: "Profit & Loss (J. League, 2022)", path: "/profitLoss2022"},
-        {name: "Profit & Loss (J. League, 2023)", path: "/profitLoss2023"},
-        {name: "J1 League Predictor", path: "/predictor-j1"},
-        {name: "GK Viz", path: "/gk-positioning"},
-        // {name: "J1 Data", path: "/j1-data"},
-        // {name: "Urawa Reds - All games", path: "/urawa-games"},
+        {name: "Football events", path: "/event-stream/pages/eventStream"},
+        {name: "Profit & Loss (J. League, 2022)", path: "/profit-loss/pages/profitLoss2022"},
+        {name: "Profit & Loss (J. League, 2023)", path: "/profit-loss/pages/profitLoss2023"},
+        {name: "J1 League Predictor", path: "/predictor-j1/pages/predictor-j1"},
+        {name: "GK Viz", path: "/gk-positioning/pages/gk-positioning"},
       ]
     },
     // {
     //   name: "Concast",
     //   pages: [
-    //     {name: "Concast", path: "/pages/concast/main"},
+    //     {name: "Concast", path: "/concast/pages/main"},
     //   ]
     // },
     {
       name: "Seminar 23/24",
       open: false,
       pages: [
-        {name: "Visual Analytics", path: "/seminar-visual-analytics"}
+        {name: "Visual Analytics", path: "/seminar-visual-analytics/pages/seminar-visual-analytics"}
       ]
     },
     {
       name: "Visual Analytics - Motivating Example (WIP)",
       open: false,
       pages: [
-        {name: "Introduction", path: "pages/visual-analytics/introduction"},
-        {name: "Data", path: "pages/visual-analytics/football/data"},
-        {name: "Passes", path: "pages/visual-analytics/football/passes"},
-        {name: "Leading to shots", path: "pages/visual-analytics/football/leading-to-shots"},
-        {name: "Visual Variables", path: "pages/visual-analytics/theory/visual-variables"},
+        {name: "Introduction", path: "visual-analytics/pages/introduction"},
+        {name: "Data", path: "visual-analytics/pages/football/data"},
+        {name: "Passes", path: "visual-analytics/pages/football/passes"},
+        {name: "Leading to shots", path: "visual-analytics/pages/football/leading-to-shots"},
+        {name: "Visual Variables", path: "visual-analytics/pages/theory/visual-variables"},
       ]
     },
     {
       name: "Two Decades, Two Invincibles (WIP)",
       open: false,
       pages: [
-        {name: "Introduction", path: "pages/blogs/two-decades-two-invincibles/leverkusen"},
+        {name: "Introduction", path: "blogs/two-decades-two-invincibles/pages/leverkusen"},
       ]
     }
 
