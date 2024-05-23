@@ -102,7 +102,6 @@ function drawEpisodes(data, selector, matchId, nCols, soccer, episodeName) {
                 height: 120,
                 margin: { top: 20, right: 0, bottom: 20, left: 0 },
                 soccerModule: soccer,
-                legend: i === 0
             }).draw();
     }
 
