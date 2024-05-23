@@ -52,7 +52,7 @@ export default {
       name: "Two Decades, Two Invincibles (WIP)",
       open: false,
       pages: [
-        {name: "Introduction", path: "blogs/two-decades-two-invincibles/pages/leverkusen"},
+        {name: "Introduction", path: "statsbomb/pages/blogs/two-decades-two-invincibles/leverkusen"},
       ]
     }
 

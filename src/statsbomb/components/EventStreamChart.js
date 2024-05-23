@@ -1,6 +1,6 @@
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
-import GeneralChart from "../GeneralChart.js";
+import GeneralChart from "../../chart/components/GeneralChart.js";
 import ThreeSixtyChart from "./ThreeSixtyChart.js";
 import getPossessionData from "./utils.js";
 
