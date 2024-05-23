@@ -1,6 +1,8 @@
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../../chart/components/GeneralChart.js";
+import drawLine from "../../chart/components/Line.js";
+import drawText from "../../chart/components/Text.js";
 import { parseFormattedNumber, getKey, getCumsum } from "./utils.js";
 class PLChart extends GeneralChart {
     constructor(data, selector, config) {
@@ -53,16 +55,19 @@ class PLChart extends GeneralChart {
     }
 
     drawAxes() {
-      this.svg
-        .append("g")
-        .append("line")
-        .attr("x1", this.margin.left)
-        .attr("x2", this.width - this.margin.right)
-        .attr("y1", this.sy(0))
-        .attr("y2", this.sy(0))
-        .attr("stroke", "#888")
-        .attr("stroke-width", 2)
-        .attr("stroke-dasharray", "6 2");
+
+      drawLine(this.svg.append("g"),
+        {
+          data: [0],
+          x1: this.margin.left,
+          x2: this.width - this.margin.right,
+          y1: d=>this.sy(d),
+          y2: d=>this.sy(d),
+          stroke: "#888",
+          "stroke-width": 2,
+          "stroke-dasharray": "6 2"
+        }
+      )
 
       const yaxis = d3.axisLeft(this.sy);
       this.svg
@@ -467,27 +472,32 @@ class PLChart extends GeneralChart {
         this.data.find((d) => d.大分類 === "当期純利益")[this.team]
       );
 
-      this.svg
-        .append("g")
-        .append("line")
-        .attr("x1", this.margin.left)
-        .attr("x2", this.width - this.margin.right)
-        .attr("y1", this.sy(income))
-        .attr("y2", this.sy(income))
-        .attr("stroke", income < 0 ? "#800" : "#080")
-        .attr("stroke-dasharray", "4 4");
+      drawLine(this.svg.append("g"),
+        {
+          data: [income],
+          x1: this.margin.left,
+          x2: this.width - this.margin.right,
+          y1: d=>this.sy(d),
+          y2: d=>this.sy(d),
+          stroke: d=> d < 0 ? "#800" : "#080",
+          "stroke-dasharray": "4 4"
+        }
+      )
 
+      drawText(this.svg.append("g"),
+        {
+          data: [income],
+          x: this.sx.range()[1],
+          y: d=>this.sy(d),
+          dy: -10,
+          "text-anchor": "middle",
+          "font-size": 12,
+          "font-weight": 'bold',
+          fill: d=> d < 0 ? "#800" : "#080",
+          text: d=>`${d < 0?'純損益':'純利益'}${d / 100}億円`
+        }
+      )
 
-      this.svg
-        .append('g')
-        .append('text')
-        .attr('x', this.sx.range()[1])
-        .attr('y', this.sy(d3.max([this.profit, 0])))
-        .attr('dy', -10)
-        .attr('font-size', 12)
-        .attr('font-weight', 'bold')
-        .attr('text-anchor', 'middle')
-        .text(`${this.profit < 0?'純損益':'純利益'}${this.profit / 100}億円`)
 
       this.svg
         .append('g')
@@ -510,29 +520,30 @@ class PLChart extends GeneralChart {
 
     splitByCategory() {
       function draw(sel, i) {
-        sel
-        .append('g')
-        .append('line')
-        .attr('x1', this.sx(this.plKeys[i]))
-        .attr('x2', this.sx(this.plKeys[i]))
-        .attr('y1', this.sy.range()[0])
-        .attr('y2', this.sy.range()[1])
-        .attr('stroke-dasharray', '4 4')
-        .attr('stroke', '#ccc')
+
+        drawLine(sel.append('g'), {
+          data: [i],
+          x1: this.sx(this.plKeys[i]),
+          x2: this.sx(this.plKeys[i]),
+          y1: this.sy.range()[0],
+          y2: this.sy.range()[1],
+          stroke: '#ccc',
+          "stroke-dasharray": '4 4'
+        })
       }
       function write(sel, text, i, j) {
-        sel
-          .append('g')
-          .append('text')
-          .attr('x', this.sx(this.plKeys[parseInt((i + j) / 2)]))
-          .attr('y', this.sy.range()[0])
-          .attr('dx', i===j?this.sx.bandwidth() / 2:0)
-          .attr('text-anchor', 'end')
-          .attr('font-size', 10)
-          .attr('font-weight', 'bold')
-          .attr('fill', '#777')
-          .attr("writing-mode", "tb")
-          .text(text)
+        drawText(sel.append('g'), {
+          data: [0],
+          x: this.sx(this.plKeys[parseInt((i + j) / 2)]),
+          y: this.sy.range()[0],
+          dx: i===j ? this.sx.bandwidth() / 2 : 0,
+          "text-anchor": "end",
+          "font-size": 10,
+          "font-weight": 'bold',
+          'fill': '#777',
+          'writing-mode': 'tb',
+          text: text
+        })
       }
 
       this.svg.call(draw.bind(this), 7)
@@ -553,19 +564,19 @@ class PLChart extends GeneralChart {
     drawTitle() {
       const desc = this.getPLSummary(this.profit);
 
-      this.svg
-        .append("g")
-        .append("text")
-        .attr("x", this.margin.left)
-        .attr("y", this.margin.top + this.titleFontSize)
-        .attr("font-size", this.titleFontSize)
-        .attr("font-weight", 'bold')
-        .attr("fill", this.profit < 0 ? this.lossColor : this.profit === 0 ? "#888" : this.profitColor)
-        .text(
-          this.profit
+      drawText(this.svg.append("g"),
+        {
+          data: [this.profit],
+          x: this.margin.left,
+          y: this.margin.top + this.titleFontSize,
+          "font-size": this.titleFontSize,
+          "font-weight": 'bold',
+          "fill": d=> d < 0 ? this.lossColor :  d === 0 ? "#888" : this.profitColor,
+          text: d => this.profit
             ? `${this.team}: ${desc}`
             : `${this.team}: 3月決算のためデータなし`
-        );
+        }
+      )
     }
 
     mouseover(thisClass, event, d) {
