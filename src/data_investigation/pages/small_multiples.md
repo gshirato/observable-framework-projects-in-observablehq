@@ -19,11 +19,16 @@ const selectedTeams = view(Inputs.checkbox(teams, {value: ['France'], format: x=
 
 ```js
 const eventNames = getUniqueArray(data.map(d=>d.event_name))
-const events = view(Inputs.checkbox(eventNames, {value: eventNames}))
+const eventObjects = eventNames.map(d => ({ "Event name": d }));
+const events = view(Inputs.table(eventObjects, {value: eventObjects, required: false}))
 ```
 
 ```js
-const eventKeys = getUniqueArray(data.filter(d=>events.includes(d.event_name)).map(d=>`${d.match_id}-${d.episode}`)).map(d=>d.split('-').map(Number))
+```
+
+
+```js
+const eventKeys = getUniqueArray(data.filter(d=>events.map(d=>d['eventName']).includes(d.event_name)).map(d=>`${d.match_id}-${d.episode}`)).map(d=>d.split('-').map(Number))
 
 const filteredMatchId = getUniqueArray(data.filter(d=>selectedTeams.includes(d.team_name)).map(d=>d.match_id))
 
