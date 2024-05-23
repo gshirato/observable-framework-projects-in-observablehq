@@ -1,7 +1,7 @@
 
 ```js
 import {require} from "npm:d3-require";
-import InteractivePitch from "../../../components/visual-analytics/football/InteractivePitch.js";
+import InteractivePitch from "../components/seminars/football/InteractivePitch.js";
 ```
 
 ```js
