@@ -34,18 +34,18 @@ export default {
       name: "Seminar 23/24",
       open: false,
       pages: [
-        {name: "Visual Analytics", path: "/seminar-visual-analytics/pages/seminar-visual-analytics"}
+        {name: "Visual Analytics", path: "/seminar-statsbomb/pages/seminars/visual-analytics/seminar-visual-analytics"}
       ]
     },
     {
       name: "Visual Analytics - Motivating Example (WIP)",
       open: false,
       pages: [
-        {name: "Introduction", path: "visual-analytics/pages/introduction"},
-        {name: "Data", path: "visual-analytics/pages/football/data"},
-        {name: "Passes", path: "visual-analytics/pages/football/passes"},
-        {name: "Leading to shots", path: "visual-analytics/pages/football/leading-to-shots"},
-        {name: "Visual Variables", path: "visual-analytics/pages/theory/visual-variables"},
+        {name: "Introduction", path: "statsbomb/pages/seminars/visual-analytics/introduction"},
+        {name: "Data", path: "statsbomb/pages/seminars/visual-analytics/football/data"},
+        {name: "Passes", path: "statsbomb/pages/seminars/visual-analytics/football/passes"},
+        {name: "Leading to shots", path: "statsbomb/pages/seminars/visual-analytics/football/leading-to-shots"},
+        {name: "Visual Variables", path: "statsbomb/pages/seminars/visual-analytics/theory/visual-variables"},
       ]
     },
     {
