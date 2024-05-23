@@ -49,7 +49,15 @@ export default {
         {name: "Leading to shots", path: "pages/visual-analytics/football/leading-to-shots"},
         {name: "Visual Variables", path: "pages/visual-analytics/theory/visual-variables"},
       ]
+    },
+    {
+      name: "Two Decades, Two Invincibles (WIP)",
+      open: false,
+      pages: [
+        {name: "Introduction", path: "pages/blogs/two-decades-two-invincibles/leverkusen"},
+      ]
     }
+
   ],
 
   // Some additional configuration options and their defaults:
