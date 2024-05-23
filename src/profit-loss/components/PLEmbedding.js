@@ -1,6 +1,7 @@
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../../chart/components/GeneralChart.js";
+import drawDots from "../../chart/components/Dots.js";
 import PLChart from "./PLChart.js";
 import {parseFormattedNumber, getPLKeys} from "./utils.js";
 
@@ -61,18 +62,21 @@ export default class PLEmbeddingChart extends GeneralChart {
 
     drawMain() {
       const sOpacity = d3.scaleLinear().domain([0, 500]).range([0.4, 1])
-      this.svg
+
+      const chart = this.svg
         .append("g")
         .attr("class", "main")
-        .selectAll("circle")
-        .data(this.data)
-        .join("circle")
-        .attr("cx", (d) => this.sx(d['売上高-合計']))
-        .attr("cy", (d) => this.sy(d['売上原価-小計']))
-        .attr("fill", (_, i)=>parseFormattedNumber(this.getProfit(i)) > 0 ? 'green' : 'red')
-        .attr("opacity", (_, i)=>sOpacity(parseFormattedNumber(this.getProfit(i)))
-        )
-        .attr("r", 5)
+
+      drawDots(chart, {
+        data: this.data,
+        cx: (d) => this.sx(d['売上高-合計']),
+        cy: (d) => this.sy(d['売上原価-小計']),
+        fill: (_, i)=>parseFormattedNumber(this.getProfit(i)) > 0 ? 'green' : 'red',
+        opacity: (_, i)=>sOpacity(parseFormattedNumber(this.getProfit(i))),
+        r: 5
+      })
+
+      chart
         .attr("index", (_, i) => i)
         .on("mouseover", _.partial(this.mouseover, this))
         .on("mousemove", _.partial(this.mousemove, this))
