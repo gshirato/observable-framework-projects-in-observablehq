@@ -48,7 +48,7 @@ We can agree that the `location` attribute can best be represented by the positi
 
 
 ```js
-import PositionOnPitch from "../../../components/visual-analytics/theory/visualVariable/positionOnPitch.js";
+import PositionOnPitch from "../../../../components/seminars/theory/visualVariable/positionOnPitch.js";
 ```
 
 ```js
@@ -68,7 +68,7 @@ const posOnPitch = require("d3-soccer").then(soccer=>{
 
 
 ```js
-import Position from "../../../components/visual-analytics/theory/visualVariable/position.js";
+import Position from "../../../../components/seminars/theory/visualVariable/position.js";
 ```
 
 ```js
@@ -88,7 +88,7 @@ const pos = new Position(shots, '#position .chart', {
 ### Size
 
 ```js
-import Size from "../../../components/visual-analytics/theory/visualVariable/size.js";
+import Size from "../../../../components/seminars/theory/visualVariable/size.js";
 ```
 
 ```js
@@ -108,7 +108,7 @@ const size = new Size(shots, '#size .chart', {
 ### Shape
 
 ```js
-import Shape from "../../../components/visual-analytics/theory/visualVariable/shape.js";
+import Shape from "../../../../components/seminars/theory/visualVariable/shape.js";
 ```
 
 ```js
@@ -130,7 +130,7 @@ const shape = new Shape(shots, '#shape .chart', {
 
 
 ```js
-import Value from "../../../components/visual-analytics/theory/visualVariable/value.js";
+import Value from "../../../../components/seminars/theory/visualVariable/value.js";
 ```
 
 ```js
@@ -150,7 +150,7 @@ const value = new Value(shots, '#value .chart', {
 ### Color
 
 ```js
-import Color from "../../../components/visual-analytics/theory/visualVariable/color.js";
+import Color from "../../../../components/seminars/theory/visualVariable/color.js";
 ```
 
 ```js
@@ -172,7 +172,7 @@ const color = new Color(shots, '#color .chart', {
 
 
 ```js
-import Motion from "../../../components/visual-analytics/theory/visualVariable/motion.js";
+import Motion from "../../../../components/seminars/theory/visualVariable/motion.js";
 ```
 
 ```js

@@ -1,7 +1,5 @@
 import * as d3 from "npm:d3";
 
-
-
 function formatTime(d) {
     return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`
 }

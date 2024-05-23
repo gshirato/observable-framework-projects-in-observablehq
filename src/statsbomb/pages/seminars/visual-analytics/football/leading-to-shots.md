@@ -21,7 +21,7 @@ const events = d3.json(
 
 
 ```js
-import EpisodesLeadingToShot from '../../../components/visual-analytics/football/leading-to-shot/episodes.js';
+import EpisodesLeadingToShot from '../../../../components/seminars/football/leading-to-shot/episodes.js';
 ```
 
 ```js

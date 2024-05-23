@@ -26,7 +26,7 @@ const competitions = d3.json(
 ```
 
 ```js
-import sortCompetitions from "../../../components/statsbomb-open-data/statsbomb.js";
+import sortCompetitions from "../../../../components/statsbomb.js";
 ```
 
 ```js
@@ -206,7 +206,7 @@ display(threeSixty[0]);
 ```
 
 ```js
-import SimpleThreeSixtyChart from "../../../components/visual-analytics/football/SimpleThreeSixty.js";
+import SimpleThreeSixtyChart from "../../../../components/seminars/football/SimpleThreeSixty.js";
 ```
 
 
@@ -238,5 +238,5 @@ Although the ThreeSixty data provides detailed information about the players' lo
 The "actor" (who possesses the ball) is highlighted with a dashed ring. Their teammates are colored in red, while the opponents are colored in blue.
 
 ```js
-import EventStreamChart from "../../../components/statsbomb-open-data/EventStreamChart.js";
+import EventStreamChart from "../../../../components/EventStreamChart.js";
 ```

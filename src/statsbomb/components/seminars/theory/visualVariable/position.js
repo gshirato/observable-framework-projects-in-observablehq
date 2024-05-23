@@ -1,9 +1,9 @@
 import * as d3 from "npm:d3";
-import GeneralChart from "../../../GeneralChart.js";
+import GeneralChart from "../../../../../chart/components/GeneralChart.js";
 import _ from "npm:lodash";
 import { mouseover, mousemove, mouseleave } from "./interaction.js";
 
-export default class Size extends GeneralChart {
+export default class Position extends GeneralChart {
   constructor(data, selector, config) {
     super(data, selector, config);
 
@@ -17,8 +17,8 @@ export default class Size extends GeneralChart {
       .range([this.margin.left, this.width - this.margin.right]);
 
     this.sy = d3
-      .scaleBand()
-      .domain([0])
+      .scaleLinear()
+      .domain([0, d3.max(this.data, (d) => d.shot.statsbomb_xg)])
       .range([this.height - this.margin.bottom, this.margin.top]);
 
     this.sr = d3
@@ -39,7 +39,22 @@ export default class Size extends GeneralChart {
       .attr("y", -6)
       .attr("text-anchor", "end")
       .text("Index");
+
+    const yaxis = d3.axisLeft(this.sy);
+    this.svg
+        .append("g")
+        .attr("transform", `translate(${this.margin.left},0)`)
+        .call(yaxis)
+        .append('text')
+        .attr("fill", "#000")
+        .attr("y", this.margin.top)
+        .attr("dx", "2em")
+        .attr("dy", "0.72em")
+        .attr("text-anchor", "end")
+        .text("xG");
+
   }
+
 
   createClass(d) {
     return `id-${d.id}`
@@ -52,9 +67,10 @@ export default class Size extends GeneralChart {
       .join("circle")
       .attr('class', d=>this.createClass(d))
       .attr("cx", (d) => this.sx(d.index))
-      .attr("cy", this.sy(0) + this.sy.bandwidth() / 2)
-      .attr("r", (d) => this.sr(d.shot.statsbomb_xg))
+      .attr("cy", (d)=> this.sy(d.shot.statsbomb_xg))
+      .attr("r", (d) => 3)
       .attr("fill", (d) => '#333')
+      .attr("stroke", "#333")
       .attr("stroke-width", 1)
       .on("mouseover", _.partial(mouseover, this))
       .on("mousemove", _.partial(mousemove, this))
@@ -64,6 +80,7 @@ export default class Size extends GeneralChart {
   formatTime(d) {
     return `${d.minute.toString().padStart(2, '0')}:${d.second.toString().padStart(2, '0')}`
   }
+
 
   draw() {
     this.drawAxes();

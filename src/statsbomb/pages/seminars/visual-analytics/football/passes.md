@@ -36,7 +36,7 @@ We will use the event data to analyze the key events in the match. The event dat
 </div>
 
 ```js
-import EventTypeCounts from '../../../components/visual-analytics/football/EventTypeCounts.js';
+import EventTypeCounts from '../../../../components/seminars/football/EventTypeCounts.js';
 ```
 
 ```js
@@ -124,7 +124,7 @@ Each event has a possession number that indicates the order of possession in the
 
 ```js
 import {require} from "npm:d3-require";
-import SimplePossessionChart from "../../../components/visual-analytics/football/SimplePossession.js";
+import SimplePossessionChart from "../../../../components/seminars/football/SimplePossession.js";
 ```
 
 
@@ -149,7 +149,7 @@ Inputs.table(events.filter(d=>d.possession==2))
 ```
 
 ```js
-import PassesInPossession from "../../../components/visual-analytics/football/PassesInPossession.js";
+import PassesInPossession from "../../../../components/seminars/football/PassesInPossession.js";
 ```
 
 ```js
@@ -166,7 +166,7 @@ require("d3-soccer").then(soccer=>{
 ### Time Series
 
 ```js
-import PossessionTimeSeriesChart from "../../../components/visual-analytics/football/PossessionTimeSeries.js";
+import PossessionTimeSeriesChart from "../../../../components/seminars/football/PossessionTimeSeries.js";
 ```
 
 
@@ -190,7 +190,7 @@ new PossessionTimeSeriesChart(Array.from(d3.group(events, d=>d.possession)), "#p
 ### Temporal Distribution
 
 ```js
-import PossessionTemporalDistributionChart from "../../../components/visual-analytics/football/PossessionTemporalDistribution.js";
+import PossessionTemporalDistributionChart from "../../../../components/seminars/football/PossessionTemporalDistribution.js";
 ```
 
 
@@ -235,7 +235,7 @@ When we focus on the passes and draw lines for each pass, we can see the followi
 We can also analyze the distribution of passes in the match. The following chart shows the distribution of passes by the Netherlands and the USA in the match.
 
 ```js
-import PassDensityChart from "../../../components/visual-analytics/football/PassDensity.js";
+import PassDensityChart from "../../../../components/seminars/football/PassDensity.js";
 ```
 
 ```js
@@ -282,7 +282,7 @@ require("d3-soccer").then(soccer=>{
 
 
 ```js
-import PassDistributionChart from "../../../components/visual-analytics/football/PassDistribution.js";
+import PassDistributionChart from "../../../../components/seminars/football/PassDistribution.js";
 ```
 
 ```js
@@ -355,7 +355,7 @@ require("d3-soccer").then(soccer=>{
 
 
 ```js
-import PassNetworkChart from "../../../components/visual-analytics/football/PassNetwork.js";
+import PassNetworkChart from "../../../../components/seminars/football/PassNetwork.js";
 ```
 
 ```js
