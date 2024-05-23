@@ -1,6 +1,8 @@
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../../chart/components/GeneralChart.js";
+import drawDots from "../../chart/components/Dots.js";
+import drawText from "../../chart/components/Text.js";
 import PLChart from "./PLChart.js";
 import {parseFormattedNumber, getPLKeys} from "./utils.js";
 
@@ -61,37 +63,42 @@ export default class PLEmbeddingChart extends GeneralChart {
 
     drawMain() {
       const sOpacity = d3.scaleLinear().domain([0, 500]).range([0.4, 1])
-      this.svg
+
+      const chart = this.svg
         .append("g")
         .attr("class", "main")
-        .selectAll("circle")
-        .data(this.data)
-        .join("circle")
-        .attr("cx", (d) => this.sx(d['売上高-合計']))
-        .attr("cy", (d) => this.sy(d['売上原価-小計']))
-        .attr("fill", (_, i)=>parseFormattedNumber(this.getProfit(i)) > 0 ? 'green' : 'red')
-        .attr("opacity", (_, i)=>sOpacity(parseFormattedNumber(this.getProfit(i)))
-        )
-        .attr("r", 5)
+
+      drawDots(chart, {
+        data: this.data,
+        cx: (d) => this.sx(d['売上高-合計']),
+        cy: (d) => this.sy(d['売上原価-小計']),
+        fill: (_, i)=>parseFormattedNumber(this.getProfit(i)) > 0 ? 'green' : 'red',
+        opacity: (_, i)=>sOpacity(parseFormattedNumber(this.getProfit(i))),
+        r: 5
+      })
+
+      chart
         .attr("index", (_, i) => i)
         .on("mouseover", _.partial(this.mouseover, this))
         .on("mousemove", _.partial(this.mousemove, this))
         .on("mouseleave", _.partial(this.mouseleave, this));
 
-      this.svg
+      const text = this.svg
         .append("g")
         .attr("class", "main")
-        .selectAll("text")
-        .data(this.data)
-        .join("text")
-        .attr("x", (d) => this.sx(d['売上高-合計']))
-        .attr("y", (d) => this.sy(d['売上原価-小計']))
-        .attr("dy", -5)
-        .attr("text-anchor", "middle")
-        .attr("font-size", 10)
-        .attr("font-weight", 'bold')
-        .attr('pointer-events', 'none')
-        .text((d, i) => d['売上高-合計'] < 3000 ? "": this.teams[i]);
+
+      drawText(
+        text,{
+        data: this.data,
+        x: (d) => this.sx(d['売上高-合計']),
+        y: (d) => this.sy(d['売上原価-小計']),
+        dy: -5,
+        "text-anchor": "middle",
+        "font-size": 10,
+        "font-weight": 'bold',
+        "pointer-events": 'none',
+        text: (d, i) => d['売上高-合計'] < 3000 ? "": this.teams[i]
+      })
     }
 
     addBrush() {
