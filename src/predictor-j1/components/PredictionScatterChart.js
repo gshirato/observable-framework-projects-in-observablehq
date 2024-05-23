@@ -1,5 +1,5 @@
 import * as d3 from "npm:d3";
-import GeneralChart from "../GeneralChart.js";
+import GeneralChart from "../../chart/components/GeneralChart.js";
 /**
  * Class for creating a scatter chart of the predicted positions of the teams
  * Almost identical to PositionScatterChart, but with a different color for the circles

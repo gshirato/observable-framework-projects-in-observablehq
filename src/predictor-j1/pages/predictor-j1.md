@@ -1,12 +1,12 @@
 # J1 Predictor
 
 ```js
-const results2023 = FileAttachment('./data/predictor-j1/results-j1-2023.csv').csv()
-const prediction2024 = FileAttachment('./data/predictor-j1/predictor-j1-2024.csv').csv()
+const results2023 = FileAttachment('../data/results-j1-2023.csv').csv()
+const prediction2024 = FileAttachment('../data/predictor-j1-2024.csv').csv()
 ```
 
 ```js
-import drawTimelineChart from './components/j1-predictor/TimelineChart.js';
+import drawTimelineChart from '../components/TimelineChart.js';
 ```
 
 ```js
@@ -28,7 +28,7 @@ const timeline = drawTimelineChart(results2023, "#timelineChart .timeline", {
 ```
 
 ```js
-import drawPositionScatterChart from './components/j1-predictor/PositionScatterChart.js';
+import drawPositionScatterChart from '../components/PositionScatterChart.js';
 ```
 
 
@@ -57,7 +57,7 @@ const scatter = drawPositionScatterChart(results2023, "#positionScatter .chart",
 ```
 
 ```js
-import TableChart from './components/j1-predictor/TableChart.js';
+import TableChart from '../components/TableChart.js';
 ```
 
 ## TableChart
@@ -79,7 +79,7 @@ const tableChart = new TableChart(results2023, "#tableChart .table", {
 ## Prediction 2024
 
 ```js
-import ChangeFromPrevYearChart from './components/j1-predictor/ChangeFromPrevYearChart.js';
+import ChangeFromPrevYearChart from '../components/ChangeFromPrevYearChart.js';
 ```
 
 ```js
@@ -114,7 +114,7 @@ const description = new Description({
 ```
 
 ```js
-import drawPredictionScatterChart from './components/j1-predictor/PredictionScatterChart.js';
+import drawPredictionScatterChart from '../components/PredictionScatterChart.js';
 ```
 
 ```js
@@ -128,7 +128,7 @@ const predictionScatterChart = drawPredictionScatterChart(prediction2024, "#pred
 ### 人気チーム
 
 ```js
-import Description from './components/j1-predictor/Describer.js';
+import Description from '../components/Describer.js';
 ```
 
 ```html

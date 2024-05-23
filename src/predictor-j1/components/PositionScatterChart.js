@@ -1,5 +1,5 @@
 import * as d3 from "npm:d3";
-import GeneralChart from "../GeneralChart.js";
+import GeneralChart from "../../chart/components/GeneralChart.js";
 import calculateDifferences from "./utils.js";
 
 class PositionScatterChart extends GeneralChart {
