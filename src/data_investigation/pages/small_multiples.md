@@ -90,6 +90,11 @@ let _ = require("d3-soccer").then(soccer=>{
 view(data)
 ```
 
+## References
+
+- A public data set of spatio-temporal match events in soccer competitions (https://www.nature.com/articles/s41597-019-0247-7)
+- Metadata record for: A public data set of spatio-temporal match events in soccer competitions (https://springernature.figshare.com/articles/dataset/Metadata_record_for_A_public_data_set_of_spatio-temporal_match_events_in_soccer_competitions/9711164)
+
 
 <style>
     body, html {
