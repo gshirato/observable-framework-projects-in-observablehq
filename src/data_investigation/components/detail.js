@@ -63,8 +63,8 @@ export default class DetailChart extends GeneralChart {
         .attr('x2', d => this.hasIncorrectEndPos(d) ? d.start_x : d.end_x)
         .attr('y2', d => this.hasIncorrectEndPos(d) ? d.start_y : d.end_y)
         .attr('stroke', d=>this.sc(d.event_name))
-        .attr('opacity', d=>d.team_name === d.first_pass_team? 1: 0.2)
-        .attr('stroke-dasharray', d=>d.team_name === d.first_pass_team? '': '2 2')
+        .attr('opacity', d=>d.team_name === d.main_team? 1: 0.2)
+        .attr('stroke-dasharray', d=>d.team_name === d.main_team? '': '2 2')
         .attr('stroke-width', 0.5)
 
         layer
@@ -130,7 +130,7 @@ export default class DetailChart extends GeneralChart {
         .attr("text-anchor", "middle")
         .attr("font-size", 5)
         .attr("font-family", 'Arial')
-        .html(d=>`[${d.match_id}] ${addEmoji(d.first_pass_team)} (episode=${d.episode}, ${this.duration.toFixed(2)} sec)`);
+        .html(d=>`[${d.match_id}] ${addEmoji(d.main_team)} (episode=${d.episode}, ${this.duration.toFixed(2)} sec)`);
 
       layer
         .append("text")
