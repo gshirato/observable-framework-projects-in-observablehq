@@ -1,6 +1,6 @@
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
-import GeneralChart from "../GeneralChart.js";
+import GeneralChart from "../../chart/components/GeneralChart.js";
 import {formatFloat, distance, getGKPosition, isShotPossible} from "./positioning.js";
 import GoalFromBack from "./goalFromBack.js";
 

@@ -14,8 +14,8 @@ Feel free to contact me if you have any feedback or suggestions.
 
 
 ```js
-import GKPositioningChart from './components/gk-positioning/GKPositioningChart.js';
-import GoalFromBack from './components/gk-positioning/goalFromBack.js';
+import GKPositioningChart from '../components/GKPositioningChart.js';
+import GoalFromBack from '../components/goalFromBack.js';
 ```
 
 ```js
