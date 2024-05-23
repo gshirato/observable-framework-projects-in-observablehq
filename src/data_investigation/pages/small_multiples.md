@@ -9,10 +9,9 @@ const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
 ```
 
 ```js
-import SmallMultiplesChart from "../components/smallMultiples.js";
 import LengthDistributionChart from "../components/lengthDistribution.js";
 import addEmoji from "../components/countryEmojis.js";
-import drawSmallMultiples from "../components/utils.js";
+import drawSmallMultiples from "../components/drawSmallMultiples.js";
 import getUniqueArray from '../../chart/components/utils.js';
 ```
 
@@ -47,6 +46,7 @@ let _ = require("d3-soccer").then(soccer=>{
         height: 120,
         margin: {top: 20, right: 20, bottom: 20, left: 40},
         smallMultiplesSelector: '#smallMultiples .charts',
+        episodeName: 'episode',
         soccerModule: soccer
     }).draw();
 })
@@ -69,7 +69,7 @@ let _ = require("d3-soccer").then(soccer=>{
             <table class="table"></table>
         </div>
     </div>
-  </div>
+</div>
 
 
 ```js
@@ -81,6 +81,7 @@ let _ = require("d3-soccer").then(soccer=>{
         {
             nCols: nCols,
             soccerModule: soccer,
+            episodeName: 'episode',
         }
     )
 })
