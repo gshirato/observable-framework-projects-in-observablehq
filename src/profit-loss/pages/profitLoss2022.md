@@ -5,34 +5,34 @@ This page presents a visual overview of the financial outcomes, specifically the
 ↓ Touch the dots!
 
 ```js
-const j1 = FileAttachment("data/profit-loss/pl-2022-j1.csv").csv();
-const j2 = FileAttachment("data/profit-loss/pl-2022-j2.csv").csv();
-const j3 = FileAttachment("data/profit-loss/pl-2022-j3.csv").csv();
+const j1 = FileAttachment("../data/pl-2022-j1.csv").csv();
+const j2 = FileAttachment("../data/pl-2022-j2.csv").csv();
+const j3 = FileAttachment("../data/pl-2022-j3.csv").csv();
 ```
 
 ```js
-import PLChart from './components/profit-loss/PLChart.js';
+import PLChart from '../components/PLChart.js';
 ```
 
 ```js
-import getPLKeys from './components/profit-loss/utils.js';
+import getPLKeys from '../components/utils.js';
 ```
 
 
 ```js
-import TsneChart from './components/profit-loss/TsneChart.js';
+import TsneChart from '../components/TsneChart.js';
 ```
 
 ```js
-import calculateTsne from './components/profit-loss/calculateTsne.js';
+import calculateTsne from '../components/calculateTsne.js';
 ```
 
 ```js
-import calculateUmap from './components/profit-loss/calculateUmap.js';
+import calculateUmap from '../components/calculateUmap.js';
 ```
 
 ```js
-import {normalize, transpose} from './components/profit-loss/utils.js';
+import {normalize, transpose} from '../components/utils.js';
 ```
 
 ```js
