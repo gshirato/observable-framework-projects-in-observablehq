@@ -1,5 +1,6 @@
 import * as d3 from "npm:d3";
 import GeneralChart from "../../../../chart/components/GeneralChart.js";
+import drawDots from "../../../../chart/components/Dots.js";
 import _ from "npm:lodash";
 
 
@@ -14,12 +15,12 @@ export default class SimpleThreeSixtyChart extends GeneralChart {
         this.sx = d3
             .scaleLinear()
             .domain([0, 120])
-            .range([this.margin.left, this.pitch.width() - this.margin.right]);
+            .range([0, 105]);
 
         this.sy = d3
             .scaleLinear()
             .domain([0, 80])
-            .range([this.margin.top, this.pitch.height() - this.margin.bottom]);
+            .range([0, 68]);
 
         this.sc = d3
             .scaleOrdinal()
@@ -43,8 +44,9 @@ export default class SimpleThreeSixtyChart extends GeneralChart {
         .attr("d", (d) => d3.line()(this.convertVisibleArea(d.visible_area)))
         .attr("fill", "#888")
         .attr("stroke", "black")
+        .attr("stroke-width", 0.5)
         .attr("opacity", 0.15)
-        .attr("stroke-dasharray", "4 4");
+        .attr("stroke-dasharray", "2 2");
     }
     drawWatermark(sel) {
       sel
@@ -54,9 +56,9 @@ export default class SimpleThreeSixtyChart extends GeneralChart {
           "https://dtai.cs.kuleuven.be/sports/static/ee39fa2918398059e9be62c32c1b48c4/74404/statsbomb_logo.png"
         )
         .attr("opacity", 0.2)
-        .attr("x", this.pitch.width() - this.margin.right - 200)
-        .attr("y", this.pitch.height() - this.margin.bottom - 22)
-        .attr("width", 200);
+        .attr("x", 52.5)
+        .attr("y", 60)
+        .attr("width", 52.5);
     }
 
     mouseoverEvent(thisClass, event, d) {
@@ -83,39 +85,33 @@ export default class SimpleThreeSixtyChart extends GeneralChart {
     }
 
     drawfreezeFrame(sel) {
-        sel
-            .append('g')
-            .selectAll('circle')
-            .data(this.data.freeze_frame)
-            .join('circle')
-            .attr('cx', d => this.sx(d.location[0]))
-            .attr('cy', d => this.sy(d.location[1]))
-            .attr('r', 5)
-            .attr('fill', d=>this.sc(d.teammate))
+        drawDots(sel.append('g'), {
+            data: this.data.freeze_frame,
+            cx: d => this.sx(d.location[0]),
+            cy: d => this.sy(d.location[1]),
+            r: 1.5,
+            fill: d => this.sc(d.teammate),
+        })
 
-        sel
-            .append('g')
-            .append('circle')
-            .datum(this.data.freeze_frame.find(d=>d.actor))
-            .attr('cx', d => this.sx(d.location[0]))
-            .attr('cy', d => this.sy(d.location[1]))
-            .attr('r', 10)
-            .attr('fill', 'none')
-            .attr('stroke', d=>this.sc(d.actor))
-            .attr('stroke-width', 2)
-            .attr('stroke-dasharray', '4 4')
-            .attr('opacity', 0.8)
-
-
-
+        drawDots(sel.append('g'), {
+            data: this.data.freeze_frame.filter(d=>d.actor),
+            cx: d => this.sx(d.location[0]),
+            cy: d => this.sy(d.location[1]),
+            r: 4,
+            fill: 'none',
+            stroke: d=>this.sc(d.actor),
+            "stroke-width": 0.5,
+            "stroke-dasharray": '4 4',
+            opacity: 0.8
+        })
     }
 
     draw() {
 
       this.setAxes();
       this.svg.call(this.drawPitch.bind(this));
-      this.svg.call(this.draw360.bind(this));
-      this.svg.call(this.drawWatermark.bind(this));
-      this.svg.call(this.drawfreezeFrame.bind(this));
+      this.svg.select('#above').append('g').call(this.drawWatermark.bind(this));
+      this.svg.select('#above').append('g').call(this.draw360.bind(this));
+      this.svg.select('#above').append('g').call(this.drawfreezeFrame.bind(this));
     }
   }
