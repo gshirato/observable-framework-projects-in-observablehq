@@ -39,7 +39,7 @@ export default {
       name: "Seminar 23/24",
       open: false,
       pages: [
-        {name: "Visual Analytics", path: "/seminar-statsbomb/pages/seminars/visual-analytics/seminar-visual-analytics"}
+        {name: "Visual Analytics", path: "/seminar-visual-analytics/pages/seminar-visual-analytics"}
       ]
     },
     {
