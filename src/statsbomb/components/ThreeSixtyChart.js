@@ -38,12 +38,12 @@ class ThreeSixtyChart extends GeneralChart {
       this.sx = d3
         .scaleLinear()
         .domain([0, 120])
-        .range([this.margin.left, this.pitch.width() - this.margin.right]);
+        .range([0, 105]);
 
       this.sy = d3
         .scaleLinear()
         .domain([0, 80])
-        .range([this.margin.top, this.pitch.height() - this.margin.bottom]);
+        .range([0, 68]);
     }
 
     drawPitch(sel) {
@@ -79,7 +79,7 @@ class ThreeSixtyChart extends GeneralChart {
           .attr("dy", 20)
           .attr("text-anchor", "middle")
           .attr("font-weight", "700")
-          .attr("font-size", 45)
+          .attr("font-size", 10)
           .attr("opacity", 0.4)
           .text("No 360 data found.");
 
@@ -88,9 +88,9 @@ class ThreeSixtyChart extends GeneralChart {
           .append("text")
           .attr("x", d3.mean(this.sx.range()))
           .attr("y", d3.mean(this.sy.range()))
-          .attr("dy", 35)
+          .attr("dy", 30)
           .attr("text-anchor", "middle")
-          .attr("font-size", 15)
+          .attr("font-size", 3)
           .attr("opacity", 0.4)
           .text("id: " + this.selectedEvent.id);
 
@@ -104,8 +104,9 @@ class ThreeSixtyChart extends GeneralChart {
         .attr("d", (d) => d3.line()(this.convertVisibleArea(d.visible_area)))
         .attr("fill", "#888")
         .attr("stroke", "black")
+        .attr('stroke-width', 0.2)
         .attr("opacity", 0.15)
-        .attr("stroke-dasharray", "4 4");
+        .attr("stroke-dasharray", "1 1");
     }
     drawPlayers(sel) {
       this.scTeam = d3.scaleOrdinal().domain(this.teams).range(["black", "blue"]);
@@ -118,42 +119,43 @@ class ThreeSixtyChart extends GeneralChart {
         .join("circle")
         .attr("cx", (d) => this.sx(d.location[0]))
         .attr("cy", (d) => this.sy(d.location[1]))
-        .attr("r", (d) => (d.actor ? 9 : 5))
+        .attr("r", (d) => (d.actor ? 2 : 1))
         .attr("fill", (d) =>
           d.teammate ? this.scTeam(this.selectedEvent.team.name) : this.scTeam(opponent)
         )
         .attr("stroke", (d) => (d.actor ? "white" : "black"))
         .attr("opacity", 0.6)
-        .attr("stroke-width", (d) => (d.actor ? 3 : 1))
-        .attr("stroke-dasharray", (d) => (d.actor ? "3 5" : ""));
+        .attr("stroke-width", (d) => (d.actor ? 1 : 0.5))
+        .attr("stroke-dasharray", (d) => (d.actor ? "2 1" : ""));
 
       sel
         .append("text")
-        .attr("x", this.margin.left)
-        .attr("y", this.margin.top + 15)
-        .attr("dx", 5)
-        .attr("font-size", 15)
+        .attr("x", 0)
+        .attr("y", 3)
+        .attr("dx", 0)
+        .attr("font-size", 3)
         .text(this.writeEventAction(this.selectedEvent));
 
       sel
         .append("text")
-        .attr("x", this.margin.left)
-        .attr("y", this.margin.top + 25)
-        .attr("dx", 5)
-        .attr("font-size", 10)
+        .attr("x", 0)
+        .attr("y", 4.5)
+        .attr("dx", 0)
+        .attr("font-size", 1.5)
         .text(this.writeEventPlayer(this.selectedEvent));
 
     }
 
     drawPass(sel) {
-      this.drawHull(this.threeSixty.freeze_frame);
+      sel.call(this.drawHull.bind(this), this.threeSixty.freeze_frame);
+      // this.drawHull(this.threeSixty.freeze_frame);
         sel
           .append("g")
           .append("text")
-          .attr("x", this.margin.left)
-          .attr("y", this.margin.top + 35)
-          .attr("dx", 5)
-          .attr("font-size", 10)
+          .attr("x", 0)
+          .attr("y", 6)
+          .attr("dx", 0)
+          .attr("font-size", 1.5)
           .text(this.writePassDetail(this.selectedEvent));
 
         sel
@@ -165,8 +167,8 @@ class ThreeSixtyChart extends GeneralChart {
           .attr("x2", (d) => this.sx(d.location[0]))
           .attr("y2", (d) => this.sy(d.location[1]))
           .attr("stroke", "blue")
-          .attr("stroke-width", 3)
-          .attr("stroke-dasharray", "3 3")
+          .attr("stroke-width", 1)
+          .attr("stroke-dasharray", "1 1")
           .transition()
           .duration((d) => getEventDurationInMilliSeconds(d))
           .attr("x2", (d) => this.sx(d.pass.end_location[0]))
@@ -180,7 +182,7 @@ class ThreeSixtyChart extends GeneralChart {
           .attr("cy", (d) => this.sy(d.location[1]))
           .attr("fill", "white")
           .attr("stroke", "black")
-          .attr("r", 3)
+          .attr("r", 1)
           .transition()
           .duration((d) => getEventDurationInMilliSeconds(d))
           .attr("cx", (d) => this.sx(d.pass.end_location[0]))
@@ -192,7 +194,11 @@ class ThreeSixtyChart extends GeneralChart {
               .append("g")
               .append("text")
               .datum(this.selectedEvent)
+              .attr("fill", "red")
               .attr("text-anchor", "middle")
+              .attr("font-size", "4px")
+              .attr("font-weight", "bold")
+              .attr('opacity', 0.8)
               .attr("x", (d) => this.sx(d.location[0]))
               .attr("y", (d) => this.sy(d.location[1]))
               .transition()
@@ -214,8 +220,8 @@ class ThreeSixtyChart extends GeneralChart {
           .attr("x2", (d) => this.sx(d.location[0]))
           .attr("y2", (d) => this.sy(d.location[1]))
           .attr("stroke", "blue")
-          .attr("stroke-width", 3)
-          .attr("stroke-dasharray", "3 3")
+          .attr("stroke-width", 1)
+          .attr("stroke-dasharray", "1 1")
           .transition()
           .duration((d) => getEventDurationInMilliSeconds(d))
           .attr("x2", (d) => this.sx(d.carry.end_location[0]))
@@ -229,7 +235,7 @@ class ThreeSixtyChart extends GeneralChart {
           .attr("cy", (d) => this.sy(d.location[1]))
           .attr("fill", "white")
           .attr("stroke", "black")
-          .attr("r", 3)
+          .attr("r", 1)
           .transition()
           .duration((d) => getEventDurationInMilliSeconds(d))
           .attr("cx", (d) => this.sx(d.carry.end_location[0]))
@@ -240,10 +246,10 @@ class ThreeSixtyChart extends GeneralChart {
       sel
         .append("g")
         .append("text")
-        .attr("x", this.margin.left)
-        .attr("y", this.margin.top + 35)
-        .attr("dx", 5)
-        .attr("font-size", 10)
+        .attr("x", 0)
+        .attr("y", 6)
+        .attr("dx", 0)
+        .attr("font-size", 1.5)
         .text(this.writeShotDetail(this.selectedEvent));
 
       sel
@@ -255,7 +261,7 @@ class ThreeSixtyChart extends GeneralChart {
         .attr("x2", (d) => this.sx(d.location[0]))
         .attr("y2", (d) => this.sy(d.location[1]))
         .attr("stroke", "blue")
-        .attr("stroke-width", 3)
+        .attr("stroke-width", 1)
         .attr("stroke-dasharray", "3 3")
         .transition()
         .duration((d) => getEventDurationInMilliSeconds(d))
@@ -272,7 +278,7 @@ class ThreeSixtyChart extends GeneralChart {
           d.shot.outcome.name === "Goal" ? "#91cf60" : "#fc8d59"
         )
         .attr("stroke", "black")
-        .attr("r", 3)
+        .attr("r", 1)
         .transition()
         .duration((d) => getEventDurationInMilliSeconds(d))
         .attr("cx", (d) => this.sx(d.shot.end_location[0]))
@@ -280,12 +286,12 @@ class ThreeSixtyChart extends GeneralChart {
 
     }
 
-    drawHull(tracking) {
+    drawHull(sel, tracking) {
       const opponents = tracking.filter(
         (d) => d.teammate === false && d.keeper === false
       );
 
-      this.svg
+      sel
         .append("g")
         .append("path")
         .datum(d3.polygonHull(opponents.map((d) => d.location)))
@@ -322,7 +328,8 @@ class ThreeSixtyChart extends GeneralChart {
         .join("circle")
         .attr("cx", (d) => this.sx(d.location[0]))
         .attr("cy", (d) => this.sy(d.location[1]))
-        .attr("r", (d) => (d.type.name === "Pass" ? 8 : 3))
+        .attr("r", (d) => (d.type.name === "Pass" ? 1.4 : 0.4))
+        .attr('stroke-width', 0.2)
         .attr("fill", (d) => {
           if (d.type.name !== "Pass") return "pink";
           return "yellow";
@@ -344,9 +351,9 @@ class ThreeSixtyChart extends GeneralChart {
         .join("text")
         .attr("x", (d) => this.sx(d.location[0]))
         .attr("y", (d) => this.sy(d.location[1]))
-        .attr("dy", 4)
+        .attr("dy", 1)
         .attr("opacity", 0)
-        .attr("font-size", 10)
+        .attr("font-size", 2)
         .attr("text-anchor", "middle")
         .style("user-select", "none")
         .text((d, i) => i - this.filterChainEvents(this.possession, ["Pass"]).filter(d=>d.index - this.selectedEvent.index < 0).length)
@@ -366,8 +373,8 @@ class ThreeSixtyChart extends GeneralChart {
         .attr("x2", (d) => this.sx(d.pass.end_location[0]))
         .attr("y2", (d) => this.sy(d.pass.end_location[1]))
         .attr("stroke", "gray")
-        .attr("stroke-width", 1.5)
-        .attr("stroke-dasharray", "3 3")
+        .attr("stroke-width", 0.5)
+        .attr("stroke-dasharray", "1 1")
         .attr("opacity", 0)
         .transition()
         .delay(
@@ -384,9 +391,9 @@ class ThreeSixtyChart extends GeneralChart {
           "https://dtai.cs.kuleuven.be/sports/static/ee39fa2918398059e9be62c32c1b48c4/74404/statsbomb_logo.png"
         )
         .attr("opacity", 0.2)
-        .attr("x", this.pitch.width() - this.margin.right - 200)
-        .attr("y", this.pitch.height() - this.margin.bottom - 22)
-        .attr("width", 200);
+        .attr("x", 0)
+        .attr("y", 61)
+        .attr("width", 52.5);
     }
 
     mouseoverEvent(thisClass, event, d) {
@@ -451,8 +458,8 @@ class ThreeSixtyChart extends GeneralChart {
       // this.svg.call(this.paintBG, "#fff1df");
       this.setAxes();
       this.svg.call(this.drawPitch.bind(this));
-      this.svg.call(this.draw360.bind(this));
-      this.svg.call(this.drawWatermark.bind(this));
+      this.svg.select('#above').append('g').call(this.draw360.bind(this));
+      this.svg.select('#above').append('g').call(this.drawWatermark.bind(this));
     }
   }
 
