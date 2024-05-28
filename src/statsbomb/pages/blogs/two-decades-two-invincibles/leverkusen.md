@@ -58,3 +58,7 @@ matchesArs[0]
 const eventsArs = getEvents(matchesArs[0].match_id)
 view(Inputs.table(eventsArs))
 ```
+
+## Data
+
+https://statsbomb.com/articles/soccer/free-statsbomb-data-bayer-leverkusens-invincible-bundesliga-title-win/
