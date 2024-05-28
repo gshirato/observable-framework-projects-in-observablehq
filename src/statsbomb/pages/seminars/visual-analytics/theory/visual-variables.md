@@ -80,6 +80,7 @@ const pos = new Position(shots, '#position .chart', {
 ```
 
 <div id="position">
+    <div class="legend"></div>
     <div class="chart"></div>
 </div>
 
@@ -100,6 +101,7 @@ const size = new Size(shots, '#size .chart', {
 ```
 
 <div id="size">
+    <div class="legend"></div>
     <div class="chart"></div>
 </div>
 
@@ -120,6 +122,7 @@ const shape = new Shape(shots, '#shape .chart', {
 ```
 
 <div id="shape">
+    <div class="legend"></div>
     <div class="chart"></div>
 </div>
 
@@ -142,6 +145,7 @@ const value = new Value(shots, '#value .chart', {
 ```
 
 <div id="value">
+    <div class="legend"></div>
     <div class="chart"></div>
 </div>
 
@@ -162,6 +166,7 @@ const color = new Color(shots, '#color .chart', {
 ```
 
 <div id="color">
+    <div class="legend"></div>
     <div class="chart"></div>
 </div>
 
@@ -187,6 +192,7 @@ const motion = require("d3-soccer").then(soccer=>{
 ```
 
 <div id="motion">
+    <div class="legend"></div>
     <div class="chart"></div>
 </div>
 

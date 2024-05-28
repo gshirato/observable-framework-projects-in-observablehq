@@ -2,6 +2,7 @@ import * as d3 from "npm:d3";
 import GeneralChart from "../../../../../chart/components/GeneralChart.js";
 import _ from "npm:lodash";
 import { mouseover, mousemove, mouseleave } from "./interaction.js";
+import ValueLegend from './valueLegend.js';
 
 export default class Value extends GeneralChart {
   constructor(data, selector, config) {
@@ -80,8 +81,19 @@ export default class Value extends GeneralChart {
         .on("mouseleave", _.partial(mouseleave, this));
   }
 
+  drawLegend() {
+    new ValueLegend([], `${this.rootSelector} .legend`, {
+      width: this.width,
+      height: 50,
+      margin: this.margin,
+      chart: this
+    }).draw();
+  }
+
   draw() {
     this.drawAxes();
     this.drawData();
+    this.drawLegend();
+
   }
 }

@@ -1,5 +1,6 @@
 import * as d3 from "npm:d3";
 import GeneralChart from "../../../../../chart/components/GeneralChart.js";
+import ColorLegend from './colorLegend.js';
 import _ from "npm:lodash";
 import { mouseover, mousemove, mouseleave } from "./interaction.js";
 
@@ -67,8 +68,18 @@ export default class Color extends GeneralChart {
   }
 
 
+  drawLegend() {
+    const legend = new ColorLegend(this.sc.domain(), `${this.rootSelector} .legend`, {
+      width: this.width,
+      height: 50,
+      margin: this.margin,
+      chart: this
+    }).draw();
+  }
+
   draw() {
     this.drawAxes();
     this.drawData();
+    this.drawLegend();
   }
 }

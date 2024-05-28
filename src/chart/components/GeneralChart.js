@@ -45,7 +45,7 @@ class GeneralChart {
       sel.call(this.paintBG.bind(this), color);
     }
 
-    paintBG = (sel, color) => {
+    paintBG = (sel, config) => {
       sel
         .append("g")
         .append("rect")
@@ -54,7 +54,10 @@ class GeneralChart {
         .attr("y", this.margin.top)
         .attr("width", this.innerWidth)
         .attr("height", this.innerHeight)
-        .attr("fill", color);
+        .attr("fill", config.fill || "none")
+        .attr('stroke', config.stroke || 'none')
+        .attr('stroke-width', config.strokeWidth || 1)
+        .attr('stroke-dasharray', config.strokeDasharray || '');
     };
 
     draw() {}
