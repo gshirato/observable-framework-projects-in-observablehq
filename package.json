@@ -11,6 +11,7 @@
   "dependencies": {
     "@observablehq/framework": "latest",
     "d3-dsv": "^3.0.1",
+    "d3-generic-charts": "^0.0.11",
     "d3-time-format": "^4.1.0"
   },
   "engines": {

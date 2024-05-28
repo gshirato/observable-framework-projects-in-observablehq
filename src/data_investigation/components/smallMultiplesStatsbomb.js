@@ -2,7 +2,6 @@ import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../../chart/components/GeneralChart.js";
 import DetailChart from "./detailStatsbomb.js";
-import sec2mmss from './sec2mmss.js';
 
 
 export default class SmallMultiplesChart extends GeneralChart {
@@ -112,7 +111,6 @@ export default class SmallMultiplesChart extends GeneralChart {
         .selectAll('circle')
         .data(this.data.filter(d=>['Pass', 'Shot', 'Carry'].includes(d.type.name)).slice(-1))
         .join('circle')
-        .attr('l', d=>console.log(this.data))
         .attr('cx', d => this.sx(d[d.type.name.toLowerCase()].end_location[0]))
         .attr('cy', d => this.sx(d[d.type.name.toLowerCase()].end_location[1]))
         .attr('r', 2)
