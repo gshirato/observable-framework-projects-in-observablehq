@@ -25,7 +25,7 @@ require("d3-soccer").then(soccer=>{
         height: 500,
         width: width,
         margin: { top: 0, bottom: 0, left: 20, right: 10 },
-        ball: { x: 30, y: 30 },
+        ball: { x: 20, y: 30 },
         ratio: 1,
         soccerModule: soccer
     }).draw();
@@ -35,6 +35,7 @@ require("d3-soccer").then(soccer=>{
 
 ```html
 <div id="gkPositioning">
+    <div class="debug"></div>
     <div class="chart"></div>
     <div class="card fromBack"></div>
 </div>

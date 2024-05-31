@@ -19,7 +19,7 @@ export function getGKPosition(ball, goal, magnitude = 1) {
     let b = 5.5 * magnitude; // 短径
 
     if (!isShotPossible(ball, goal, 30)) {
-        return { x: 34, y: 52.5 - 5.5 }; // GK should be at the center of the longer edge of the goal area
+        return { x: 5.5, y: 34 }; // GK should be at the center of the longer edge of the goal area
     }
 
 
