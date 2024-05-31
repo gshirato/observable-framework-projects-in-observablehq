@@ -5,12 +5,6 @@
 import getMatches from '../../statsbomb/components/data.js';
 ```
 
-
-```js
-const generic = import('https://cdn.skypack.dev/d3-generic-charts@latest?min')
-```
-
-
 ```js
 const matches = getMatches(9, 281).then(d=>d.sort((a, b) => d3.ascending(a.match_date, b.match_date)))
 ```
