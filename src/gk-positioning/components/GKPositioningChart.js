@@ -45,76 +45,75 @@ class GKPositioningChart extends GeneralChart {
     }
 
     drawAuxiliaryLines(sel) {
-
       sel
         .append('g')
         .append('line')
-        .attr('x1', this.sx(34 - 20.16))
-        .attr('x2', this.sx(34 + 20.16))
-        .attr('y1', this.sy(52.5 - 5.25))
-        .attr('y2', this.sy(52.5 - 5.25))
+        .attr('x1', 5.25)
+        .attr('x2', 5.25)
+        .attr('y1', 34 - 20.16)
+        .attr('y2', 34 + 20.16)
         .attr("stroke", '#999')
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
         .attr('stroke-dasharray', '0.5 0.5')
 
       sel
         .append('g')
         .append('line')
-        .attr('x1', this.sx(34 - 20))
-        .attr('x2', this.sx(34 + 20))
-        .attr('y1', this.sy(52.5 - 10.5))
-        .attr('y2', this.sy(52.5 - 10.5))
+        .attr('x1', 10.5)
+        .attr('x2', 10.5)
+        .attr('y1', 34 - 20)
+        .attr('y2', 34 + 20)
         .attr("stroke", '#999')
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
         .attr('stroke-dasharray', '0.5 0.5')
 
       sel
         .append('g')
         .append('line')
-        .attr('x1', this.sx(34 - (3.66 + 5.5)))
-        .attr('x2', this.sx(34 - (3.66 + 5.5)))
-        .attr('y1', this.sy(52.5))
-        .attr('y2', this.sy(52.5 - 16))
+        .attr('x1', 0)
+        .attr('x2', 16.5)
+        .attr('y1', 34 - (3.66 + 5.5))
+        .attr('y2', 34 - (3.66 + 5.5))
         .attr("stroke", '#999')
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
         .attr('stroke-dasharray', '0.5 0.5')
 
       sel
         .append('g')
         .append('line')
-        .attr('x1', this.sx(34 - (3.66 + 11)))
-        .attr('x2', this.sx(34 - (3.66 + 11)))
-        .attr('y1', this.sy(52.5))
-        .attr('y2', this.sy(52.5 - 16))
+        .attr('x1', 0)
+        .attr('x2', 16.5)
+        .attr('y1', 34 - (3.66 + 11))
+        .attr('y2', 34 - (3.66 + 11))
         .attr("stroke", '#999')
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
         .attr('stroke-dasharray', '0.5 0.5')
 
       sel
         .append('g')
         .append('line')
-        .attr('x1', this.sx(34 + (3.66 + 5.5)))
-        .attr('x2', this.sx(34 + (3.66 + 5.5)))
-        .attr('y1', this.sy(52.5))
-        .attr('y2', this.sy(52.5 - 16))
+        .attr('x1', 0)
+        .attr('x2', 16.5)
+        .attr('y1', 34 + (3.66 + 5.5))
+        .attr('y2', 34 + (3.66 + 5.5))
         .attr("stroke", '#999')
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
         .attr('stroke-dasharray', '0.5 0.5')
 
       sel
         .append('g')
         .append('line')
-        .attr('x1', this.sx(34 + (3.66 + 11)))
-        .attr('x2', this.sx(34 + (3.66 + 11)))
-        .attr('y1', this.sy(52.5))
-        .attr('y2', this.sy(52.5 - 16))
+        .attr('x1', 0)
+        .attr('x2', 16.5)
+        .attr('y1', 34 + (3.66 + 11))
+        .attr('y2', 34 + (3.66 + 11))
         .attr("stroke", '#999')
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
         .attr('stroke-dasharray', '0.5 0.5')
     }
@@ -129,40 +128,6 @@ class GKPositioningChart extends GeneralChart {
         .attr("height", this.pitch.height())
         .attr("fill", "#ccc");
       sel.append("g").call(this.pitch);
-      this.svg.call(this.drawAuxiliaryLines.bind(this));
-
-      // const sx = d3.scaleLinear().domain([0, 52.5]).range([this.width - this.margin.right, this.margin.left]);
-      // const sy = d3.scaleLinear().domain([0, 68]).range([this.margin.top, this.height - this.margin.bottom]);
-
-      // const b = {
-      //   x: sx.invert(0),
-      //   y: sy.invert(0)
-      // }
-      // const c = {
-      //   x: sx.invert(545),
-      //   y: sy.invert(420)
-      // }
-      // d3.select('.debug').html(`
-      //   x: ${b.x}, y: ${b.y},
-      //   x: ${c.x}, y: ${c.y}
-      //   `)
-      // sel
-      //   .select('#above')
-      //   .append('g')
-      //   .append('circle')
-      //   .attr('cx', b.x)
-      //   .attr('cy', b.y)
-      //   .attr('r', 2)
-      //   .attr('fill', 'purple')
-
-      //   sel
-      //   .select('#above')
-      //   .append('g')
-      //   .append('circle')
-      //   .attr('cx', c.x)
-      //   .attr('cy', c.y)
-      //   .attr('r', 2)
-      //   .attr('fill', 'purple')
     }
 
     onMousemove(thisClass, event, d) {
@@ -450,7 +415,7 @@ class GKPositioningChart extends GeneralChart {
         .attr("stroke", "blue")
         .attr("opacity", 0.4)
         .attr("stroke-width", 0.2)
-        .attr("stroke-dasharray", "1 1");
+        .attr("stroke-dasharray", "0.2 0.2");
 
       sel
         .append('g')
@@ -488,10 +453,10 @@ class GKPositioningChart extends GeneralChart {
       sel
         .select(".responsible-path")
         .style('display', '')
-        .attr("x1", this.sx(perpX1))
-        .attr("y1", this.sy(perpY1))
-        .attr("x2", this.sx(perpX2))
-        .attr("y2", this.sy(perpY2));
+        .attr("x1", perpX1)
+        .attr("y1", perpY1)
+        .attr("x2", perpX2)
+        .attr("y2", perpY2);
       }
 
       calculateResponsibleLine(ball) {
@@ -615,6 +580,7 @@ class GKPositioningChart extends GeneralChart {
     draw() {
       this.svg.call(this.drawPitch.bind(this));
       this.svg.select('#above').append('g').call(this.drawBaseEllipse.bind(this));
+      this.svg.select('#above').append('g').call(this.drawAuxiliaryLines.bind(this));
       this.svg.select('#above').append('g').call(this.drawActualEllipse.bind(this));
       this.svg.select('#above').append('g').call(this.drawPointX.bind(this));
       this.svg.select('#above').append('g').call(this.drawBall.bind(this));
