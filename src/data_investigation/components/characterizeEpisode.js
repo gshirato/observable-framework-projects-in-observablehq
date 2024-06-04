@@ -6,6 +6,14 @@ function calculateConvexHullArea(points) {
     return Math.abs(d3.polygonArea(hull));
 }
 
+/**
+ *groupd data by match_id and episode then aggreate by:
+ * - count of events
+ * - sum of event duration
+ * - progression of X
+ * - average position
+ * - area of the hull convex made by the positions
+*/
 export default function aggregateData(data) {
     const groupedData = d3.group(data, d => d.match_id, d => d.episode);
 
