@@ -20,35 +20,49 @@ import getUniqueArray from '../../chart/components/utils.js';
 ```js
 import {require} from "npm:d3-require";
 import aggregateData from "../components/characterizeEpisode.js";
-import calculateUmap from "../components/umap.js";
 ```
 
 ```js
 const characterized = aggregateData(data);
-view(characterized)
+const features = characterized.map((d) => Object.values(d).slice(2, -1))
 ```
 
 ```js
-const projection = calculateUmap(
-    characterized.map((d) => Object.values(d).slice(1, -1)), {
-        nComponents: 2,
-        nNeighbors: 5,
-        minDist: 0.1,
-        random: 44,
-        nEpochs: 200,
-        distanceFn: "euclidean"
-    }
-)
+import {require} from "npm:d3-require";
+const UMAP = (await require("umap-js@1.3.1")).UMAP;
+
+const fixed = new UMAP({
+    nComponents: 2,
+    minDist: 0.1,
+    nNeighbors: 15,
+}).fit(features)
 ```
 
 ```js
-
+import UmapChart from '../components/umap/chart.js';
 ```
 
+```js
+new UmapChart(features, '#umap .chart', {
+    width: width / 2,
+    height: width / 2,
+    margin: {top: 10, right: 10, bottom: 25, left: 25},
+}).draw()
+```
 
+<div id="umap">
+    <div class="chart"></div>
+</div>
+
+
+
+
+## Data
 
 ```js
 view(data)
+view(characterized)
+
 ```
 
 ## References
