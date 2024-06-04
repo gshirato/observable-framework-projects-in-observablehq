@@ -43,10 +43,11 @@ import UmapChart from '../components/umap/chart.js';
 ```
 
 ```js
-new UmapChart(features, '#umap .chart', {
+new UmapChart(fixed, '#umap .chart', {
     width: width / 2,
     height: width / 2,
     margin: {top: 10, right: 10, bottom: 25, left: 25},
+    features: features,
 }).draw()
 ```
 
