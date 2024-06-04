@@ -101,6 +101,13 @@ export default class UmapChart extends GeneralChart {
             .attr("offset", "100%")
             .attr("stop-color", this.sc.range()[2])
 
+        colorbar.append("text")
+            .attr("x", 50)
+            .attr("y", -5)
+            .attr("text-anchor", "middle")
+            .attr("font-size", "13px")
+            .text(this.highlight)
+
         colorbar.append("rect")
             .attr("x", 0)
             .attr("y", 0)
@@ -128,13 +135,6 @@ export default class UmapChart extends GeneralChart {
 
 
     drawTitle(sel) {
-        sel
-            .append("text")
-            .attr("x", this.width / 2)
-            .attr("y", this.margin.top / 2)
-            .attr("text-anchor", "middle")
-            .attr("font-size", "20px")
-            .text(`color: ${this.highlight}`);
     }
 
     mouseover(thisClass, event, d) {
@@ -142,8 +142,8 @@ export default class UmapChart extends GeneralChart {
     }
 
     mousemove(thisClass, event, d) {
-        const feature = d3.select(event.target).attr('feature')
-        thisClass.tooltip.setText(feature);
+        const feature = parseFloat(d3.select(event.target).attr('feature')).toFixed(1);
+        thisClass.tooltip.setText(`${thisClass.highlight}: <b>${feature}</b>`);
         thisClass.tooltip.move(event, d);
     }
     mouseleave(thisClass, event, d) {
