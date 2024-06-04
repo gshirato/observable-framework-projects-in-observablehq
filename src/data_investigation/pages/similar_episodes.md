@@ -15,15 +15,33 @@ import drawSmallMultiples from "../components/drawSmallMultiples.js";
 import getUniqueArray from '../../chart/components/utils.js';
 ```
 
+```js
+const groupedData = d3.group(data, d => d.match_id, d => d.episode);
 
+const results = Array.from(groupedData, ([matchId, episodes]) => (
+        Array.from(episodes, ([episode, events]) => {
+            const successful = events[events.length - 1].sub_event_name === "Corner";
+            return {
+                successful,
+                matchId,
+                episode,
+            };
+        })
+    ));
+```
+
+```js
+```
 
 ```js
 import {require} from "npm:d3-require";
-import aggregateData from "../components/characterizeEpisode.js";
+import aggregateData from "../components/aggregateEpisode.js";
+import successfulEpisode from "../components/successfulEpisode.js";
 ```
 
 ```js
 const characterized = aggregateData(data);
+const successful = successfulEpisode(data);
 const features = characterized.map((d) => Object.values(d).slice(2, -1))
 ```
 
@@ -43,11 +61,17 @@ import UmapChart from '../components/umap/chart.js';
 ```
 
 ```js
+d3.extent(characterized, d=>d['episode'])
+```
+
+```js
 new UmapChart(fixed, '#umap .chart', {
     width: width / 2,
     height: width / 2,
-    margin: {top: 10, right: 10, bottom: 25, left: 25},
-    features: features,
+    margin: {top: 30, right: 10, bottom: 25, left: 25},
+    characterized: characterized,
+    successful: successful,
+    highlight: 'successful'
 }).draw()
 ```
 
@@ -56,7 +80,30 @@ new UmapChart(fixed, '#umap .chart', {
 </div>
 
 
+```js
+const charts = d3.select('#small-multiples .overview')
+// charts.selectAll('*').remove()
+const names = ['eventCount', 'eventDuration', 'progressionOfX', 'averageX', 'averageY', 'hullArea']
 
+names.forEach((feature) => {
+    console.log(feature)
+    charts.append('div').attr('class', feature)
+    new UmapChart(fixed, `#small-multiples .overview .${feature}`, {
+        width: width / 3,
+        height: width / 3,
+        margin: {top: 10, right: 10, bottom: 25, left: 25},
+        characterized: characterized,
+        successful: successful,
+        highlight: feature
+    }).draw()
+})
+
+```
+
+
+<div id="small-multiples">
+    <div class="overview grid grid-cols-3"></div>
+</div>
 
 ## Data
 
