@@ -12,6 +12,7 @@ export default {
       pages: [
         {name: "Small multiples", path: "/data_investigation/pages/small_multiples"},
         {name: "Similar episodes", path: "/data_investigation/pages/similar_episodes"},
+        {name: "Important events", path: "/data_investigation/pages/important_event_timeline"},
         {name: "Suspicious locations", path: "/data_investigation/pages/suspicious_locations"},
         {name: "Leverkusen", path: "/data_investigation/pages/leverkusen"},
       ]
