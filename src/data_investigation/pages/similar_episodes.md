@@ -180,4 +180,5 @@ view(characterized)
         background-color: #f4f4f4;
         text-align: left;
     }
+
 </style>

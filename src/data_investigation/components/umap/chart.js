@@ -52,6 +52,60 @@ export default class UmapChart extends GeneralChart {
         return this.characterized[i][this.highlight]
     }
 
+    addBrush() {
+        this.brush = d3.brush()
+            .extent([
+                [this.margin.left, this.margin.top],
+                [this.width - this.margin.right, this.height - this.margin.bottom]
+            ])
+            .on('end', this.brushed.bind(this));
+
+        this.svg.append('g').call(this.brush)
+
+        this.svg
+            .append('g')
+            .append('rect')
+            .attr('class', 'brush-rect')
+            .attr('fill', 'none')
+            .attr('stroke', 'black')
+            .attr('stroke-width', 1)
+            .attr('stroke-dasharray', '5,5')
+            .attr('opacity', 0)
+    }
+
+    brushed(event) {
+        if (!event.selection) {
+            this.svg.call(this.drawPoints.bind(this));
+            d3.selectAll('.brush-rect').attr('opacity', 0);
+            return;
+        }
+        const [[xmin, ymin], [xmax, ymax]] = event.selection;
+        const selected = this.data.filter((d, i) => {
+            const x = this.sx(d[0]);
+            const y = this.sy(d[1]);
+            return x >= xmin && x <= xmax && y >= ymin && y <= ymax;
+        });
+
+        // do this in each chart (chart has its method)
+        d3.selectAll('.brush-rect')
+            .attr('x', xmin)
+            .attr('y', ymin)
+            .attr('width', xmax - xmin)
+            .attr('height', ymax - ymin)
+            .attr('opacity', 0.9)
+
+
+        const selectedIndices = selected.map(d => this.data.indexOf(d));
+        d3.selectAll('circle').attr('opacity', 0.1);
+        // d3.selectAll('circle').attr('selected', false);
+
+        selectedIndices.forEach(i => {
+            d3.selectAll(`.d-${i}`).attr('opacity', 0.9);
+            // d3.select(`.d-${i}`).attr('selected', true);
+        })
+
+    }
+
     drawPoints(sel) {
         sel.selectAll("circle")
             .data(this.data)
@@ -59,6 +113,7 @@ export default class UmapChart extends GeneralChart {
             .attr("cx", d => this.sx(d[0]))
             .attr("cy", d => this.sy(d[1]))
             .attr("r", 2)
+            .attr('class', (_, i) => `d-${i}`)
             .attr("fill", (_, i)=>this.sc(this.getFeatureValue(i)))
             .attr("opacity", (_, i)=>this.successful[i].successful ? 0.9: 0.1)
             .attr('feature', (_, i)=>this.getFeatureValue(i))
@@ -72,6 +127,7 @@ export default class UmapChart extends GeneralChart {
         this.svg.call(this.drawPoints.bind(this));
         this.svg.call(this.drawTitle.bind(this));
         this.svg.call(this.drawColorbar.bind(this));
+        this.addBrush();
     }
 
     drawColorbar(sel) {
