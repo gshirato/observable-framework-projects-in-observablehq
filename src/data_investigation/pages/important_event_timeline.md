@@ -19,6 +19,25 @@ import getUniqueArray from '../../chart/components/utils.js';
 import {require} from "npm:d3-require";
 ```
 
+```js
+import EventTimelineChart from "../components/event-timeline/chart.js";
+```
+
+```js
+new EventTimelineChart(data, '#timeline .chart', {
+    width: width,
+    height: width / 2,
+    margin: {top: 20, right: 20, bottom: 20, left: 20},
+});
+```
+
+```js
+```
+
+<div id="timeline">
+    <div class="chart"></div>
+</div>
+
 ## Data
 
 ```js

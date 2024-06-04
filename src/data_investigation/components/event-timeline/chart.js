@@ -3,7 +3,7 @@ import _ from "npm:lodash";
 import GeneralChart from "../../../chart/components/GeneralChart.js";
 
 
-export default class UmapChart extends GeneralChart {
+export default class EventTimelineChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
         this.config = config;
