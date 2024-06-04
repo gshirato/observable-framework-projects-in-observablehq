@@ -20,23 +20,25 @@ import getUniqueArray from '../../chart/components/utils.js';
 ```js
 import {require} from "npm:d3-require";
 import aggregateData from "../components/characterizeEpisode.js";
+import calculateUmap from "../components/umap.js";
 ```
 
 ```js
-// groupd data by match_id and episode then aggreate by:
-// - count of events
-// - sum of event duration
-// - progression of X
-// - average position
-// - area of the hull convex made by the positions
-
-
-const aggregatedData = aggregateData(data);
-
-view(aggregatedData)
+const characterized = aggregateData(data);
+view(characterized)
 ```
 
 ```js
+const projection = calculateUmap(
+    characterized.map((d) => Object.values(d).slice(1, -1)), {
+        nComponents: 2,
+        nNeighbors: 5,
+        minDist: 0.1,
+        random: 44,
+        nEpochs: 200,
+        distanceFn: "euclidean"
+    }
+)
 ```
 
 ```js
