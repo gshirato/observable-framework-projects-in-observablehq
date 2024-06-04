@@ -86,7 +86,6 @@ const charts = d3.select('#small-multiples .overview')
 const names = ['eventCount', 'eventDuration', 'progressionOfX', 'averageX', 'averageY', 'hullArea']
 
 names.forEach((feature) => {
-    console.log(feature)
     charts.append('div').attr('class', feature)
     new UmapChart(fixed, `#small-multiples .overview .${feature}`, {
         width: width / 3,

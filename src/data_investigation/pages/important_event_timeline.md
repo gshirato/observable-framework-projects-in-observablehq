@@ -11,6 +11,7 @@ const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
 ```js
 import LengthDistributionChart from "../components/lengthDistribution.js";
 import addEmoji from "../components/countryEmojis.js";
+import tagsStr2List from '../components/tagsStr2List.js';
 import drawSmallMultiples from "../components/drawSmallMultiples.js";
 import getUniqueArray from '../../chart/components/utils.js';
 ```
@@ -24,11 +25,25 @@ import EventTimelineChart from "../components/event-timeline/chart.js";
 ```
 
 ```js
-new EventTimelineChart(data, '#timeline .chart', {
+const match_id = view(Inputs.select(d3.union(data.map(d=>d.match_id)), {
+    label: "Match ID",
+    format: d => `${getUniqueArray(data.filter(e => e.match_id === d).map(d=>addEmoji(d.team_name))).join(' vs ')}`,
+}));
+```
+
+
+```js
+new EventTimelineChart(data.filter(d=>d.match_id === match_id), '#timeline .chart', {
     width: width,
-    height: width / 2,
-    margin: {top: 20, right: 20, bottom: 20, left: 20},
-});
+    height: 200,
+    margin: {top: 20, right: 20, bottom: 20, left: 25},
+}).draw();
+```
+
+
+
+```js
+getUniqueArray(data.map(d => tagsStr2List(d.tags)).flat())
 ```
 
 ```js
