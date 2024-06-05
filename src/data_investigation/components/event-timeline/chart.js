@@ -4,43 +4,9 @@ import GeneralChart from "../../../chart/components/GeneralChart.js";
 import getUniqueArray from '../../../chart/components/utils.js';
 import tagsStr2List from "../tagsStr2List.js";
 import sec2mmss from "../sec2mmss.js";
-import getEmoji from "../countryEmojis.js";
+import getEmoji from "../emoji/countryEmojis.js";
+import emojis from "../emoji/list.js";
 
-
-const emojis = {
-    "Croatia": "🇭🇷",
-    "France": "🇫🇷",
-    "Belgium": "🇧🇪",
-    "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿",
-    "Russia": "🇷🇺",
-    "Sweden": "🇸🇪",
-    "Brazil": "🇧🇷",
-    "Uruguay": "🇺🇾",
-    "Colombia": "🇨🇴",
-    "Switzerland": "🇨🇭",
-    "Japan": "🇯🇵",
-    "Mexico": "🇲🇽",
-    "Denmark": "🇩🇰",
-    "Spain": "🇪🇸",
-    "Portugal": "🇵🇹",
-    "Argentina": "🇦🇷",
-    "Panama": "🇵🇦",
-    "Tunisia": "🇹🇳",
-    "Poland": "🇵🇱",
-    "Senegal": "🇸🇳",
-    "Serbia": "🇷🇸",
-    "Costa Rica": "🇨🇷",
-    "Germany": "🇩🇪",
-    "Korea Republic": "🇰🇷",
-    "Nigeria": "🇳🇬",
-    "Iceland": "🇮🇸",
-    "Peru": "🇵🇪",
-    "Australia": "🇦🇺",
-    "Morocco": "🇲🇦",
-    "Iran": "🇮🇷",
-    "Egypt": "🇪🇬",
-    "Saudi Arabia": "🇸🇦"
-}
 
 const tagMeanings = {
     101: "Goal",
@@ -57,6 +23,7 @@ export default class EventTimelineChart extends GeneralChart {
         super(data, selector, config);
         this.episodes = this.groupEvents(data);
         this.config = config;
+        this.summary = this.config.summary;
         this.setAxes();
     }
 
@@ -186,6 +153,11 @@ export default class EventTimelineChart extends GeneralChart {
 
     }
 
+    addEmojiToLabel(label) {
+        const [teams, score] = label.split(', ');
+        const emojis = teams.split(' - ').map(team => getEmoji(team)).join(' vs ');
+        return `${emojis} (${score})`;
+    }
 
     drawTitle(sel) {
         sel
@@ -196,7 +168,7 @@ export default class EventTimelineChart extends GeneralChart {
             .attr('font-weight', 'bold')
             .attr('text-anchor', 'start')
             .attr('alignment-baseline', 'middle')
-            .text(getUniqueArray(this.data.map(d => getEmoji(d.team_name))).join(' vs '))
+            .text(this.addEmojiToLabel(this.summary.label))
             .attr('font-size', '20px')
     }
 
