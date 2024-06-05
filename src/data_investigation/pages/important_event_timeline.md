@@ -37,8 +37,8 @@ const _ = summary.map(d=>d.match_id).forEach(match_id=>{
 
     new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
     width: width,
-    height: 200,
-    margin: {top: 20, right: 20, bottom: 20, left: 25},
+    height: 150,
+    margin: {top: 15, right: 10, bottom: 20, left: 25},
     summary: summary.find(d => d.match_id === match_id),
 }).draw();
 })
