@@ -182,16 +182,6 @@ export default class EventTimelineChart extends GeneralChart {
     }
 
     drawTitle(sel) {
-        sel
-            .append('text')
-            .attr('x', this.margin.left)
-            .attr('y', this.margin.top / 2)
-            .attr('font-family', 'sans-serif')
-            .attr('font-weight', 'bold')
-            .attr('text-anchor', 'start')
-            .attr('alignment-baseline', 'middle')
-            .text(addEmojiToLabel(this.summary.label))
-            .attr('font-size', '20px')
     }
 
     mouseover(thisClass, event, d) {

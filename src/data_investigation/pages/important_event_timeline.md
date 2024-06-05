@@ -23,10 +23,17 @@ import {require} from "npm:d3-require";
 import EventTimelineChart from "../components/event-timeline/chart.js";
 ```
 
+---
+
+## Charts
+
 
 ```js
 const _ = summary.map(d=>d.match_id).forEach(match_id=>{
-    d3.select('#timeline .charts').append('div').attr('class', `id-${match_id}`)
+    const container = d3.select('#timeline .charts').append('div')
+    container.append('h3').html(addEmojiToLabel(summary.find(d => d.match_id === match_id).label))
+    container.append('div').attr('class', `id-${match_id}`)
+
 
     new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
     width: width,
