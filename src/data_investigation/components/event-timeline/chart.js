@@ -47,10 +47,9 @@ export default class EventTimelineChart extends GeneralChart {
             .domain(getUniqueArray(this.data.map(d => d.main_team)))
             .range(["#333", "#ccc"])
 
-        this.scEvent = d3.scaleOrdinal()
-            .domain(['Pass', 'Shot', 'Duel', 'Free Kick', 'Save Attempt', 'Goalkeeper leaving line', 'Offside'])
-            .range(['#66c2a5','#fc8d62','#8da0cb','#e78ac3','#a6d854','#ffd92f','#e5c494'])
-            .unknown('red')
+        this.scEventLabel = d3.scaleOrdinal()
+            .domain(['Goal', 'Own goal', 'Penalty', 'Penalty non goal'])
+            .range(['#b2df8a','#1f78b4','#fb9a99','#a6cee3'])
     }
 
     drawAxes(sel) {
@@ -95,6 +94,16 @@ export default class EventTimelineChart extends GeneralChart {
         return false;
     }
 
+    getEventLabel(d) {
+        if (d.sub_event_name === "Penalty") {
+            if (tagsStr2List(d.tags).includes(101)) return "Penalty";
+            return "Penalty non goal";
+        }
+        if (tagsStr2List(d.tags).includes(101)) return "Goal";
+        if (tagsStr2List(d.tags).includes(102)) return "Own goal";
+        return undefined;
+    }
+
     drawImportantEvents(sel) {
         sel
             .append("g")
@@ -104,8 +113,8 @@ export default class EventTimelineChart extends GeneralChart {
             .attr("cx", (d, i) => this.sx(d.event_sec) + (i % 3 - 1) * 3)
             .attr("cy", d => this.sy(d.match_period) - this.sy.bandwidth() / 2)
             .attr("r", 5)
-            .attr("stroke-width", 2.2)
-            .attr("stroke", d=>this.scEvent(d.sub_event_name))
+            .attr("stroke-width", 2.7)
+            .attr("stroke", d=>this.scEventLabel(this.getEventLabel(d)))
             .attr("fill", "white")
             .attr("opacity", 10)
             .on("mouseover", _.partial(this.mouseover, this))
@@ -124,23 +133,9 @@ export default class EventTimelineChart extends GeneralChart {
             .attr('font-weight', 'bold')
             .attr('text-anchor', 'middle')
             .attr('alignment-baseline', 'middle')
-            .text(d => d.sub_event_name[0])
-            .attr('font-size', '6px')
-
-        sel
-            .append('g')
-            .selectAll('text')
-            .data(this.data.filter(d => this.isImportantEvent(d)))
-            .join('text')
-            .attr("x", (d, i) => this.sx(d.event_sec) + i % 2 * 10 - 5)
-            .attr('y', d => this.sy(d.match_period) + this.sy.bandwidth() / 4)
-            .attr('dy', -10)
-            .attr('font-family', 'sans-serif')
-            .attr('font-weight', 'bold')
-            .attr('text-anchor', 'middle')
-            .attr('alignment-baseline', 'middle')
             .text(d => emojis[d.team_name])
-            .attr('font-size', '10px')
+            .attr('font-size', '8px')
+
     }
 
 
