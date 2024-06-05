@@ -44,12 +44,12 @@ export default class EventTimelineChart extends GeneralChart {
             .padding(0.6)
 
         this.scTeam = d3.scaleOrdinal()
-            .domain(getUniqueArray(this.data.map(d => d.main_team)))
+            .domain(this.summary.label.split(',')[0].split(' - '))
             .range(["#333", "#ccc"])
 
         this.scEventLabel = d3.scaleOrdinal()
-            .domain(['Goal', 'Own goal', 'Penalty', 'Penalty non goal'])
-            .range(['#b2df8a','#1f78b4','#fb9a99','#a6cee3'])
+            .domain(['Goal', 'Own goal', 'Penalty goal', 'Penalty non goal'])
+            .range(['#b2df8a','#1f78b4','#fb9a99','#bbb'])
     }
 
     drawAxes(sel) {
@@ -95,7 +95,7 @@ export default class EventTimelineChart extends GeneralChart {
 
     getEventLabel(d) {
         if (d.sub_event_name === "Penalty") {
-            if (tagsStr2List(d.tags).includes(101)) return "Penalty";
+            if (tagsStr2List(d.tags).includes(101)) return "Penalty goal";
             return "Penalty non goal";
         }
         if (tagsStr2List(d.tags).includes(101)) return "Goal";
@@ -148,13 +148,63 @@ export default class EventTimelineChart extends GeneralChart {
 
     }
 
+
     drawLegend(sel) {
+        sel.call(this.drawLegendTeam.bind(this));
+        sel.call(this.drawLegendEventLabel.bind(this));
+    }
+
+    drawLegendEventLabel(sel) {
+        const cx = d3.scaleBand()
+            .domain(this.scEventLabel.domain())
+            .range([this.width / 2 - 100, this.width - this.margin.right - 120])
+
+        sel
+            .append('g')
+            .append('line')
+            .attr('x1', cx.range()[0] - 5)
+            .attr('x2', cx.range()[1] - 5)
+            .attr('y1', this.margin.top  + 5)
+            .attr('y2', this.margin.top  + 5)
+            .attr('stroke', '#888')
+            .attr('stroke-width', 1.1)
+            .attr('stroke-dasharray', '5,2')
+
+        sel
+            .append('g')
+            .selectAll('circle')
+            .data(this.scEventLabel.domain())
+            .join('circle')
+            .attr('cx', d => cx(d))
+            .attr('cy', this.margin.top / 2)
+            .attr('r', 5)
+            .attr('fill', 'white')
+            .attr('stroke', d => this.scEventLabel(d))
+            .attr('stroke-width', 2.7)
+
+        sel
+            .append('g')
+            .selectAll('text')
+            .data(this.scEventLabel.domain())
+            .join('text')
+            .attr('x', d => cx(d) + 8)
+            .attr('y', this.margin.top / 2)
+            .attr('font-family', 'sans-serif')
+            .attr('font-weight', 'bold')
+            .attr('text-anchor', 'start')
+            .attr('alignment-baseline', 'middle')
+            .attr('font-size', '8px')
+            .text(d => d)
+
+    }
+
+    drawLegendTeam(sel) {
         sel
             .append('g')
             .selectAll('rect')
             .data(this.scTeam.domain())
             .join('rect')
-            .attr('x', (_, i) => this.width - this.margin.right - (i + 1) * 50 )
+            .attr('x', (_, i) => this.width - this.margin.right + (i) * 50 - 100)
             .attr('y', this.margin.top)
             .attr('width', 45)
             .attr('height', 5)
@@ -166,7 +216,7 @@ export default class EventTimelineChart extends GeneralChart {
             .selectAll('text')
             .data(this.scTeam.domain())
             .join('text')
-            .attr('x', (_, i) => this.width - this.margin.right - (i + 1) * 50 )
+            .attr('x', (_, i) => this.width - this.margin.right + (i) * 50 - 100)
             .attr('y', this.margin.top)
             .attr('width', 45)
             .attr('height', 15)
