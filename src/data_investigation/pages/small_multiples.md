@@ -5,7 +5,7 @@ toc: false
 # Small multiples of episodes
 
 ```js
-const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
+const data = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
 ```
 
 ```js

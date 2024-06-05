@@ -5,7 +5,8 @@ toc: false
 # Similar episodes
 
 ```js
-const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
+const data = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
+const summary = FileAttachment("../data/summary/World_Cup.csv").csv({typed: true});
 ```
 
 ```js
