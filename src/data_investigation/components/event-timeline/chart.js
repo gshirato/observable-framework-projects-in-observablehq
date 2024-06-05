@@ -82,15 +82,14 @@ export default class EventTimelineChart extends GeneralChart {
     }
 
     isImportantEvent(d) {
+        if (d.event_name === "Save attempt") return false;
         // 101: Goal
         if (tagsStr2List(d.tags).includes(101)) return true;
         // 102: Own goal
         if (tagsStr2List(d.tags).includes(102)) return true;
-        // 302: Key pass
-        // if (tagsStr2List(d.tags).includes(302)) return true;
         if (d.sub_event_name === "Penalty") return true;
         // if (d.sub_event_name === "Free kick shot") return true;
-        if (d.sub_event_name === "Goal") return true;
+        // if (d.sub_event_name === "Goal") return true;
         return false;
     }
 
@@ -116,7 +115,7 @@ export default class EventTimelineChart extends GeneralChart {
             .attr("stroke-width", 2.7)
             .attr("stroke", d=>this.scEventLabel(this.getEventLabel(d)))
             .attr("fill", "white")
-            .attr("opacity", 10)
+            .attr("opacity", 1)
             .on("mouseover", _.partial(this.mouseover, this))
             .on("mousemove", _.partial(this.mousemove, this))
             .on("mouseleave", _.partial(this.mouseleave, this));
