@@ -45,22 +45,7 @@ const _ = summary.map(d=>d.match_id).forEach(match_id=>{
 
 ```
 
-```js
-const match_id = view(Inputs.select(summary.map(d=>d.match_id), {
-    label: "Match ID",
-    format: d => `${addEmojiToLabel(summary.find(e => e.match_id === d).label)}`,
-}));
-```
 
-
-
-
-```js
-summary
-```
-
-```js
-```
 
 <div id="timeline">
     <div class="charts"></div>
