@@ -6,6 +6,7 @@ import tagsStr2List from "../tagsStr2List.js";
 import sec2mmss from "../sec2mmss.js";
 import emojis from "../emoji/list.js";
 import addEmojiToLabel from "../emoji/addToLabel.js";
+import getEmoji from "../emoji/getEmoji.js";
 
 const tagMeanings = {
     101: "Goal",
@@ -149,6 +150,34 @@ export default class EventTimelineChart extends GeneralChart {
         this.svg.call(this.drawEpisodes.bind(this));
         this.svg.call(this.drawImportantEvents.bind(this));
         this.svg.call(this.drawTitle.bind(this));
+        this.svg.call(this.drawLegend.bind(this));
+
+    }
+
+    drawLegend(sel) {
+        sel
+            .append('g')
+            .selectAll('rect')
+            .data(this.scTeam.domain())
+            .join('rect')
+            .attr('x', (_, i) => this.width - this.margin.right - (i + 1) * 50 )
+            .attr('y', this.margin.top)
+            .attr('width', 45)
+            .attr('height', 5)
+            .attr('fill', d=>this.scTeam(d))
+            .attr('stroke', '#888')
+
+        sel
+            .append('g')
+            .selectAll('text')
+            .data(this.scTeam.domain())
+            .join('text')
+            .attr('x', (_, i) => this.width - this.margin.right - (i + 1) * 50 )
+            .attr('y', this.margin.top)
+            .attr('width', 45)
+            .attr('height', 15)
+            .attr('fill', '#333')
+            .text(d=>getEmoji(d))
 
     }
 

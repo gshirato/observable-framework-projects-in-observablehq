@@ -1,7 +1,3 @@
----
-toc: false
----
-
 # Similar episodes
 
 ```js
@@ -27,6 +23,21 @@ import {require} from "npm:d3-require";
 import EventTimelineChart from "../components/event-timeline/chart.js";
 ```
 
+
+```js
+const _ = summary.map(d=>d.match_id).forEach(match_id=>{
+    d3.select('#timeline .charts').append('div').attr('class', `id-${match_id}`)
+
+    new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
+    width: width,
+    height: 200,
+    margin: {top: 20, right: 20, bottom: 20, left: 25},
+    summary: summary.find(d => d.match_id === match_id),
+}).draw();
+})
+
+```
+
 ```js
 const match_id = view(Inputs.select(summary.map(d=>d.match_id), {
     label: "Match ID",
@@ -34,32 +45,25 @@ const match_id = view(Inputs.select(summary.map(d=>d.match_id), {
 }));
 ```
 
-```js
-new EventTimelineChart(data.filter(d=>d.match_id === match_id), '#timeline .chart', {
-    width: width,
-    height: 200,
-    margin: {top: 20, right: 20, bottom: 20, left: 25},
-    summary: summary.find(d => d.match_id === match_id),
-}).draw();
-```
 
 
 
 ```js
-getUniqueArray(data.map(d => tagsStr2List(d.tags)).flat())
+summary
 ```
 
 ```js
 ```
 
 <div id="timeline">
-    <div class="chart"></div>
+    <div class="charts"></div>
 </div>
 
 ## Data
 
 ```js
 view(data)
+view(summary)
 
 ```
 
