@@ -4,9 +4,8 @@ import GeneralChart from "../../../chart/components/GeneralChart.js";
 import getUniqueArray from '../../../chart/components/utils.js';
 import tagsStr2List from "../tagsStr2List.js";
 import sec2mmss from "../sec2mmss.js";
-import getEmoji from "../emoji/countryEmojis.js";
 import emojis from "../emoji/list.js";
-
+import addEmojiToLabel from "../emoji/addToLabel.js";
 
 const tagMeanings = {
     101: "Goal",
@@ -153,12 +152,6 @@ export default class EventTimelineChart extends GeneralChart {
 
     }
 
-    addEmojiToLabel(label) {
-        const [teams, score] = label.split(', ');
-        const emojis = teams.split(' - ').map(team => getEmoji(team)).join(' vs ');
-        return `${emojis} (${score})`;
-    }
-
     drawTitle(sel) {
         sel
             .append('text')
@@ -168,7 +161,7 @@ export default class EventTimelineChart extends GeneralChart {
             .attr('font-weight', 'bold')
             .attr('text-anchor', 'start')
             .attr('alignment-baseline', 'middle')
-            .text(this.addEmojiToLabel(this.summary.label))
+            .text(addEmojiToLabel(this.summary.label))
             .attr('font-size', '20px')
     }
 

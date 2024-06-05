@@ -1,12 +1,5 @@
-import emojis from "./list.js";
+import getEmoji from "./getEmoji.js";
 
-
-export function getEmoji(country) {
-    if (emojis[country] === undefined) {
-        return "🌍";
-    }
-    return emojis[country];
-}
 
 export default function addEmoji(country, emojiPos="before") {
     if (emojiPos === "before") {
