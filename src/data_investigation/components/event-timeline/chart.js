@@ -1,12 +1,11 @@
 import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../../../chart/components/GeneralChart.js";
-import getUniqueArray from '../../../chart/components/utils.js';
 import tagsStr2List from "../tagsStr2List.js";
 import sec2mmss from "../sec2mmss.js";
 import emojis from "../emoji/list.js";
-import addEmojiToLabel from "../emoji/addToLabel.js";
 import getEmoji from "../emoji/getEmoji.js";
+import DetailChart from "../detail.js";
 
 const tagMeanings = {
     101: "Goal",
@@ -24,6 +23,7 @@ export default class EventTimelineChart extends GeneralChart {
         this.episodes = this.groupEvents(data);
         this.config = config;
         this.summary = this.config.summary;
+        this.soccer = this.config.soccerModule;
         this.setAxes();
     }
 
@@ -76,9 +76,14 @@ export default class EventTimelineChart extends GeneralChart {
             .attr('width', d => this.sx(d3.max(d, e => e.event_sec)) - this.sx(d3.min(d, e => e.event_sec)))
             .attr('height', this.sy.bandwidth() )
             .attr("r", 5)
+            .attr('class', d => `episode-${d[0].episode}`)
+            .attr('episode', d => d[0].episode)
             .attr("stroke", '#888')
             .attr("stroke-width", 1.1)
-            .attr("fill", d => this.scTeam(d[0].main_team));
+            .attr("fill", d => this.scTeam(d[0].main_team))
+            .on("mouseover", _.partial(this.mouseover, this))
+            .on("mousemove", _.partial(this.mousemove, this))
+            .on("mouseleave", _.partial(this.mouseleave, this));
     }
 
     isImportantEvent(d) {
@@ -103,6 +108,11 @@ export default class EventTimelineChart extends GeneralChart {
         return undefined;
     }
 
+    getEpisode(d) {
+        if (Array.isArray(d)) return d[0].episode;
+        return d.episode;
+    }
+
     drawImportantEvents(sel) {
         sel
             .append("g")
@@ -111,6 +121,7 @@ export default class EventTimelineChart extends GeneralChart {
             .join("circle")
             .attr("cx", (d, i) => this.sx(d.event_sec) + (i % 3 - 1) * 3)
             .attr("cy", d => this.sy(d.match_period) - this.sy.bandwidth() / 2)
+            .attr('episode', d => this.getEpisode(d))
             .attr("r", 5)
             .attr("stroke-width", 2.7)
             .attr("stroke", d=>this.scEventLabel(this.getEventLabel(d)))
@@ -228,11 +239,51 @@ export default class EventTimelineChart extends GeneralChart {
     drawTitle(sel) {
     }
 
+    drawDetail(episode, selector, config) {
+        const episodeData = this.data.filter(d => d.episode === episode);
+        new DetailChart(
+            episodeData,
+            selector,
+            config
+        ).draw();
+    }
+
     mouseover(thisClass, event, d) {
+        const episode = +d3.select(this).attr('episode');
+        thisClass.drawDetail(episode, `${thisClass.rootSelector} .selected-episode`, {
+            width: thisClass.width,
+            height: thisClass.width / 2,
+            margin: {top: 20, right: 10, bottom: 30, left: 10},
+            soccerModule: thisClass.soccer,
+        })
+
+        d3.select(`${thisClass.rootSelector} .episode-${episode}`)
+            .transition()
+            .duration(200)
+            .attr("y", thisClass.sy(d[0].match_period) - 10)
+
+
+        for (const timing of ['before', 'after']) {
+            for (let i = 0; i < 2; i++) {
+                const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
+                d3.select(`${thisClass.rootSelector} .episode-${relEpisode}`)
+                    .transition()
+                    .duration(200)
+                    .attr("y", thisClass.sy(d[0].match_period) - 5)
+
+                thisClass.drawDetail(relEpisode, `${thisClass.rootSelector} .${timing} .episode-${i}`, {
+                    width: thisClass.width,
+                    height: thisClass.width / 3.3,
+                    margin: {top: 20, right: 10, bottom: 30, left: 10},
+                    soccerModule: thisClass.soccer,
+                })
+            }
+        }
         thisClass.tooltip.show(event, d);
     }
 
     mousemove(thisClass, event, d) {
+        if (Array.isArray(d)) return;
         thisClass.tooltip.setText(
             `<b>${d.match_period} ${sec2mmss(d.event_sec)}</b> <br>
             ${d.event_name} (${d.sub_event_name})<br>${tagsStr2List(d.tags).map(tag => tagMeanings[tag]).filter(d=>d !== undefined).join(', ')}`
@@ -240,6 +291,21 @@ export default class EventTimelineChart extends GeneralChart {
         thisClass.tooltip.move(event, d);
     }
     mouseleave(thisClass, event, d) {
+        const episode = +d3.select(this).attr('episode');
+        d3.select(`${thisClass.rootSelector} .episode-${episode}`)
+        .transition()
+        .duration(200)
+        .attr("y", thisClass.sy(d[0].match_period))
+
+        for (const timing of ['before', 'after']) {
+            for (let i = 0; i < 2; i++) {
+                const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
+                d3.select(`${thisClass.rootSelector} .episode-${relEpisode}`)
+                    .transition()
+                    .duration(200)
+                    .attr("y", thisClass.sy(d[0].match_period))
+            }
+        }
       thisClass.tooltip.hide(event, d);
     }
   }

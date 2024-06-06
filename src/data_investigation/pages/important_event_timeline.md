@@ -1,3 +1,7 @@
+---
+toc: false
+---
+
 # Similar episodes
 
 ```js
@@ -29,26 +33,40 @@ import EventTimelineChart from "../components/event-timeline/chart.js";
 
 
 ```js
-const _ = summary.map(d=>d.match_id).forEach(match_id=>{
-    const container = d3.select('#timeline .charts').append('div')
-    container.append('h3').html(addEmojiToLabel(summary.find(d => d.match_id === match_id).label))
-    container.append('div').attr('class', `id-${match_id}`)
+let _ = require("d3-soccer").then(soccer=>{
+  summary.map(d=>d.match_id).forEach(match_id=>{
+        const container = d3.select('#timeline .charts').append('div')
+        container.append('h3').html(addEmojiToLabel(summary.find(d => d.match_id === match_id).label))
+        container.append('div').attr('class', `id-${match_id}`)
 
 
-    new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
-    width: width,
-    height: 150,
-    margin: {top: 15, right: 10, bottom: 20, left: 25},
-    summary: summary.find(d => d.match_id === match_id),
-}).draw();
+        new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
+        width: width / 2,
+        height: 150,
+        margin: {top: 15, right: 10, bottom: 20, left: 25},
+        summary: summary.find(d => d.match_id === match_id),
+        soccerModule: soccer
+    }).draw();
+  })
 })
 
 ```
 
 
 
-<div id="timeline">
+<div id="timeline" class="grid grid-cols-2">
     <div class="charts"></div>
+    <div class="episodes">
+      <div class="before grid grid-cols-2">
+        <div class="episode-0"></div>
+        <div class="episode-1"></div>
+      </div>
+      <div class="selected-episode"></div>
+      <div class="after grid grid-cols-2">
+        <div class="episode-0"></div>
+        <div class="episode-1"></div>
+      </div>
+    </div>
 </div>
 
 ## Data
