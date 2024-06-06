@@ -55,16 +55,18 @@ let _ = require("d3-soccer").then(soccer=>{
 
 
 <div id="timeline" class="grid grid-cols-2">
-    <div class="charts"></div>
-    <div class="episodes">
-      <div class="before grid grid-cols-2">
-        <div class="episode-0"></div>
-        <div class="episode-1"></div>
-      </div>
-      <div class="selected-episode"></div>
-      <div class="after grid grid-cols-2">
-        <div class="episode-0"></div>
-        <div class="episode-1"></div>
+    <div class="charts sidebar"></div>
+    <div class="content">
+      <div class="episodes">
+        <div class="before grid grid-cols-2">
+          <div class="episode-0"></div>
+          <div class="episode-1"></div>
+        </div>
+        <div class="selected-episode"></div>
+        <div class="after grid grid-cols-2">
+          <div class="episode-0"></div>
+          <div class="episode-1"></div>
+        </div>
       </div>
     </div>
 </div>
@@ -97,7 +99,8 @@ view(summary)
     }
 
     .sidebar {
-      width: 60%;
+      width: 105%;
+      height: 600px;
       overflow-y: auto;
       padding: 10px;
       background-color: #f8f8f8;
@@ -109,40 +112,14 @@ view(summary)
       position: relative;
     }
 
-    .detail {
+    .episodes {
         flex: 1;
         position: fixed;
-        top: 100;
+        top: 20;
         right: 20;
         width: 50%;
         height: 100%;
         padding: 20px;
         background-color: none;
     }
-
-    .table-container {
-        position: relative;
-        top:400px;
-        height: 500px;
-        width: 500px;
-        overflow-x: auto;
-        overflow-y: auto;
-        padding: 10px;
-    }
-
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .table th, .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    .table th {
-        background-color: #f4f4f4;
-        text-align: left;
-    }
-
 </style>
