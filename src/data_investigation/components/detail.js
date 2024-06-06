@@ -13,7 +13,7 @@ export default class DetailChart extends GeneralChart {
     }
     initPitch() {
       this.pitch = this.soccer.pitch()
-        .height(this.height)
+        .height(this.height - this.margin.top - this.margin.bottom)
         .clip([[-10, -5], [115, 70]])
         .showDirOfPlay(true)
 
