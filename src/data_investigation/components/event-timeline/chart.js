@@ -260,7 +260,7 @@ export default class EventTimelineChart extends GeneralChart {
         d3.select(`${thisClass.rootSelector} .episode-${episode}`)
             .transition()
             .duration(200)
-            .attr("y", thisClass.sy(d[0].match_period) - 10)
+            .attr("y", thisClass.sy(d[0].match_period) - 3)
 
 
         for (const timing of ['before', 'after']) {
@@ -269,7 +269,7 @@ export default class EventTimelineChart extends GeneralChart {
                 d3.select(`${thisClass.rootSelector} .episode-${relEpisode}`)
                     .transition()
                     .duration(200)
-                    .attr("y", thisClass.sy(d[0].match_period) - 5)
+                    .attr("y", thisClass.sy(d[0].match_period) + 3)
 
                 thisClass.drawDetail(relEpisode, `${thisClass.rootSelector} .${timing} .episode-${i}`, {
                     width: thisClass.width,
