@@ -68,6 +68,7 @@ export default class EventTimelineChart extends GeneralChart {
     drawEpisodes(sel) {
         sel
             .append("g")
+            .attr("class", 'episode')
             .selectAll("rect")
             .data(this.episodes)
             .join("rect")
@@ -81,9 +82,7 @@ export default class EventTimelineChart extends GeneralChart {
             .attr("stroke", '#888')
             .attr("stroke-width", 1.1)
             .attr("fill", d => this.scTeam(d[0].main_team))
-            .on("mouseover", _.partial(this.onclick, this))
-            .on("mousemove", _.partial(this.mousemoveEpisode, this))
-            .on("mouseleave", _.partial(this.offclick, this));
+            .on("click", _.partial(this.onclick, this))
     }
 
     isImportantEvent(d) {
@@ -151,12 +150,12 @@ export default class EventTimelineChart extends GeneralChart {
 
 
     draw() {
+        this.svg.call(this.paintBG.bind(this), {fill: "none"});
         this.svg.call(this.drawAxes.bind(this));
         this.svg.call(this.drawEpisodes.bind(this));
         this.svg.call(this.drawImportantEvents.bind(this));
         this.svg.call(this.drawTitle.bind(this));
         this.svg.call(this.drawLegend.bind(this));
-
     }
 
 
@@ -263,6 +262,13 @@ export default class EventTimelineChart extends GeneralChart {
     }
 
     onclick(thisClass, event, d) {
+        // reposition the selected episode
+        thisClass.svg.select('.episode').selectAll('rect')
+            .transition()
+            .duration(200)
+            .attr("y", d => thisClass.sy(d[0].match_period))
+
+
         const episode = +d3.select(this).attr('episode');
         thisClass.drawDetail(episode, `${thisClass.rootSelector} .selected-episode`, {
             width: thisClass.width,
@@ -291,24 +297,6 @@ export default class EventTimelineChart extends GeneralChart {
                     margin: {top: 20, right: 10, bottom: 30, left: 10},
                     soccerModule: thisClass.soccer,
                 })
-            }
-        }
-    }
-
-    offclick(thisClass, event, d) {
-        const episode = +d3.select(this).attr('episode');
-        thisClass.svg.select(`${thisClass.rootSelector} .episode-${episode}`)
-            .transition()
-            .duration(200)
-            .attr("y", thisClass.sy(d[0].match_period))
-
-        for (const timing of ['before', 'after']) {
-            for (let i = 0; i < 2; i++) {
-                const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
-                thisClass.svg.select(`${thisClass.rootSelector} .episode-${relEpisode}`)
-                    .transition()
-                    .duration(200)
-                    .attr("y", thisClass.sy(d[0].match_period))
             }
         }
     }
