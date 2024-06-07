@@ -10,6 +10,7 @@ export default class DetailChart extends GeneralChart {
         this.main = config['main'];
         this.episode = config['episode'];
         this.originalData = config['originalData'];
+        this.timelineClass = config['timelineClass'];
         this.duration = this.data[this.data.length - 1].event_sec - this.data[0].event_sec;
         this.initPitch();
         this.setAxes();
@@ -212,8 +213,12 @@ export default class DetailChart extends GeneralChart {
 
     onclick(thisClass, event, d) {
       if (thisClass.main) return;
+      if (thisClass.episode == null) return;
 
-      console.log(thisClass.episode)
+      thisClass.timelineClass.resetEpisodePosition()
+
+
+
       new DetailChart(thisClass.originalData.filter(e=>e.episode === thisClass.episode),
         `${thisClass.rootSelector} .selected-episode`,
         {
@@ -224,10 +229,11 @@ export default class DetailChart extends GeneralChart {
         }
       ).draw();
 
+      thisClass.timelineClass.moveEpisode(`${thisClass.rootSelector} .episode-${thisClass.episode}`, -3);
+
       for (const timing of ['before', 'after']) {
         for (let i = 0; i < 2; i++) {
             const relEpisode = timing === 'before' ? thisClass.episode - 2 + i : thisClass.episode + (i + 1);
-            console.log('\t', relEpisode)
             new DetailChart(thisClass.originalData.filter(e=>e.episode === relEpisode),
                 `${thisClass.rootSelector} .${timing} .episode-${i}`, {
                 ...thisClass.config,
@@ -235,6 +241,8 @@ export default class DetailChart extends GeneralChart {
                 episode: relEpisode,
                 main: false,
             }).draw();
+            thisClass.timelineClass.moveEpisode(`${thisClass.rootSelector} .episode-${relEpisode}`, 3);
+
         }
     }
 

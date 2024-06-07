@@ -257,16 +257,26 @@ export default class EventTimelineChart extends GeneralChart {
         thisClass.tooltip.hide(event, d);
     }
 
-    onclick(thisClass, event, d) {
-        // reposition the selected episode
-        thisClass.svg.select('.episode').selectAll('rect')
+    resetEpisodePosition() {
+        this.svg.select('.episode').selectAll('rect')
             .transition()
             .duration(200)
-            .attr("y", d => thisClass.sy(d[0].match_period))
+            .attr("y", d => this.sy(d[0].match_period))
+    }
+
+    moveEpisode(selector, offset) {
+        this.svg.select(selector)
+            .transition()
+            .duration(200)
+            .attr("y", d => this.sy(d[0].match_period) + offset)
+    }
+
+    onclick(thisClass, event, d) {
+        // reposition the selected episode
+        thisClass.resetEpisodePosition();
 
 
         const episode = +d3.select(this).attr('episode');
-        console.log(`${thisClass.rootSelector} .selected-episode`)
         thisClass.drawDetail(episode, `${thisClass.rootSelector} .selected-episode`, {
             width: thisClass.width,
             height: thisClass.width / 2,
@@ -274,24 +284,18 @@ export default class EventTimelineChart extends GeneralChart {
             soccerModule: thisClass.soccer,
             main: true,
             episode: episode,
-            originalData: thisClass.data
+            originalData: thisClass.data,
+            timelineClass: thisClass
         })
 
-        thisClass.svg.select(`${thisClass.rootSelector} .episode-${episode}`)
-            .transition()
-            .duration(200)
-            .attr("y", thisClass.sy(d[0].match_period) - 3)
+        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, -3);
+
 
 
         for (const timing of ['before', 'after']) {
             for (let i = 0; i < 2; i++) {
                 const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
-                thisClass.svg.select(`${thisClass.rootSelector} .episode-${relEpisode}`)
-                .transition()
-                .duration(200)
-                .attr("y", thisClass.sy(d[0].match_period) + 3)
-
-                console.log('rel:', relEpisode)
+                thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${relEpisode}`, 3);
                 thisClass.drawDetail(relEpisode, `${thisClass.rootSelector} .${timing} .episode-${i}`, {
                     width: thisClass.width,
                     height: thisClass.width / 3.3,
@@ -299,7 +303,8 @@ export default class EventTimelineChart extends GeneralChart {
                     soccerModule: thisClass.soccer,
                     main: false,
                     episode: relEpisode,
-                    originalData: thisClass.data
+                    originalData: thisClass.data,
+                    timelineClass: thisClass
                 })
             }
         }
