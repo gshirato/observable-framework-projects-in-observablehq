@@ -24,6 +24,7 @@ export default class EventTimelineChart extends GeneralChart {
         this.config = config;
         this.summary = this.config.summary;
         this.soccer = this.config.soccerModule;
+        this.isFixed = false
         this.setAxes();
     }
 
@@ -83,6 +84,8 @@ export default class EventTimelineChart extends GeneralChart {
             .attr("stroke-width", 1.1)
             .attr("fill", d => this.scTeam(d[0].main_team))
             .on("click", _.partial(this.onclick, this))
+            .on("mouseover", _.partial(this.mouseoverEpisode, this))
+            .on("mouseleave", _.partial(this.mouseleaveEpisode, this))
     }
 
     isImportantEvent(d) {
@@ -113,7 +116,6 @@ export default class EventTimelineChart extends GeneralChart {
     }
 
     drawImportantEvents(sel) {
-        console.log(this.data.filter(d => this.isImportantEvent(d)))
         sel
             .append("g")
             .selectAll("circle")
@@ -127,9 +129,9 @@ export default class EventTimelineChart extends GeneralChart {
             .attr("stroke", d=>this.scEventLabel(this.getEventLabel(d)))
             .attr("fill", "white")
             .attr("opacity", 1)
-            .on("mouseover", _.partial(this.mouseover, this))
-            .on("mousemove", _.partial(this.mousemove, this))
-            .on("mouseleave", _.partial(this.mouseleave, this));
+            .on("mouseover", _.partial(this.mouseoverEvent, this))
+            .on("mousemove", _.partial(this.mousemoveEvent, this))
+            .on("mouseleave", _.partial(this.mouseleaveEvent, this));
 
         sel
             .append('g')
@@ -157,6 +159,7 @@ export default class EventTimelineChart extends GeneralChart {
         this.svg.call(this.drawImportantEvents.bind(this));
         this.svg.call(this.drawTitle.bind(this));
         this.svg.call(this.drawLegend.bind(this));
+        this.svg.select('.bg').on('click', _.partial(this.unfix, this));
     }
 
 
@@ -244,17 +247,17 @@ export default class EventTimelineChart extends GeneralChart {
         new DetailChart(episodeData, selector, config).draw();
     }
 
-    mouseover(thisClass, event, d) {
+    mouseoverEvent(thisClass, event, d) {
         thisClass.tooltip.show(event, d);
     }
-    mousemove(thisClass, event, d) {
+    mousemoveEvent(thisClass, event, d) {
         thisClass.tooltip.setText(
             `<b>${d.match_period} ${sec2mmss(d.event_sec)}</b> <br>
             ${d.event_name} (${d.sub_event_name})<br>${tagsStr2List(d.tags).map(tag => tagMeanings[tag]).filter(d=>d !== undefined).join(', ')}`
         );
         thisClass.tooltip.move(event, d);
     }
-    mouseleave(thisClass, event, d) {
+    mouseleaveEvent(thisClass, event, d) {
         thisClass.tooltip.hide(event, d);
     }
 
@@ -272,42 +275,67 @@ export default class EventTimelineChart extends GeneralChart {
             .attr("y", d => this.sy(d[0].match_period) + offset)
     }
 
-    onclick(thisClass, event, d) {
-        // reposition the selected episode
-        thisClass.resetEpisodePosition();
-
-
-        const episode = +d3.select(this).attr('episode');
-        thisClass.drawDetail(episode, `${thisClass.rootSelector} .selected-episode`, {
-            width: thisClass.width,
-            height: thisClass.width / 2,
+    showEpisodes(episode) {
+        const config = {
+            width: this.width,
             margin: {top: 20, right: 10, bottom: 30, left: 10},
-            soccerModule: thisClass.soccer,
+            soccerModule: this.soccer,
+            originalData: this.data,
+            timelineClass: this
+        }
+
+        this.drawDetail(episode, `${this.rootSelector} .selected-episode`, {
+            ...config,
+            height: this.width / 2,
             main: true,
             episode: episode,
-            originalData: thisClass.data,
-            timelineClass: thisClass
         })
-
-        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, -3);
-
-
 
         for (const timing of ['before', 'after']) {
             for (let i = 0; i < 2; i++) {
                 const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
-                thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${relEpisode}`, 3);
-                thisClass.drawDetail(relEpisode, `${thisClass.rootSelector} .${timing} .episode-${i}`, {
-                    width: thisClass.width,
-                    height: thisClass.width / 3.3,
-                    margin: {top: 20, right: 10, bottom: 30, left: 10},
-                    soccerModule: thisClass.soccer,
+                this.drawDetail(relEpisode, `${this.rootSelector} .${timing} .episode-${i}`, {
+                    ...config,
+                    height: this.width / 3.3,
                     main: false,
                     episode: relEpisode,
-                    originalData: thisClass.data,
-                    timelineClass: thisClass
                 })
             }
         }
+    }
+
+    mouseoverEpisode(thisClass, event, d) {
+        if (thisClass.isFixed) return;
+        const episode = +d3.select(this).attr('episode');
+        thisClass.showEpisodes(episode);
+        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, -3);
+    }
+
+    mouseleaveEpisode(thisClass, event, d) {
+        if (thisClass.isFixed) return;
+        const episode = +d3.select(this).attr('episode');
+        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, 0);
+    }
+
+    onclick(thisClass, event, d) {
+        thisClass.isFixed = true;
+
+        const episode = +d3.select(this).attr('episode');
+        thisClass.showEpisodes(episode);
+
+        // reposition the selected episode
+        thisClass.resetEpisodePosition();
+        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, -3);
+        for (const timing of ['before', 'after']) {
+            for (let i = 0; i < 2; i++) {
+                const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
+                thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${relEpisode}`, 3);
+            }
+        }
+    }
+
+    unfix(thisClass, event, d) {
+        thisClass.resetEpisodePosition();
+        thisClass.isFixed = false;
     }
 }
