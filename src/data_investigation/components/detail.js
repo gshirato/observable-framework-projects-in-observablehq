@@ -8,6 +8,8 @@ export default class DetailChart extends GeneralChart {
         super(data, selector, config);
         this.soccer = config['soccerModule'];
         this.main = config['main'];
+        this.episode = config['episode'];
+        this.originalData = config['originalData'];
         this.duration = this.data[this.data.length - 1].event_sec - this.data[0].event_sec;
         this.initPitch();
         this.setAxes();
@@ -36,6 +38,15 @@ export default class DetailChart extends GeneralChart {
 
     drawPitch(sel) {
       sel.append("g").call(this.pitch);
+      sel.select('#above').append('g').append('rect')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', 105)
+        .attr('height', 68)
+        .attr('fill', 'none')
+        .attr('stroke', 'none')
+        .attr('pointer-events', 'all')
+        .on('click', _.partial(this.onclick, this));
     }
 
     hasIncorrectStartPos(d) {
@@ -98,7 +109,6 @@ export default class DetailChart extends GeneralChart {
         .append('g')
         .append('text')
         .datum(this.data[0])
-        .attr('l', d => console.log(d))
         .attr('x', d => d.start_x)
         .attr('y', d => this.sy(d.start_y))
         .attr('font-size', 4)
@@ -198,6 +208,36 @@ export default class DetailChart extends GeneralChart {
         .attr('font-size', 5)
         .attr('font-family', 'sans-serif')
         .text(d=>d.replace('Goalkeeper', 'GK'))
+    }
+
+    onclick(thisClass, event, d) {
+      if (thisClass.main) return;
+
+      console.log(thisClass.episode)
+      new DetailChart(thisClass.originalData.filter(e=>e.episode === thisClass.episode),
+        `${thisClass.rootSelector} .selected-episode`,
+        {
+          ...thisClass.config,
+          height: thisClass.height / 2 * 3.3,
+          episode: thisClass.episode,
+          main: true,
+        }
+      ).draw();
+
+      for (const timing of ['before', 'after']) {
+        for (let i = 0; i < 2; i++) {
+            const relEpisode = timing === 'before' ? thisClass.episode - 2 + i : thisClass.episode + (i + 1);
+            console.log('\t', relEpisode)
+            new DetailChart(thisClass.originalData.filter(e=>e.episode === relEpisode),
+                `${thisClass.rootSelector} .${timing} .episode-${i}`, {
+                ...thisClass.config,
+                height: thisClass.height,
+                episode: relEpisode,
+                main: false,
+            }).draw();
+        }
+    }
+
     }
 
     mouseover(thisClass, event, d) {
