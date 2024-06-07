@@ -145,7 +145,7 @@ export default class EventTimelineChart extends GeneralChart {
             .attr('font-weight', 'bold')
             .attr('text-anchor', 'middle')
             .attr('alignment-baseline', 'middle')
-            .text(d => emojis[d.team_name])
+            .text(d=>getEmoji(d.team_name) === "🌍" ? d.team_name[0]: getEmoji(d.team_name))
             .attr('font-size', '8px')
 
     }
@@ -235,7 +235,7 @@ export default class EventTimelineChart extends GeneralChart {
             .attr('width', 45)
             .attr('height', 15)
             .attr('fill', '#333')
-            .text(d=>getEmoji(d))
+            .text(d=>getEmoji(d) === "🌍" ? d[0]: getEmoji(d))
 
     }
 
