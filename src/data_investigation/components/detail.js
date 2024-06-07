@@ -7,6 +7,7 @@ export default class DetailChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
         this.soccer = config['soccerModule'];
+        this.main = config['main'];
         this.duration = this.data[this.data.length - 1].event_sec - this.data[0].event_sec;
         this.initPitch();
         this.setAxes();
@@ -19,7 +20,6 @@ export default class DetailChart extends GeneralChart {
 
     }
     setAxes() {
-
       this.sx = d3.scaleLinear()
         .domain([0, 105])
         .range([0, 105])
@@ -50,9 +50,7 @@ export default class DetailChart extends GeneralChart {
     }
 
     drawEpisode(sel) {
-      const layer = sel.select('#above').append('g')
-
-      layer
+      sel
         .append('g')
         .selectAll('circle')
         .data(this.data)
@@ -62,7 +60,7 @@ export default class DetailChart extends GeneralChart {
         .attr('r', 0.8)
         .attr('fill', d=>this.sc(d.event_name))
 
-      layer
+      sel
         .append('g')
         .selectAll('line')
         .data(this.data)
@@ -76,7 +74,7 @@ export default class DetailChart extends GeneralChart {
         .attr('stroke-dasharray', d=>d.team_name === d.main_team? '': '2 2')
         .attr('stroke-width', 0.5)
 
-        layer
+        sel
         .append('g')
         .append('circle')
         .datum(this.data[0])
@@ -86,7 +84,7 @@ export default class DetailChart extends GeneralChart {
         .attr('stroke', d=>this.sc(d.event_name))
         .attr('fill', 'white')
 
-      layer
+      sel
         .append('g')
         .append('circle')
         .datum(this.data[this.data.length - 1])
@@ -96,7 +94,7 @@ export default class DetailChart extends GeneralChart {
         .attr('stroke', d=>this.sc(d.event_name))
         .attr('fill', 'white')
 
-      layer
+      sel
         .append('g')
         .append('text')
         .datum(this.data[0])
@@ -108,7 +106,7 @@ export default class DetailChart extends GeneralChart {
         .attr('alignment-baseline', 'middle')
         .text('s')
 
-      layer
+      sel
         .append('g')
         .append('text')
         .datum(this.data[this.data.length - 1])
@@ -122,15 +120,13 @@ export default class DetailChart extends GeneralChart {
 
     draw() {
       this.svg.call(this.drawPitch.bind(this));
-      this.svg.call(this.drawEpisode.bind(this));
-      this.svg.call(this.drawTitle.bind(this));
-      this.svg.call(this.drawLegend.bind(this));
+      this.svg.select('#above').append('g').call(this.drawEpisode.bind(this));
+      this.svg.select('#above').append('g').call(this.drawTitle.bind(this));
+      this.svg.select('#above').append('g').call(this.drawLegend.bind(this));
     }
 
     drawTitle(sel) {
-      const layer = sel.select('#above').append('g')
-
-      layer
+      sel
         .append("text")
         .datum(this.data[0])
         .attr("x", 52.5)
@@ -141,7 +137,7 @@ export default class DetailChart extends GeneralChart {
         .attr("font-family", 'Arial')
         .html(d=>`[${d.match_id}] ${addEmoji(d.main_team)} (episode=${d.episode}, ${this.duration.toFixed(2)} sec)`);
 
-      layer
+      sel
         .append("text")
         .attr("x", 52.5)
         .attr("y", 0)
@@ -153,9 +149,7 @@ export default class DetailChart extends GeneralChart {
     }
 
     drawLegend(sel) {
-      const layer = sel.select('#above').append('g')
-
-      layer
+      sel
         .append('g')
         .selectAll('circle')
         .data(this.sc.domain().slice(0, 4))
@@ -167,7 +161,7 @@ export default class DetailChart extends GeneralChart {
         .attr('stroke-width', 0.3)
         .attr('stroke', '#333')
 
-      layer
+      sel
         .append('g')
         .selectAll('text')
         .data(this.sc.domain().slice(0, 4))
@@ -180,7 +174,7 @@ export default class DetailChart extends GeneralChart {
         .attr('font-family', 'sans-serif')
         .text(d=>d.replace('Free Kick', 'FK or Throw In'))
 
-      layer
+      sel
         .append('g')
         .selectAll('circle')
         .data(this.sc.domain().slice(4, 7))
@@ -192,7 +186,7 @@ export default class DetailChart extends GeneralChart {
         .attr('stroke-width', 0.3)
         .attr('stroke', '#333')
 
-      layer
+      sel
         .append('g')
         .selectAll('text')
         .data(this.sc.domain().slice(4, 7))
