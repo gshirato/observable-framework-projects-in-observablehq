@@ -11,7 +11,8 @@ export default {
       name: "Research projects",
       pages: [
         {name: "Small multiples", path: "/data_investigation/pages/small_multiples"},
-        {name: "Important events", path: "/data_investigation/pages/important_event_timeline"},
+        {name: "Important events (WC 2018)", path: "/data_investigation/pages/important_event_timeline"},
+        {name: "Important events (England)", path: "/data_investigation/pages/important_event_timeline_England"},
         {name: "Similar episodes (WIP)", path: "/data_investigation/pages/similar_episodes"},
         {name: "Suspicious locations", path: "/data_investigation/pages/suspicious_locations"},
         {name: "Leverkusen", path: "/data_investigation/pages/leverkusen"},

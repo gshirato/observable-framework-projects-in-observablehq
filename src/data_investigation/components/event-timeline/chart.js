@@ -113,6 +113,7 @@ export default class EventTimelineChart extends GeneralChart {
     }
 
     drawImportantEvents(sel) {
+        console.log(this.data.filter(d => this.isImportantEvent(d)))
         sel
             .append("g")
             .selectAll("circle")
