@@ -5,7 +5,7 @@ Some events are correctly located at one of the corners ([0, 0], [0, 68], [105, 
 ## Events with incorrect locations
 
 ```js
-const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
+const data = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
 ```
 
 ```js

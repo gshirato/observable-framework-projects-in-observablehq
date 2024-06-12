@@ -5,12 +5,12 @@ toc: false
 # Small multiples of episodes
 
 ```js
-const data = FileAttachment("../data/World_Cup.csv").csv({typed: true});
+const data = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
 ```
 
 ```js
 import LengthDistributionChart from "../components/lengthDistribution.js";
-import addEmoji from "../components/countryEmojis.js";
+import addEmoji from "../components/emoji/addEmoji.js";
 import drawSmallMultiples from "../components/drawSmallMultiples.js";
 import getUniqueArray from '../../chart/components/utils.js';
 ```

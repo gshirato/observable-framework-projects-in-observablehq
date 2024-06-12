@@ -57,7 +57,8 @@ class GeneralChart {
         .attr("fill", config.fill || "none")
         .attr('stroke', config.stroke || 'none')
         .attr('stroke-width', config.strokeWidth || 1)
-        .attr('stroke-dasharray', config.strokeDasharray || '');
+        .attr('stroke-dasharray', config.strokeDasharray || '')
+        .attr('pointer-events', 'all');
     };
 
     draw() {}

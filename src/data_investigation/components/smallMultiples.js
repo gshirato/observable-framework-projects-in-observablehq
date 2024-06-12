@@ -2,7 +2,7 @@ import * as d3 from "npm:d3";
 import _ from "npm:lodash";
 import GeneralChart from "../../chart/components/GeneralChart.js";
 import DetailChart from "./detail.js";
-import addEmoji from "./countryEmojis.js";
+import addEmoji from "./emoji/addEmoji.js";
 import sec2mmss from './sec2mmss.js';
 
 

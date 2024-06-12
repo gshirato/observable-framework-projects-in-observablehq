@@ -1,6 +1,6 @@
 import * as d3 from 'npm:d3';
 import SmallMultiplesChart from './smallMultiples.js';
-import addEmoji from './countryEmojis.js';
+import addEmoji from './emoji/addEmoji.js';
 
 let currentPages = {};
 const episodesPerPage = 5;
