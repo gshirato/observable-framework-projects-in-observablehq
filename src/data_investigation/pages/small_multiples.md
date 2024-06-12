@@ -5,7 +5,26 @@ toc: false
 # Small multiples of episodes
 
 ```js
-const data = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
+// const data = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
+const competition = view(Inputs.select(["World_Cup", "European_Championship", "England", "Spain", "Italy", "Germany", "France"], {value: "World_Cup"}))
+```
+
+```js
+const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`)
+
+if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+const text = await response.text()
+const data = await d3.csvParse(text, d3.autoType)
+```
+
+```js
+competition; // This line is necessary to trigger the view
+
+function drawCharts() {
+  d3.select('#smallMultiples .charts').selectAll('*').html('');
+  drawOverview();
+}
+drawCharts()
 ```
 
 ```js
@@ -40,16 +59,37 @@ import {require} from "npm:d3-require";
 
 
 ```js
-let _ = require("d3-soccer").then(soccer=>{
-    new LengthDistributionChart(filtered, '#length-distribution', {
-        width: width,
-        height: 120,
-        margin: {top: 20, right: 20, bottom: 20, left: 40},
-        smallMultiplesSelector: '#smallMultiples .charts',
-        episodeName: 'episode',
-        soccerModule: soccer
-    }).draw();
-})
+
+function drawOverview() {
+    require("d3-soccer").then(soccer=>{
+        new LengthDistributionChart(filtered, '#length-distribution', {
+            width: width,
+            height: 120,
+            margin: {top: 20, right: 20, bottom: 20, left: 40},
+            smallMultiplesSelector: '#smallMultiples .charts',
+            episodeName: 'episode',
+            soccerModule: soccer
+        }).draw();
+    })
+
+    const nCols = 3
+    require("d3-soccer").then(soccer=>{
+        drawSmallMultiples(
+            filtered,
+            '#smallMultiples .charts',
+            {
+                nCols: nCols,
+                soccerModule: soccer,
+                episodeName: 'episode',
+            }
+        )
+    })
+}
+
+drawOverview()
+```
+
+```js
 ```
 
 
@@ -73,18 +113,7 @@ let _ = require("d3-soccer").then(soccer=>{
 
 
 ```js
-const nCols = 3
-let _ = require("d3-soccer").then(soccer=>{
-    drawSmallMultiples(
-        filtered,
-        '#smallMultiples .charts',
-        {
-            nCols: nCols,
-            soccerModule: soccer,
-            episodeName: 'episode',
-        }
-    )
-})
+
 ```
 
 ```js
