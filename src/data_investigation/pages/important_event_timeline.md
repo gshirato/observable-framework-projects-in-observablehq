@@ -5,11 +5,27 @@ toc: false
 # Similar episodes
 
 ```js
-const data = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
-const summary = FileAttachment("../data/summary/World_Cup.csv").csv({typed: true});
+const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/${competition}.csv`)
+
+if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+const text = await response.text()
 ```
 
+```js
+const data_ = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
+const summary = FileAttachment(`../data/summary/${competition}.csv`).csv({typed: true});
+```
 
+```js
+const data = await d3.csvParse(text, d3.autoType)
+```
+
+```js
+const competition = view(Inputs.radio(["World_Cup", "England", "Spain", "Italy", "Germany", "France", "European_Championship"], {value: "World_Cup"}))
+```
+
+```js
+```
 
 ```js
 import LengthDistributionChart from "../components/lengthDistribution.js";
