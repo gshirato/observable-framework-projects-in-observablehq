@@ -13,7 +13,7 @@ const text = await response.text()
 
 ```js
 const data_ = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
-const summary = FileAttachment(`../data/summary/World_Cup.csv`).csv({typed: true});
+const summary = FileAttachment(`../data/summary/${competition}.csv`).csv({typed: true});
 ```
 
 ```js
