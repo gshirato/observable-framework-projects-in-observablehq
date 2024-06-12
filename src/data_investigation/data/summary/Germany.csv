@@ -1,0 +1,307 @@
+match_id,label,home_id,away_id,home_score,away_score,home_scoreET,away_scoreET,home_count,away_count,total_pass
+2517036,"Bayern M\u00fcnchen - Stuttgart, 1 - 4",2444,2445,1,4,0,0,211,107,318
+2517037,"Hoffenheim - Borussia Dortmund, 3 - 1",2482,2447,3,1,0,0,123,142,265
+2517038,"Hertha BSC - RB Leipzig, 2 - 6",2457,2975,2,6,0,0,120,131,251
+2517039,"Freiburg - Augsburg, 2 - 0",2453,2481,2,0,0,0,127,141,268
+2517040,"Schalke 04 - Eintracht Frankfurt, 1 - 0",2449,2462,1,0,0,0,162,194,356
+2517041,"Bayer Leverkusen - Hannover 96, 3 - 2",2446,2455,3,2,0,0,182,174,356
+2517042,"Hamburger SV - Borussia M'gladbach, 2 - 1",2450,2454,2,1,0,0,153,162,315
+2517043,"Mainz 05 - Werder Bremen, 1 - 2",2460,2443,1,2,0,0,152,181,333
+2517044,"Wolfsburg - K\u00f6ln, 4 - 1",2451,2463,4,1,0,0,128,141,269
+2517027,"Borussia Dortmund - Mainz 05, 1 - 2",2447,2460,1,2,0,0,197,131,328
+2517028,"RB Leipzig - Wolfsburg, 4 - 1",2975,2451,4,1,0,0,153,164,317
+2517029,"K\u00f6ln - Bayern M\u00fcnchen, 1 - 3",2463,2444,1,3,0,0,109,149,258
+2517030,"Werder Bremen - Bayer Leverkusen, 0 - 0",2443,2446,0,0,0,0,153,186,339
+2517031,"Borussia M'gladbach - Freiburg, 3 - 1",2454,2453,3,1,0,0,148,160,308
+2517032,"Eintracht Frankfurt - Hamburger SV, 3 - 0",2462,2450,3,0,0,0,161,210,371
+2517033,"Augsburg - Schalke 04, 1 - 2",2481,2449,1,2,0,0,181,153,334
+2517034,"Hannover 96 - Hertha BSC, 3 - 1",2455,2457,3,1,0,0,155,186,341
+2517035,"Stuttgart - Hoffenheim, 2 - 0",2445,2482,2,0,0,0,124,205,329
+2517022,"Werder Bremen - Borussia Dortmund, 1 - 1",2443,2447,1,1,0,0,146,154,300
+2517025,"Mainz 05 - RB Leipzig, 3 - 0",2460,2975,3,0,0,0,146,182,328
+2517024,"Bayer Leverkusen - Stuttgart, 0 - 1",2446,2445,0,1,0,0,206,120,326
+2517018,"Bayern M\u00fcnchen - Eintracht Frankfurt, 4 - 1",2444,2462,4,1,0,0,168,130,298
+2517020,"Hertha BSC - Augsburg, 2 - 2",2457,2481,2,2,0,0,162,130,292
+2517021,"Freiburg - K\u00f6ln, 3 - 2",2453,2463,3,2,0,0,149,157,306
+2517023,"Schalke 04 - Borussia M'gladbach, 1 - 1",2449,2454,1,1,0,0,138,170,308
+2517026,"Wolfsburg - Hamburger SV, 1 - 3",2451,2450,1,3,0,0,151,138,289
+2517019,"Hoffenheim - Hannover 96, 3 - 1",2482,2455,3,1,0,0,154,149,303
+2517011,"K\u00f6ln - Schalke 04, 2 - 2",2463,2449,2,2,0,0,184,157,341
+2517014,"Augsburg - Mainz 05, 2 - 0",2481,2460,2,0,0,0,148,162,310
+2517009,"Borussia Dortmund - Bayer Leverkusen, 4 - 0",2447,2446,4,0,0,0,139,170,309
+2517010,"RB Leipzig - Hoffenheim, 2 - 5",2975,2482,2,5,0,0,155,149,304
+2517013,"Eintracht Frankfurt - Hertha BSC, 0 - 3",2462,2457,0,3,0,0,188,163,351
+2517015,"Hamburger SV - Freiburg, 1 - 0",2450,2453,1,0,0,0,174,138,312
+2517016,"Hannover 96 - Bayern M\u00fcnchen, 0 - 3",2455,2444,0,3,0,0,124,196,320
+2517017,"Stuttgart - Werder Bremen, 2 - 0",2445,2443,2,0,0,0,151,180,331
+2517012,"Borussia M'gladbach - Wolfsburg, 3 - 0",2454,2451,3,0,0,0,143,133,276
+2517006,"Mainz 05 - Freiburg, 2 - 0",2460,2453,2,0,0,0,145,167,312
+2517003,"Werder Bremen - RB Leipzig, 1 - 1",2443,2975,1,1,0,0,169,158,327
+2517004,"Schalke 04 - Borussia Dortmund, 2 - 0",2449,2447,2,0,0,0,150,172,322
+2517000,"Bayern M\u00fcnchen - Borussia M'gladbach, 5 - 1",2444,2454,5,1,0,0,167,110,277
+2517001,"Hoffenheim - Hamburger SV, 2 - 0",2482,2450,2,0,0,0,159,184,343
+2517002,"Hertha BSC - K\u00f6ln, 2 - 1",2457,2463,2,1,0,0,177,157,334
+2517005,"Bayer Leverkusen - Eintracht Frankfurt, 4 - 1",2446,2462,4,1,0,0,149,148,297
+2517008,"Stuttgart - Hannover 96, 1 - 1",2445,2455,1,1,0,0,151,179,330
+2517007,"Wolfsburg - Augsburg, 0 - 0",2451,2481,0,0,0,0,177,121,298
+2516992,"RB Leipzig - Bayer Leverkusen, 1 - 4",2975,2446,1,4,0,0,154,163,317
+2516996,"Eintracht Frankfurt - Hoffenheim, 1 - 1",2462,2482,1,1,0,0,158,134,292
+2516991,"Borussia Dortmund - Stuttgart, 3 - 0",2447,2445,3,0,0,0,142,153,295
+2516998,"Hamburger SV - Schalke 04, 3 - 2",2450,2449,3,2,0,0,215,159,374
+2516993,"K\u00f6ln - Mainz 05, 1 - 1",2463,2460,1,1,0,0,148,155,303
+2516994,"Freiburg - Wolfsburg, 0 - 2",2453,2451,0,2,0,0,181,147,328
+2516995,"Borussia M'gladbach - Hertha BSC, 2 - 1",2454,2457,2,1,0,0,139,131,270
+2516997,"Augsburg - Bayern M\u00fcnchen, 1 - 4",2481,2444,1,4,0,0,121,172,293
+2516999,"Hannover 96 - Werder Bremen, 2 - 1",2455,2443,2,1,0,0,150,188,338
+2516988,"Mainz 05 - Borussia M'gladbach, 0 - 0",2460,2454,0,0,0,0,175,169,344
+2516985,"Werder Bremen - Eintracht Frankfurt, 2 - 1",2443,2462,2,1,0,0,156,168,324
+2516984,"Hertha BSC - Wolfsburg, 0 - 0",2457,2451,0,0,0,0,181,179,360
+2516982,"Bayern M\u00fcnchen - Borussia Dortmund, 6 - 0",2444,2447,6,0,0,0,148,138,286
+2516983,"Hoffenheim - K\u00f6ln, 6 - 0",2482,2463,6,0,0,0,148,147,295
+2516986,"Schalke 04 - Freiburg, 2 - 0",2449,2453,2,0,0,0,147,130,277
+2516987,"Bayer Leverkusen - Augsburg, 0 - 0",2446,2481,0,0,0,0,213,166,379
+2516989,"Hannover 96 - RB Leipzig, 2 - 3",2455,2975,2,3,0,0,188,160,348
+2516990,"Stuttgart - Hamburger SV, 1 - 1",2445,2450,1,1,0,0,174,191,365
+2516974,"RB Leipzig - Bayern M\u00fcnchen, 2 - 1",2975,2444,2,1,0,0,163,205,368
+2516975,"K\u00f6ln - Bayer Leverkusen, 2 - 0",2463,2446,2,0,0,0,164,187,351
+2516973,"Borussia Dortmund - Hannover 96, 1 - 0",2447,2455,1,0,0,0,190,173,363
+2516981,"Wolfsburg - Schalke 04, 0 - 1",2451,2449,0,1,0,0,170,143,313
+2516977,"Borussia M'gladbach - Hoffenheim, 3 - 3",2454,2482,3,3,0,0,183,146,329
+2516978,"Eintracht Frankfurt - Mainz 05, 3 - 0",2462,2460,3,0,0,0,152,157,309
+2516979,"Augsburg - Werder Bremen, 1 - 3",2481,2443,1,3,0,0,178,170,348
+2516980,"Hamburger SV - Hertha BSC, 1 - 2",2450,2457,1,2,0,0,202,173,375
+2516976,"Freiburg - Stuttgart, 1 - 2",2453,2445,1,2,0,0,193,152,345
+2516968,"Werder Bremen - K\u00f6ln, 3 - 1",2443,2463,3,1,0,0,147,194,341
+2516965,"Borussia Dortmund - Eintracht Frankfurt, 3 - 2",2447,2462,3,2,0,0,168,168,336
+2516972,"Stuttgart - RB Leipzig, 0 - 0",2445,2975,0,0,0,0,153,198,351
+2516969,"Bayer Leverkusen - Borussia M'gladbach, 2 - 0",2446,2454,2,0,0,0,186,167,353
+2516964,"Bayern M\u00fcnchen - Hamburger SV, 6 - 0",2444,2450,6,0,0,0,177,111,288
+2516966,"Hoffenheim - Wolfsburg, 3 - 0",2482,2451,3,0,0,0,172,149,321
+2516967,"Hertha BSC - Freiburg, 0 - 0",2457,2453,0,0,0,0,174,168,342
+2516971,"Hannover 96 - Augsburg, 1 - 3",2455,2481,1,3,0,0,179,139,318
+2516970,"Mainz 05 - Schalke 04, 0 - 1",2460,2449,0,1,0,0,184,167,351
+2516957,"Freiburg - Bayern M\u00fcnchen, 0 - 4",2453,2444,0,4,0,0,135,173,308
+2516956,"K\u00f6ln - Stuttgart, 2 - 3",2463,2445,2,3,0,0,199,166,365
+2516955,"RB Leipzig - Borussia Dortmund, 1 - 1",2975,2447,1,1,0,0,210,200,410
+2516959,"Schalke 04 - Hertha BSC, 1 - 0",2449,2457,1,0,0,0,130,143,273
+2516960,"Eintracht Frankfurt - Hannover 96, 1 - 0",2462,2455,1,0,0,0,177,186,363
+2516961,"Augsburg - Hoffenheim, 0 - 2",2481,2482,0,2,0,0,179,172,351
+2516962,"Hamburger SV - Mainz 05, 0 - 0",2450,2460,0,0,0,0,215,153,368
+2516963,"Wolfsburg - Bayer Leverkusen, 1 - 2",2451,2446,1,2,0,0,164,194,358
+2516958,"Borussia M'gladbach - Werder Bremen, 2 - 2",2454,2443,2,2,0,0,164,177,341
+2516947,"Borussia Dortmund - Augsburg, 1 - 1",2447,2481,1,1,0,0,201,177,378
+2516948,"RB Leipzig - K\u00f6ln, 1 - 2",2975,2463,1,2,0,0,214,193,407
+2516951,"Bayer Leverkusen - Schalke 04, 0 - 2",2446,2449,0,2,0,0,161,163,324
+2516950,"Werder Bremen - Hamburger SV, 1 - 0",2443,2450,1,0,0,0,204,151,355
+2516946,"Bayern M\u00fcnchen - Hertha BSC, 0 - 0",2444,2457,0,0,0,0,197,116,313
+2516949,"Hoffenheim - Freiburg, 1 - 1",2482,2453,1,1,0,0,160,148,308
+2516953,"Hannover 96 - Borussia M'gladbach, 0 - 1",2455,2454,0,1,0,0,199,188,387
+2516954,"Stuttgart - Eintracht Frankfurt, 1 - 0",2445,2462,1,0,0,0,159,196,355
+2516952,"Mainz 05 - Wolfsburg, 1 - 1",2460,2451,1,1,0,0,155,179,334
+2516942,"Eintracht Frankfurt - RB Leipzig, 2 - 1",2462,2975,2,1,0,0,176,187,363
+2516940,"Borussia M'gladbach - Borussia Dortmund, 0 - 1",2454,2447,0,1,0,0,212,170,382
+2516943,"Augsburg - Stuttgart, 0 - 1",2481,2445,0,1,0,0,199,164,363
+2516941,"Schalke 04 - Hoffenheim, 2 - 1",2449,2482,2,1,0,0,138,210,348
+2516937,"K\u00f6ln - Hannover 96, 1 - 1",2463,2455,1,1,0,0,177,171,348
+2516939,"Freiburg - Werder Bremen, 1 - 0",2453,2443,1,0,0,0,151,192,343
+2516944,"Hamburger SV - Bayer Leverkusen, 1 - 2",2450,2446,1,2,0,0,200,197,397
+2516945,"Wolfsburg - Bayern M\u00fcnchen, 1 - 2",2451,2444,1,2,0,0,100,183,283
+2516938,"Hertha BSC - Mainz 05, 0 - 2",2457,2460,0,2,0,0,187,145,332
+2516932,"Werder Bremen - Wolfsburg, 3 - 1",2443,2451,3,1,0,0,137,174,311
+2516936,"Stuttgart - Borussia M'gladbach, 1 - 0",2445,2454,1,0,0,0,124,179,303
+2516928,"Bayern M\u00fcnchen - Schalke 04, 2 - 1",2444,2449,2,1,0,0,190,143,333
+2516929,"Borussia Dortmund - Hamburger SV, 2 - 0",2447,2450,2,0,0,0,186,177,363
+2516931,"Hoffenheim - Mainz 05, 4 - 2",2482,2460,4,2,0,0,178,136,314
+2516933,"Eintracht Frankfurt - K\u00f6ln, 4 - 2",2462,2463,4,2,0,0,177,162,339
+2516934,"Bayer Leverkusen - Hertha BSC, 0 - 2",2446,2457,0,2,0,0,192,143,335
+2516935,"Hannover 96 - Freiburg, 2 - 1",2455,2453,2,1,0,0,172,216,388
+2516930,"RB Leipzig - Augsburg, 2 - 0",2975,2481,2,0,0,0,166,176,342
+2516925,"Hamburger SV - Hannover 96, 1 - 1",2450,2455,1,1,0,0,173,150,323
+2516924,"Augsburg - Eintracht Frankfurt, 3 - 0",2481,2462,3,0,0,0,157,203,360
+2516922,"Borussia M'gladbach - RB Leipzig, 0 - 1",2454,2975,0,1,0,0,174,178,352
+2516920,"Hertha BSC - Hoffenheim, 1 - 1",2457,2482,1,1,0,0,155,187,342
+2516921,"Freiburg - Bayer Leverkusen, 0 - 0",2453,2446,0,0,0,0,141,175,316
+2516923,"Schalke 04 - Werder Bremen, 1 - 2",2449,2443,1,2,0,0,153,169,322
+2516926,"Mainz 05 - Bayern M\u00fcnchen, 0 - 2",2460,2444,0,2,0,0,147,183,330
+2516927,"Wolfsburg - Stuttgart, 1 - 1",2451,2445,1,1,0,0,179,158,337
+2516919,"K\u00f6ln - Borussia Dortmund, 2 - 3",2463,2447,2,3,0,0,164,172,336
+2516917,"Hannover 96 - Wolfsburg, 0 - 1",2455,2451,0,1,0,0,190,172,362
+2516916,"Bayer Leverkusen - Mainz 05, 2 - 0",2446,2460,2,0,0,0,182,119,301
+2516914,"Werder Bremen - Hertha BSC, 0 - 0",2443,2457,0,0,0,0,218,163,381
+2516910,"Bayern M\u00fcnchen - Hoffenheim, 5 - 2",2444,2482,5,2,0,0,182,149,331
+2516911,"Borussia Dortmund - Freiburg, 2 - 2",2447,2453,2,2,0,0,215,138,353
+2516912,"RB Leipzig - Hamburger SV, 1 - 1",2975,2450,1,1,0,0,207,183,390
+2516913,"K\u00f6ln - Augsburg, 1 - 1",2463,2481,1,1,0,0,164,188,352
+2516918,"Stuttgart - Schalke 04, 0 - 2",2445,2449,0,2,0,0,180,157,337
+2516915,"Eintracht Frankfurt - Borussia M'gladbach, 2 - 0",2462,2454,2,0,0,0,170,162,332
+2516906,"Schalke 04 - Hannover 96, 1 - 1",2449,2455,1,1,0,0,158,181,339
+2516901,"Bayern M\u00fcnchen - Werder Bremen, 4 - 2",2444,2443,4,2,0,0,165,150,315
+2516907,"Hamburger SV - K\u00f6ln, 0 - 2",2450,2463,0,2,0,0,179,171,350
+2516902,"Hoffenheim - Bayer Leverkusen, 1 - 4",2482,2446,1,4,0,0,179,199,378
+2516904,"Freiburg - RB Leipzig, 2 - 1",2453,2975,2,1,0,0,164,169,333
+2516905,"Borussia M'gladbach - Augsburg, 2 - 0",2454,2481,2,0,0,0,165,185,350
+2516908,"Mainz 05 - Stuttgart, 3 - 2",2460,2445,3,2,0,0,138,177,315
+2516909,"Wolfsburg - Eintracht Frankfurt, 1 - 3",2451,2462,1,3,0,0,186,173,359
+2516903,"Hertha BSC - Borussia Dortmund, 1 - 1",2457,2447,1,1,0,0,164,192,356
+2516892,"Borussia Dortmund - Wolfsburg, 0 - 0",2447,2451,0,0,0,0,156,165,321
+2516894,"K\u00f6ln - Borussia M'gladbach, 2 - 1",2463,2454,2,1,0,0,154,174,328
+2516893,"RB Leipzig - Schalke 04, 3 - 1",2975,2449,3,1,0,0,176,160,336
+2516896,"Eintracht Frankfurt - Freiburg, 1 - 1",2462,2453,1,1,0,0,189,152,341
+2516895,"Werder Bremen - Hoffenheim, 1 - 1",2443,2482,1,1,0,0,149,169,318
+2516898,"Augsburg - Hamburger SV, 1 - 0",2481,2450,1,0,0,0,198,194,392
+2516899,"Hannover 96 - Mainz 05, 3 - 2",2455,2460,3,2,0,0,152,165,317
+2516900,"Stuttgart - Hertha BSC, 1 - 0",2445,2457,1,0,0,0,153,184,337
+2516897,"Bayer Leverkusen - Bayern M\u00fcnchen, 1 - 3",2446,2444,1,3,0,0,173,187,360
+2516884,"RB Leipzig - Hertha BSC, 2 - 3",2975,2457,2,3,0,0,226,99,325
+2516890,"Hannover 96 - Bayer Leverkusen, 4 - 4",2455,2446,4,4,0,0,150,167,317
+2516883,"Borussia Dortmund - Hoffenheim, 2 - 1",2447,2482,2,1,0,0,160,152,312
+2516888,"Eintracht Frankfurt - Schalke 04, 2 - 2",2462,2449,2,2,0,0,140,190,330
+2516885,"K\u00f6ln - Wolfsburg, 1 - 0",2463,2451,1,0,0,0,147,180,327
+2516886,"Werder Bremen - Mainz 05, 2 - 2",2443,2460,2,2,0,0,128,160,288
+2516889,"Augsburg - Freiburg, 3 - 3",2481,2453,3,3,0,0,199,161,360
+2516891,"Stuttgart - Bayern M\u00fcnchen, 0 - 1",2445,2444,0,1,0,0,171,197,368
+2516887,"Borussia M'gladbach - Hamburger SV, 3 - 1",2454,2450,3,1,0,0,174,139,313
+2516874,"Bayern M\u00fcnchen - K\u00f6ln, 1 - 0",2444,2463,1,0,0,0,188,105,293
+2516876,"Hertha BSC - Hannover 96, 3 - 1",2457,2455,3,1,0,0,139,196,335
+2516878,"Schalke 04 - Augsburg, 3 - 2",2449,2481,3,2,0,0,143,160,303
+2516879,"Bayer Leverkusen - Werder Bremen, 1 - 0",2446,2443,1,0,0,0,165,167,332
+2516875,"Hoffenheim - Stuttgart, 1 - 0",2482,2445,1,0,0,0,194,192,386
+2516880,"Hamburger SV - Eintracht Frankfurt, 1 - 2",2450,2462,1,2,0,0,211,154,365
+2516881,"Mainz 05 - Borussia Dortmund, 0 - 2",2460,2447,0,2,0,0,141,158,299
+2516877,"Freiburg - Borussia M'gladbach, 1 - 0",2453,2454,1,0,0,0,158,168,326
+2516882,"Wolfsburg - RB Leipzig, 1 - 1",2451,2975,1,1,0,0,157,183,340
+2516870,"Augsburg - Hertha BSC, 1 - 1",2481,2457,1,1,0,0,194,163,357
+2516872,"Hannover 96 - Hoffenheim, 2 - 0",2455,2482,2,0,0,0,165,204,369
+2516867,"K\u00f6ln - Freiburg, 3 - 4",2463,2453,3,4,0,0,138,204,342
+2516868,"Borussia M'gladbach - Schalke 04, 1 - 1",2454,2449,1,1,0,0,166,144,310
+2516865,"Borussia Dortmund - Werder Bremen, 1 - 2",2447,2443,1,2,0,0,207,150,357
+2516866,"RB Leipzig - Mainz 05, 2 - 2",2975,2460,2,2,0,0,196,165,361
+2516869,"Eintracht Frankfurt - Bayern M\u00fcnchen, 0 - 1",2462,2444,0,1,0,0,164,156,320
+2516871,"Hamburger SV - Wolfsburg, 0 - 0",2450,2451,0,0,0,0,187,164,351
+2516873,"Stuttgart - Bayer Leverkusen, 0 - 2",2445,2446,0,2,0,0,189,140,329
+2516864,"Wolfsburg - Borussia M'gladbach, 3 - 0",2451,2454,3,0,0,0,129,166,295
+2516858,"Hertha BSC - Eintracht Frankfurt, 1 - 2",2457,2462,1,2,0,0,170,155,325
+2516861,"Schalke 04 - K\u00f6ln, 2 - 2",2449,2463,2,2,0,0,180,131,311
+2516856,"Bayern M\u00fcnchen - Hannover 96, 3 - 1",2444,2455,3,1,0,0,195,154,349
+2516857,"Hoffenheim - RB Leipzig, 4 - 0",2482,2975,4,0,0,0,158,207,365
+2516860,"Werder Bremen - Stuttgart, 1 - 0",2443,2445,1,0,0,0,196,191,387
+2516862,"Bayer Leverkusen - Borussia Dortmund, 1 - 1",2446,2447,1,1,0,0,137,166,303
+2516863,"Mainz 05 - Augsburg, 1 - 3",2460,2481,1,3,0,0,178,154,332
+2516859,"Freiburg - Hamburger SV, 0 - 0",2453,2450,0,0,0,0,206,155,361
+2516849,"K\u00f6ln - Hertha BSC, 0 - 2",2463,2457,0,2,0,0,156,153,309
+2516854,"Hamburger SV - Hoffenheim, 3 - 0",2450,2482,3,0,0,0,163,163,326
+2516851,"Borussia M'gladbach - Bayern M\u00fcnchen, 2 - 1",2454,2444,2,1,0,0,141,195,336
+2516847,"Borussia Dortmund - Schalke 04, 4 - 4",2447,2449,4,4,0,0,140,161,301
+2516848,"RB Leipzig - Werder Bremen, 2 - 0",2975,2443,2,0,0,0,176,199,375
+2516850,"Freiburg - Mainz 05, 2 - 1",2453,2460,2,1,0,0,175,183,358
+2516853,"Augsburg - Wolfsburg, 2 - 1",2481,2451,2,1,0,0,151,120,271
+2516852,"Eintracht Frankfurt - Bayer Leverkusen, 0 - 1",2462,2446,0,1,0,0,159,167,326
+2516855,"Hannover 96 - Stuttgart, 1 - 1",2455,2445,1,1,0,0,187,187,374
+2516841,"Werder Bremen - Hannover 96, 4 - 0",2443,2455,4,0,0,0,168,164,332
+2516842,"Schalke 04 - Hamburger SV, 2 - 0",2449,2450,2,0,0,0,174,181,355
+2516840,"Hertha BSC - Borussia M'gladbach, 2 - 4",2457,2454,2,4,0,0,157,142,299
+2516838,"Bayern M\u00fcnchen - Augsburg, 3 - 0",2444,2481,3,0,0,0,161,124,285
+2516839,"Hoffenheim - Eintracht Frankfurt, 1 - 1",2482,2462,1,1,0,0,223,159,382
+2516843,"Bayer Leverkusen - RB Leipzig, 2 - 2",2446,2975,2,2,0,0,173,161,334
+2516844,"Mainz 05 - K\u00f6ln, 1 - 0",2460,2463,1,0,0,0,173,180,353
+2516845,"Wolfsburg - Freiburg, 3 - 1",2451,2453,3,1,0,0,167,147,314
+2516846,"Stuttgart - Borussia Dortmund, 2 - 1",2445,2447,2,1,0,0,174,186,360
+2516837,"Wolfsburg - Hertha BSC, 3 - 3",2451,2457,3,3,0,0,174,143,317
+2516831,"K\u00f6ln - Hoffenheim, 0 - 3",2463,2482,0,3,0,0,135,156,291
+2516829,"Borussia Dortmund - Bayern M\u00fcnchen, 1 - 3",2447,2444,1,3,0,0,152,153,305
+2516830,"RB Leipzig - Hannover 96, 2 - 1",2975,2455,2,1,0,0,224,181,405
+2516832,"Freiburg - Schalke 04, 0 - 1",2453,2449,0,1,0,0,161,153,314
+2516833,"Borussia M'gladbach - Mainz 05, 1 - 1",2454,2460,1,1,0,0,189,143,332
+2516835,"Augsburg - Bayer Leverkusen, 1 - 1",2481,2446,1,1,0,0,159,183,342
+2516836,"Hamburger SV - Stuttgart, 3 - 1",2450,2445,3,1,0,0,183,110,293
+2516834,"Eintracht Frankfurt - Werder Bremen, 2 - 1",2462,2443,2,1,0,0,180,201,381
+2516828,"Stuttgart - Freiburg, 3 - 0",2445,2453,3,0,0,0,173,107,280
+2516823,"Werder Bremen - Augsburg, 0 - 3",2443,2481,0,3,0,0,176,147,323
+2516820,"Bayern M\u00fcnchen - RB Leipzig, 2 - 0",2444,2975,2,0,0,0,154,102,256
+2516821,"Hoffenheim - Borussia M'gladbach, 1 - 3",2482,2454,1,3,0,0,182,166,348
+2516822,"Hertha BSC - Hamburger SV, 2 - 1",2457,2450,2,1,0,0,151,187,338
+2516824,"Schalke 04 - Wolfsburg, 1 - 1",2449,2451,1,1,0,0,165,157,322
+2516825,"Bayer Leverkusen - K\u00f6ln, 2 - 1",2446,2463,2,1,0,0,195,144,339
+2516827,"Hannover 96 - Borussia Dortmund, 4 - 2",2455,2447,4,2,0,0,151,189,340
+2516826,"Mainz 05 - Eintracht Frankfurt, 1 - 1",2460,2462,1,1,0,0,183,174,357
+2516819,"Wolfsburg - Hoffenheim, 1 - 1",2451,2482,1,1,0,0,167,138,305
+2516813,"Freiburg - Hertha BSC, 1 - 1",2453,2457,1,1,0,0,125,127,252
+2516812,"K\u00f6ln - Werder Bremen, 0 - 0",2463,2443,0,0,0,0,171,182,353
+2516818,"Hamburger SV - Bayern M\u00fcnchen, 0 - 1",2450,2444,0,1,0,0,121,183,304
+2516811,"RB Leipzig - Stuttgart, 1 - 0",2975,2445,1,0,0,0,191,177,368
+2516814,"Borussia M'gladbach - Bayer Leverkusen, 1 - 5",2454,2446,1,5,0,0,147,134,281
+2516816,"Eintracht Frankfurt - Borussia Dortmund, 2 - 2",2462,2447,2,2,0,0,160,167,327
+2516817,"Augsburg - Hannover 96, 1 - 2",2481,2455,1,2,0,0,183,159,342
+2516815,"Schalke 04 - Mainz 05, 2 - 0",2449,2460,2,0,0,0,151,146,297
+2516806,"Werder Bremen - Borussia M'gladbach, 0 - 2",2443,2454,0,2,0,0,166,166,332
+2516807,"Bayer Leverkusen - Wolfsburg, 2 - 2",2446,2451,2,2,0,0,175,157,332
+2516803,"Borussia Dortmund - RB Leipzig, 2 - 3",2447,2975,2,3,0,0,201,146,347
+2516802,"Bayern M\u00fcnchen - Freiburg, 5 - 0",2444,2453,5,0,0,0,173,113,286
+2516804,"Hoffenheim - Augsburg, 2 - 2",2482,2481,2,2,0,0,156,128,284
+2516805,"Hertha BSC - Schalke 04, 0 - 2",2457,2449,0,2,0,0,137,169,306
+2516808,"Mainz 05 - Hamburger SV, 3 - 2",2460,2450,3,2,0,0,143,169,312
+2516809,"Hannover 96 - Eintracht Frankfurt, 1 - 2",2455,2462,1,2,0,0,159,144,303
+2516810,"Stuttgart - K\u00f6ln, 2 - 1",2445,2463,2,1,0,0,153,184,337
+2516793,"K\u00f6ln - RB Leipzig, 1 - 2",2463,2975,1,2,0,0,167,170,337
+2516794,"Hertha BSC - Bayern M\u00fcnchen, 2 - 2",2457,2444,2,2,0,0,135,209,344
+2516795,"Freiburg - Hoffenheim, 3 - 2",2453,2482,3,2,0,0,120,169,289
+2516800,"Hamburger SV - Werder Bremen, 0 - 0",2450,2443,0,0,0,0,163,151,314
+2516796,"Borussia M'gladbach - Hannover 96, 2 - 1",2454,2455,2,1,0,0,159,162,321
+2516798,"Eintracht Frankfurt - Stuttgart, 2 - 1",2462,2445,2,1,0,0,140,166,306
+2516799,"Augsburg - Borussia Dortmund, 1 - 2",2481,2447,1,2,0,0,174,166,340
+2516801,"Wolfsburg - Mainz 05, 1 - 1",2451,2460,1,1,0,0,171,137,308
+2516797,"Schalke 04 - Bayer Leverkusen, 1 - 1",2449,2446,1,1,0,0,143,179,322
+2516789,"Bayer Leverkusen - Hamburger SV, 3 - 0",2446,2450,3,0,0,0,165,153,318
+2516791,"Hannover 96 - K\u00f6ln, 0 - 0",2455,2463,0,0,0,0,166,112,278
+2516785,"Borussia Dortmund - Borussia M'gladbach, 6 - 1",2447,2454,6,1,0,0,153,104,257
+2516786,"RB Leipzig - Eintracht Frankfurt, 2 - 1",2975,2462,2,1,0,0,178,157,335
+2516787,"Hoffenheim - Schalke 04, 2 - 0",2482,2449,2,0,0,0,138,178,316
+2516788,"Werder Bremen - Freiburg, 0 - 0",2443,2453,0,0,0,0,187,148,335
+2516790,"Mainz 05 - Hertha BSC, 1 - 0",2460,2457,1,0,0,0,155,186,341
+2516792,"Stuttgart - Augsburg, 0 - 0",2445,2481,0,0,0,0,172,157,329
+2516784,"Bayern M\u00fcnchen - Wolfsburg, 2 - 2",2444,2451,2,2,0,0,159,153,312
+2516776,"Hertha BSC - Bayer Leverkusen, 2 - 1",2457,2446,2,1,0,0,157,167,324
+2516777,"Freiburg - Hannover 96, 1 - 1",2453,2455,1,1,0,0,153,159,312
+2516781,"Hamburger SV - Borussia Dortmund, 0 - 3",2450,2447,0,3,0,0,185,173,358
+2516782,"Mainz 05 - Hoffenheim, 2 - 3",2460,2482,2,3,0,0,150,159,309
+2516775,"K\u00f6ln - Eintracht Frankfurt, 0 - 1",2463,2462,0,1,0,0,174,186,360
+2516779,"Schalke 04 - Bayern M\u00fcnchen, 0 - 3",2449,2444,0,3,0,0,156,181,337
+2516780,"Augsburg - RB Leipzig, 1 - 0",2481,2975,1,0,0,0,168,216,384
+2516783,"Wolfsburg - Werder Bremen, 1 - 1",2451,2443,1,1,0,0,202,163,365
+2516778,"Borussia M'gladbach - Stuttgart, 2 - 0",2454,2445,2,0,0,0,126,130,256
+2516767,"Borussia Dortmund - K\u00f6ln, 5 - 0",2447,2463,5,0,0,0,182,124,306
+2516772,"Bayer Leverkusen - Freiburg, 4 - 0",2446,2453,4,0,0,0,153,119,272
+2516769,"Hoffenheim - Hertha BSC, 1 - 1",2482,2457,1,1,0,0,171,139,310
+2516768,"RB Leipzig - Borussia M'gladbach, 2 - 2",2975,2454,2,2,0,0,162,159,321
+2516766,"Bayern M\u00fcnchen - Mainz 05, 4 - 0",2444,2460,4,0,0,0,172,104,276
+2516770,"Werder Bremen - Schalke 04, 1 - 2",2443,2449,1,2,0,0,175,157,332
+2516771,"Eintracht Frankfurt - Augsburg, 1 - 2",2462,2481,1,2,0,0,191,138,329
+2516774,"Stuttgart - Wolfsburg, 1 - 0",2445,2451,1,0,0,0,143,163,306
+2516773,"Hannover 96 - Hamburger SV, 2 - 0",2455,2450,2,0,0,0,169,140,309
+2516761,"Schalke 04 - Stuttgart, 3 - 1",2449,2445,3,1,0,0,155,170,325
+2516758,"Hertha BSC - Werder Bremen, 1 - 1",2457,2443,1,1,0,0,170,150,320
+2516757,"Hoffenheim - Bayern M\u00fcnchen, 2 - 0",2482,2444,2,0,0,0,134,211,345
+2516759,"Freiburg - Borussia Dortmund, 0 - 0",2453,2447,0,0,0,0,107,168,275
+2516760,"Borussia M'gladbach - Eintracht Frankfurt, 0 - 1",2454,2462,0,1,0,0,165,110,275
+2516762,"Augsburg - K\u00f6ln, 3 - 0",2481,2463,3,0,0,0,138,184,322
+2516764,"Mainz 05 - Bayer Leverkusen, 3 - 1",2460,2446,3,1,0,0,146,191,337
+2516765,"Wolfsburg - Hannover 96, 1 - 1",2451,2455,1,1,0,0,175,160,335
+2516763,"Hamburger SV - RB Leipzig, 0 - 2",2450,2975,0,2,0,0,139,184,323
+2516755,"Hannover 96 - Schalke 04, 1 - 0",2455,2449,1,0,0,0,169,175,344
+2516749,"RB Leipzig - Freiburg, 4 - 1",2975,2453,4,1,0,0,157,125,282
+2516748,"Borussia Dortmund - Hertha BSC, 2 - 0",2447,2457,2,0,0,0,172,156,328
+2516751,"Werder Bremen - Bayern M\u00fcnchen, 0 - 2",2443,2444,0,2,0,0,107,159,266
+2516752,"Eintracht Frankfurt - Wolfsburg, 0 - 1",2462,2451,0,1,0,0,158,128,286
+2516753,"Bayer Leverkusen - Hoffenheim, 2 - 2",2446,2482,2,2,0,0,198,148,346
+2516754,"Augsburg - Borussia M'gladbach, 2 - 2",2481,2454,2,2,0,0,158,135,293
+2516756,"Stuttgart - Mainz 05, 1 - 0",2445,2460,1,0,0,0,133,136,269
+2516750,"K\u00f6ln - Hamburger SV, 1 - 3",2463,2450,1,3,0,0,178,117,295
+2516743,"Borussia M'gladbach - K\u00f6ln, 1 - 0",2454,2463,1,0,0,0,150,159,309
+2516742,"Freiburg - Eintracht Frankfurt, 0 - 0",2453,2462,0,0,0,0,152,154,306
+2516744,"Schalke 04 - RB Leipzig, 2 - 0",2449,2975,2,0,0,0,158,201,359
+2516740,"Hoffenheim - Werder Bremen, 1 - 0",2482,2443,1,0,0,0,187,147,334
+2516741,"Hertha BSC - Stuttgart, 2 - 0",2457,2445,2,0,0,0,153,138,291
+2516745,"Hamburger SV - Augsburg, 1 - 0",2450,2481,1,0,0,0,129,173,302
+2516746,"Mainz 05 - Hannover 96, 0 - 1",2460,2455,0,1,0,0,161,132,293
+2516747,"Wolfsburg - Borussia Dortmund, 0 - 3",2451,2447,0,3,0,0,148,184,332
+2516739,"Bayern M\u00fcnchen - Bayer Leverkusen, 3 - 1",2444,2446,3,1,0,0,139,139,278
