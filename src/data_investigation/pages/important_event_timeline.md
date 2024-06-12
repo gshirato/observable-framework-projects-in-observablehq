@@ -5,27 +5,40 @@ toc: false
 # Similar episodes
 
 ```js
-const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/${competition}.csv`)
+const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`)
 
 if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
 const text = await response.text()
-```
-
-```js
-const data_ = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
-const summary = FileAttachment(`../data/summary/${competition}.csv`).csv({typed: true});
-```
-
-```js
 const data = await d3.csvParse(text, d3.autoType)
 ```
 
 ```js
-const competition = view(Inputs.radio(["World_Cup", "England", "Spain", "Italy", "Germany", "France", "European_Championship"], {value: "World_Cup"}))
+
+const responseSummary = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/summary/${competition}.csv`)
+
+if (!responseSummary.ok) throw new Error(`HTTP ${responseSummary.status} - ${responseSummary.statusText}`);
+const textSummary = await responseSummary.text()
+const summary = await d3.csvParse(textSummary, d3.autoType)
 ```
 
 ```js
+const competition = view(Inputs.select(["World_Cup", "European_Championship", "England", "Spain", "Italy", "Germany", "France"], {value: "World_Cup"}))
 ```
+
+```js
+competition; // This line is necessary to trigger the view
+
+function drawCharts() {
+  d3.select('#timeline .charts').selectAll('*').html('');
+  drawTimelines();
+}
+drawCharts()
+```
+
+```js
+
+```
+
 
 ```js
 import LengthDistributionChart from "../components/lengthDistribution.js";
@@ -47,25 +60,27 @@ import EventTimelineChart from "../components/event-timeline/chart.js";
 
 ## Charts
 
-
 ```js
-let _ = require("d3-soccer").then(soccer=>{
-  summary.map(d=>d.match_id).forEach(match_id=>{
-        const container = d3.select('#timeline .charts').append('div')
-        container.append('h3').html(addEmojiToLabel(summary.find(d => d.match_id === match_id).label))
-        container.append('div').attr('class', `id-${match_id}`)
+function drawTimelines() {
+  let _ = require("d3-soccer").then(soccer=>{
+    summary.map(d=>d.match_id).forEach(match_id=>{
+          const container = d3.select('#timeline .charts').append('div')
+          container.append('h3').html(addEmojiToLabel(summary.find(d => d.match_id === match_id).label))
+          container.append('div').attr('class', `id-${match_id}`)
 
 
-        new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
-        width: width / 2,
-        height: 150,
-        margin: {top: 15, right: 10, bottom: 20, left: 25},
-        summary: summary.find(d => d.match_id === match_id),
-        soccerModule: soccer
-    }).draw();
+          new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
+          width: width / 2,
+          height: 150,
+          margin: {top: 15, right: 10, bottom: 20, left: 25},
+          summary: summary.find(d => d.match_id === match_id),
+          soccerModule: soccer
+      }).draw();
+    })
   })
-})
+}
 
+drawTimelines()
 ```
 
 
