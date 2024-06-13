@@ -5,7 +5,10 @@ toc: false
 # Similar episodes
 
 ```js
-const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`)
+const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`).then(d=>{
+    d3.select('#loading').classed('display', true);
+    return d
+})
 
 if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
 const text = await response.text()
@@ -36,13 +39,12 @@ competition; // This line is necessary to trigger the view
 function drawCharts() {
   d3.select('#timeline .charts').selectAll('*').html('');
   drawTimelines();
+  d3.select('#loading').classed('display', false);
+
 }
 drawCharts()
 ```
-
-```js
-
-```
+<div id="loading"></div>
 
 
 ```js
@@ -158,4 +160,29 @@ view(summary)
         padding: 20px;
         background-color: none;
     }
+</style>
+
+<style>
+#loading {
+    width: 2rem;
+    height: 0rem;
+    border: 5px solid #f3f3f3;
+    border-top: 6px solid #9c41f2;
+    border-radius: 100%;
+    margin: auto;
+    visibility: hidden;
+    animation: spin 2s linear infinite;
+}
+
+#loading.display {
+    visibility: visible;
+    height: 2rem;
+}
+
+
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 </style>

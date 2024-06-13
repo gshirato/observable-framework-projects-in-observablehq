@@ -5,17 +5,24 @@ toc: false
 # Small multiples of episodes
 
 ```js
-// const data = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
+
 const competition = view(Inputs.select(
     ["World_Cup", "European_Championship", "England", "Spain", "Italy", "Germany", "France"],
     {
         value: "World_Cup",
         format: x => addEmoji(x)
-    }))
+    })
+)
 ```
 
+<div id="loading"></div>
+
+
 ```js
-const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`)
+const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`).then(d => {
+    d3.select('#loading').classed('display', true);
+    return d
+})
 
 if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
 const text = await response.text()
@@ -24,10 +31,10 @@ const data = await d3.csvParse(text, d3.autoType)
 
 ```js
 competition; // This line is necessary to trigger the view
-
 function drawCharts() {
-  d3.select('#smallMultiples .charts').selectAll('*').html('');
-  drawOverview();
+    d3.select('#smallMultiples .charts').selectAll('*').html('');
+    drawOverview();
+    d3.select('#loading').classed('display', false)
 }
 drawCharts()
 ```
@@ -92,9 +99,6 @@ function drawOverview() {
 }
 
 drawOverview()
-```
-
-```js
 ```
 
 
@@ -192,4 +196,29 @@ view(data)
         background-color: #f4f4f4;
         text-align: left;
     }
+</style>
+
+<style>
+#loading {
+    width: 2rem;
+    height: 0rem;
+    border: 5px solid #f3f3f3;
+    border-top: 6px solid #9c41f2;
+    border-radius: 100%;
+    margin: auto;
+    visibility: hidden;
+    animation: spin 2s linear infinite;
+}
+
+#loading.display {
+    visibility: visible;
+    height: 2rem;
+}
+
+
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 </style>
