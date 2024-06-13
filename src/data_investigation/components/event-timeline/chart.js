@@ -3,7 +3,6 @@ import _ from "npm:lodash";
 import GeneralChart from "../../../chart/components/GeneralChart.js";
 import tagsStr2List from "../tagsStr2List.js";
 import sec2mmss from "../sec2mmss.js";
-import emojis from "../emoji/list.js";
 import getEmoji from "../emoji/getEmoji.js";
 import DetailChart from "../detail.js";
 
