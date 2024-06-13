@@ -6,7 +6,12 @@ toc: false
 
 ```js
 // const data = FileAttachment("../data/events/World_Cup.csv").csv({typed: true});
-const competition = view(Inputs.select(["World_Cup", "European_Championship", "England", "Spain", "Italy", "Germany", "France"], {value: "World_Cup"}))
+const competition = view(Inputs.select(
+    ["World_Cup", "European_Championship", "England", "Spain", "Italy", "Germany", "France"],
+    {
+        value: "World_Cup",
+        format: x => addEmoji(x)
+    }))
 ```
 
 ```js

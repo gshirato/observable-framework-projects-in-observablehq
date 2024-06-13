@@ -22,7 +22,12 @@ const summary = await d3.csvParse(textSummary, d3.autoType)
 ```
 
 ```js
-const competition = view(Inputs.select(["World_Cup", "European_Championship", "England", "Spain", "Italy", "Germany", "France"], {value: "World_Cup"}))
+const competition = view(Inputs.select(
+    ["World_Cup", "European_Championship", "England", "Spain", "Italy", "Germany", "France"],
+    {
+        value: "World_Cup",
+        format: x => addEmoji(x)
+    }))
 ```
 
 ```js
