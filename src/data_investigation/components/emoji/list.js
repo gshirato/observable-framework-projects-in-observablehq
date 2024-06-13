@@ -30,7 +30,20 @@ const emojis = {
     "Morocco": "🇲🇦",
     "Iran": "🇮🇷",
     "Egypt": "🇪🇬",
-    "Saudi Arabia": "🇸🇦"
+    "Saudi Arabia": "🇸🇦",
+    // Italy, Republic of Ireland, Hungary, Slovakia, Northern Ireland, Austria, Czech Republic, Turkey, Ukraine, Romania, Albania
+    "Italy": "🇮🇹",
+    "Republic of Ireland": "🇮🇪",
+    "Hungary": "🇭🇺",
+    "Slovakia": "🇸🇰",
+    "Northern Ireland": "🇬🇧",
+    "Austria": "🇦🇹",
+    "Czech Republic": "🇨🇿",
+    "Turkey": "🇹🇷",
+    "Ukraine": "🇺🇦",
+    "Romania": "🇷🇴",
+    "Albania": "🇦🇱",
+    "Wales": "🏴󠁧󠁢󠁷󠁬󠁳󠁿󠁧󠁢󠁷󠁬󠁳󠁿",
 }
 
 export default emojis;
