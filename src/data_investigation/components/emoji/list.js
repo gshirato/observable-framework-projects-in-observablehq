@@ -44,6 +44,8 @@ const emojis = {
     "Romania": "🇷🇴",
     "Albania": "🇦🇱",
     "Wales": "🏴󠁧󠁢󠁷󠁬󠁳󠁿󠁧󠁢󠁷󠁬󠁳󠁿",
+    "World_Cup": "🌍",
+    "European_Championship": "🌍"
 }
 
 export default emojis;
