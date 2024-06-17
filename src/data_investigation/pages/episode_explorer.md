@@ -140,6 +140,9 @@ function drawOverview() {
 }
 ```
 
+//TODO: check episode 95 Belgium vs England
+
+
 ---
 
 <div id="overview"></div>
@@ -175,15 +178,10 @@ function drawOverview() {
         </div>
     </div>
 </div>
+<div class="table-container">
+    <table class="table"></table>
+</div>
 
-
-```js
-
-```
-
-```js
-view(data)
-```
 
 ## References
 
@@ -227,6 +225,31 @@ view(data)
         height: 100%;
         padding: 20px;
         background-color: none;
+    }
+
+    .table-container {
+        position: relative;
+        top:0px;
+        height: 100%;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .table th {
+        background-color: #f4f4f4;
+        text-align: left;
     }
 </style>
 

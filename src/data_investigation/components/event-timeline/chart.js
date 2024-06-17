@@ -4,6 +4,7 @@ import GeneralChart from "../../../chart/components/GeneralChart.js";
 import tagsStr2List from "../tagsStr2List.js";
 import sec2mmss from "../sec2mmss.js";
 import getEmoji from "../emoji/getEmoji.js";
+import addEmoji from "../emoji/addEmoji.js";
 import DetailChart from "../detail.js";
 
 const tagMeanings = {
@@ -77,6 +78,7 @@ export default class EventTimelineChart extends GeneralChart {
             .attr('width', d => this.sx(d3.max(d, e => e.event_sec)) - this.sx(d3.min(d, e => e.event_sec)))
             .attr('height', this.sy.bandwidth() )
             .attr("r", 5)
+            .attr('cursor', 'pointer')
             .attr('class', d => `episode-${d[0].episode}`)
             .attr('episode', d => d[0].episode)
             .attr("stroke", '#888')
@@ -305,11 +307,39 @@ export default class EventTimelineChart extends GeneralChart {
         }
     }
 
+    showTable(episode) {
+        const data = this.data.filter(d => d.episode === episode)
+        d3.select(`.table`).html('');
+
+        // Add table header
+        const header = d3.select(`.table`)
+            .append('thead')
+            .append('tr');
+
+        header.selectAll('th')
+            .data(['#', 'Period', 'Time', 'Event', 'Detail', 'Player', 'Role', 'Team', 'X1', 'Y1', 'X2', 'Y2'])
+            .join('th')
+            .text(d => d);
+
+        // Add table body
+        const tbody = d3.select(`.table`)
+            .append('tbody');
+        console.log(data)
+        tbody.selectAll('tr')
+            .data(data)
+            .join('tr')
+            .selectAll('td')
+            .data((d, i) => [i, d.match_period, sec2mmss(d.event_sec), d.event_name, d.sub_event_name, d.player_name, d.role, addEmoji(d.team_name), d.start_x, d.start_y, d.end_x, d.end_y])
+            .join('td')
+            .text(d => d);
+    }
+
     mouseoverEpisode(thisClass, event, d) {
         if (thisClass.isFixed) return;
         const episode = +d3.select(this).attr('episode');
         thisClass.showEpisodes(episode);
         thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, -3);
+        thisClass.showTable(episode);
     }
 
     mouseleaveEpisode(thisClass, event, d) {
