@@ -10,6 +10,7 @@ export default {
     {
       name: "Research projects",
       pages: [
+        {name: "Episode Explorer", path: "/data_investigation/pages/episode_explorer"},
         {name: "Small multiples", path: "/data_investigation/pages/small_multiples"},
         {name: "Important events (WC 2018)", path: "/data_investigation/pages/important_event_timeline"},
         // {name: "Important events (England)", path: "/data_investigation/pages/important_event_timeline_England"},
