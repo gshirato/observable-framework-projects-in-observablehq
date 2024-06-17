@@ -27,6 +27,14 @@ export default class SmallMultiplesChart extends GeneralChart {
         .domain([1, 40])
         .range([0.01, 0.2])
 
+      this.sx = d3.scaleLinear()
+        .domain([0, 105])
+        .range([0, 105])
+
+      this.sy = d3.scaleLinear()
+        .domain([0, 68])
+        .range([68, 0])
+
       this.sc = d3.scaleOrdinal()
         .domain(['Pass', 'Shot', 'Duel', 'Free Kick', 'Save Attempt', 'Goalkeeper leaving line', 'Offside'])
         .range(['#66c2a5','#fc8d62','#8da0cb','#e78ac3','#a6d854','#ffd92f','#e5c494'])
@@ -56,6 +64,7 @@ export default class SmallMultiplesChart extends GeneralChart {
     hasIncorrectEndPos(d) {
       if (d.event_name === 'Shot') return true;
       if (d.end_x === 0 && d.end_y === 68) return true;
+      if (d.end_x === 105 && d.end_y === 0) return true;
       return false;
     }
 
@@ -68,8 +77,8 @@ export default class SmallMultiplesChart extends GeneralChart {
         .selectAll('circle')
         .data(this.data)
         .join('circle')
-        .attr('cx', d => this.hasIncorrectStartPos(d) ? d.end_x: d.start_x)
-        .attr('cy', d => this.hasIncorrectStartPos(d) ? d.end_y: d.start_y)
+        .attr('cx', d => this.hasIncorrectStartPos(d) ? this.sx(d.end_x): this.sx(d.start_x))
+        .attr('cy', d => this.hasIncorrectStartPos(d) ? this.sy(d.end_y): this.sy(d.start_y))
         .attr('r', 0.8)
         .attr('fill', d=>this.sc(d.event_name))
 
@@ -78,10 +87,10 @@ export default class SmallMultiplesChart extends GeneralChart {
         .selectAll('line')
         .data(this.data)
         .join('line')
-        .attr('x1', d => this.hasIncorrectStartPos(d) ? d.end_x: d.start_x)
-        .attr('y1', d => this.hasIncorrectStartPos(d) ? d.end_y: d.start_y)
-        .attr('x2', d => this.hasIncorrectEndPos(d) ? d.start_x : d.end_x)
-        .attr('y2', d => this.hasIncorrectEndPos(d) ? d.start_y : d.end_y)
+        .attr('x1', d => this.hasIncorrectStartPos(d) ? this.sx(d.end_x): this.sx(d.start_x))
+        .attr('y1', d => this.hasIncorrectStartPos(d) ? this.sy(d.end_y): this.sy(d.start_y))
+        .attr('x2', d => this.hasIncorrectEndPos(d) ? this.sx(d.start_x) : this.sx(d.end_x))
+        .attr('y2', d => this.hasIncorrectEndPos(d) ? this.sy(d.start_y) : this.sy(d.end_y))
         .attr('stroke', d=>this.sc(d.event_name))
         .attr('opacity', d=>d.team_name === d.main_team? 1: 0.2)
         .attr('stroke-dasharray', d=>d.team_name === d.main_team? '': '2 2')
@@ -91,8 +100,8 @@ export default class SmallMultiplesChart extends GeneralChart {
         .append('g')
         .append('circle')
         .datum(this.data[0])
-        .attr('cx', d => d.start_x)
-        .attr('cy', d => d.start_y)
+        .attr('cx', d => this.sx(d.start_x))
+        .attr('cy', d => this.sy(d.start_y))
         .attr('r', 2)
         .attr('stroke', d=>this.sc(d.event_name))
         .attr('fill', 'white')
@@ -101,8 +110,8 @@ export default class SmallMultiplesChart extends GeneralChart {
         .append('g')
         .append('circle')
         .datum(this.data[this.data.length - 1])
-        .attr('cx', d => this.hasIncorrectEndPos(d) ? d.start_x : d.end_x)
-        .attr('cy', d => this.hasIncorrectEndPos(d) ? d.start_y : d.end_y)
+        .attr('cx', d => this.hasIncorrectEndPos(d) ? this.sx(d.start_x) : this.sx(d.end_x))
+        .attr('cy', d => this.hasIncorrectEndPos(d) ? this.sy(d.start_y) : this.sy(d.end_y))
         .attr('r', 2)
         .attr('stroke', d=>this.sc(d.event_name))
         .attr('fill', 'white')
@@ -111,8 +120,8 @@ export default class SmallMultiplesChart extends GeneralChart {
         .append('g')
         .append('text')
         .datum(this.data[0])
-        .attr('x', d => d.start_x)
-        .attr('y', d => d.start_y)
+        .attr('x', d => this.sx(d.start_x))
+        .attr('y', d => this.sy(d.start_y))
         .attr('font-size', 4)
         .attr('text-anchor', 'middle')
         .attr('alignment-baseline', 'middle')
@@ -122,8 +131,8 @@ export default class SmallMultiplesChart extends GeneralChart {
         .append('g')
         .append('text')
         .datum(this.data[this.data.length - 1])
-        .attr('x', d => this.hasIncorrectEndPos(d) ? d.start_x : d.end_x)
-        .attr('y', d => this.hasIncorrectEndPos(d) ? d.start_y : d.end_y)
+        .attr('x', d => this.hasIncorrectEndPos(d) ? this.sx(d.start_x) : this.sx(d.end_x))
+        .attr('y', d => this.hasIncorrectEndPos(d) ? this.sy(d.start_y) : this.sy(d.end_y))
         .attr('font-size', 4)
         .attr('text-anchor', 'middle')
         .attr('alignment-baseline', 'middle')
