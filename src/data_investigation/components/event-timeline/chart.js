@@ -290,12 +290,14 @@ export default class EventTimelineChart extends GeneralChart {
             episode: episode,
         })
 
+        const nSubs = 3
+
         for (const timing of ['before', 'after']) {
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < nSubs; i++) {
                 const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
                 this.drawDetail(relEpisode, `${this.rootSelector} .${timing} .episode-${i}`, {
                     ...config,
-                    height: this.width / 3.3,
+                    height: this.width / 3,
                     main: false,
                     episode: relEpisode,
                 })

@@ -30,20 +30,73 @@ const data = await d3.csvParse(text, d3.autoType)
 ```
 
 ```js
+const responseSummary = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/summary/${competition}.csv`)
+
+if (!responseSummary.ok) throw new Error(`HTTP ${responseSummary.status} - ${responseSummary.statusText}`);
+const textSummary = await responseSummary.text()
+const summary = await d3.csvParse(textSummary, d3.autoType)
+```
+
+```js
 competition; // This line is necessary to trigger the view
 function drawCharts() {
-    d3.select('#smallMultiples .charts').selectAll('*').html('');
+    d3.select('#timeline .charts').selectAll('*').html('');
     drawOverview();
+    showMatchNavigation(filtered, '#timeline .charts', {})
     d3.select('#loading').classed('display', false)
 }
 drawCharts()
 ```
 
 ```js
-import LengthDistributionChart from "../components/lengthDistribution.js";
 import addEmoji from "../components/emoji/addEmoji.js";
-import drawSmallMultiples from "../components/drawSmallMultiples.js";
+import addEmojiToLabel from "../components/emoji/addToLabel.js";
 import getUniqueArray from '../../chart/components/utils.js';
+import EventTimelineChart from "../components/event-timeline/chart.js";
+
+```
+
+```js
+/*
+* Dirty fix for the case when the team name is not available in the data
+*/
+function getPlayingTeams(data, matchId) {
+    return Array.from(d3.union(data.filter(d=>d.match_id === matchId).map(d => addEmoji(d.team_name)))).join(' vs ')
+}
+
+/**
+ * Copied from drawSmallMultiples.js and this function should be extracted in the original code
+ */
+function showMatchNavigation(data, selector, config) {
+    const matchIds = Array.from(d3.union(data.map(d => d.match_id))).sort((a, b) => d3.ascending(a, b));
+    console.log(matchIds)
+
+    const charts = d3.select(selector);
+    charts.selectAll('*').remove();
+
+    const overview = d3.select(`#overview`);
+    overview.selectAll('*').remove();
+
+    overview
+        .append('div')
+        .attr('class', 'grid grid-cols-3')
+        .selectAll('div')
+        .data(matchIds)
+        .enter()
+        .append('div')
+        .attr('class', d => `card match-overview match-${d}`)
+        .style('padding', '3px')
+        .style('text-align', 'center')
+        .text(d => getPlayingTeams(data, d))
+        .on('click', function(event, d) {
+            d3.selectAll('.match-overview').style('background-color', 'white');
+            d3.select(this).style('background-color', 'lightgrey');
+            const matchClass = d3.select(this).attr('class').split(' ')[2];
+            const matchSelector = `${selector} .${matchClass}`;
+            console.log(matchSelector)
+            d3.select(matchSelector).node().scrollIntoView({ behavior: 'smooth' });
+        });
+}
 ```
 
 ```js
@@ -51,18 +104,11 @@ const teams = getUniqueArray(data.map(d=>d.team_name));
 const selectedTeams = view(Inputs.checkbox(teams, {value: ['France'], format: x=>addEmoji(x)}))
 ```
 
-```js
-const eventNames = getUniqueArray(data.map(d=>d.event_name))
-const eventObjects = eventNames.map(d => ({ "Event name": d }));
-const events = view(Inputs.table(eventObjects, {value: eventObjects, required: false}))
-```
 
 ```js
-const eventKeys = getUniqueArray(data.filter(d=>events.map(d=>d['Event name']).includes(d.event_name)).map(d=>`${d.match_id}-${d.episode}`)).map(d=>d.split('-').map(Number))
-
 const filteredMatchId = getUniqueArray(data.filter(d=>selectedTeams.includes(d.team_name)).map(d=>d.match_id))
 
-const filtered = data.filter(d=>filteredMatchId.includes(d.match_id)).filter(d=>eventKeys.some(k=>k[0] === d.match_id && k[1] === d.episode))
+const filtered = data.filter(d=>filteredMatchId.includes(d.match_id))
 ```
 
 ```js
@@ -73,49 +119,47 @@ import {require} from "npm:d3-require";
 ```js
 
 function drawOverview() {
-    require("d3-soccer").then(soccer=>{
-        new LengthDistributionChart(filtered, '#length-distribution', {
-            width: width,
-            height: 120,
-            margin: {top: 20, right: 20, bottom: 20, left: 40},
-            smallMultiplesSelector: '#smallMultiples .charts',
-            episodeName: 'episode',
-            soccerModule: soccer
-        }).draw();
-    })
+    let _ = require("d3-soccer").then(soccer=>{
+    summary.map(d=>d.match_id).forEach(match_id=>{
+          const container = d3.select('#timeline .charts').append('div')
+          container.append('h3')
+            .attr('class', `match-${match_id}`)
+            .html(addEmojiToLabel(summary.find(d => d.match_id === match_id).label))
+          container.append('div').attr('class', `id-${match_id}`)
 
-    const nCols = 3
-    require("d3-soccer").then(soccer=>{
-        drawSmallMultiples(
-            filtered,
-            '#smallMultiples .charts',
-            {
-                nCols: nCols,
-                soccerModule: soccer,
-                episodeName: 'episode',
-            }
-        )
+
+          new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
+          width: width * .45,
+          height: 150,
+          margin: {top: 15, right: 10, bottom: 20, left: 25},
+          summary: summary.find(d => d.match_id === match_id),
+          soccerModule: soccer
+      }).draw();
     })
+  })
 }
-
-drawOverview()
 ```
-
-
-<div id="length-distribution"></div>
-
 
 ---
 
 <div id="overview"></div>
-<div id="smallMultiples" class="container grid">
+<div id="timeline" class="container grid">
     <div class="sidebar">
         <div class="charts"></div>
     </div>
     <div class="content">
-        <div class="detail"></div>
-        <div class="table-container">
-            <table class="table"></table>
+        <div class="episodes">
+            <div class="before grid grid-cols-3">
+                <div class="episode-0"></div>
+                <div class="episode-1"></div>
+                <div class="episode-2"></div>
+            </div>
+            <div class="selected-episode"></div>
+            <div class="after grid grid-cols-3">
+                <div class="episode-0"></div>
+                <div class="episode-1"></div>
+                <div class="episode-2"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -149,7 +193,8 @@ view(data)
     }
 
     .sidebar {
-      width: 60%;
+      width: 46%;
+      height: 600px;
       overflow-y: auto;
       padding: 10px;
       background-color: #f8f8f8;
@@ -161,40 +206,15 @@ view(data)
       position: relative;
     }
 
-    .detail {
+    .episodes {
         flex: 1;
         position: fixed;
-        top: 100;
+        top: 20;
         right: 20;
         width: 50%;
         height: 100%;
         padding: 20px;
         background-color: none;
-    }
-
-    .table-container {
-        position: relative;
-        top:400px;
-        height: 500px;
-        width: 500px;
-        overflow-x: auto;
-        overflow-y: auto;
-        padding: 10px;
-    }
-
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .table th, .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    .table th {
-        background-color: #f4f4f4;
-        text-align: left;
     }
 </style>
 
