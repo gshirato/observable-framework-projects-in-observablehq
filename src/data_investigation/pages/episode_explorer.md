@@ -150,15 +150,27 @@ function drawOverview() {
     <div class="content">
         <div class="episodes">
             <div class="before grid grid-cols-3">
-                <div class="episode-0"></div>
-                <div class="episode-1"></div>
-                <div class="episode-2"></div>
+                <div class="episode-0">
+                    <h3>⏪3</h3>
+                </div>
+                <div class="episode-1">
+                    <h3>⏪2</h3>
+                </div>
+                <div class="episode-2">
+                    <h3>⏪1</h3>
+                </div>
             </div>
             <div class="selected-episode"></div>
             <div class="after grid grid-cols-3">
-                <div class="episode-0"></div>
-                <div class="episode-1"></div>
-                <div class="episode-2"></div>
+                <div class="episode-0">
+                    <h3>⏩1</h3>
+                </div>
+                <div class="episode-1">
+                    <h3>⏩2</h3>
+                </div>
+                <div class="episode-2">
+                    <h3>⏩3</h3>
+                </div>
             </div>
         </div>
     </div>
