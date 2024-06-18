@@ -178,6 +178,7 @@ function drawOverview() {
         </div>
     </div>
 </div>
+<hr>
 <div class="table-container">
     <table class="table"></table>
 </div>
@@ -199,7 +200,7 @@ function drawOverview() {
 
     .container {
       display: flex;
-      height: 100vh;
+      height: 60vh;
     }
 
     .sidebar {
@@ -228,9 +229,8 @@ function drawOverview() {
     }
 
     .table-container {
-        position: relative;
         top:0px;
-        height: 100%;
+        height: 500px;
         width: 100%;
         overflow-x: auto;
         overflow-y: auto;
