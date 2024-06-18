@@ -198,7 +198,7 @@ function drawOverview() {
 
     .container {
       display: flex;
-      height: 60vh;
+      height: 90vh;
     }
 
     .sidebar {
