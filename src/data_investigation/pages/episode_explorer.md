@@ -140,8 +140,6 @@ function drawOverview() {
 }
 ```
 
-//TODO: check episode 95 Belgium vs England
-
 
 ---
 
