@@ -52,6 +52,7 @@ export default class DetailChart extends GeneralChart {
 
     hasIncorrectStartPos(d) {
       if (d.start_x === 0 && d.start_y === 68) return true;
+      if (d.start_x === 105 && d.start_y === 0) return true;
       return false;
     }
 
@@ -91,8 +92,8 @@ export default class DetailChart extends GeneralChart {
         .append('g')
         .append('circle')
         .datum(this.data[0])
-        .attr('cx', d => this.sx(d.start_x))
-        .attr('cy', d => this.sy(d.start_y))
+        .attr('cx', d => this.hasIncorrectStartPos(d) ? this.sx(d.end_x): this.sx(d.start_x))
+        .attr('cy', d => this.hasIncorrectStartPos(d) ? this.sy(d.end_y): this.sy(d.start_y))
         .attr('r', 2)
         .attr('stroke', d=>this.sc(d.event_name))
         .attr('fill', 'white')
@@ -111,8 +112,8 @@ export default class DetailChart extends GeneralChart {
         .append('g')
         .append('text')
         .datum(this.data[0])
-        .attr('x', d => this.sx(d.start_x))
-        .attr('y', d => this.sy(d.start_y))
+        .attr('x', d => this.hasIncorrectStartPos(d) ? this.sx(d.end_x): this.sx(d.start_x))
+        .attr('y', d => this.hasIncorrectStartPos(d) ? this.sy(d.end_y): this.sy(d.start_y))
         .attr('font-size', 4)
         .attr('text-anchor', 'middle')
         .attr('alignment-baseline', 'middle')
