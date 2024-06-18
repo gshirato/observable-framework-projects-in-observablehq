@@ -129,7 +129,7 @@ function drawOverview() {
 
 
           new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
-          width: width * .45,
+          width: width * .38,
           height: 150,
           margin: {top: 15, right: 10, bottom: 20, left: 25},
           summary: summary.find(d => d.match_id === match_id),
@@ -161,7 +161,12 @@ function drawOverview() {
                     <h3>⏪1</h3>
                 </div>
             </div>
-            <div class="selected-episode"></div>
+            <div class="selected grid grid-cols-2">
+                <div class="selected-episode"></div>
+                <div class="table-container">
+                    <table class="table"></table>
+                </div>
+            </div>
             <div class="after grid grid-cols-3">
                 <div class="episode-0">
                     <h3>⏩1</h3>
@@ -177,9 +182,6 @@ function drawOverview() {
     </div>
 </div>
 <hr>
-<div class="table-container">
-    <table class="table"></table>
-</div>
 
 
 ## References
@@ -202,7 +204,7 @@ function drawOverview() {
     }
 
     .sidebar {
-      width: 46%;
+      width: 40%;
       height: 600px;
       overflow-y: auto;
       padding: 10px;
@@ -228,21 +230,23 @@ function drawOverview() {
 
     .table-container {
         top:0px;
-        height: 500px;
-        width: 100%;
+        height: 220px;
+        width: 330px;
         overflow-x: auto;
         overflow-y: auto;
-        padding: 10px;
+        margin: -25px 0px;
+        padding: 5px;
     }
 
     .table {
         width: 100%;
+        font-size: 10px;
         border-collapse: collapse;
     }
 
     .table th, .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
+        border: 0px solid #ddd;
+        padding: 0px;
     }
 
     .table th {

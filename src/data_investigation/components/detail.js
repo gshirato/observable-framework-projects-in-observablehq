@@ -219,13 +219,12 @@ export default class DetailChart extends GeneralChart {
 
       thisClass.timelineClass.resetEpisodePosition()
 
-
-
       new DetailChart(thisClass.originalData.filter(e=>e.episode === thisClass.episode),
         `${thisClass.rootSelector} .selected-episode`,
         {
           ...thisClass.config,
           height: thisClass.height / 2 * 3.3,
+          margin: {top: 0, right: 0, bottom: 0, left: 0},
           episode: thisClass.episode,
           main: true,
         }
