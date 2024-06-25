@@ -232,11 +232,11 @@ function showTimeline(match_id, soccer) {
     .table-container {
         top:0px;
         height: 200px;
-        width: 450px;
+        width: 550px;
         overflow-x: auto;
         overflow-y: auto;
-        margin: -0px -150px;
-        padding: 0px;
+        margin: -0px -250px;
+        padding: 0px 10px;
     }
 
     .table {
