@@ -26,6 +26,7 @@ export default class EventTimelineChart extends GeneralChart {
         this.soccer = this.config.soccerModule;
         this.detailRootSelector = this.config.detailRootSelector || this.rootSelector;
         this.isFixed = false
+        this.nMiniDetails = 3;
         this.setAxes();
     }
 
@@ -277,6 +278,10 @@ export default class EventTimelineChart extends GeneralChart {
             .attr("y", d => this.sy(d[0].match_period) + offset)
     }
 
+    getRelEpisode(episode, i, timing) {
+        return timing === 'before' ? episode - 3 + i : episode + (i + 1);
+    }
+
     showEpisodes(episode) {
         const config = {
             width: this.width / 2,
@@ -293,19 +298,26 @@ export default class EventTimelineChart extends GeneralChart {
             episode: episode,
         })
 
-        const nSubs = 3
-
         for (const timing of ['before', 'after']) {
-            for (let i = 0; i < nSubs; i++) {
-                const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
+            for (let i = 0; i < this.nMiniDetails; i++) {
+                d3.select(`${this.detailRootSelector} .${timing} .episode-${i}`).html('');
+
+                const relEpisode = this.getRelEpisode(episode, i, timing);
+                if (this.isEpisodeEmpty(relEpisode)) continue;
+
                 this.drawDetail(relEpisode, `${this.detailRootSelector} .${timing} .episode-${i}`, {
                     ...config,
                     height: config.width * 0.3,
                     main: false,
                     episode: relEpisode,
+                    nMiniDetails: this.nMiniDetails,
+                    timelineSelector: this.rootSelector
                 })
             }
         }
+    }
+    isEpisodeEmpty(episode) {
+        return this.data.filter(d => d.episode === episode).length == 0;
     }
 
     showTable(episode) {
@@ -339,14 +351,14 @@ export default class EventTimelineChart extends GeneralChart {
         if (thisClass.isFixed) return;
         const episode = +d3.select(this).attr('episode');
         thisClass.showEpisodes(episode);
-        thisClass.moveEpisode(`${thisClass.detailRootSelector} .episode-${episode}`, -3);
+        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, -3);
         thisClass.showTable(episode);
     }
 
     mouseleaveEpisode(thisClass, event, d) {
         if (thisClass.isFixed) return;
         const episode = +d3.select(this).attr('episode');
-        thisClass.moveEpisode(`${thisClass.detailRootSelector} .episode-${episode}`, 0);
+        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, 0);
     }
 
     onclick(thisClass, event, d) {
@@ -357,11 +369,13 @@ export default class EventTimelineChart extends GeneralChart {
 
         // reposition the selected episode
         thisClass.resetEpisodePosition();
-        thisClass.moveEpisode(`${thisClass.detailRootSelector} .episode-${episode}`, -3);
+        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, -3);
         for (const timing of ['before', 'after']) {
             for (let i = 0; i < 2; i++) {
-                const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
-                thisClass.moveEpisode(`${thisClass.detailRootSelector} .episode-${relEpisode}`, 3);
+                const relEpisode = thisClass.getRelEpisode(episode, i, timing);
+                if (thisClass.isEpisodeEmpty(relEpisode)) continue;
+
+                thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${relEpisode}`, 3);
             }
         }
     }

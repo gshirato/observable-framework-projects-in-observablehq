@@ -148,14 +148,17 @@ function showTimeline(match_id, soccer) {
     <div class="content">
         <div class="episodes">
             <div class="before grid grid-cols-3">
-                <div class="episode-0">
+                <div class="grid">
                     <h3>⏪3</h3>
+                    <div class="episode-0"></div>
                 </div>
-                <div class="episode-1">
+                <div class="grid">
                     <h3>⏪2</h3>
+                    <div class="episode-1"></div>
                 </div>
-                <div class="episode-2">
+                <div class="grid">
                     <h3>⏪1</h3>
+                    <div class="episode-2"></div>
                 </div>
             </div>
             <div class="selected grid grid-cols-2">
@@ -165,14 +168,17 @@ function showTimeline(match_id, soccer) {
                 </div>
             </div>
             <div class="after grid grid-cols-3">
-                <div class="episode-0">
+                <div class="grid">
                     <h3>⏩1</h3>
+                    <div class="episode-0"></div>
                 </div>
-                <div class="episode-1">
+                <div class="grid">
                     <h3>⏩2</h3>
+                    <div class="episode-1"></div>
                 </div>
-                <div class="episode-2">
+                <div class="grid">
                     <h3>⏩3</h3>
+                    <div class="episode-2"></div>
                 </div>
             </div>
         </div>
@@ -197,7 +203,7 @@ function showTimeline(match_id, soccer) {
 
     .container {
       display: flex;
-      height: 100vh;
+      height: 80vh;
     }
 
     #main-timeline {
@@ -229,7 +235,7 @@ function showTimeline(match_id, soccer) {
         width: 450px;
         overflow-x: auto;
         overflow-y: auto;
-        margin: -0px -50px;
+        margin: -0px -150px;
         padding: 0px;
     }
 
@@ -259,6 +265,15 @@ function showTimeline(match_id, soccer) {
     .selected {
         padding: 5px;
         margin: -50px 0px;
+    }
+
+    .episode-0, .episode-1, .episode-2 {
+        margin: -55px 0px -55px 0px;
+    }
+
+    .selected {
+        padding: 10px 0px;
+        margin: -10px 0px;
     }
 </style>
 
