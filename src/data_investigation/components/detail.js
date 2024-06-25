@@ -49,6 +49,7 @@ export default class DetailChart extends GeneralChart {
         .attr('fill', 'none')
         .attr('stroke', 'none')
         .attr('pointer-events', 'all')
+        .attr('cursor', 'pointer')
         .on('click', _.partial(this.onclick, this));
     }
 
