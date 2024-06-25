@@ -24,6 +24,7 @@ export default class EventTimelineChart extends GeneralChart {
         this.config = config;
         this.summary = this.config.summary;
         this.soccer = this.config.soccerModule;
+        this.detailRootSelector = this.config.detailRootSelector || this.rootSelector;
         this.isFixed = false
         this.setAxes();
     }
@@ -278,16 +279,16 @@ export default class EventTimelineChart extends GeneralChart {
 
     showEpisodes(episode) {
         const config = {
-            width: this.width,
+            width: this.width / 2,
             margin: {top: 20, right: 10, bottom: 30, left: 10},
             soccerModule: this.soccer,
             originalData: this.data,
             timelineClass: this
         }
 
-        this.drawDetail(episode, `${this.rootSelector} .selected-episode`, {
+        this.drawDetail(episode, `${this.detailRootSelector} .selected-episode`, {
             ...config,
-            height: this.width / 2,
+            height: config.width * 0.4,
             main: true,
             episode: episode,
         })
@@ -297,9 +298,9 @@ export default class EventTimelineChart extends GeneralChart {
         for (const timing of ['before', 'after']) {
             for (let i = 0; i < nSubs; i++) {
                 const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
-                this.drawDetail(relEpisode, `${this.rootSelector} .${timing} .episode-${i}`, {
+                this.drawDetail(relEpisode, `${this.detailRootSelector} .${timing} .episode-${i}`, {
                     ...config,
-                    height: this.width / 3,
+                    height: config.width * 0.3,
                     main: false,
                     episode: relEpisode,
                 })
@@ -324,7 +325,7 @@ export default class EventTimelineChart extends GeneralChart {
         // Add table body
         const tbody = d3.select(`.table`)
             .append('tbody');
-        console.log(data)
+
         tbody.selectAll('tr')
             .data(data)
             .join('tr')
@@ -338,14 +339,14 @@ export default class EventTimelineChart extends GeneralChart {
         if (thisClass.isFixed) return;
         const episode = +d3.select(this).attr('episode');
         thisClass.showEpisodes(episode);
-        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, -3);
+        thisClass.moveEpisode(`${thisClass.detailRootSelector} .episode-${episode}`, -3);
         thisClass.showTable(episode);
     }
 
     mouseleaveEpisode(thisClass, event, d) {
         if (thisClass.isFixed) return;
         const episode = +d3.select(this).attr('episode');
-        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, 0);
+        thisClass.moveEpisode(`${thisClass.detailRootSelector} .episode-${episode}`, 0);
     }
 
     onclick(thisClass, event, d) {
@@ -356,11 +357,11 @@ export default class EventTimelineChart extends GeneralChart {
 
         // reposition the selected episode
         thisClass.resetEpisodePosition();
-        thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${episode}`, -3);
+        thisClass.moveEpisode(`${thisClass.detailRootSelector} .episode-${episode}`, -3);
         for (const timing of ['before', 'after']) {
             for (let i = 0; i < 2; i++) {
                 const relEpisode = timing === 'before' ? episode - 2 + i : episode + (i + 1);
-                thisClass.moveEpisode(`${thisClass.rootSelector} .episode-${relEpisode}`, 3);
+                thisClass.moveEpisode(`${thisClass.detailRootSelector} .episode-${relEpisode}`, 3);
             }
         }
     }

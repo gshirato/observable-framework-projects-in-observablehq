@@ -39,13 +39,12 @@ const summary = await d3.csvParse(textSummary, d3.autoType)
 
 ```js
 competition; // This line is necessary to trigger the view
-function drawCharts() {
+function drawCharts(soccer) {
     d3.select('#timeline .charts').selectAll('*').html('');
-    drawOverview();
-    showMatchNavigation(filtered, '#timeline .charts', {})
+    showMatchNavigation(filtered, '#timeline .charts', {soccerModule: soccer})
     d3.select('#loading').classed('display', false)
 }
-drawCharts()
+let _ = require("d3-soccer").then(soccer=>drawCharts(soccer))
 ```
 
 ```js
@@ -68,6 +67,7 @@ function getPlayingTeams(data, matchId) {
  * Copied from drawSmallMultiples.js and this function should be extracted in the original code
  */
 function showMatchNavigation(data, selector, config) {
+    const soccer = config.soccerModule;
     const matchIds = Array.from(d3.union(data.map(d => d.match_id))).sort((a, b) => d3.ascending(a, b));
     console.log(matchIds)
 
@@ -88,13 +88,13 @@ function showMatchNavigation(data, selector, config) {
         .style('padding', '3px')
         .style('text-align', 'center')
         .text(d => getPlayingTeams(data, d))
-        .on('click', function(event, d) {
+        .on('click', function(event, match_id) {
             d3.selectAll('.match-overview').style('background-color', 'white');
             d3.select(this).style('background-color', 'lightgrey');
             const matchClass = d3.select(this).attr('class').split(' ')[2];
             const matchSelector = `${selector} .${matchClass}`;
-            console.log(matchSelector)
-            d3.select(matchSelector).node().scrollIntoView({ behavior: 'smooth' });
+
+            showTimeline(match_id, soccer);
         });
 }
 ```
@@ -115,39 +115,36 @@ const filtered = data.filter(d=>filteredMatchId.includes(d.match_id))
 import {require} from "npm:d3-require";
 ```
 
-
 ```js
+function showTimeline(match_id, soccer) {
+    const container = d3.select('#main-timeline .chart')
+    container.selectAll('*').remove();
 
-function drawOverview() {
-    let _ = require("d3-soccer").then(soccer=>{
-    summary.map(d=>d.match_id).forEach(match_id=>{
-          const container = d3.select('#timeline .charts').append('div')
-          container.append('h3')
-            .attr('class', `match-${match_id}`)
-            .html(addEmojiToLabel(summary.find(d => d.match_id === match_id).label))
-          container.append('div').attr('class', `id-${match_id}`)
+    container.append('h3')
+        .attr('class', `match-${match_id}`)
+        .html(addEmojiToLabel(summary.find(d => d.match_id === match_id).label))
+    container.append('div').attr('class', `id-${match_id}`)
 
 
-          new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#timeline .charts .id-${match_id}`, {
-          width: width * .38,
-          height: 150,
-          margin: {top: 15, right: 10, bottom: 20, left: 25},
-          summary: summary.find(d => d.match_id === match_id),
-          soccerModule: soccer
-      }).draw();
-    })
-  })
+    new EventTimelineChart(data.filter(d=>d.match_id === match_id), `#main-timeline .chart .id-${match_id}`, {
+        width: width,
+        height: 100,
+        margin: {top: 15, right: 10, bottom: 20, left: 25},
+        summary: summary.find(d => d.match_id === match_id),
+        detailRootSelector: '#timeline',
+        soccerModule: soccer
+    }).draw();
 }
-```
 
+```
 
 ---
 
 <div id="overview"></div>
+<div id="main-timeline">
+    <div class="chart"></div>
+</div>
 <div id="timeline" class="container grid">
-    <div class="sidebar">
-        <div class="charts"></div>
-    </div>
     <div class="content">
         <div class="episodes">
             <div class="before grid grid-cols-3">
@@ -200,48 +197,47 @@ function drawOverview() {
 
     .container {
       display: flex;
-      height: 90vh;
+      height: 100vh;
     }
 
-    .sidebar {
-      width: 40%;
-      height: 600px;
-      overflow-y: auto;
-      padding: 10px;
+    #main-timeline {
+      width: 100%;
+      height: 100%;
+      padding: 0px;
       background-color: #f8f8f8;
       border-right: 1px solid #ddd;
     }
 
     .content {
-      width: 40%;
+      width: 100%;
       position: relative;
     }
 
     .episodes {
-        flex: 1;
         position: fixed;
-        top: 20;
-        right: 20;
-        width: 50%;
-        height: 100%;
-        padding: 20px;
+        top: 5;
+        right: 0;
+        width: 100%;
+        height: 80%;
+        padding: 10px;
         background-color: none;
     }
 
     .table-container {
         top:0px;
-        height: 220px;
-        width: 330px;
+        height: 200px;
+        width: 450px;
         overflow-x: auto;
         overflow-y: auto;
-        margin: -25px 0px;
-        padding: 5px;
+        margin: -0px -50px;
+        padding: 0px;
     }
 
     .table {
         width: 100%;
         font-size: 10px;
         border-collapse: collapse;
+        position: relative;
     }
 
     .table th, .table td {
@@ -252,6 +248,17 @@ function drawOverview() {
     .table th {
         background-color: #f4f4f4;
         text-align: left;
+        position: sticky;
+        top: -2px;
+    }
+
+    .before, .after {
+        padding: 10px 0px;
+        margin: -30px 0px;
+    }
+    .selected {
+        padding: 5px;
+        margin: -50px 0px;
     }
 </style>
 

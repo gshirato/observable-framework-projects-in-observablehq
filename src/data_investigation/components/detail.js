@@ -162,6 +162,7 @@ export default class DetailChart extends GeneralChart {
     }
 
     drawLegend(sel) {
+      if (!this.main) return;
       sel
         .append('g')
         .selectAll('circle')
