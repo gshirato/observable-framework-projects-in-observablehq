@@ -203,7 +203,7 @@ function showTimeline(match_id, soccer) {
 
     .container {
       display: flex;
-      height: 80vh;
+      height: 500px;
     }
 
     #main-timeline {
