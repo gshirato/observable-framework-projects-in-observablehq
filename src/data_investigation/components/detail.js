@@ -11,6 +11,8 @@ export default class DetailChart extends GeneralChart {
         this.episode = config['episode'];
         this.originalData = config['originalData'];
         this.timelineClass = config['timelineClass'];
+        this.nMiniDetails = config['nMiniDetails'];
+        this.timelineSelector = config['timelineSelector'];
         this.duration = this.data[this.data.length - 1].event_sec - this.data[0].event_sec;
         this.initPitch();
         this.setAxes();
@@ -47,17 +49,20 @@ export default class DetailChart extends GeneralChart {
         .attr('fill', 'none')
         .attr('stroke', 'none')
         .attr('pointer-events', 'all')
+        .attr('cursor', 'pointer')
         .on('click', _.partial(this.onclick, this));
     }
 
     hasIncorrectStartPos(d) {
       if (d.start_x === 0 && d.start_y === 68) return true;
+      if (d.start_x === 105 && d.start_y === 0) return true;
       return false;
     }
 
     hasIncorrectEndPos(d) {
       if (d.event_name === 'Shot') return true;
       if (d.end_x === 0 && d.end_y === 68) return true;
+      if (d.end_x === 105 && d.end_y === 0) return true;
       return false;
     }
 
@@ -67,7 +72,7 @@ export default class DetailChart extends GeneralChart {
         .selectAll('circle')
         .data(this.data)
         .join('circle')
-        .attr('cx', d => this.hasIncorrectStartPos(d) ? d.end_x: d.start_x)
+        .attr('cx', d => this.hasIncorrectStartPos(d) ? this.sx(d.end_x): this.sx(d.start_x))
         .attr('cy', d => this.hasIncorrectStartPos(d) ? this.sy(d.end_y): this.sy(d.start_y))
         .attr('r', 0.8)
         .attr('fill', d=>this.sc(d.event_name))
@@ -77,9 +82,9 @@ export default class DetailChart extends GeneralChart {
         .selectAll('line')
         .data(this.data)
         .join('line')
-        .attr('x1', d => this.hasIncorrectStartPos(d) ? d.end_x: d.start_x)
+        .attr('x1', d => this.hasIncorrectStartPos(d) ? this.sx(d.end_x): this.sx(d.start_x))
         .attr('y1', d => this.hasIncorrectStartPos(d) ? this.sy(d.end_y): this.sy(d.start_y))
-        .attr('x2', d => this.hasIncorrectEndPos(d) ? d.start_x : d.end_x)
+        .attr('x2', d => this.hasIncorrectEndPos(d) ? this.sx(d.start_x) : this.sx(d.end_x))
         .attr('y2', d => this.hasIncorrectEndPos(d) ? this.sy(d.start_y) : this.sy(d.end_y))
         .attr('stroke', d=>this.sc(d.event_name))
         .attr('opacity', d=>d.team_name === d.main_team? 1: 0.2)
@@ -90,8 +95,8 @@ export default class DetailChart extends GeneralChart {
         .append('g')
         .append('circle')
         .datum(this.data[0])
-        .attr('cx', d => d.start_x)
-        .attr('cy', d => this.sy(d.start_y))
+        .attr('cx', d => this.hasIncorrectStartPos(d) ? this.sx(d.end_x): this.sx(d.start_x))
+        .attr('cy', d => this.hasIncorrectStartPos(d) ? this.sy(d.end_y): this.sy(d.start_y))
         .attr('r', 2)
         .attr('stroke', d=>this.sc(d.event_name))
         .attr('fill', 'white')
@@ -100,7 +105,7 @@ export default class DetailChart extends GeneralChart {
         .append('g')
         .append('circle')
         .datum(this.data[this.data.length - 1])
-        .attr('cx', d => this.hasIncorrectEndPos(d) ? d.start_x : d.end_x)
+        .attr('cx', d => this.hasIncorrectEndPos(d) ? this.sx(d.start_x) : this.sx(d.end_x))
         .attr('cy', d => this.hasIncorrectEndPos(d) ? this.sy(d.start_y) : this.sy(d.end_y))
         .attr('r', 2)
         .attr('stroke', d=>this.sc(d.event_name))
@@ -110,8 +115,8 @@ export default class DetailChart extends GeneralChart {
         .append('g')
         .append('text')
         .datum(this.data[0])
-        .attr('x', d => d.start_x)
-        .attr('y', d => this.sy(d.start_y))
+        .attr('x', d => this.hasIncorrectStartPos(d) ? this.sx(d.end_x): this.sx(d.start_x))
+        .attr('y', d => this.hasIncorrectStartPos(d) ? this.sy(d.end_y): this.sy(d.start_y))
         .attr('font-size', 4)
         .attr('text-anchor', 'middle')
         .attr('alignment-baseline', 'middle')
@@ -121,7 +126,7 @@ export default class DetailChart extends GeneralChart {
         .append('g')
         .append('text')
         .datum(this.data[this.data.length - 1])
-        .attr('x', d => this.hasIncorrectEndPos(d) ? d.start_x : d.end_x)
+        .attr('x', d => this.hasIncorrectEndPos(d) ? this.sx(d.start_x) : this.sx(d.end_x))
         .attr('y', d => this.hasIncorrectEndPos(d) ? this.sy(d.start_y) : this.sy(d.end_y))
         .attr('font-size', 4)
         .attr('text-anchor', 'middle')
@@ -160,6 +165,7 @@ export default class DetailChart extends GeneralChart {
     }
 
     drawLegend(sel) {
+      if (!this.main) return;
       sel
         .append('g')
         .selectAll('circle')
@@ -211,29 +217,32 @@ export default class DetailChart extends GeneralChart {
         .text(d=>d.replace('Goalkeeper', 'GK'))
     }
 
+    getRelEpisode(episode, i, timing) {
+        return timing === 'before' ? episode - 3 + i : episode + (i + 1);
+    }
+
     onclick(thisClass, event, d) {
       if (thisClass.main) return;
       if (thisClass.episode == null) return;
 
       thisClass.timelineClass.resetEpisodePosition()
 
-
-
       new DetailChart(thisClass.originalData.filter(e=>e.episode === thisClass.episode),
         `${thisClass.rootSelector} .selected-episode`,
         {
           ...thisClass.config,
-          height: thisClass.height / 2 * 3.3,
+          height: thisClass.height * 1.15,
+          margin: {top: 0, right: 0, bottom: 0, left: 0},
           episode: thisClass.episode,
           main: true,
         }
       ).draw();
 
-      thisClass.timelineClass.moveEpisode(`${thisClass.rootSelector} .episode-${thisClass.episode}`, -3);
+      thisClass.timelineClass.moveEpisode(`${thisClass.timelineSelector} .episode-${thisClass.episode}`, -3);
 
       for (const timing of ['before', 'after']) {
-        for (let i = 0; i < 2; i++) {
-            const relEpisode = timing === 'before' ? thisClass.episode - 2 + i : thisClass.episode + (i + 1);
+        for (let i = 0; i < thisClass.nMiniDetails; i++) {
+            const relEpisode = thisClass.getRelEpisode(thisClass.episode, i, timing);
             new DetailChart(thisClass.originalData.filter(e=>e.episode === relEpisode),
                 `${thisClass.rootSelector} .${timing} .episode-${i}`, {
                 ...thisClass.config,
@@ -241,7 +250,7 @@ export default class DetailChart extends GeneralChart {
                 episode: relEpisode,
                 main: false,
             }).draw();
-            thisClass.timelineClass.moveEpisode(`${thisClass.rootSelector} .episode-${relEpisode}`, 3);
+            thisClass.timelineClass.moveEpisode(`${thisClass.timelineSelector} .episode-${relEpisode}`, 3);
 
         }
     }

@@ -16,7 +16,6 @@ const data = await d3.csvParse(text, d3.autoType)
 ```
 
 ```js
-
 const responseSummary = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/summary/${competition}.csv`)
 
 if (!responseSummary.ok) throw new Error(`HTTP ${responseSummary.status} - ${responseSummary.statusText}`);
@@ -40,7 +39,6 @@ function drawCharts() {
   d3.select('#timeline .charts').selectAll('*').html('');
   drawTimelines();
   d3.select('#loading').classed('display', false);
-
 }
 drawCharts()
 ```
