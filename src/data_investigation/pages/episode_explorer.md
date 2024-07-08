@@ -19,7 +19,8 @@ const competition = view(Inputs.select(
 
 
 ```js
-const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`).then(d => {
+
+const response = await fetch(`https://media.githubusercontent.com/media/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`).then(d => {
     d3.select('#loading').classed('display', true);
     return d
 })
@@ -30,7 +31,7 @@ const data = await d3.csvParse(text, d3.autoType)
 ```
 
 ```js
-const responseSummary = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/summary/${competition}.csv`)
+const responseSummary = await fetch(`https://media.githubusercontent.com/media/gshirato/observable-framework-projects-in-observablehq/main/public/summary/${competition}.csv`)
 
 if (!responseSummary.ok) throw new Error(`HTTP ${responseSummary.status} - ${responseSummary.statusText}`);
 const textSummary = await responseSummary.text()

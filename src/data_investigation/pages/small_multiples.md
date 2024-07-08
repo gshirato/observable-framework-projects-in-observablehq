@@ -19,7 +19,7 @@ const competition = view(Inputs.select(
 
 
 ```js
-const response = await fetch(`https://raw.githubusercontent.com/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`).then(d => {
+const response = await fetch(`https://media.githubusercontent.com/media/gshirato/observable-framework-projects-in-observablehq/main/public/episodes/${competition}.csv`).then(d => {
     d3.select('#loading').classed('display', true);
     return d
 })
