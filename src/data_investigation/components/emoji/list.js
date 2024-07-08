@@ -31,7 +31,6 @@ const emojis = {
     "Iran": "🇮🇷",
     "Egypt": "🇪🇬",
     "Saudi Arabia": "🇸🇦",
-    // Italy, Republic of Ireland, Hungary, Slovakia, Northern Ireland, Austria, Czech Republic, Turkey, Ukraine, Romania, Albania
     "Italy": "🇮🇹",
     "Republic of Ireland": "🇮🇪",
     "Hungary": "🇭🇺",
