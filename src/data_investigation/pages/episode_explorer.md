@@ -185,6 +185,8 @@ function showTimeline(match_id, soccer) {
         </div>
     </div>
 </div>
+
+
 <hr>
 
 
@@ -225,7 +227,7 @@ function showTimeline(match_id, soccer) {
         top: 5;
         right: 5;
         width: 100%;
-        height: 80%;
+        height: 30%;
         padding: 10px;
         background-color: none;
     }
@@ -269,7 +271,7 @@ function showTimeline(match_id, soccer) {
     }
 
     .episode-0, .episode-1, .episode-2 {
-        margin: -50px 0px -55px 0px;
+        margin: -50px 0px -60px 0px;
     }
 
     .selected {
