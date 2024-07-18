@@ -53,7 +53,7 @@ The episode data is a list of rows, each representing a single event in a match.
 - `intermediate.episode`: The episode number after merging short episodes from `naive.episodes` to the previous episode.
 
 
-## summary
+## episode summary
 
 Summary of the episode data.
 
