@@ -69,6 +69,7 @@ export default {
 
   // Some additional configuration options and their defaults:
   // theme: "dark", // try "light", "dark", "slate", etc.
+  style: "style.css",
   // header: "", // what to show in the header (HTML)
   footer: "Gota Shirato", // what to show in the footer (HTML)
   // toc: "true", // whether to show the table of contents
