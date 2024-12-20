@@ -60,17 +60,13 @@
 </style>
 
 
-# Gota Shirato | PhD student
+# Dr. Gota Shirato
 ---
 ## About
 
-I am a Ph.D student of Computer Science in the University of Bonn 🇩🇪 and was a researcher at Fraunhofer IAIS.
-In 2019, I completed a double degree program, receiving a Master's degree in Virtual Reality from Ecole Centrale de Nantes 🇫🇷 and a Master's degree in Statistics from Keio University 🇯🇵, developing a method to evaluate space in football ⚽️.
+I deliver visual analytics solutions that turn complex data into clear insights. Using custom tools in D3.js and interactive libraries, I simplify exploring multivariate time series and intricate data. By integrating deep learning models like Autoencoders and LSTMs, I boost data analysis for tasks such as anomaly detection and trend prediction, making data-driven decisions easier.
 
-## Research Interests
-
-My research interests include interpretable data analytics such as visual analytics, time series abstraction, machine learning, and their applications to sports analytics.
-I am currently working on interpreting the behavior of players in football using visual analytics and neural network such as Autoencoder.
+I also dive into sports analytics, creating solutions that translate player behavior and game dynamics into actionable strategies. It's all about turning data from daunting to doable, one visualization at a time.
 
 ## Education
 <table class="scrollable-table">
@@ -84,19 +80,19 @@ I am currently working on interpreting the behavior of players in football using
   </thead>
   <tbody>
     <tr>
-      <td>Ph.D. in Computer Science</td>
-      <td>2020 - Present</td>
+      <td>Dr. rer. nat. (Computer Science)</td>
+      <td>2020 - 2024</td>
       <td>University of Bonn</td>
       <td>Germany 🇩🇪</td>
     </tr>
     <tr>
-      <td>M.Sc. in Statistics</td>
+      <td>M.Sc. (Statistics)</td>
       <td>2017-2019</td>
       <td>Keio University</td>
       <td>Japan 🇯🇵</td>
     </tr>
     <tr>
-      <td>M.Sc. in Virtual Reality</td>
+      <td>M.Sc. (Virtual Reality)</td>
       <td>2015-2017</td>
       <td>Ecole Centrale de Nantes</td>
       <td>France 🇫🇷</td>
@@ -120,7 +116,7 @@ I am currently working on interpreting the behavior of players in football using
   <tbody>
     <tr>
       <td>Researcher</td>
-      <td>2020 - Present</td>
+      <td>2020 - 2024</td>
       <td>Fraunhofer IAIS</td>
       <td>Germany 🇩🇪</td>
     </tr>
@@ -175,6 +171,9 @@ I am currently working on interpreting the behavior of players in football using
   </tbody>
 </table>
 
+
+### Dissertation
+Visual analytics methods for supporting semantic abstraction of multivariate time series data (https://bonndoc.ulb.uni-bonn.de/xmlui/handle/20.500.11811/12460, September, 2024)
 
 ### Full papers
 
