@@ -15,7 +15,7 @@ export function isShotPossible(ball, goal, threshold) {
 
 export function getGKPosition(ball, goal, magnitude = 1) {
     // 楕円の長径と短径
-    let a = 3.66 * magnitude; // 長径
+    let a = 3.66 * magnitude; // 長径 // 逆では？ 実装上は関係なさそうだけど
     let b = 5.5 * magnitude; // 短径
 
     if (!isShotPossible(ball, goal, 30)) {
@@ -39,11 +39,10 @@ export function getGKPosition(ball, goal, magnitude = 1) {
         // これらを組み合わせて、交点を求めます。
 
         if (slope === Infinity || slope === -Infinity) {
-        // When the slope is undefined, the x value of the point on the ellipse is known (goal.x), and the y value needs to be calculated.
+        // When the slope is undefined, the x value of the point on the ellipse is known (=goal.x), and the y value needs to be calculated.
         let y1 =
             Math.sqrt(b ** 2 * (1 - (ball.x - goal.x) ** 2 / a ** 2)) + goal.y;
-        let y2 =
-            -Math.sqrt(b ** 2 * (1 - (ball.x - goal.x) ** 2 / a ** 2)) + goal.y;
+        let y2 = -y1
 
         if (Math.abs(ball.y - y1) < Math.abs(ball.y - y2)) {
             return { x: goal.x, y: y1 };
