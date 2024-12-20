@@ -1,5 +1,12 @@
 ## Principles of Data Mining and Learning Algorithms: Visual Analytics
 
+
+<div class="tip" label="Note">
+
+This page refers to a seminar which took place in the summer semester of 2024. The content is no longer being updated. If you are interested in the content of this seminar, please contact [me](mailto:gota@hey.com) directly.
+
+</div>
+
 ### Master: MA-INF 4209
 ---
 <figure>
