@@ -10,7 +10,6 @@ class TableChart {
       this.nTeams = Object.keys(this.data[0]).length - 1;
       this.differences = calculateDifferences(this.data);
       this.differences = this.sortData(this.differences);
-      console.log(this.differences)
       this.setAxis();
       this.createTable();
     }
@@ -44,7 +43,7 @@ class TableChart {
       const headerRow = this.table.append("tr");
       headerRow.append("th").text("予想者");
       for (let i = 1; i <= this.nTeams; i++) {
-        headerRow.append("th").text(i);
+        headerRow.append("th").text(`${i}位`);
       }
       headerRow.append("th").text("スコア (予想との順位差分)");
 
@@ -52,11 +51,12 @@ class TableChart {
       // Add data rows
 
       this.differences.forEach((item) => {
-        console.log(item)
           const row = this.table.append("tr");
           row.append("td").style("font-weight", "bold").text(item.予想);
-          for (let i = 1; i <= this.nTeams + 1; i++) {
-            row.append("td").text(item[i]);
+          for (let i = 1; i <= this.nTeams; i++) {
+            row.append("td")
+              .attr('class', `id${item.予想}-${i}`)
+              .text(item[i]);
           }
           // sum
           const differences = Object.values(thisClass.differences.find(d=>d.予想 === item.予想)['diff']);
@@ -64,14 +64,24 @@ class TableChart {
         });
     }
 
-    colorCells() {
+    findKeyByValue(obj, targetValue) {
+      return Object.keys(obj).find(key => obj[key] === targetValue);
+    }
 
-      // this.table
-      //   .selectAll("tr:not(:first-child)")
-      //   .data(this.differences)
-      //   .selectAll("td:not(:first-child)")
-      //   .data((d) => Object.values(d["diff"]))
-      //   .style("background-color", (d, i) => this.sc(d));
+
+    colorCells() {
+      console.log(this.differences.map(d=>d.予想))
+      for (const pred of this.differences.map(d=>d.予想)) {
+        for (let i = 1; i <= this.nTeams; i++) {
+          const predictedIthPosition = this.differences.find(d=>d.予想 === pred)[i];
+          const actual = this.differences.find(d=>d.予想 === '結果');
+          const actualPosition = this.findKeyByValue(actual, predictedIthPosition)
+
+          const diff = Math.abs(i - parseInt(actualPosition));
+          const sc = this.sc(diff);
+          this.table.select(`.id${pred}-${i}`).style("background-color", sc);
+        }
+      }
 
       this.table
         .selectAll("tr:nth-child(2)")
