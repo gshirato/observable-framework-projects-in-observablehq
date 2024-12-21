@@ -51,3 +51,41 @@ div .parallel {
     justify-content: space-between;
     margin: 0 0 2rem;
 }
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* 横スクロールを許可 */
+    margin: 20px 0;
+}
+
+table {
+    width: auto; /* 必要な幅に調整 */
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    white-space: nowrap; /* セル内の改行を防止 */
+}
+
+th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+td {
+    vertical-align: middle;
+}
