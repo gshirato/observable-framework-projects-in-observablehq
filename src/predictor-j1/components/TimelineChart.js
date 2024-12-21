@@ -1,6 +1,6 @@
 import * as d3 from "npm:d3";
 import GeneralChart from "../../chart/components/GeneralChart.js";
-import calculateDifferences, { calculateCumulativeDifferences } from "./utils.js";
+import {calculateDifferences, calculateCumulativeDifferences } from "./utils.js";
 
 class TimelineChart extends GeneralChart {
     constructor(data, selector, config) {

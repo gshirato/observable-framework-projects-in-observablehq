@@ -1,5 +1,5 @@
 import * as d3 from "npm:d3";
-import calculateDifferences from "./utils.js";
+import {calculateDifferences} from "./utils.js";
 
 class TableChart {
     constructor(data, selector, config) {

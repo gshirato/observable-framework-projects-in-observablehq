@@ -1,4 +1,4 @@
-export default function calculateDifferences(data) {
+export function calculateDifferences(data) {
   // Assuming '結果' is the key for the actual results in your data
     const differences = {};
     const actualResults = data.find((item) => item.予想 === "結果");
@@ -11,6 +11,7 @@ export default function calculateDifferences(data) {
       for (let i = 1; i <= 18; i++) {
         const actualPos = findKeyByValue(actualResults, item[i]);
         diff[actualPos] = Math.abs(i - differences[item[i]]);
+        console.log(diff)
       }
 
       return { ...item, diff };
