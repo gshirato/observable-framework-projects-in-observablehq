@@ -46,7 +46,7 @@ class TableChart {
       for (let i = 1; i <= this.nTeams; i++) {
         headerRow.append("th").text(i);
       }
-      headerRow.append("th").text("スコア");
+      headerRow.append("th").text("スコア (予想との順位差分)");
 
       const thisClass = this;
       // Add data rows
@@ -66,12 +66,12 @@ class TableChart {
 
     colorCells() {
 
-      this.table
-        .selectAll("tr:not(:first-child)")
-        .data(this.differences)
-        .selectAll("td:not(:first-child)")
-        .data((d) => Object.values(d["diff"]))
-        .style("background-color", (d, i) => this.sc(d));
+      // this.table
+      //   .selectAll("tr:not(:first-child)")
+      //   .data(this.differences)
+      //   .selectAll("td:not(:first-child)")
+      //   .data((d) => Object.values(d["diff"]))
+      //   .style("background-color", (d, i) => this.sc(d));
 
       this.table
         .selectAll("tr:nth-child(2)")
