@@ -89,3 +89,26 @@ tr:hover {
 td {
     vertical-align: middle;
 }
+
+#loading {
+    width: 2rem;
+    height: 0rem;
+    border: 5px solid #f3f3f3;
+    border-top: 6px solid #9c41f2;
+    border-radius: 100%;
+    margin: auto;
+    visibility: hidden;
+    animation: spin 2s linear infinite;
+}
+
+#loading.display {
+    visibility: visible;
+    height: 2rem;
+}
+
+
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
