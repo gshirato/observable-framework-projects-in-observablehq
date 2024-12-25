@@ -95,7 +95,7 @@ export default class EpisodesLeadingToShot extends GeneralChart {
     }
 
     drawEpisodes(sel) {
-        const layer = sel.select('#above').append('g').attr('id', 'episodes')
+        const layer = sel.select('.above').append('g').attr('id', 'episodes')
 
         for (const possession of d3.group(this.data, d=>d.possession).keys()) {
             const possessionData = this.data.filter(d=>d.possession == possession)

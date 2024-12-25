@@ -45,7 +45,7 @@ export default class SmallMultiplesChart extends GeneralChart {
       sel.append("g")
         .call(this.pitch)
 
-      sel.select('#above').append('g')
+      sel.select('.above').append('g')
         .append('rect')
         .attr('x', 0)
         .attr('y', 0)
@@ -70,7 +70,7 @@ export default class SmallMultiplesChart extends GeneralChart {
 
 
     drawEpisode(sel) {
-      const layer = sel.select('#above').append('g')
+      const layer = sel.select('.above').append('g')
 
       layer
         .append('g')
@@ -147,7 +147,7 @@ export default class SmallMultiplesChart extends GeneralChart {
     }
 
     drawMiniSequence(sel) {
-      const layer = sel.select('#above').append('g')
+      const layer = sel.select('.above').append('g')
 
       const sx = d3.scaleLinear()
         .domain([0, this.duration])
@@ -182,7 +182,7 @@ export default class SmallMultiplesChart extends GeneralChart {
     }
 
     drawTitle(sel) {
-      const layer = sel.select('#above').append('g')
+      const layer = sel.select('.above').append('g')
 
       layer
         .append("text")

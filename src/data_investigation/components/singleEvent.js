@@ -28,7 +28,7 @@ export default class SingleEventChart extends GeneralChart {
     }
 
     drawEpisode(sel) {
-      const layer = sel.select('#above').append('g')
+      const layer = sel.select('.above').append('g')
 
       layer
         .append('g')
@@ -63,7 +63,7 @@ export default class SingleEventChart extends GeneralChart {
     }
 
     drawLegend(sel) {
-        const layer = sel.select('#above').append('g')
+        const layer = sel.select('.above').append('g')
         layer
             .append('g')
             .selectAll('circle')

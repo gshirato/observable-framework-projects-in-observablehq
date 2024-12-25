@@ -65,7 +65,7 @@ export default class PassDensityChart extends GeneralChart {
     }
 
     drawEvents(sel) {
-      const layer = sel.select('#above')
+      const layer = sel.select('.above')
 
       layer.append('g')
         .selectAll('circle')
@@ -84,7 +84,7 @@ export default class PassDensityChart extends GeneralChart {
           .dx(5)
           .dy(4);
 
-        const layer = sel.select('#above')
+        const layer = sel.select('.above')
         layer
           .append('g')
           .selectAll('rect')

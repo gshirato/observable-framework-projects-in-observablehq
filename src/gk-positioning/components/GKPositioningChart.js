@@ -579,16 +579,16 @@ class GKPositioningChart extends GeneralChart {
 
     draw() {
       this.svg.call(this.drawPitch.bind(this));
-      this.svg.select('#above').append('g').call(this.drawBaseEllipse.bind(this));
-      this.svg.select('#above').append('g').call(this.drawAuxiliaryLines.bind(this));
-      this.svg.select('#above').append('g').call(this.drawActualEllipse.bind(this));
-      this.svg.select('#above').append('g').call(this.drawPointX.bind(this));
-      this.svg.select('#above').append('g').call(this.drawBall.bind(this));
-      this.svg.select('#above').append('g').call(this.drawShotPath.bind(this));
-      this.svg.select('#above').append('g').call(this.drawPossibleShotPaths.bind(this), this.ball);
-      this.svg.select('#above').append('g').call(this.drawResponsibleLine.bind(this), this.ball);
-      this.svg.select('#above').append('g').call(this.drawGK.bind(this), this.ball);
-      this.svg.select('#above').append('g').call(this.drawSemiCircle.bind(this));
+      this.svg.select('.above').append('g').call(this.drawBaseEllipse.bind(this));
+      this.svg.select('.above').append('g').call(this.drawAuxiliaryLines.bind(this));
+      this.svg.select('.above').append('g').call(this.drawActualEllipse.bind(this));
+      this.svg.select('.above').append('g').call(this.drawPointX.bind(this));
+      this.svg.select('.above').append('g').call(this.drawBall.bind(this));
+      this.svg.select('.above').append('g').call(this.drawShotPath.bind(this));
+      this.svg.select('.above').append('g').call(this.drawPossibleShotPaths.bind(this), this.ball);
+      this.svg.select('.above').append('g').call(this.drawResponsibleLine.bind(this), this.ball);
+      this.svg.select('.above').append('g').call(this.drawGK.bind(this), this.ball);
+      this.svg.select('.above').append('g').call(this.drawSemiCircle.bind(this));
       this.svg.on("mousemove", _.partial(this.onMousemove, this));
     }
 

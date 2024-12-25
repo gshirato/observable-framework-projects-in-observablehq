@@ -458,8 +458,8 @@ class ThreeSixtyChart extends GeneralChart {
       // this.svg.call(this.paintBG, "#fff1df");
       this.setAxes();
       this.svg.call(this.drawPitch.bind(this));
-      this.svg.select('#above').append('g').call(this.draw360.bind(this));
-      this.svg.select('#above').append('g').call(this.drawWatermark.bind(this));
+      this.svg.select('.above').append('g').call(this.draw360.bind(this));
+      this.svg.select('.above').append('g').call(this.drawWatermark.bind(this));
     }
   }
 

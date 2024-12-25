@@ -104,7 +104,7 @@ export default class PassDistributionChart extends GeneralChart {
             return null;
         }
 
-        const layer = sel.select('#above')
+        const layer = sel.select('.above')
 
         layer.append('g')
             .selectAll('line')
@@ -136,7 +136,7 @@ export default class PassDistributionChart extends GeneralChart {
 
 
     drawZones(sel) {
-        const layer = sel.select('#above')
+        const layer = sel.select('.above')
         layer.append('g')
             .selectAll('rect')
             .data(this.zones)

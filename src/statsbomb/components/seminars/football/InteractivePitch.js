@@ -38,7 +38,7 @@ export default class InteractivePitch extends GeneralChart {
     }
 
     drawSample(sel) {
-        const layer = sel.select('#above')
+        const layer = sel.select('.above')
         layer
             .append('g')
             .selectAll('rect')

@@ -109,7 +109,7 @@ export default class PassNetworkChart extends GeneralChart {
     }
 
     drawZones(sel) {
-        const layer = sel.select('#above')
+        const layer = sel.select('.above')
         layer.append('g')
             .selectAll('rect')
             .data(this.zones)
@@ -130,7 +130,7 @@ export default class PassNetworkChart extends GeneralChart {
     }
 
     drawNetwork(sel) {
-        const layer = sel.select('#above')
+        const layer = sel.select('.above')
         this.drawNodes(layer);
         this.drawEdges(layer);
     }

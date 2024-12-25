@@ -110,8 +110,8 @@ export default class SimpleThreeSixtyChart extends GeneralChart {
 
       this.setAxes();
       this.svg.call(this.drawPitch.bind(this));
-      this.svg.select('#above').append('g').call(this.drawWatermark.bind(this));
-      this.svg.select('#above').append('g').call(this.draw360.bind(this));
-      this.svg.select('#above').append('g').call(this.drawfreezeFrame.bind(this));
+      this.svg.select('.above').append('g').call(this.drawWatermark.bind(this));
+      this.svg.select('.above').append('g').call(this.draw360.bind(this));
+      this.svg.select('.above').append('g').call(this.drawfreezeFrame.bind(this));
     }
   }
