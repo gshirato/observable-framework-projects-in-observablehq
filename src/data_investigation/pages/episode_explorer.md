@@ -24,7 +24,6 @@ const response = await fetch(`https://media.githubusercontent.com/media/gshirato
     d3.select('#loading').classed('display', true);
     return d
 })
-
 if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
 const text = await response.text()
 const data = await d3.csvParse(text, d3.autoType)
@@ -52,7 +51,7 @@ let _ = require("d3-soccer").then(soccer=>drawCharts(soccer))
 import addEmoji from "../components/emoji/addEmoji.js";
 import addEmojiToLabel from "../components/emoji/addToLabel.js";
 import getUniqueArray from '../../chart/components/utils.js';
-import EventTimelineChart from "../components/event-timeline/chart.js";
+import {EventTimelineChart} from "../components/event-timeline/chart.js";
 
 ```
 
@@ -70,7 +69,6 @@ function getPlayingTeams(data, matchId) {
 function showMatchNavigation(data, selector, config) {
     const soccer = config.soccerModule;
     const matchIds = Array.from(d3.union(data.map(d => d.match_id))).sort((a, b) => d3.ascending(a, b));
-    console.log(matchIds)
 
     const charts = d3.select(selector);
     charts.selectAll('*').remove();
@@ -194,113 +192,3 @@ function showTimeline(match_id, soccer) {
 
 - A public data set of spatio-temporal match events in soccer competitions (https://www.nature.com/articles/s41597-019-0247-7)
 - Metadata record for: A public data set of spatio-temporal match events in soccer competitions (https://springernature.figshare.com/articles/dataset/Metadata_record_for_A_public_data_set_of_spatio-temporal_match_events_in_soccer_competitions/9711164)
-
-
-<style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
-    }
-
-    .container {
-      display: flex;
-      height: 500px;
-    }
-
-    #main-timeline {
-      width: 100%;
-      height: 100%;
-      padding: 0px;
-      background-color: #f8f8f8;
-      border-right: 1px solid #ddd;
-    }
-
-    .content {
-      width: 100%;
-      position: relative;
-    }
-
-    .episodes {
-        position: fixed;
-        top: 5;
-        right: 5;
-        width: 100%;
-        height: 30%;
-        padding: 10px;
-        background-color: none;
-    }
-
-    .table-container {
-        top:0px;
-        height: 200px;
-        width: 550px;
-        overflow-x: auto;
-        overflow-y: auto;
-        margin: -0px -250px;
-        padding: 0px 10px;
-    }
-
-    .table {
-        width: 100%;
-        font-size: 10px;
-        border-collapse: collapse;
-        position: relative;
-    }
-
-    .table th, .table td {
-        border: 0px solid #ddd;
-        padding: 0px;
-    }
-
-    .table th {
-        background-color: #f4f4f4;
-        text-align: left;
-        position: sticky;
-        top: -2px;
-    }
-
-    .before, .after {
-        padding: 10px 0px;
-        margin: -30px 0px;
-    }
-    .selected {
-        padding: 5px;
-        margin: -50px 0px;
-    }
-
-    .episode-0, .episode-1, .episode-2 {
-        margin: -50px 0px -60px 0px;
-    }
-
-    .selected {
-        padding: 10px 0px;
-        margin: -10px 0px;
-    }
-</style>
-
-<style>
-#loading {
-    width: 2rem;
-    height: 0rem;
-    border: 5px solid #f3f3f3;
-    border-top: 6px solid #9c41f2;
-    border-radius: 100%;
-    margin: auto;
-    visibility: hidden;
-    animation: spin 2s linear infinite;
-}
-
-#loading.display {
-    visibility: visible;
-    height: 2rem;
-}
-
-
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-</style>
