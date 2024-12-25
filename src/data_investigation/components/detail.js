@@ -41,7 +41,7 @@ export default class DetailChart extends GeneralChart {
 
     drawPitch(sel) {
       sel.append("g").call(this.pitch);
-      sel.select('#above').append('g').append('rect')
+      sel.select('.above').append('g').append('rect')
         .attr('x', 0)
         .attr('y', 0)
         .attr('width', 105)
@@ -136,9 +136,9 @@ export default class DetailChart extends GeneralChart {
 
     draw() {
       this.svg.call(this.drawPitch.bind(this));
-      this.svg.select('#above').append('g').call(this.drawEpisode.bind(this));
-      this.svg.select('#above').append('g').call(this.drawTitle.bind(this));
-      this.svg.select('#above').append('g').call(this.drawLegend.bind(this));
+      this.svg.select('.above').append('g').call(this.drawEpisode.bind(this));
+      this.svg.select('.above').append('g').call(this.drawTitle.bind(this));
+      this.svg.select('.above').append('g').call(this.drawLegend.bind(this));
     }
 
     drawTitle(sel) {
