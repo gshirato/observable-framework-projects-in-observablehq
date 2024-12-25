@@ -17,7 +17,7 @@ const tagMeanings = {
     202: "Corner",
 }
 
-export default class EventTimelineChart extends GeneralChart {
+export class EventTimelineChart extends GeneralChart {
     constructor(data, selector, config) {
         super(data, selector, config);
         this.episodes = this.groupEvents(data);
@@ -247,6 +247,7 @@ export default class EventTimelineChart extends GeneralChart {
 
     drawDetail(episode, selector, config) {
         const episodeData = this.data.filter(d => d.episode === episode);
+
         new DetailChart(episodeData, selector, config).draw();
     }
 
