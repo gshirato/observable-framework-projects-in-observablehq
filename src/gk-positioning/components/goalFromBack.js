@@ -144,17 +144,17 @@ export default class GoalFromBack extends GeneralChart {
         g
             .append('path')
             .datum([
-                [this.sx(-0.80), this.sy(this.gkHeight) + r * 2],
-                [this.sx(0), this.sy(0)],
-                [this.sx(0.80), this.sy(this.gkHeight) + r * 2],
-                [this.sx(-0.80), this.sy(this.gkHeight) + r * 2],
+                [this.sx(-0.80 + this.gkX), this.sy(this.gkHeight) + r * 2],
+                [this.sx(0 + this.gkX), this.sy(0)],
+                [this.sx(0.80 + this.gkX), this.sy(this.gkHeight) + r * 2],
+                [this.sx(-0.80 + this.gkX), this.sy(this.gkHeight) + r * 2],
             ])
             .attr('fill', 'none')
             .attr('stroke', '#333')
             .attr('stroke-width', 2)
             .attr('stroke-dasharray', '12 2')
             .attr('d', d3.line())
-        console.log()
+
         g
             .append('text')
             .attr('x', this.sx(0))
@@ -170,12 +170,27 @@ export default class GoalFromBack extends GeneralChart {
             .attr('class', 'area')
             .attr('transform', `translate(${this.sx(this.gkX) - this.sx(0)}, 0)`);
 
-            const r = this.sx(this.headSize) - this.sx(0)
+        const r = this.sx(this.headSize) - this.sx(0)
+
+        g
+            .append('rect')
+            .attr('x', this.sx(this.gkX))
+            .attr('y', this.sy(this.gkHeight) + r * 2)
+            .attr('l', console.log(this.sx(this.xmax) - this.sx(this.xmin)))
+            .attr('width', this.sx(this.xmax) - this.sx(this.gkX))
+            .attr('height', this.sy(0) - this.sy(this.gkHeight) - r  *2)
+            .attr('fill', 'blue')
+            .attr('stroke', 'blue')
+            .attr('stroke-width', 3)
+            .attr('stroke-dasharray', '6 4')
+            .attr('opacity', 0.1)
+
         g
             .append('rect')
             .attr('x', this.sx(this.xmin))
             .attr('y', this.sy(this.gkHeight) + r * 2)
-            .attr('width', this.sx(this.xmax) - this.sx(this.xmin))
+            .attr('l', console.log(this.sx(this.xmax) - this.sx(this.xmin)))
+            .attr('width', this.sx(this.gkX) - this.sx(this.xmin))
             .attr('height', this.sy(0) - this.sy(this.gkHeight) - r  *2)
             .attr('fill', 'blue')
             .attr('stroke', 'blue')
