@@ -22,10 +22,6 @@ class GKPositioningChart extends GeneralChart {
           [0, 0],
           [68, 52.5]
         ]);
-        // .clip([
-        //   [0, 52.5],
-        //   [68, 105]
-        // ]);
       this.ball = config["ball"];
       this.goal = { x: 0, y: 34 };
       this.GK = this.getGKPosition(this.ball, this.goal, this.ratio);
