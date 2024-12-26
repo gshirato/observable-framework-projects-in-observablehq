@@ -15,8 +15,8 @@ export function isShotPossible(ball, goal, threshold) {
 
 export function getGKPosition(ball, goal, magnitude = 1) {
     // 楕円の長径と短径
-    let a = 3.66 * magnitude; // 長径 // 逆では？ 実装上は関係なさそうだけど
-    let b = 5.5 * magnitude; // 短径
+    let a = 5.5 * magnitude; // 長径
+    let b = 3.66 * magnitude; // 短径
 
     if (!isShotPossible(ball, goal, 30)) {
         return { x: 5.5, y: 34 }; // GK should be at the center of the longer edge of the goal area
