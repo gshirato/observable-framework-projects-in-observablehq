@@ -41,17 +41,16 @@ class GKPositioningChart extends GeneralChart {
         .scaleLinear()
         .domain([0, 68])
         .range([0, 68]);
-
     }
 
     drawAuxiliaryLines(sel) {
       sel
         .append('g')
         .append('line')
-        .attr('x1', 5.25)
-        .attr('x2', 5.25)
-        .attr('y1', 34 - 20.16)
-        .attr('y2', 34 + 20.16)
+        .attr('x1', this.sx(5.25))
+        .attr('x2', this.sx(5.25))
+        .attr('y1', this.sy(34 - 20.16))
+        .attr('y2', this.sy(34 + 20.16))
         .attr("stroke", '#999')
         .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
@@ -60,10 +59,10 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append('g')
         .append('line')
-        .attr('x1', 10.5)
-        .attr('x2', 10.5)
-        .attr('y1', 34 - 20)
-        .attr('y2', 34 + 20)
+        .attr('x1', this.sx(10.5))
+        .attr('x2', this.sx(10.5))
+        .attr('y1', this.sy(34 - 20))
+        .attr('y2', this.sy(34 + 20))
         .attr("stroke", '#999')
         .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
@@ -72,10 +71,10 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append('g')
         .append('line')
-        .attr('x1', 0)
-        .attr('x2', 16.5)
-        .attr('y1', 34 - (3.66 + 5.5))
-        .attr('y2', 34 - (3.66 + 5.5))
+        .attr('x1', this.sx(0))
+        .attr('x2', this.sx(16.5))
+        .attr('y1', this.sy(34 - (3.66 + 5.5)))
+        .attr('y2', this.sy(34 - (3.66 + 5.5)))
         .attr("stroke", '#999')
         .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
@@ -84,10 +83,10 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append('g')
         .append('line')
-        .attr('x1', 0)
-        .attr('x2', 16.5)
-        .attr('y1', 34 - (3.66 + 11))
-        .attr('y2', 34 - (3.66 + 11))
+        .attr('x1', this.sx(0))
+        .attr('x2', this.sx(16.5))
+        .attr('y1', this.sy(34 - (3.66 + 11)))
+        .attr('y2', this.sy(34 - (3.66 + 11)))
         .attr("stroke", '#999')
         .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
@@ -96,10 +95,10 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append('g')
         .append('line')
-        .attr('x1', 0)
-        .attr('x2', 16.5)
-        .attr('y1', 34 + (3.66 + 5.5))
-        .attr('y2', 34 + (3.66 + 5.5))
+        .attr('x1', this.sx(0))
+        .attr('x2', this.sx(16.5))
+        .attr('y1', this.sy(34 + (3.66 + 5.5)))
+        .attr('y2', this.sy(34 + (3.66 + 5.5)))
         .attr("stroke", '#999')
         .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
@@ -108,10 +107,10 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append('g')
         .append('line')
-        .attr('x1', 0)
-        .attr('x2', 16.5)
-        .attr('y1', 34 + (3.66 + 11))
-        .attr('y2', 34 + (3.66 + 11))
+        .attr('x1', this.sx(0))
+        .attr('x2', this.sx(16.5))
+        .attr('y1', this.sy(34 + (3.66 + 11)))
+        .attr('y2', this.sy(34 + (3.66 + 11)))
         .attr("stroke", '#999')
         .attr('stroke-width', 0.3)
         .attr('opacity', 0.5)
@@ -131,8 +130,6 @@ class GKPositioningChart extends GeneralChart {
     }
 
     onMousemove(thisClass, event, d) {
-
-
       const xScale = d3.scaleLinear()
           .domain([thisClass.margin.top, thisClass.pitch.height() - thisClass.margin.bottom])
           .range([52.5, 0]);
@@ -143,7 +140,6 @@ class GKPositioningChart extends GeneralChart {
 
 
         const [mouseX, mouseY] = d3.pointer(event);
-        console.log(mouseX, mouseY)
 
       const ball = {
         x: xScale(mouseY),
@@ -159,13 +155,13 @@ class GKPositioningChart extends GeneralChart {
         thisClass.ratio
       );
       d3.select(".ball")
-        .attr("cx", ball.x)
-        .attr("cy", ball.y);
+        .attr("cx", thisClass.sx(ball.x))
+        .attr("cy", thisClass.sy(ball.y));
 
       d3.select('.ball-distance')
-        .attr("x", ball.x)
-        .attr("y", ball.y)
-        .attr('transform', `rotate(90, ${ball.x}, ${ball.y})`)
+        .attr("x", thisClass.sx(ball.x))
+        .attr("y", thisClass.sy(ball.y))
+        .attr('transform', `rotate(90, ${thisClass.sx(ball.x)}, ${thisClass.sy(ball.y)})`)
         .attr('pointer-events', 'none')
         .text(`${formatFloat(2)(distance(ball, thisClass.goal))}m`)
 
@@ -174,22 +170,22 @@ class GKPositioningChart extends GeneralChart {
 
       d3
         .select(".shot-path")
-        .attr("x1", ball.x)
-        .attr("y1", ball.y);
+        .attr("x1", thisClass.sx(ball.x))
+        .attr("y1", thisClass.sy(ball.y));
 
       if (isShotPossible(ball, thisClass.goal, 30)) {
         thisClass.svg.call(thisClass.drawResponsibleLine.bind(thisClass), ball);
 
         d3.selectAll(".possible-path")
           .style('display', '')
-          .attr("x1", ball.x)
-          .attr("y1", ball.y);
+          .attr("x1", thisClass.sx(ball.x))
+          .attr("y1", thisClass.sy(ball.y));
 
         d3.select('.possible-shot-area')
           .datum([
-            {x: ball.x, y: ball.y},
-            {x: thisClass.goal.x, y: thisClass.goal.y + 3.66},
-            {x: thisClass.goal.x, y: thisClass.goal.y - 3.66},
+            {x: thisClass.sx(ball.x), y: thisClass.sy(ball.y)},
+            {x: thisClass.sx(thisClass.goal.x), y: thisClass.sy(thisClass.goal.y + 3.66)},
+            {x: thisClass.sx(thisClass.goal.x), y: thisClass.sy(thisClass.goal.y - 3.66)},
           ])
           .style('display', '')
           .attr('d', d3.line()
@@ -225,18 +221,18 @@ class GKPositioningChart extends GeneralChart {
         .append('clipPath')
         .attr('id', 'cut-off-bottom')
         .append('rect')
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('width', 68)
-        .attr('height', 52.5)
+        .attr('x', this.sx(0))
+        .attr('y', this.sy(0))
+        .attr('height', this.sx(52.5))
+        .attr('width', this.sy(68))
 
       sel
         .append("g")
         .append("ellipse")
-        .attr("cx", 0)
-        .attr("cy", 34)
-        .attr("rx", 5.5)
-        .attr("ry", 3.66)
+        .attr("cx", this.sx(0))
+        .attr("cy", this.sy(34))
+        .attr("rx", this.sx(5.5))
+        .attr("ry", this.sy(3.66))
         .attr("stroke-dasharray", "0.5 0.5")
         .attr("stroke-width", 0.2)
         .attr("stroke", "#888")
@@ -249,10 +245,10 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append("g")
         .append("ellipse")
-        .attr("cx", 0)
-        .attr("cy", 34)
-        .attr("rx", (5.5 * this.ratio))
-        .attr("ry", (3.66 * this.ratio))
+        .attr("cx", this.sx(0))
+        .attr("cy", this.sy(34))
+        .attr("rx", this.sx((5.5 * this.ratio)))
+        .attr("ry", this.sy((3.66 * this.ratio)))
         .attr("stroke-dasharray", "0.5 0.5")
         .attr("stroke-width", 1)
         .attr("stroke", "#833")
@@ -265,8 +261,8 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append("g")
         .append("text")
-        .attr("x", 1.57)
-        .attr("y", 34)
+        .attr("x", this.sx(1.57))
+        .attr("y", this.sy(34))
         .attr("fill", "blue")
         .attr("opacity", 1)
         .attr("text-anchor", "middle")
@@ -279,10 +275,10 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append("g")
         .append("line")
-        .attr("x1", 0)
-        .attr("x2", 0 + 5.5)
-        .attr("y1", 34 + 3.66)
-        .attr("y2", 34 - 3.66 - 5.5)
+        .attr("x1", this.sx(0))
+        .attr("x2", this.sx(0 + 5.5))
+        .attr("y1", this.sy(34 + 3.66))
+        .attr("y2", this.sy(34 - 3.66 - 5.5))
         .attr("stroke-dasharray", "0.5 0.5")
         .attr("stroke", "red")
         .attr('stroke-width', 0.2)
@@ -290,10 +286,10 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append("g")
         .append("line")
-        .attr("x1", 0)
-        .attr("x2", 0 + 5.5)
-        .attr("y1", 34 - 3.66)
-        .attr("y2", 34 + 3.66 + 5.5)
+        .attr("x1", this.sx(0))
+        .attr("x2", this.sx(0 + 5.5))
+        .attr("y1", this.sy(34 - 3.66))
+        .attr("y2", this.sy(34 + 3.66 + 5.5))
         .attr("stroke-dasharray", "0.5 0.5")
         .attr("stroke", "red")
         .attr('stroke-width', 0.2)
@@ -337,13 +333,13 @@ class GKPositioningChart extends GeneralChart {
         .transition()
         .duration(100)
         .ease(d3.easeLinear)
-        .attr("cx", (d) => d.x)
-        .attr("cy", (d) => d.y);
+        .attr("cx", (d) => this.sx(d.x))
+        .attr("cy", (d) => this.sy(d.y));
 
       d3.select(".gk-text")
         .datum(this.GK)
-        .attr("x", (d) => d.x)
-        .attr("y", (d) => d.y);
+        .attr("x", (d) => this.sx(d.x))
+        .attr("y", (d) => this.sy(d.y));
     }
 
     drawGK(sel, ball) {
@@ -356,8 +352,8 @@ class GKPositioningChart extends GeneralChart {
         ball
           .transition()
           .duration(1000)
-          .attr('cx', thisClass.goal.x)
-          .attr('cy', thisClass.goal.y)
+          .attr('cx', thisClass.sx(thisClass.goal.x))
+          .attr('cy', thisClass.sy(thisClass.goal.y))
           // .on('end', setTimeout(_.partial(repeat, thisClass, ball), 1000));
       }
 
@@ -365,8 +361,8 @@ class GKPositioningChart extends GeneralChart {
         .append("g")
         .append("circle")
         .attr("class", "ball")
-        .attr("cx", this.ball.x)
-        .attr("cy", this.ball.y)
+        .attr("cx", this.sx(this.ball.x))
+        .attr("cy", this.sy(this.ball.y))
         .attr("fill", "red")
         .attr("r", this.ballR)
 
@@ -376,10 +372,10 @@ class GKPositioningChart extends GeneralChart {
         .append('g')
         .append('text')
         .attr('class', 'ball-distance')
-        .attr("x", this.ball.x)
-        .attr("y", this.ball.y)
+        .attr("x", this.sx(this.ball.x))
+        .attr("y", this.sy(this.ball.y))
         .attr('dy', -4)
-        .attr('transform', `rotate(90, ${this.ball.x}, ${this.ball.y})`)
+        .attr('transform', `rotate(90, ${this.sx(this.ball.x)}, ${this.sy(this.ball.y)})`)
         .attr("text-anchor", "middle")
         .attr("font-size", 2)
         .attr("font-family", 'sans-serif')
@@ -394,10 +390,10 @@ class GKPositioningChart extends GeneralChart {
         .append("g")
         .append("line")
         .attr("class", "shot-path")
-        .attr("x1", this.ball.x)
-        .attr("y1", this.ball.y)
-        .attr("x2", this.goal.x)
-        .attr("y2", this.goal.y)
+        .attr("x1", this.sx(this.ball.x))
+        .attr("y1", this.sy(this.ball.y))
+        .attr("x2", this.sx(this.goal.x))
+        .attr("y2", this.sy(this.goal.y))
         .attr("stroke", "#888")
         .attr("stroke-width", 0.2)
         .attr("stroke-dasharray", "0.4 0.4");
@@ -516,10 +512,10 @@ class GKPositioningChart extends GeneralChart {
         .append('g')
         .append("line")
         .attr("class", "possible-shot-path")
-        .attr("x1", ball.x)
-        .attr("y1", ball.y)
-        .attr("x2", this.goal.x) // left goal pos
-        .attr("y2", this.goal.y  - 3.66)
+        .attr("x1", this.sx(ball.x))
+        .attr("y1", this.sy(ball.y))
+        .attr("x2", this.sx(this.goal.x)) // left goal pos
+        .attr("y2", this.sy(this.goal.y  - 3.66))
         .attr("stroke", "blue")
         .attr("opacity", 0.2)
         .attr("stroke-dasharray", "0.5 0.5")
@@ -530,10 +526,10 @@ class GKPositioningChart extends GeneralChart {
         .append('g')
         .append("line")
         .attr("class", "possible-shot-path")
-        .attr("x1", ball.x)
-        .attr("y1", ball.y)
-        .attr("x2", this.goal.x) // right goal pos
-        .attr("y2", this.goal.y + 3.66)
+        .attr("x1", this.sx(ball.x))
+        .attr("y1", this.sy(ball.y))
+        .attr("x2", this.sx(this.goal.x)) // right goal pos
+        .attr("y2", this.sy(this.goal.y + 3.66))
         .attr("stroke", "blue")
         .attr("opacity", 0.2)
         .attr("stroke-dasharray", "0.5 0.5")
@@ -568,7 +564,7 @@ class GKPositioningChart extends GeneralChart {
         .attr('fill', 'none')
         .attr('stroke-dasharray', '0.5 0.5')
         .attr('stroke-width', 0.2)
-        .attr('transform', `translate(${this.goal.x},${this.goal.y})`)
+        .attr('transform', `translate(${this.sx(this.goal.x)},${this.sy(this.goal.y)})`)
         .attr('d', d3.arc()({
           innerRadius: 30 / 1.1,
           outerRadius: 30 / 1.1,
