@@ -129,9 +129,9 @@ class GKPositioningChart extends GeneralChart {
         .append("g")
         .append("rect")
         .attr("x", this.margin.left)
-        .attr("y", this.margin.top)
+        .attr("y", this.margin.top + 15)
         .attr("width", this.pitch.width() - this.margin.left)
-        .attr("height", this.pitch.height())
+        .attr("height", this.pitch.height() - 15)
         .attr("fill", "#ccc")
         .attr('pointer', 'crosshair'); // not working
       sel.append("g").call(this.pitch);
@@ -386,7 +386,7 @@ class GKPositioningChart extends GeneralChart {
         .attr('class', 'ball-distance')
         .attr("x", this.sx(this.ball.x))
         .attr("y", this.sy(this.ball.y))
-        .attr('dy', -4)
+        .attr('dy', 4)
         .attr('transform', `rotate(90, ${this.sx(this.ball.x)}, ${this.sy(this.ball.y)})`)
         .attr("text-anchor", "middle")
         .attr("font-size", 2)
