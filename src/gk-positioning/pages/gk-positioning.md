@@ -3,11 +3,9 @@ theme: dashboard
 toc: false
 ---
 
-# Where should a goalkeeper stand?
+# Where should the goalkeeper stand?
 
 This is a visualization of the theoretical positions a goalkeeper should take relative to the location of a shot.
-
-Both the theory and the visualization have room for improvement.
 
 Feel free to contact me if you have any feedback or suggestions.
 
@@ -17,10 +15,10 @@ Feel free to contact me if you have any feedback or suggestions.
 ```js
 import GKPositioningChart from '../components/GKPositioningChart.js';
 import GoalFromBack from '../components/goalFromBack.js';
+import {require} from "npm:d3-require";
 ```
 
 ```js
-import {require} from "npm:d3-require";
 require("d3-soccer").then(soccer=>{
     new GKPositioningChart([], "#gkPositioning .chart", {
         height: 500,
