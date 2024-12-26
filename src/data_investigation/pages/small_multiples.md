@@ -163,62 +163,10 @@ view(data)
 
     .detail {
         flex: 1;
-        position: fixed;
-        top: 100;
-        right: 20;
-        width: 50%;
-        height: 100%;
-        padding: 20px;
+        position: relative;
+        top: 100px;
+        right: 0px;
+        height: 50%;
         background-color: none;
     }
-
-    .table-container {
-        position: relative;
-        top:400px;
-        height: 500px;
-        width: 500px;
-        overflow-x: auto;
-        overflow-y: auto;
-        padding: 10px;
-    }
-
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .table th, .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    .table th {
-        background-color: #f4f4f4;
-        text-align: left;
-    }
-</style>
-
-<style>
-#loading {
-    width: 2rem;
-    height: 0rem;
-    border: 5px solid #f3f3f3;
-    border-top: 6px solid #9c41f2;
-    border-radius: 100%;
-    margin: auto;
-    visibility: hidden;
-    animation: spin 2s linear infinite;
-}
-
-#loading.display {
-    visibility: visible;
-    height: 2rem;
-}
-
-
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
 </style>
