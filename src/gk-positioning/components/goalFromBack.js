@@ -10,8 +10,9 @@ export default class GoalFromBack extends GeneralChart {
         this.gkX = config.gkX
         this.gkHeight = 1.83
         this.headSize = 0.10
-        this.xmin = config.responsibleXs[0]
-        this.xmax = config.responsibleXs[1]
+        this.xmin = d3.min(config.responsibleXs)
+        this.xmax = d3.max(config.responsibleXs)
+
         this.setAxes();
     }
 
