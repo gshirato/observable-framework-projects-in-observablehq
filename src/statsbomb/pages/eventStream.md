@@ -129,8 +129,6 @@ const passes = events.filter(d=>d.type.name === 'Pass');
 const possessions = getPossessionData(passes);
 ```
 
-<div class="note" label="What 🚫 means"> that there is no <a href="https://statsbomb.com/what-we-do/soccer-data/360-2/">360 data</a> available for its event.</div>
-
 
 
 ```js
@@ -146,8 +144,8 @@ function formatMMSS(d) {
 ```js
 require("d3-soccer").then(soccer=>{
   new PassStreamChart(possession[1], "#passStream .chart", {
-    width: width,
-    height: 300,
+    width: width * 0.7,
+    height: 100,
     margin: { top: 20, right: 40, bottom: 20, left: 20 },
     period: 2,
     teams: teams,
@@ -178,7 +176,7 @@ const possession = view(Inputs.select(possessions.filter(d=>d[1][0].possession_t
 }}))
 ```
 
-<div id="passStream" class="card">
+<div id="passStream">
   <div class="chart"></div>
   <div class="threeSixty"></div>
 </div>
@@ -187,3 +185,6 @@ const possession = view(Inputs.select(possessions.filter(d=>d[1][0].possession_t
 ```js
 view(possessions)
 ```
+
+
+<div class="note" label="What 🚫 means"> that there is no <a href="https://statsbomb.com/what-we-do/soccer-data/360-2/">360 data</a> available for its event.</div>
