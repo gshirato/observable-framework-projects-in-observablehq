@@ -153,10 +153,7 @@ class GKPositioningChart extends GeneralChart {
         x: xScale(mouseY),
         y: yScale(mouseX),
       };
-      d3.select('.debug').html(`
-        mouseX: ${mouseX}, mouseY: ${mouseY}
-        x: ${ball.x}, y: ${ball.y}
-      `)
+      console.log(`mouseX: ${mouseX}, mouseY: ${mouseY}`, `x: ${ball.x}, y: ${ball.y}`)
       thisClass.GK = thisClass.getGKPosition(
         ball,
         thisClass.goal,
@@ -214,12 +211,17 @@ class GKPositioningChart extends GeneralChart {
           .style('display', 'none');
       }
 
+      const width = 800;
+      console.log(thisClass.distToEdges)
+      console.log('gk x:', 34 - thisClass.GK.y)
+
       new GoalFromBack([], `${thisClass.rootSelector} .fromBack`, {
-        height: 380,
-        width: 980,
+        height: width / 980 * 380,
+        width: width,
         margin: { top: 40, bottom: 40, left: 40, right: 40 },
         responsibleXs: thisClass.distToEdges,
         gkX: 0,
+        // gkX: 34 - thisClass.GK.y,
     }).draw();
     }
 
@@ -451,8 +453,7 @@ class GKPositioningChart extends GeneralChart {
 
     updateResponsibleLine(sel, ball) {
       const [perpX1, perpY1, perpX2, perpY2] = this.calculateResponsibleLine(ball);
-      this.distToEdges = this.calculateDistances([[perpX1, perpY1], [perpX2, perpY2]], [this.GK.x, this.GK.y]);
-
+      this.distToEdges = this.calculateDistances([[perpX1, perpY1], [perpX2, perpY2]], [this.sx(this.GK.x), this.sy(this.GK.y)]);
 
 
       // Draw the perpendicular line

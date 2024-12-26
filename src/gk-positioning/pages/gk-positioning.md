@@ -34,9 +34,9 @@ require("d3-soccer").then(soccer=>{
 
 ```html
 <div id="gkPositioning">
+    <div class="fromBack"></div>
     <div class="debug"></div>
     <div class="chart"></div>
-    <div class="card fromBack"></div>
 </div>
 ```
 
