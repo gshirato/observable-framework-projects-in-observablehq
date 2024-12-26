@@ -12,7 +12,7 @@ function getPlayingTeams(data, matchId) {
     return Array.from(d3.union(data.filter(d=>d.match_id === matchId).map(d => d.team.name))).join(' vs ');
 }
 
-export default function drawSmallMultiples(data, selector, config) {
+export function drawSmallMultiplesStatsbomb(data, selector, config) {
     const nCols = config['nCols'];
     const soccer = config['soccerModule'];
     const episodeName = config['episodeName'];

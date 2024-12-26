@@ -42,7 +42,7 @@ data
 ```js
 import {require} from "npm:d3-require";
 import LengthDistributionChart from "../components/lengthDistribution.js";
-import drawSmallMultiplesStatsbomb from "../components/drawSmallMultiplesStatsbomb.js";
+import {drawSmallMultiplesStatsbomb} from "../components/drawSmallMultiplesStatsbomb.js";
 ```
 
 
@@ -128,18 +128,17 @@ https://statsbomb.com/articles/soccer/free-statsbomb-data-bayer-leverkusens-invi
 
     .detail {
         flex: 1;
-        position: fixed;
-        top: 100;
-        right: 20;
+        position: relative;
+        top: 100px;
+        right: 0px;
         width: 50%;
-        height: 100%;
-        padding: 20px;
+        height: 50%;
         background-color: none;
     }
 
     .table-container {
         position: relative;
-        top:400px;
+        top:50px;
         height: 500px;
         width: 500px;
         overflow-x: auto;
@@ -147,18 +146,4 @@ https://statsbomb.com/articles/soccer/free-statsbomb-data-bayer-leverkusens-invi
         padding: 10px;
     }
 
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .table th, .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    .table th {
-        background-color: #f4f4f4;
-        text-align: left;
-    }
 </style>
