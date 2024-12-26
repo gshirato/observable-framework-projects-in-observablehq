@@ -23,7 +23,18 @@ class TableChart {
     }
 
     setAxis() {
-      this.sc = d3.scaleLinear().domain([0, this.nTeams - 1]).range(["white", "#de2d26"]);
+      this.sc = d3.scaleLinear()
+        .domain([(this.nTeams / 2), 0, -(this.nTeams / 2)])
+        .range(["#2f0", "white", "#f51"]);
+    }
+
+    createClassName(name, i) {
+      const formattedName = name
+        .replace('(', '_')
+        .replace(')', '_')
+        .replace('\n', '_')
+        .replace(' ', '_')
+      return `id${formattedName}-${i}`
     }
 
     createTable() {
@@ -55,7 +66,7 @@ class TableChart {
           row.append("td").style("font-weight", "bold").text(item.予想);
           for (let i = 1; i <= this.nTeams; i++) {
             row.append("td")
-              .attr('class', `id${item.予想}-${i}`)
+              .attr('class', thisClass.createClassName(item.予想, i))
               .text(item[i]);
           }
           // sum
@@ -77,9 +88,9 @@ class TableChart {
           const actual = this.differences.find(d=>d.予想 === '結果');
           const actualPosition = this.findKeyByValue(actual, predictedIthPosition)
 
-          const diff = Math.abs(i - parseInt(actualPosition));
+          const diff = i - parseInt(actualPosition);
           const sc = this.sc(diff);
-          this.table.select(`.id${pred}-${i}`).style("background-color", sc);
+          this.table.select(`.${this.createClassName(pred, i)}`).style("background-color", sc);
         }
       }
 
