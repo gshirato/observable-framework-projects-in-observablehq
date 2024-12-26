@@ -1,5 +1,6 @@
 ---
 theme: dashboard
+toc: false
 ---
 
 # Where should a goalkeeper stand?
