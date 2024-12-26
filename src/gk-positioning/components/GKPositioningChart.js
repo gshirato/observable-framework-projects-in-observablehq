@@ -477,19 +477,19 @@ class GKPositioningChart extends GeneralChart {
         const perpSlope = -1 / slope;
 
         // Use the slope and GK position to calculate the endpoints of the perpendicular line
-        let perpX1 = this.GK.x - 5;
-        let perpY1 = this.GK.y - 5 * perpSlope;
-        let perpX2 = this.GK.x + 5;
-        let perpY2 = this.GK.y + 5 * perpSlope;
+        let perpX1 = this.sx(this.GK.x - 5);
+        let perpY1 = this.sy(this.GK.y - 5 * perpSlope);
+        let perpX2 = this.sx(this.GK.x + 5);
+        let perpY2 = this.sy(this.GK.y + 5 * perpSlope);
 
         // Define possible shot paths
         const leftGoalLine = [
-          [ball.x, ball.y],
-          [this.goal.x - 3.66, this.goal.y]
+          [this.sx(ball.x), this.sy(ball.y)],
+          [this.sx(this.goal.x - 3.66), this.sy(this.goal.y)]
         ];
         const rightGoalLine = [
-          [ball.x, ball.y],
-          [this.goal.x + 3.66, this.goal.y]
+          [this.sx(ball.x), this.sy(ball.y)],
+          [this.sx(this.goal.x + 3.66), this.sy(this.goal.y)]
         ];
 
         // Find intersection points with possible shot paths
