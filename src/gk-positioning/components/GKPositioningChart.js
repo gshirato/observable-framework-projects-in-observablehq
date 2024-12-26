@@ -10,8 +10,8 @@ class GKPositioningChart extends GeneralChart {
       this.soccer = config['soccerModule'];
       this.ballR = 0.4;
       this.distToEdges = null;
-      this.initPitch(config);
       this.setAxes();
+      this.initPitch(config);
     }
     initPitch(config) {
       this.pitch = this.soccer
@@ -19,9 +19,13 @@ class GKPositioningChart extends GeneralChart {
         .height(420)
         .rotate(true)
         .clip([
-          [0, 52.5],
-          [68, 105]
+          [0, 0],
+          [68, 52.5]
         ]);
+        // .clip([
+        //   [0, 52.5],
+        //   [68, 105]
+        // ]);
       this.ball = config["ball"];
       this.goal = { x: 0, y: 34 };
       this.GK = this.getGKPosition(this.ball, this.goal, this.ratio);
@@ -35,15 +39,18 @@ class GKPositioningChart extends GeneralChart {
       this.sx = d3
         .scaleLinear()
         .domain([0, 105])
-        .range([0, 105]);
+        .range([105, 0]);
 
       this.sy = d3
         .scaleLinear()
         .domain([0, 68])
-        .range([0, 68]);
+        .range([68, 0]);
     }
 
     drawAuxiliaryLines(sel) {
+      const strokeWidth = 0.2;
+      const opacity = 0.3;
+      const dashArray = '1 0.5';
       sel
         .append('g')
         .append('line')
@@ -52,9 +59,9 @@ class GKPositioningChart extends GeneralChart {
         .attr('y1', this.sy(34 - 20.16))
         .attr('y2', this.sy(34 + 20.16))
         .attr("stroke", '#999')
-        .attr('stroke-width', 0.3)
-        .attr('opacity', 0.5)
-        .attr('stroke-dasharray', '0.5 0.5')
+        .attr('stroke-width', strokeWidth)
+        .attr('opacity', opacity)
+        .attr('stroke-dasharray', dashArray)
 
       sel
         .append('g')
@@ -64,9 +71,9 @@ class GKPositioningChart extends GeneralChart {
         .attr('y1', this.sy(34 - 20))
         .attr('y2', this.sy(34 + 20))
         .attr("stroke", '#999')
-        .attr('stroke-width', 0.3)
-        .attr('opacity', 0.5)
-        .attr('stroke-dasharray', '0.5 0.5')
+        .attr('stroke-width', strokeWidth)
+        .attr('opacity', opacity)
+        .attr('stroke-dasharray', dashArray)
 
       sel
         .append('g')
@@ -76,9 +83,9 @@ class GKPositioningChart extends GeneralChart {
         .attr('y1', this.sy(34 - (3.66 + 5.5)))
         .attr('y2', this.sy(34 - (3.66 + 5.5)))
         .attr("stroke", '#999')
-        .attr('stroke-width', 0.3)
-        .attr('opacity', 0.5)
-        .attr('stroke-dasharray', '0.5 0.5')
+        .attr('stroke-width', strokeWidth)
+        .attr('opacity', opacity)
+        .attr('stroke-dasharray', dashArray)
 
       sel
         .append('g')
@@ -88,9 +95,9 @@ class GKPositioningChart extends GeneralChart {
         .attr('y1', this.sy(34 - (3.66 + 11)))
         .attr('y2', this.sy(34 - (3.66 + 11)))
         .attr("stroke", '#999')
-        .attr('stroke-width', 0.3)
-        .attr('opacity', 0.5)
-        .attr('stroke-dasharray', '0.5 0.5')
+        .attr('stroke-width', strokeWidth)
+        .attr('opacity', opacity)
+        .attr('stroke-dasharray', dashArray)
 
       sel
         .append('g')
@@ -100,9 +107,9 @@ class GKPositioningChart extends GeneralChart {
         .attr('y1', this.sy(34 + (3.66 + 5.5)))
         .attr('y2', this.sy(34 + (3.66 + 5.5)))
         .attr("stroke", '#999')
-        .attr('stroke-width', 0.3)
-        .attr('opacity', 0.5)
-        .attr('stroke-dasharray', '0.5 0.5')
+        .attr('stroke-width', strokeWidth)
+        .attr('opacity', opacity)
+        .attr('stroke-dasharray', dashArray)
 
       sel
         .append('g')
@@ -112,9 +119,9 @@ class GKPositioningChart extends GeneralChart {
         .attr('y1', this.sy(34 + (3.66 + 11)))
         .attr('y2', this.sy(34 + (3.66 + 11)))
         .attr("stroke", '#999')
-        .attr('stroke-width', 0.3)
-        .attr('opacity', 0.5)
-        .attr('stroke-dasharray', '0.5 0.5')
+        .attr('stroke-width', strokeWidth)
+        .attr('opacity', opacity)
+        .attr('stroke-dasharray', dashArray)
     }
 
     drawPitch(sel) {
@@ -125,18 +132,23 @@ class GKPositioningChart extends GeneralChart {
         .attr("y", this.margin.top)
         .attr("width", this.pitch.width() - this.margin.left)
         .attr("height", this.pitch.height())
-        .attr("fill", "#ccc");
+        .attr("fill", "#ccc")
+        .attr('pointer', 'crosshair'); // not working
       sel.append("g").call(this.pitch);
     }
 
     onMousemove(thisClass, event, d) {
       const xScale = d3.scaleLinear()
-          .domain([thisClass.margin.top, thisClass.pitch.height() - thisClass.margin.bottom])
-          .range([52.5, 0]);
+          .domain([
+            thisClass.margin.top,
+            thisClass.pitch.height() - thisClass.margin.bottom])
+          .range([0, 52.5]);
 
       const yScale = d3.scaleLinear()
-          .domain([thisClass.margin.left, thisClass.pitch.width() - thisClass.margin.right])
-          .range([0, 68]);
+          .domain([
+            thisClass.margin.left,
+            thisClass.pitch.width() - thisClass.margin.right])
+          .range([68, 0]);
 
 
         const [mouseX, mouseY] = d3.pointer(event);
@@ -191,7 +203,7 @@ class GKPositioningChart extends GeneralChart {
           .attr('d', d3.line()
             (
               [
-                [ball.x, ball.y],
+                [thisClass.sx(ball.x), thisClass.sy(ball.y)],
                 [thisClass.sx(thisClass.goal.x), thisClass.sy(thisClass.goal.y + 3.66)],
                 [thisClass.sx(thisClass.goal.x), thisClass.sy(thisClass.goal.y - 3.66)]
               ]
@@ -219,24 +231,24 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append('g')
         .append('clipPath')
-        .attr('id', 'cut-off-bottom')
+        .attr('id', 'cut-off-half-circle')
         .append('rect')
-        .attr('x', this.sx(0))
-        .attr('y', this.sy(0))
-        .attr('height', this.sx(52.5))
-        .attr('width', this.sy(68))
+        .attr('x', this.sx(52.5))
+        .attr('y', this.sy(68))
+        .attr('width', 52.5)
+        .attr('height', 68)
 
       sel
         .append("g")
         .append("ellipse")
         .attr("cx", this.sx(0))
         .attr("cy", this.sy(34))
-        .attr("rx", this.sx(5.5))
-        .attr("ry", this.sy(3.66))
+        .attr("rx", 5.5)
+        .attr("ry", 3.66)
         .attr("stroke-dasharray", "0.5 0.5")
         .attr("stroke-width", 0.2)
         .attr("stroke", "#888")
-        .attr('clip-path', 'url(#cut-off-bottom)')
+        .attr('clip-path', 'url(#cut-off-half-circle)')
         .attr("fill", "none")
         .attr("opacity", 0.7);
     }
@@ -247,13 +259,13 @@ class GKPositioningChart extends GeneralChart {
         .append("ellipse")
         .attr("cx", this.sx(0))
         .attr("cy", this.sy(34))
-        .attr("rx", this.sx((5.5 * this.ratio)))
-        .attr("ry", this.sy((3.66 * this.ratio)))
+        .attr("rx", 5.5 * this.ratio)
+        .attr("ry", 3.66 * this.ratio)
         .attr("stroke-dasharray", "0.5 0.5")
         .attr("stroke-width", 1)
         .attr("stroke", "#833")
         .attr("fill", "none")
-        .attr('clip-path', 'url(#cut-off-bottom)')
+        .attr('clip-path', 'url(#cut-off-half-circle)')
         .attr("opacity", 0.0);
     }
 
@@ -445,6 +457,8 @@ class GKPositioningChart extends GeneralChart {
       const [perpX1, perpY1, perpX2, perpY2] = this.calculateResponsibleLine(ball);
       this.distToEdges = this.calculateDistances([[perpX1, perpY1], [perpX2, perpY2]], [this.GK.x, this.GK.y]);
 
+
+
       // Draw the perpendicular line
       sel
         .select(".responsible-path")
@@ -566,10 +580,10 @@ class GKPositioningChart extends GeneralChart {
         .attr('stroke-width', 0.2)
         .attr('transform', `translate(${this.sx(this.goal.x)},${this.sy(this.goal.y)})`)
         .attr('d', d3.arc()({
-          innerRadius: 30 / 1.1,
-          outerRadius: 30 / 1.1,
-          startAngle: 0,
-          endAngle: Math.PI,
+          innerRadius: 30,
+          outerRadius: 30,
+          startAngle: Math.PI,
+          endAngle: Math.PI * 2,
         }))
     }
 
