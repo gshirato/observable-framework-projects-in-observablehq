@@ -141,11 +141,11 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append("g")
         .append("rect")
-        .attr("x", this.margin.left)
-        .attr("y", this.margin.top + 15)
-        .attr("width", this.pitch.width() - this.margin.left)
-        .attr("height", this.pitch.height() - 15)
-        .attr("fill", "#ccc")
+        .attr("x", this.margin.left - 10)
+        .attr("y", this.margin.top + 10)
+        .attr("width", this.pitch.width() - this.margin.left + 10)
+        .attr("height", this.pitch.height() - 10)
+        .attr("fill", "#dfdfdf")
         .attr('cursor', 'none');
       sel.append("g").call(this.pitch);
     }
