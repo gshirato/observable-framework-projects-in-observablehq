@@ -24,9 +24,23 @@ class GKPositioningChart extends GeneralChart {
         ]);
       this.ball = config["ball"];
       this.goal = { x: 0, y: 34 };
+      this.ratio = this.getRatio(this.goal, this.ball);
       this.GK = this.getGKPosition(this.ball, this.goal, this.ratio);
-      this.ratio = config["ratio"]; // ratio of goal-ball and to goal-GK?
     }
+
+    /**
+     * Get the ratio of the distance between the ball and the goal to the distance between the ball and the GK
+     * Naive implementation
+     * @param {Object} gk - GK position
+     * @param {Object} ball - Ball position
+     * @returns {number} - Ratio
+     */
+    getRatio(goal, ball) {
+      const distance = Math.sqrt((goal.x - ball.x) ** 2 + (goal.y - ball.y) ** 2);
+      if (distance > 11) return 1;
+      return 0.7;
+    }
+
     getGKPosition(ball, goal, ratio) {
       return getGKPosition(ball, goal, ratio);
     }
@@ -153,7 +167,7 @@ class GKPositioningChart extends GeneralChart {
         x: xScale(mouseY),
         y: yScale(mouseX),
       };
-      console.log(`mouseX: ${mouseX}, mouseY: ${mouseY}`, `x: ${ball.x}, y: ${ball.y}`)
+
       thisClass.GK = thisClass.getGKPosition(
         ball,
         thisClass.goal,
