@@ -212,8 +212,6 @@ class GKPositioningChart extends GeneralChart {
       }
 
       const width = 800;
-      console.log(thisClass.distToEdges)
-      console.log('gk x:', 34 - thisClass.GK.y)
 
       new GoalFromBack([], `${thisClass.rootSelector} .fromBack`, {
         height: width / 980 * 380,
@@ -221,7 +219,6 @@ class GKPositioningChart extends GeneralChart {
         margin: { top: 40, bottom: 40, left: 40, right: 40 },
         responsibleXs: thisClass.distToEdges,
         gkX: 0,
-        // gkX: 34 - thisClass.GK.y,
     }).draw();
     }
 

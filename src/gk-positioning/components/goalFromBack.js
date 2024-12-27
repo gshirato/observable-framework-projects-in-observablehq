@@ -123,6 +123,7 @@ export default class GoalFromBack extends GeneralChart {
         const g = this.svg.append('g').attr('class', 'gk')
             .attr('transform', `translate(${this.sx(this.gkX) - this.sx(0)}, 0)`);
         const r = this.sx(this.headSize) - this.sx(0)
+
         g
             .append('circle')
             .attr('cx', this.sx(0))
@@ -132,7 +133,7 @@ export default class GoalFromBack extends GeneralChart {
             .attr('stroke', '#333')
             .attr('stroke-width', 2)
 
-            g
+        g
             .append('circle')
             .attr('cx', this.sx(0))
             .attr('cy', this.sy(this.gkHeight))
@@ -144,10 +145,10 @@ export default class GoalFromBack extends GeneralChart {
         g
             .append('path')
             .datum([
-                [this.sx(-0.80 + this.gkX), this.sy(this.gkHeight) + r * 2],
-                [this.sx(0 + this.gkX), this.sy(0)],
-                [this.sx(0.80 + this.gkX), this.sy(this.gkHeight) + r * 2],
-                [this.sx(-0.80 + this.gkX), this.sy(this.gkHeight) + r * 2],
+                [this.sx(-0.80), this.sy(this.gkHeight) + r * 2],
+                [this.sx(0), this.sy(0)],
+                [this.sx(0.80), this.sy(this.gkHeight) + r * 2],
+                [this.sx(-0.80), this.sy(this.gkHeight) + r * 2],
             ])
             .attr('fill', 'none')
             .attr('stroke', '#333')
@@ -161,6 +162,7 @@ export default class GoalFromBack extends GeneralChart {
             .attr('y', this.sy(this.gkHeight))
             .attr('dy', -5)
             .attr('text-anchor', 'middle')
+            .attr('font-family', 'sans-serif')
             .text(`GK (${this.gkHeight}m)`)
     }
 
@@ -174,10 +176,9 @@ export default class GoalFromBack extends GeneralChart {
 
         g
             .append('rect')
-            .attr('x', this.sx(this.gkX))
+            .attr('x', this.sx(0))
             .attr('y', this.sy(this.gkHeight) + r * 2)
-            .attr('l', console.log(this.sx(this.xmax) - this.sx(this.xmin)))
-            .attr('width', this.sx(this.xmax) - this.sx(this.gkX))
+            .attr('width', this.sx(this.xmax) - this.sx(0))
             .attr('height', this.sy(0) - this.sy(this.gkHeight) - r  *2)
             .attr('fill', 'blue')
             .attr('stroke', 'blue')
@@ -189,8 +190,7 @@ export default class GoalFromBack extends GeneralChart {
             .append('rect')
             .attr('x', this.sx(this.xmin))
             .attr('y', this.sy(this.gkHeight) + r * 2)
-            .attr('l', console.log(this.sx(this.xmax) - this.sx(this.xmin)))
-            .attr('width', this.sx(this.gkX) - this.sx(this.xmin))
+            .attr('width', this.sx(0) - this.sx(this.xmin))
             .attr('height', this.sy(0) - this.sy(this.gkHeight) - r  *2)
             .attr('fill', 'blue')
             .attr('stroke', 'blue')
@@ -224,26 +224,29 @@ export default class GoalFromBack extends GeneralChart {
             .selectAll('text')
             .data([this.xmin, this.xmax])
             .join('text')
-            .attr('x', d=>(this.sx(d) + this.sx(this.gkX)) / 2)
-            .attr('y', this.sy(0) + 20)
+            .attr('x', d=>(this.sx(d) + this.sx(0)) / 2)
+            .attr('y', this.sy(0))
+            .attr('dy', 40)
+            .attr('font-family', 'sans-serif')
+            .attr('font-size', '10px')
             .attr('text-anchor', 'middle')
-            .attr('font-weight', 'bold')
             .text((d)=>`${formatFloat(2)(Math.abs(d))}m`)
 
-            g
+        g
             .append('g')
             .selectAll('text')
             .data([this.xmin, this.xmax])
             .join('text')
             .attr('x', d=>this.sx(d))
-            .attr('y', this.sy(0) + 20)
+            .attr('y', this.sy(0))
+            .attr('dy', 20)
+            .attr('font-family', 'sans-serif')
             .attr('text-anchor', 'middle')
             .text((_, i)=>`${annotations[i]}`)
 
-
         g
             .append('text')
-            .attr('x', this.sx(this.gkX))
+            .attr('x', this.sx(0))
             .attr('y', this.sy(0) + 20)
             .attr('text-anchor', 'middle')
             .text(`▲`)
@@ -253,7 +256,7 @@ export default class GoalFromBack extends GeneralChart {
             .attr('y', this.margin.top)
             .attr('dy', -5)
             .attr('text-anchor', 'start')
-            .text(`GKの守備範囲`)
+            .attr('font-family', 'sans-serif')
             .text(`${formatFloat(2)(this.xmax - this.xmin)}m / 7.32m → ${formatFloat(2)((this.xmax - this.xmin) / 7.32 * 100)}%`)
     }
 
@@ -262,5 +265,4 @@ export default class GoalFromBack extends GeneralChart {
         this.drawGK();
         this.drawResponsibleArea();
     }
-
-  }
+}
