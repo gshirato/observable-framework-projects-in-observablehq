@@ -25,20 +25,22 @@ require("d3-soccer").then(soccer=>{
         width: width,
         margin: { top: 0, bottom: 0, left: 20, right: 10 },
         ball: { x: 20, y: 30 },
-        ratio: 1,
         soccerModule: soccer
     }).draw();
 });
 ```
 
 
-```html
 <div id="gkPositioning">
     <div class="fromBack"></div>
-    <div class="debug"></div>
     <div class="chart"></div>
 </div>
-```
+
+<style>
+    #gkPositioning .chart {
+        padding-left: 9%;
+    }
+</style>
 
 ---
 ## References
