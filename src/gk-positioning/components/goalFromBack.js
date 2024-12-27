@@ -10,8 +10,8 @@ export default class GoalFromBack extends GeneralChart {
         this.gkX = config.gkX
         this.gkHeight = 1.83
         this.headSize = 0.10
-        this.xmin = d3.min(config.responsibleXs)
-        this.xmax = d3.max(config.responsibleXs)
+        this.xmin = d3.min(config.responsableXs)
+        this.xmax = d3.max(config.responsableXs)
 
         this.setAxes();
     }
@@ -166,7 +166,7 @@ export default class GoalFromBack extends GeneralChart {
             .text(`GK (${this.gkHeight}m)`)
     }
 
-    drawResponsibleArea() {
+    drawResponsableArea() {
         const g = this.svg
             .append('g')
             .attr('class', 'area')
@@ -263,6 +263,6 @@ export default class GoalFromBack extends GeneralChart {
     draw() {
         this.drawGoal();
         this.drawGK();
-        this.drawResponsibleArea();
+        this.drawResponsableArea();
     }
 }

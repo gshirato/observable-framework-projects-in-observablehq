@@ -411,6 +411,23 @@ class GKPositioningChart extends GeneralChart {
       sel.call(this.updateResponsibleLine.bind(this), ball);
     }
     appendResponsibleLine(sel, ball) {
+
+      sel
+        .append('g')
+        .append('circle')
+        .attr("class", "responsible-edge-left")
+        .attr('r', 0.5)
+        .attr('fill', 'blue')
+        .attr('opacity', 0.5);
+
+      sel
+        .append('g')
+        .append('circle')
+        .attr("class", "responsible-edge-right")
+        .attr('r', 0.5)
+        .attr('fill', 'blue')
+        .attr('opacity', 0.5);
+
       sel
         .append("g")
         .append("line")
@@ -452,6 +469,15 @@ class GKPositioningChart extends GeneralChart {
       const [perpX1, perpY1, perpX2, perpY2] = this.calculateResponsibleLine(ball);
       this.distToEdges = this.calculateDistances([[perpX1, perpY1], [perpX2, perpY2]], [this.sx(this.GK.x), this.sy(this.GK.y)]);
 
+        sel
+          .select(".responsible-edge-left")
+          .attr('cx', perpX1)
+          .attr('cy', perpY1);
+
+          sel
+          .select(".responsible-edge-right")
+          .attr('cx', perpX2)
+          .attr('cy', perpY2);
 
       // Draw the perpendicular line
       sel
