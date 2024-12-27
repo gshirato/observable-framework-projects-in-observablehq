@@ -179,7 +179,7 @@ class GKPositioningChart extends GeneralChart {
         .attr("y1", thisClass.sy(ball.y));
 
       if (isShotPossible(ball, thisClass.goal, 30)) {
-        thisClass.svg.call(thisClass.drawResponsibleLine.bind(thisClass), ball);
+        thisClass.svg.call(thisClass.drawResponsableLine.bind(thisClass), ball);
 
         d3.selectAll(".possible-path")
           .style('display', '')
@@ -203,7 +203,7 @@ class GKPositioningChart extends GeneralChart {
             )
           );
       } else {
-        d3.select('.responsible-path')
+        d3.select('.responsable-path')
           .style('display', 'none');
         d3.selectAll(".possible-shot-path")
           .style('display', 'none');
@@ -217,7 +217,7 @@ class GKPositioningChart extends GeneralChart {
         height: width / 980 * 380,
         width: width,
         margin: { top: 40, bottom: 40, left: 40, right: 40 },
-        responsibleXs: thisClass.distToEdges,
+        responsableXs: thisClass.distToEdges,
         gkX: 0,
     }).draw();
     }
@@ -406,16 +406,16 @@ class GKPositioningChart extends GeneralChart {
         .attr("stroke-dasharray", "0.4 0.4");
     }
 
-    drawResponsibleLine(sel, ball) {
-      sel.call(this.appendResponsibleLine.bind(this), ball);
-      sel.call(this.updateResponsibleLine.bind(this), ball);
+    drawResponsableLine(sel, ball) {
+      sel.call(this.appendResponsableLine.bind(this), ball);
+      sel.call(this.updateResponsableLine.bind(this), ball);
     }
-    appendResponsibleLine(sel, ball) {
+    appendResponsableLine(sel, ball) {
 
       sel
         .append('g')
         .append('circle')
-        .attr("class", "responsible-edge-left")
+        .attr("class", "responsable-edge-left")
         .attr('r', 0.5)
         .attr('fill', 'blue')
         .attr('opacity', 0.5);
@@ -423,7 +423,7 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append('g')
         .append('circle')
-        .attr("class", "responsible-edge-right")
+        .attr("class", "responsable-edge-right")
         .attr('r', 0.5)
         .attr('fill', 'blue')
         .attr('opacity', 0.5);
@@ -431,7 +431,7 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append("g")
         .append("line")
-        .attr("class", "responsible-path")
+        .attr("class", "responsable-path")
         .attr("stroke", "blue")
         .attr("opacity", 0.4)
         .attr("stroke-width", 0.2)
@@ -440,7 +440,7 @@ class GKPositioningChart extends GeneralChart {
       sel
         .append('g')
         .append('text')
-        .attr('class', 'responsible-width')
+        .attr('class', 'responsable-width')
         .attr('font-family', 'sans-serif')
         .attr('font-size', 24)
         .attr('x', this.sx(0) + 10)
@@ -465,31 +465,31 @@ class GKPositioningChart extends GeneralChart {
       return linePoints.map(point =>distance(gkPosition, point) * sign(gkPosition, point));
     }
 
-    updateResponsibleLine(sel, ball) {
-      const [perpX1, perpY1, perpX2, perpY2] = this.calculateResponsibleLine(ball);
+    updateResponsableLine(sel, ball) {
+      const [perpX1, perpY1, perpX2, perpY2] = this.calculateResponsableLine(ball);
       this.distToEdges = this.calculateDistances([[perpX1, perpY1], [perpX2, perpY2]], [this.sx(this.GK.x), this.sy(this.GK.y)]);
 
         sel
-          .select(".responsible-edge-left")
+          .select(".responsable-edge-left")
           .attr('cx', perpX1)
           .attr('cy', perpY1);
 
           sel
-          .select(".responsible-edge-right")
+          .select(".responsable-edge-right")
           .attr('cx', perpX2)
           .attr('cy', perpY2);
 
-      // Draw the perpendicular line
-      sel
-        .select(".responsible-path")
-        .style('display', '')
-        .attr("x1", perpX1)
-        .attr("y1", perpY1)
-        .attr("x2", perpX2)
-        .attr("y2", perpY2);
+        // Draw the perpendicular line
+        sel
+          .select(".responsable-path")
+          .style('display', '')
+          .attr("x1", perpX1)
+          .attr("y1", perpY1)
+          .attr("x2", perpX2)
+          .attr("y2", perpY2);
       }
 
-      calculateResponsibleLine(ball) {
+      calculateResponsableLine(ball) {
         // Calculate the slope of the shot path
         const slope = (ball.y - this.goal.y) / (ball.x - this.goal.x);
 
