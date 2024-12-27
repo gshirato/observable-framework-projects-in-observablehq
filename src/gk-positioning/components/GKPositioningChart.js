@@ -16,7 +16,7 @@ class GKPositioningChart extends GeneralChart {
     initPitch(config) {
       this.pitch = this.soccer
         .pitch()
-        .height(420)
+        .height(this.height)
         .rotate(true)
         .clip([
           [0, 0],
@@ -232,7 +232,7 @@ class GKPositioningChart extends GeneralChart {
       new GoalFromBack([], `${thisClass.rootSelector} .fromBack`, {
         height: width / 980 * 380,
         width: width,
-        margin: { top: 40, bottom: 40, left: 40, right: 40 },
+        margin: { top: 40, bottom: 40, left: 20, right: 20 },
         responsableXs: thisClass.distToEdges,
         gkX: 0,
     }).draw();

@@ -21,7 +21,7 @@ import {require} from "npm:d3-require";
 ```js
 require("d3-soccer").then(soccer=>{
     new GKPositioningChart([], "#gkPositioning .chart", {
-        height: 500,
+        height: width * 68 / 105,
         width: width,
         margin: { top: 0, bottom: 0, left: 20, right: 10 },
         ball: { x: 20, y: 30 },
