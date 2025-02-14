@@ -8,30 +8,29 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
-      name: "Research projects",
-      pages: [
-        {name: "Episode Explorer", path: "/data_investigation/pages/episode_explorer"},
-        {name: "Small multiples (OLD)", path: "/data_investigation/pages/small_multiples"},
-        {name: "Important events (OLD)", path: "/data_investigation/pages/important_event_timeline"},
-        // {name: "Important events (England)", path: "/data_investigation/pages/important_event_timeline_England"},
-        // {name: "Similar episodes (WIP)", path: "/data_investigation/pages/similar_episodes"},
-        {name: "Suspicious locations", path: "/data_investigation/pages/suspicious_locations"},
-        {name: "Leverkusen", path: "/data_investigation/pages/leverkusen"},
-      ]
-    },
-    {
-      name: "Personal Projects",
+      name: "サッカーデータ可視化",
       pages: [
         {name: "Football events", path: "/statsbomb/pages/eventStream"},
-        {name: "Profit & Loss (J. League, 2022)", path: "/profit-loss/pages/profitLoss2022"},
-        {name: "Profit & Loss (J. League, 2023)", path: "/profit-loss/pages/profitLoss2023"},
-        {name: "J1 League 順位予想 (2023)", path: "/predictor-j1/pages/2023"},
-        {name: "J1 League 順位予想 (2024)", path: "/predictor-j1/pages/2024"},
         {name: "GK Viz", path: "/gk-positioning/pages/gk-positioning"},
         // {name: "Statsbomb", path: "/statsbomb/pages/statsbomb"},
         // {name: "Event recorder", path: "/statsbomb/pages/interactivePitch"},
         // {name: "J1-Data", path: "/j1-data/pages/j1-data"},
         // {name: "Urawa Reds", path: "/urawa-games/pages/urawa-games"},
+      ]
+    },
+    {
+      name: "Jリーグ 損益計算表",
+      pages: [
+        {name: "2022年", path: "/profit-loss/pages/profitLoss2022"},
+        {name: "2023年", path: "/profit-loss/pages/profitLoss2023"},
+      ]
+    },
+    {
+      name: "J1リーグ順位予想",
+      pages: [
+        {name: "2023年シーズン", path: "/predictor-j1/pages/2023"},
+        {name: "2024年シーズン", path: "/predictor-j1/pages/2024"},
+        {name: "2025年シーズン", path: "/predictor-j1/pages/2025"},
       ]
     },
     // {
@@ -56,6 +55,18 @@ export default {
         {name: "Passes", path: "statsbomb/pages/seminars/visual-analytics/football/passes"},
         {name: "Leading to shots", path: "statsbomb/pages/seminars/visual-analytics/football/leading-to-shots"},
         {name: "Visual Variables", path: "statsbomb/pages/seminars/visual-analytics/theory/visual-variables"},
+      ]
+    },
+    {
+      name: "Past Research projects",
+      pages: [
+        {name: "Episode Explorer", path: "/data_investigation/pages/episode_explorer"},
+        {name: "Small multiples (OLD)", path: "/data_investigation/pages/small_multiples"},
+        {name: "Important events (OLD)", path: "/data_investigation/pages/important_event_timeline"},
+        // {name: "Important events (England)", path: "/data_investigation/pages/important_event_timeline_England"},
+        // {name: "Similar episodes (WIP)", path: "/data_investigation/pages/similar_episodes"},
+        {name: "Suspicious locations", path: "/data_investigation/pages/suspicious_locations"},
+        {name: "Leverkusen", path: "/data_investigation/pages/leverkusen"},
       ]
     },
     {
